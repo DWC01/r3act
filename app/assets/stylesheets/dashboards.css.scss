@@ -46,44 +46,51 @@
   margin: 0px auto;
 }
 
-svg {
-  font: 10px sans-serif;
+
+.item6 {
+  fill: #a2ffff;
 }
 
-.y.axis path {
-  display: none;
+.item5 {
+  fill: #00cbfe;
 }
 
-.y.axis line {
-  stroke: #fff;
-  stroke-opacity: .2;
-  shape-rendering: crispEdges;
+.item4 {
+  fill: #0098fe;
 }
 
-.y.axis .zero line {
-  stroke: #000;
-  stroke-opacity: 1;
+.item3 {
+  fill: #0065fe;
 }
 
-.title {
-  font: 300 78px Helvetica Neue;
-  fill: #666;
+.item2 {
+  fill: #fc97ca;
 }
 
-.birthyear,
-.age {
-  text-anchor: middle;
+.item1 {
+  fill: #9700fb;
+} 
+
+
+
+/*
+.item1{
+  fill: #0099ff;
 }
 
-.birthyear {
-  fill: #fff;
+.item2{
+  fill: #00ccff;
 }
 
-rect {
-  fill-opacity: .8;
-  fill: #32ccfe;
+.item3{
+  fill: #27ae60;
 }
 
-rect:first-child {
-  fill: #75f982;
+.item4{
+  fill: #30d94c;
 }
+
+.item5{
+  fill: #6bff84;
+}
+*/

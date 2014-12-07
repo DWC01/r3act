@@ -1,0 +1,89 @@
+.page-menu{
+  width: 17%;
+  height: 100%;
+  padding-top: 100px;
+  background-color: #29292e;
+}
+
+.page-menu-header{
+  margin: 0 0 3% 0;
+  background-color: #34343a;
+  & p {
+    font-size: 20px;
+  }
+  & .title {
+    color: #848b8d;
+    margin: 0 0 0 20%;
+    padding: 15px 0;
+  }
+  & i {
+    color: #67e875;
+    float: right;
+    margin: 0 15% 0 0;
+    font-size: 25px;
+  }
+  & .bottom-highlight{
+    height: 2px;
+    width: 40%;
+    background-color: #67e875;
+  }
+}
+
+.page-menu-content{
+  & p {
+    font-size: 15px;
+    padding: 15px 0;
+  }
+  & .title {
+    color: #efefef;
+    margin: 0 0 0 20%;
+  }
+}
+
+////
+
+.bar-graph{
+  margin: 0px auto;
+}
+
+svg {
+  font: 10px sans-serif;
+}
+
+.y.axis path {
+  display: none;
+}
+
+.y.axis line {
+  stroke: #fff;
+  stroke-opacity: .2;
+  shape-rendering: crispEdges;
+}
+
+.y.axis .zero line {
+  stroke: #000;
+  stroke-opacity: 1;
+}
+
+.title {
+  font: 300 78px Helvetica Neue;
+  fill: #666;
+}
+
+.birthyear,
+.age {
+  text-anchor: middle;
+}
+
+.birthyear {
+  fill: #fff;
+}
+
+rect {
+  fill-opacity: .8;
+  fill: #32ccfe;
+}
+
+rect:first-child {
+  fill: #75f982;
+}

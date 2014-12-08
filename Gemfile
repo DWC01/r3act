@@ -9,13 +9,14 @@ gem "bootstrap-sass"
 gem 'jquery-rails'
 gem "font-awesome-rails"
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'bower-rails'
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem "meta_request"
   gem 'quiet_assets'
-  gem 'rails_layout'
+  # gem 'rails_layout'
   ### Test
   gem 'guard-rspec'
   gem 'guard-spork'

@@ -1,4 +1,13 @@
-<section ng-controller="MainCtrl">
-<ng-view></ng-view>
-<div ng-view="hello"></div>
-<h3 ng-if="hello">New Post</h3>
+<section id="dashboardapp" ng-controller="MainCtrl">
+  <ng-view></ng-view> 
+  
+  <header id="header">
+    <h1>Dashboards</h1>
+
+  <ul id="dashboard-list">
+    <li ng-repeat="dashboard in dashboards">
+      <p>{{dashboard.title}}</p>
+      <p>{{dashboard.category}}</p>
+      <p>{{dashboard.size}}</p>
+    </li>
+  </ul>

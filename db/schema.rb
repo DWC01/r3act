@@ -17,6 +17,9 @@ ActiveRecord::Schema.define(version: 20141208041130) do
   enable_extension "plpgsql"
 
   create_table "dashboards", force: true do |t|
+    t.string   "title"
+    t.string   "category"
+    t.string   "size"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

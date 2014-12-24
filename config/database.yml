@@ -5,12 +5,12 @@ default: &default
 
 development:
   <<: *default
-  database: rails_angular_starter_development
+  database: r3act_development
 
 test:
   <<: *default
-  database: rails_angular_starter_test
+  database: r3act_test
 
 production:
   <<: *default
-  database: rails_angular_starter
+  database: r3act

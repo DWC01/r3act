@@ -1,44 +1,39 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby '2.1.2'
 gem 'rails', '4.1.0'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
-gem "bootstrap-sass"
+gem 'coffee-rails'
 gem 'jquery-rails'
-gem "font-awesome-rails"
-gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'bower-rails'
-gem 'lodash-rails'
+gem 'responders'
+gem 'font-awesome-rails'
+gem "bootstrap-sass"
 gem 'angular-rails-templates'
+gem 'active_model_serializers'
+gem 'bower-rails'
 gem 'unicorn'
 
 group :development do
+  gem 'spring'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem "meta_request"
+  gem 'meta_request'
   gem 'quiet_assets'
-  ### Test
-  gem 'guard-rspec'
-  gem 'guard-spork'
-  gem 'spork-rails', github: 'sporkrb/spork-rails'
-  gem 'rb-fsevent'
 end
 
 group :development, :test do
-  gem "rspec-rails"
-  gem "factory_girl_rails"
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
+  gem 'spring-commands-rspec'
+  gem 'guard-rspec'
+  gem 'faker'
+  gem 'capybara'
+  gem 'database_cleaner'
 end
 
 group :production do
   gem 'rails_12factor'
-end
-
-group :test do
-  gem "faker"
-  gem "capybara"
-  gem "database_cleaner"
-  gem "launchy"
-  gem "shoulda-matchers"
 end

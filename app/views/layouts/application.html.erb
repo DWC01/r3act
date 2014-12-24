@@ -2,12 +2,12 @@
 <html>
 <head>
   <title>ReactiveDashboard</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= stylesheet_link_tag    'application' %>
   <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag 'http://d3js.org/d3.v3.min.js' %>
   <%= csrf_meta_tags %>
 </head>
-  <body ng-app="r3act">
+  <body>
     <%= render 'layouts/navbar' %>
     <%= yield %>
   </body>

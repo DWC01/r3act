@@ -5,12 +5,12 @@ default: &default
 
 development:
   <<: *default
-  database: reactive_dashboard_development
+  database: rails_angular_starter_development
 
 test:
   <<: *default
-  database: reactive_dashboard_test
+  database: rails_angular_starter_test
 
 production:
   <<: *default
-  database: reactive_dashboard
+  database: rails_angular_starter

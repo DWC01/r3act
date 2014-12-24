@@ -1,0 +1,2 @@
+class AdTagsController < ApplicationController
+end

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  root 'dashboards#index'
+  root 'campaigns#index'
    namespace :api do
-    resources :dashboards, defaults: { format: :json }
+    resources :campaigns, :ad_tags, defaults: { format: :json }
   end
 end

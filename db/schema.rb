@@ -11,15 +11,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208041130) do
+ActiveRecord::Schema.define(version: 20141224211257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "dashboards", force: true do |t|
-    t.string   "title"
-    t.string   "category"
+  create_table "ad_tags", force: true do |t|
+    t.string   "target"
+    t.string   "media_partner"
+    t.string   "placement_name"
+    t.string   "ad_type"
+    t.string   "ad_type_details"
+    t.string   "product"
     t.string   "size"
+    t.string   "width"
+    t.string   "height"
+    t.string   "device"
+    t.string   "unit_cost"
+    t.string   "impressions"
+    t.string   "total_cost"
+    t.string   "start_date"
+    t.string   "end_date"
+    t.string   "flight_dates"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "campaigns", force: true do |t|
+    t.string   "name"
+    t.string   "ad_tags_file"
+    t.string   "ad_tags_count"
+    t.string   "start_date"
+    t.string   "end_date"
+    t.string   "placement_sizes"
+    t.string   "display_types"
+    t.string   "ad_tag_provider"
+    t.string   "ad_tag_sender"
+    t.string   "ad_tag_receivers", default: [], array: true
+    t.string   "advertiser_name"
+    t.string   "media_plan_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

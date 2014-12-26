@@ -1,3 +1,29 @@
-// Place all the styles related to the campaigns controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'partials/global';
+
+.transaction-header {
+  margin-top: 50px !important;
+}
+
+.upload-ad-tags-header {
+  width: 500px;
+  font-weight: 200;
+  font-size: 26px;
+  text-align: center;
+  margin: 30px auto 0 auto;
+}
+
+.upload-ad-tags-wrap {
+  margin: 0px auto;
+  width: 300px;
+}
+
+.upload-ad-tags {
+  position: relative;
+  width: 300px;
+  padding: 30px 20px;
+  margin: 30px auto 40px auto;
+  overflow: hidden;
+  -webkit-box-shadow: #f0f0f0 0 0 0 3px inset,#edddf5 2px 3px 0;
+  -moz-box-shadow: #f0f0f0 0 0 0 3px inset,#edddf5 2px 3px 0;
+  box-shadow: #f0f0f0 0 0 0 3px inset,#edddf5 2px 3px 0;
+}

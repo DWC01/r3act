@@ -1,0 +1,16 @@
+@import 'colors';
+
+.r3-btn-primary {
+  color: #fff;
+  font-weight: 200;
+  font-size: 18px;
+  padding: 4px 30px;
+  border: 2px solid $primary-btn-border;
+  background-color: $primary-btn-background;
+  transition: all .2s;
+  width: 100%;
+  &:hover {
+    background-color: #fff;
+    color: $primary-btn-background;
+  }
+}

@@ -32,7 +32,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  RSpec.describe DashboardsController, :type => :controller do
+  RSpec.describe CampaignsController, :type => :controller do
     # ...
   end
 

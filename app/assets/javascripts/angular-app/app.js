@@ -1,10 +1,7 @@
 angular
+  .module('r3act', [])
   
-  .module('r3act', [
-
-  ])
-
-  .controller('DashController', function($scope){
+  .controller('CampaignController', function($scope){
     $scope.menuHeaders = [
       {"id": 0, "header": "Summary"},
       {"id": 1, "header": "Transactions"},

@@ -1,5 +1,5 @@
 module Api
-  class DashboardsController < Api::BaseController
+  class CampaignsController < Api::BaseController
     
     private
       def campaign_params

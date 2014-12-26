@@ -17,6 +17,8 @@ gem 'angular-rails-templates'
 gem 'active_model_serializers'
 gem 'bower-rails'
 gem 'unicorn'
+gem 'roo'
+gem 'spreadsheet'
 
 group :development do
   gem 'spring'

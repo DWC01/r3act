@@ -1,6 +1,8 @@
 class CampaignsController < ApplicationController
+  include CampaignMethods
   
   def index
+    @campaigns = Campaign.all
   end
 
   def new
@@ -10,6 +12,7 @@ class CampaignsController < ApplicationController
   def create
     @campaign = Campaign.new(campaign_params)
     if @campaign.save
+       save_file_as_ad_tags(@campaign) 
       redirect_to @campaign
     else
       redirect_to :new 
@@ -17,7 +20,20 @@ class CampaignsController < ApplicationController
   end
 
   def show
-    @campaigns = Campaign.find(params[:id])
+    @campaign = Campaign.find(params[:id])
+  end
+
+  def edit
+    @campaign = Campaign.find(params[:id])
+  end
+
+  def update
+    @campaign = Campaign.find(params[:id])
+    if @campaign.update(campaign_params)
+      redirect_to @campaign
+    else
+      render("edit")
+    end
   end
 
   def destroy

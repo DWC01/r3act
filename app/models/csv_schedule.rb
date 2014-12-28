@@ -29,7 +29,7 @@ class CsvSchedule
   #      Header       #
   #-------------------#
 
-  # looks for first row that has data in index[0] 
+  # looks for first row that has data in index.first 
   # and contains "total cost" at some point in the row
 
   # if encounters a row that is merged, pops it off
@@ -45,7 +45,7 @@ class CsvSchedule
 
   def get_header_row_index(data)
     data.each_with_index do |row, index|
-      return index unless row[0].blank?
+      return index unless row.first.blank?
     end
   end
 
@@ -87,6 +87,7 @@ class CsvSchedule
     flights=[]
     all_data.each do |row|
       if flight_row?(row)
+        put_flight_value_in_row(row)
         flights.push row
       end
     end
@@ -94,14 +95,19 @@ class CsvSchedule
   end
 
   def flight_row?(row)
-    if first_value_exist?(row) && remaining_rows_blank?(row) && !restricted_values?(row)
+    if first_value_exist?(row) && remaining_rows_blank?(row) && !restricted_flight_values?(row)
       return true
     end
     false
   end
 
+  def put_flight_value_in_row(row)
+    array = row.values
+    row["flight"] = array.first
+    row.delete_if {|key,value| key == "media_partner" }
+  end
 
-  def restricted_values?(row)
+  def restricted_flight_values?(row)
     row = row.values
     row.first == "Radio"
   end
@@ -111,10 +117,11 @@ class CsvSchedule
   #      Target       #
   #-------------------#
 
-  def set_target_hash(all_data)
+  def set_target_hash(data)
     targets=[]
-    all_data.each do |row|
+    data.each do |row|
       if target_row?(row)
+        put_target_value_in_row(row)
         targets.push row
       end
     end
@@ -133,6 +140,12 @@ class CsvSchedule
     return false unless last_value_exist?(row)
     return false unless middle_values_blank?(row)
     true
+  end
+
+  def put_target_value_in_row(row)
+    array = row.values
+    row["target"] = array.first
+    row.delete_if {|key,value| key == "media_partner" }
   end
 
   #-------------------#

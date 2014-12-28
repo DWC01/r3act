@@ -6,3 +6,57 @@
     <%= link_to "Ad Ags File", @campaign.ad_tags_file_url.to_s %>
   </h3>
 </div>
+<br>
+<br>
+<div class="center">
+  Header Index:
+  <br>
+  <%= @csv.header_index.inspect %>
+  <br>
+  <br>
+  Header Vals: 
+  <br>
+  <%= @csv.header.inspect %>
+  <br>
+  <br>
+  Header Length: 
+  <br>
+  <%= @csv.header.length - 1 %>
+  <br>
+  <br>
+  Flight Index => Vals: 
+  <br>
+
+  <% @csv.flight_hash.each do |flight| %>
+    <div style="text-align:left;">
+      <%= flight %>
+    </div>
+    <br>
+  <% end %>
+
+  <br>
+  <br>
+  Target Index => Vals: 
+  <br>
+  <% @csv.target_hash.each do |target| %>
+    <div style="text-align:left;">
+      <%= target %>
+    </div>
+    <br>
+  <% end %>
+  <br>
+  <br>
+  Placement Index => Vals: 
+  <br>
+  <% @csv.placement_hash.each do |target| %>
+      <div style="text-align:left;">
+        <%= target %>
+      </div>
+      <br>
+  <% end %>
+  <br>
+  <br>
+   ALL HASH VALS: 
+  <br>
+  <% @csv.all_data_hash.inspect %>
+</div>

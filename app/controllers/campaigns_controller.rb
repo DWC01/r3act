@@ -12,7 +12,7 @@ class CampaignsController < ApplicationController
   def create
     @campaign = Campaign.new(campaign_params)
     if @campaign.save
-       save_file_as_ad_tags(@campaign) 
+      save_file_as_ad_tags(ad_tags_file_path) 
       redirect_to @campaign
     else
       redirect_to :new 
@@ -21,6 +21,7 @@ class CampaignsController < ApplicationController
 
   def show
     @campaign = Campaign.find(params[:id])
+    @csv      = CsvSchedule.new(ad_tags_file_path)
   end
 
   def edit
@@ -43,6 +44,11 @@ class CampaignsController < ApplicationController
   end
 
   private
+
+    def ad_tags_file_path
+      @campaign.ad_tags_file_url.to_s
+    end
+
     def campaign_params
       params.require(:campaign).permit(:name, 
       :ad_tags_file, :ad_tags_count, :start_date,

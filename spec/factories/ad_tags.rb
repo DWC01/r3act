@@ -1,5 +1,7 @@
 FactoryGirl.define do
   factory :ad_tag do
+  flight            "Digital"
+  audience          "Awareness Get On The Long List"
   target            "All Markets"
   media_partner     "Amnet"
   placement_name    "Amnet_Desktop_Targeting Males18-36_112-2912_300x250"

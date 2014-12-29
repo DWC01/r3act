@@ -1,7 +1,8 @@
 class CsvSchedule
   attr_reader :csv, :all_data, :header_index, :header, 
               :all_data_hash, :flight_hash, :target_hash,
-              :placement_hash
+              :placement_hash, :flight_target_hash,
+              :first_flight_index
 
   def initialize(schedule_file_path)
    @csv = Roo::Spreadsheet.open(schedule_file_path)
@@ -12,6 +13,7 @@ class CsvSchedule
    @all_data_hash   = set_all_data_hash
 
    @flight_hash     = set_flight_hash(all_data_hash.clone)
+   @first_flight_index = set_first_flight_index
    @target_hash     = set_target_hash(all_data_hash.clone)
    @placement_hash  = set_placement_hash(all_data_hash.clone)
 
@@ -29,41 +31,40 @@ class CsvSchedule
   #      Header       #
   #-------------------#
 
-  # looks for first row that has data in index.first 
-  # and contains "total cost" at some point in the row
-
-  # if encounters a row that is merged, pops it off
-  # and recursively looks for..
-
   def set_header(data)
-    header = get_header(data)
+    header = get_header_values(data)
     return header if header.last == "total_cost"
       
-    all_data.shift
-    set_header(all_data)
+    puts "Could Not Find A Header Value.."
   end
 
   def get_header_row_index(data)
     data.each_with_index do |row, index|
-      return index unless row.first.blank?
+      if !row.first.blank? && contains_header_values(row)
+        return index
+      end
     end
   end
 
-  def get_header(data)
-    headers=[]
-    data[header_index].each do |header|
-      unless header.blank? 
-        header = header.downcase
-        header = filter_header(header)
+  def get_header_values(data)
+    headers_vals=[]
+    data[header_index].each do |value|
+      unless value.blank? 
+        value = value.downcase
+        value = filter_header(value)
       end
-      headers.push header
-      break if header == "total_cost"
+      headers_vals.push value.strip
+      break if value == "total_cost"
     end
-    headers.compact
+    headers_vals.compact
   end
 
   def last_index
     header.length-1
+  end
+
+  def contains_header_values(row)
+    (row.include?("TOTAL COST") || row.include?("Total Cost") || row.include?("SCHEDULE DETAILS") || row.include?("SCHEDULE")|| row.include?("Placement") )
   end
 
   #-------------------#
@@ -85,9 +86,9 @@ class CsvSchedule
 
   def set_flight_hash(all_data)
     flights=[]
-    all_data.each do |row|
+    all_data.each_with_index do |row, index|
       if flight_row?(row)
-        put_flight_value_in_row(row)
+        put_flight_value_in_row(row,index)
         flights.push row
       end
     end
@@ -101,10 +102,11 @@ class CsvSchedule
     false
   end
 
-  def put_flight_value_in_row(row)
+  def put_flight_value_in_row(row,index)
     array = row.values
     row["flight"] = array.first
-    row.delete_if {|key,value| key == "media_partner" }
+    row["index"] = index
+    row.delete_if {|key,value| key == "media_partner" || key == "device" || key == "placement_name" || key == "ad_type" || key == "product" || key == "unit_cost" || key == "impressions" || key == "total_digital_cost" || key == "total_cost" }
   end
 
   def restricted_flight_values?(row)
@@ -119,9 +121,9 @@ class CsvSchedule
 
   def set_target_hash(data)
     targets=[]
-    data.each do |row|
+    data.each_with_index do |row, index|
       if target_row?(row)
-        put_target_value_in_row(row)
+        put_target_value_in_row(row, index)
         targets.push row
       end
     end
@@ -142,10 +144,32 @@ class CsvSchedule
     true
   end
 
-  def put_target_value_in_row(row)
+  def put_target_value_in_row(row, index)
     array = row.values
     row["target"] = array.first
-    row.delete_if {|key,value| key == "media_partner" }
+    row["index"] = index
+    row.delete_if {|key,value| key == "media_partner" || key == "device" || key == "placement_name" || key == "ad_type" || key == "product" || key == "unit_cost" || key == "impressions" || key == "total_digital_cost" || key == "total_cost" }
+  end
+
+  def set_flight_target_hash(flights, targets)
+    flight_target=[]
+
+    flights.each_with_index do |flight, index_f|
+      
+      if !flights[(index_f+1)].blank?
+        next_flight_csv_index = flights[index_f+1]["index"]
+      end
+
+      targets.each_with_index do |target, index_t|
+        next_flight_csv_index ||= index_t
+        if target["index"] < next_flight_csv_index
+          flight["target"] = target["target"]
+          flight_target.push flight
+        end
+      end
+    end
+      
+    flight_target
   end
 
   #-------------------#
@@ -154,61 +178,79 @@ class CsvSchedule
 
   def set_placement_hash(all_data)
     placements=[]
-    all_data.each do |row|
-        
-        if first_value_exist?(row)
-          @site = row.first[1]  
-        end
-        
-        if row["scheduling"]
-          row["scheduling"] = @site
-        end
+    all_data.each_with_index do |row, index|
 
-        if row["schedule details"]
-          row["schedule details"] = @site
-        end
+      
+      if placement_row?(row, index)
 
-        if row["placement"] && !row["placement"].blank?
-          @placement = row["placement"]
-        end
-        row["placement"] = @placement
+        auto_fill_media_partner(row)
+        auto_fill_placement_name(row)
+        auto_fill_total_cost(row)
 
-        if row["total cost"] && !row["total cost"].blank?
-           @total_cost = row["total cost"]
-        end
-        row["total cost"] = @total_cost
+        next if restricted_placement?(row)
 
-        
-      if placement_row?(row) 
-        placements.push  row
+        placements.push  index => row
       end
+
     end
-    placements #.delete_if {|index, row| row.include?("30 seconds") || row.include?("15 seconds") || row.include?("Adserving")}
+    placements
   end
 
-  def placement_row?(row)
-    return false unless last_value_exist?(row)
-    return false unless detail_value_exists?(row)
-    return false unless restricted_placement_values?(row)
+  def placement_row?(row, index)
+    return false if header_row?(index)
+    return true  if same_site_name_as_previous(row)
 
-    return false if header_row?(row)
+    return false if row_before_first_flight(index)
+
+    return true if placement_name_value_exists?(row) || ad_type_value_exists?(row)
+
+    return false if !last_value_exist?(row)
+    return false if last_value_only_value_to_exist?(row)
+
     true
   end
+
+  #---------------#
+  #   Auto Fill   #
+  #---------------#
+
+  def auto_fill_media_partner(row)
+    if row["media_partner"]
+      @site = row["media_partner"]
+    end    
+    row["media_partner"] = @site
+  end
+
+  def auto_fill_placement_name(row)
+    if row["placement_name"]
+      @name = row["placement_name"]
+    end    
+    row["placement_name"] = @name
+  end
+
+  def auto_fill_total_cost(row)
+    if row["total_cost"]
+      @cost = row["total_cost"]
+    end    
+    row["total_cost"] = @cost
+  end
+
 
   #-------------#
   #   Filters   #
   #-------------#
 
-  def header_row?(row)
-    row = row.values
-    if row[last_index].class == String 
-      return row[last_index].downcase == "total cost"
-    end
+  def header_row?(index)
+    header_index == index
   end
 
   def first_value_exist?(row)
     row = row.values
     !row.first.blank?
+  end
+
+  def same_site_name_as_previous(row)
+    @site == row["media_partner"] && row["media_partner"] != nil
   end
 
   def second_value_exist?(row)
@@ -221,11 +263,38 @@ class CsvSchedule
     !row[last_index].blank?
   end
 
-  def detail_value_exists?(row)
-    !row["detail"].blank? ||
-    !row["product / detail"].blank? ||
-    !row["placement"].blank?
+  def last_value_only_value_to_exist?(row)
+    row = row.values
+    non_blank_values = 0
 
+    row.each do |value|
+      non_blank_values += 1 if !value.blank?
+    end
+
+    return true if non_blank_values <= 1 && !row[last_index].blank?
+    false
+  end
+
+  def set_first_flight_index
+    flight_indexes=[]
+
+    flight_hash.each do |flight|
+      flight_indexes.push flight["index"]
+    end
+
+    flight_indexes.min
+  end
+
+  def placement_name_value_exists?(row)
+    !row["placement_name"].blank?
+  end
+
+  def media_partner_value_exists?(row)
+    !row["media_partner"].blank?
+  end
+
+  def ad_type_value_exists?(row)
+    !row["ad_type"].blank?
   end
 
   def remaining_rows_blank?(row)
@@ -244,11 +313,17 @@ class CsvSchedule
     true
   end
 
-  def restricted_placement_values?(row)
-    return false if row.has_value?("15 seconds")
-    return false if row.has_value?("30 seconds")
-    return false if row.has_value?("Adserving")
-    true
+  def restricted_placement?(row)
+    return true if row.has_value?("15 seconds")
+    return true if row.has_value?("30 seconds")
+    return true if row.has_value?("Adserving")
+    return true if row.has_value?("Production")
+    return true if row.has_value?("Management Fee")
+    false
+  end
+
+  def row_before_first_flight(index)
+    index <= first_flight_index
   end
 
   def filter_header(header)
@@ -274,7 +349,7 @@ class CsvSchedule
     when "number"
       header.gsub("number", "impressions")
     when "gross digital cost"
-      header.gsub("gross digital cost", "total_cost")
+      header.gsub("gross digital cost", "total_digital_cost")
     when "cost"
       header.gsub("cost", "unit_cost")
     when "total cost"

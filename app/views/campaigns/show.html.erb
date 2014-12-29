@@ -24,6 +24,11 @@
   <%= @csv.header.length - 1 %>
   <br>
   <br>
+  First Flight Index:
+  <br>
+  <%= @csv.first_flight_index %>
+  <br>
+  <br>
   Flight Index => Vals: 
   <br>
 
@@ -54,6 +59,12 @@
       </div>
       <br>
   <% end %>
+  <br>
+  <br>
+  FLIGHT TAGET HASH
+  <br>
+  <br>
+  <%= @csv.flight_target_hash.inspect %>
   <br>
   <br>
    ALL HASH VALS: 

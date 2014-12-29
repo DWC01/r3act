@@ -26,13 +26,13 @@
   <br>
   First Flight Index:
   <br>
-  <%= @csv.first_flight_index %>
+  <%= @csv.flight_index %>
   <br>
   <br>
   Flight Index => Vals: 
   <br>
 
-  <% @csv.flight_hash.each do |flight| %>
+  <% @csv.flights.each do |flight| %>
     <div style="text-align:left;">
       <%= flight %>
     </div>
@@ -43,7 +43,7 @@
   <br>
   Target Index => Vals: 
   <br>
-  <% @csv.target_hash.each do |target| %>
+  <% @csv.targets.each do |target| %>
     <div style="text-align:left;">
       <%= target %>
     </div>
@@ -53,21 +53,10 @@
   <br>
   Placement Index => Vals: 
   <br>
-  <% @csv.placement_hash.each do |target| %>
+  <% @csv.placements.each do |target| %>
       <div style="text-align:left;">
         <%= target %>
       </div>
       <br>
   <% end %>
-  <br>
-  <br>
-  FLIGHT TAGET HASH
-  <br>
-  <br>
-  <%= @csv.flight_target_hash.inspect %>
-  <br>
-  <br>
-   ALL HASH VALS: 
-  <br>
-  <% @csv.all_data_hash.inspect %>
-</div>
+ </div>

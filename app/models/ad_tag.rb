@@ -1,8 +1,8 @@
 class AdTag < ActiveRecord::Base
 
-  def self.save_csv_tag_file(csv)
-    csv.header_row_hash.each do |ad_tag_atts|
-      save_new_ad_tag(ad_tag_atts)
+  def self.save_tags(placements)
+    placements.each do |ad_tag_atts|
+      AdTag.new(ad_tag_atts).save!
     end
   end
 

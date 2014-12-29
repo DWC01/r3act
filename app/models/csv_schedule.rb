@@ -1,54 +1,70 @@
 class CsvSchedule
-  attr_reader :csv, :all_data, :header_index, :header, 
-              :all_data_hash, :flight_hash, :target_hash,
-              :placement_hash, :flight_target_hash,
-              :first_flight_index
+  attr_reader :csv, :all_rows, :header_index, :header, 
+              :all_rows_hashes, :flights, :targets,
+              :placements, :flight_index
 
   def initialize(schedule_file_path)
    @csv = Roo::Spreadsheet.open(schedule_file_path)
    
-   @all_data        = set_all_data(csv)
-   @header_index    = get_header_row_index(all_data.clone)
-   @header          = set_header(all_data.clone)
-   @all_data_hash   = set_all_data_hash
+   @all_rows        = set_all_rows(csv)
 
-   @flight_hash     = set_flight_hash(all_data_hash.clone)
-   @first_flight_index = set_first_flight_index
-   @target_hash     = set_target_hash(all_data_hash.clone)
-   @placement_hash  = set_placement_hash(all_data_hash.clone)
+   @header_index    = set_header_row_index(all_rows)
+   @header          = set_header(all_rows)
 
+   @all_rows_hashes = set_all_rows_as_hashes
+
+   @flights         = set_flights(all_rows_hashes)
+   @flight_index    = set_flight_index
+
+   @targets         = set_targets(all_rows_hashes)
+
+   @placements      = set_placements(all_rows_hashes)
   end
 
-  # returns only rows with data
-  def set_all_data(csv)
-    all_data=[];
-    (csv.first_row..csv.last_row).each {|r| all_data << csv.row(r)}
-    all_data
+
+  #-------------------#
+  #   All Data Hash   #
+  #-------------------#
+
+  # Returns only rows with data - as an array of arrays
+  def set_all_rows(csv)
+    rows=[]
+    (csv.first_row..csv.last_row).map {|r| rows << csv.row(r)}
+    rows
   end
 
+  # Returns only rows with data - as an array of hashes
+  def set_all_rows_as_hashes
+    rows = [];
+    (csv.first_row..csv.last_row).each do |i|
+      rows.push Hash[header.zip(csv.row(i)[0..last_index])]
+    end
+    rows
+  end
 
   #-------------------#
   #      Header       #
   #-------------------#
 
-  def set_header(data)
-    header = get_header_values(data)
-    return header if header.last == "total_cost"
-      
-    puts "Could Not Find A Header Value.."
-  end
-
-  def get_header_row_index(data)
-    data.each_with_index do |row, index|
+  def set_header_row_index(all_rows)
+    all_rows.each_with_index do |row, index|
       if !row.first.blank? && contains_header_values(row)
         return index
       end
     end
   end
 
-  def get_header_values(data)
+  def set_header(all_rows)
+    header = return_header_values(all_rows)
+    return header if header.last == "total_cost"
+      
+    # Todo - Raise some type of Error / Alert
+    puts "Could Not Find A Header Value.."
+  end
+
+  def return_header_values(all_rows)
     headers_vals=[]
-    data[header_index].each do |value|
+    all_rows[header_index].each do |value|
       unless value.blank? 
         value = value.downcase
         value = filter_header(value)
@@ -63,30 +79,22 @@ class CsvSchedule
     header.length-1
   end
 
+  # EXTRACT
+  # Takes array as argument
+  # Returns true if finds values typically found in media plan header
   def contains_header_values(row)
     (row.include?("TOTAL COST") || row.include?("Total Cost") || row.include?("SCHEDULE DETAILS") || row.include?("SCHEDULE")|| row.include?("Placement") )
   end
 
-  #-------------------#
-  #   All Data Hash   #
-  #-------------------#
-
-  def set_all_data_hash
-    array = [];
-    # Set Giant Hash With EVERYTHING
-    (csv.first_row..csv.last_row).each do |i|
-      array.push Hash[header.zip(csv.row(i)[0..last_index])]
-    end
-    array
-  end
 
   #-------------------#
   #      Flight       #
   #-------------------#
 
-  def set_flight_hash(all_data)
+  # Assumes that all_rows is an array of hashes
+  def set_flights(all_rows)
     flights=[]
-    all_data.each_with_index do |row, index|
+    all_rows.each_with_index do |row, index|
       if flight_row?(row)
         put_flight_value_in_row(row,index)
         flights.push row
@@ -119,7 +127,7 @@ class CsvSchedule
   #      Target       #
   #-------------------#
 
-  def set_target_hash(data)
+  def set_targets(data)
     targets=[]
     data.each_with_index do |row, index|
       if target_row?(row)
@@ -151,34 +159,13 @@ class CsvSchedule
     row.delete_if {|key,value| key == "media_partner" || key == "device" || key == "placement_name" || key == "ad_type" || key == "product" || key == "unit_cost" || key == "impressions" || key == "total_digital_cost" || key == "total_cost" }
   end
 
-  def set_flight_target_hash(flights, targets)
-    flight_target=[]
-
-    flights.each_with_index do |flight, index_f|
-      
-      if !flights[(index_f+1)].blank?
-        next_flight_csv_index = flights[index_f+1]["index"]
-      end
-
-      targets.each_with_index do |target, index_t|
-        next_flight_csv_index ||= index_t
-        if target["index"] < next_flight_csv_index
-          flight["target"] = target["target"]
-          flight_target.push flight
-        end
-      end
-    end
-      
-    flight_target
-  end
-
   #-------------------#
   #   Placement       #
   #-------------------#
 
-  def set_placement_hash(all_data)
+  def set_placements(all_rows)
     placements=[]
-    all_data.each_with_index do |row, index|
+    all_rows.each_with_index do |row, index|
 
       
       if placement_row?(row, index)
@@ -186,10 +173,11 @@ class CsvSchedule
         auto_fill_media_partner(row)
         auto_fill_placement_name(row)
         auto_fill_total_cost(row)
-
         next if restricted_placement?(row)
 
-        placements.push  index => row
+        # row["index"] = index
+
+        placements.push row
       end
 
     end
@@ -275,10 +263,10 @@ class CsvSchedule
     false
   end
 
-  def set_first_flight_index
+  def set_flight_index
     flight_indexes=[]
 
-    flight_hash.each do |flight|
+    flights.each do |flight|
       flight_indexes.push flight["index"]
     end
 
@@ -323,7 +311,7 @@ class CsvSchedule
   end
 
   def row_before_first_flight(index)
-    index <= first_flight_index
+    index <= flight_index
   end
 
   def filter_header(header)

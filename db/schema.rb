@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141228215204) do
+ActiveRecord::Schema.define(version: 20141224211257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "ad_tags", force: true do |t|
     t.string   "target"
+    t.string   "audience"
     t.string   "media_partner"
     t.string   "placement_name"
     t.string   "ad_type"
@@ -32,12 +33,12 @@ ActiveRecord::Schema.define(version: 20141228215204) do
     t.string   "total_cost"
     t.string   "start_date"
     t.string   "end_date"
+    t.string   "flight"
     t.string   "flight_dates"
+    t.string   "total_digital_cost"
+    t.integer  "campaign_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "audience"
-    t.string   "flight"
-    t.string   "total_digital_cost"
   end
 
   create_table "campaigns", force: true do |t|

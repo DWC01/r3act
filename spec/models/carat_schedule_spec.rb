@@ -1,9 +1,9 @@
 require "spec_helper"
  
-describe CsvSchedule do
-  let(:csv_1) {CsvSchedule.new("https://s3-us-west-1.amazonaws.com/r3act/uploads/test/schedule.xls")}
-  let(:csv_2) {CsvSchedule.new("https://s3-us-west-1.amazonaws.com/r3act/uploads/test/schedule_2.xlsx")}
-  let(:csv_3) {CsvSchedule.new("https://s3-us-west-1.amazonaws.com/r3act/uploads/test/schedule_3.xlsx")}
+describe CaratSchedule do
+  let(:csv_1) {CaratSchedule.new("https://s3-us-west-1.amazonaws.com/r3act/uploads/test/schedule.xls")}
+  let(:csv_2) {CaratSchedule.new("https://s3-us-west-1.amazonaws.com/r3act/uploads/test/schedule_2.xlsx")}
+  let(:csv_3) {CaratSchedule.new("https://s3-us-west-1.amazonaws.com/r3act/uploads/test/schedule_3.xlsx")}
 
   context "csv_1" do
     it "should return 'total cost' as last value" do

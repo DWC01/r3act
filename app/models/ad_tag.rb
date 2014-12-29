@@ -1,4 +1,5 @@
 class AdTag < ActiveRecord::Base
+  belongs_to :campaign
 
   def self.save_tags(placements)
     placements.each do |ad_tag_atts|

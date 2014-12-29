@@ -1,4 +1,4 @@
-class CsvSchedule
+class CaratSchedule
   attr_reader :csv, :all_rows, :header_index, :header, 
               :all_rows_hashes, :flights, :targets,
               :placements, :flight_index

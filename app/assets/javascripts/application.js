@@ -13,7 +13,14 @@
 
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
+//= require lodash
 //= require angular
+//= require angular-route
+//= require angular-resource
 //= require angular-rails-templates
+//= require angular-ui-router
 //= require restangular
 //= require angular-app/app
+//= require_tree .
+//= require_tree ./templates

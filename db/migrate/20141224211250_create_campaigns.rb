@@ -11,7 +11,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.string    :ad_tag_provider
       t.string    :ad_tag_sender
       t.string    :ad_tag_receivers, array: true, default: []
-      t.string    :advertiser_name
+      t.string    :advertiser
       t.string    :media_plan_name
       
       t.timestamps

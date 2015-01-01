@@ -1,0 +1,12 @@
+<% @campaign.ad_tags.each_with_index do |tag,index| %>
+  <ul class="list-unstyled list-item-fancy-box-wrap">
+    <a href="">
+      <li class="list-item-fancy-box">
+        <div class="list-item-content">
+        <span class="item-count-circle"><%= index + 1 %></span>
+          <%= tag.media_partner %>_<%= tag.placement_name %>_<%= tag.ad_type %>_<%= tag.ad_type_details %>_<%= tag.device %>
+        </div>
+      </li>
+    </a>
+  </ul>
+<% end %>

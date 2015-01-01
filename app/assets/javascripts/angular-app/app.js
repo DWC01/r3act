@@ -1,20 +1,43 @@
 angular
-  .module('r3act', [])
   
-  .controller('CampaignController', function($scope){
-    $scope.menuHeaders = [
-      {"id": 0, "header": "Summary"},
-      {"id": 1, "header": "Transactions"},
-      {"id": 2, "header": "Data"}
-    ];
+  .module('r3act', [
+    'templates',
+    'ui.router',
+    'ngRoute', 
+    'ngResource'
+  ])
 
-    $scope.currentHeader = null;
+  .config(['$routeProvider', function($routeProvider){ 
+    $routeProvider.when('/',{
+      controller: 'CampaignsController'
+    }).when('/campaigns/:id',{
+      controller: 'CampaignsController',
+    }).otherwise({
+      redirectTo: '/'
+    });  
+  }]);
+  
 
-    function setCurrentHeader(header) {
-      $scope.currentHeader = header;
-    }
 
-    $scope.setCurrentHeader = setCurrentHeader;
-  })
+  // .config(function($stateProvider) {
+
+    // $stateProvider
+    //   .state('campaignHeader', {
+    //     url: '',
+    //     templateUrl: 'campaigns/campaignHeader.html',
+    //     controller: 'CampaignsController'
+    //   })
+    //   .state('placements', {
+    //     url: '',
+    //     templateUrl: 'placements.html',
+    //     controller: 'CampaignsController'
+    //   })
+    //   .state('audience', {
+    //     url: '',
+    //     templateUrl: 'audienceTargeting.html',
+    //     controller: 'CampaignsController'
+    //   })
+    // ;  
+  // })
 
 

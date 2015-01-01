@@ -1,7 +1,7 @@
 class CaratSchedule
   attr_reader :csv, :all_rows, :header_index, :header, 
               :all_rows_hashes, :flights, :targets,
-              :placements, :flight_index
+              :placements, :flight_index, :basics
 
   def initialize(schedule_file_path)
    @csv = Roo::Spreadsheet.open(schedule_file_path)
@@ -9,6 +9,7 @@ class CaratSchedule
    @all_rows        = set_all_rows(csv)
 
    @header_index    = set_header_row_index(all_rows)
+   @basics          = set_campaign_basics(all_rows)
    @header          = set_header(all_rows)
 
    @all_rows_hashes = set_all_rows_as_hashes
@@ -31,6 +32,36 @@ class CaratSchedule
     rows=[]
     (csv.first_row..csv.last_row).map {|r| rows << csv.row(r)}
     rows
+  end
+
+  # Return the basic campaign info
+  def set_campaign_basics(all_rows)
+    basics={}
+    all_rows.each_with_index do |row, index|
+      
+      @rindex = return_rindex(row, "BRAND:")
+
+      if @rindex != nil
+        key = row[@rindex].downcase
+        key = basics_filter(key)
+        value = row[(@rindex+1)]
+      else
+        key = "advertiser"
+        value = nil
+      end
+
+      basics[key] = value
+
+      return basics if index >= (header_index-1)
+    end
+    basics
+  end
+
+  def return_rindex(array, value)
+    if array.rindex(value)
+      @rindex = array.rindex(value)
+    end
+    @rindex
   end
 
   # Returns only rows with data - as an array of hashes
@@ -122,7 +153,6 @@ class CaratSchedule
     row.first == "Radio"
   end
 
-
   #-------------------#
   #      Target       #
   #-------------------#
@@ -167,7 +197,6 @@ class CaratSchedule
     placements=[]
     all_rows.each_with_index do |row, index|
 
-      
       if placement_row?(row, index)
 
         auto_fill_media_partner(row)
@@ -175,13 +204,10 @@ class CaratSchedule
         auto_fill_total_cost(row)
         next if restricted_placement?(row)
 
-        # row["index"] = index
-
         placements.push row
       end
-
     end
-    placements
+    merge_basics_and_(placements)
   end
 
   def placement_row?(row, index)
@@ -341,12 +367,37 @@ class CaratSchedule
     when "cost"
       header.gsub("cost", "unit_cost")
     when "total cost"
-      header.gsub("total cost", "total_cost")
-      
+      header.gsub("total cost", "total_cost")  
     else
       header
     end
+  end
 
+  def basics_filter(basics)
+    case basics
+    when "brand:"
+      basics.gsub("brand:","advertiser")
+    when "product:"
+      basics.gsub("product:","product")
+    when "period:"
+      basics.gsub("period:","period")
+    when "pta:"
+      basics.gsub("pta:","primary_target_audience")
+    when "date:"
+      basics.gsub("date:","date")
+    when "version:"
+      basics.gsub("version:","version")
+    else
+     basics
+    end
+  end
+
+  def merge_basics_and_(placements)
+    atts = []
+    placements.each do |placement|
+     atts << basics.merge(placement)
+    end
+    atts
   end
 
 end

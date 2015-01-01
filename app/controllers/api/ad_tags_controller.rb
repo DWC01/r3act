@@ -1,7 +1,8 @@
 module Api
   class AdTagsController < Api::BaseController
-    
+
     private
+
       def ad_tag_params
         params.require(:ad_tag).permit(:target, 
         :media_partner, :placement_name, :ad_type,

@@ -1,0 +1,80 @@
+@import 'colors';
+
+$fancy-box-border-hover: $neon-green;
+$item-count-background-hover: $neon-green;
+$item-count-border-hover: $neon-green-dark;
+
+
+.item-count-circle {
+  display: inline-block;
+  padding: 5px 7px 4px 8px;
+  font-weight: bold;
+  color: white;
+  line-height: 1;
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-align: center;
+  border-radius: 20px;
+  border: 1px solid #a1a1a1;
+  color: #a1a1a1;
+  background-color: #eee;
+  float: left;
+  margin: 0px 10px;
+  transition: all .1s linear;
+  &:hover {
+    border: 1px solid $item-count-border-hover;
+    color: #fff;
+    background-color: $item-count-background-hover;
+  }
+}
+
+.list-item-fancy-box-wrap {
+  & a, a:hover, a:focus {
+    color: $primary-text;
+    text-decoration: none;
+    border: none;
+    transition: all .1s linear;
+  }
+}
+
+.list-item-fancy-box {
+  border: 2px solid #eee;
+  margin: 0px auto 10px auto;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    border-color: $fancy-box-border-hover;
+  }
+  & .list-item-content {
+    padding: 13px 0px;
+    transition: all .1s linear;
+  }
+}
+
+.list-item-fancy-box:hover .item-count-circle {
+  border: 1px solid $item-count-border-hover;
+  color: #fff;
+  background-color: $fancy-box-border-hover;
+}
+
+/*---------------------*/
+/*  Default Collapse   */
+/*---------------------*/
+
+.r3-panel-group {
+margin-bottom: 20px;
+}
+
+.r3-pannel-heading {
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+}
+
+.r3-panel {
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+}
+
+.r3-panel-body {
+padding: 15px;
+}

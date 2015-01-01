@@ -1,17 +1,87 @@
-<section class="sticky-right page-menu">
-  <aside class="page-menu-header" ng-repeat="menuHeader in menuHeaders">
-    <a href="#" ng-click="setCurrentHeader(header)">
-      <p class="title"> 
-        {{menuHeader.header}}
-        <i class="fa fa-bar-chart"></i>
-      </p>
-    </a>
-   <div class="bottom-highlight"></div>
+<section class="sticky-left page-menu">
+
+  <div class="page-menu-btn-wrap">
+    <i class="fa fa-bars fa-2x neon-green page-menu-btn"></i>
+  </div>
+
+  <aside class="r3-panel-group" id="r3Collapse" role="tablist" 
+         aria-multiselectable="true" >
+    <div class="r3-panel">
+
+    <!-- Panel Header -->
+      <div class="r3-panel-heading page-menu-header" role="tab" 
+           id="headingOne">
+        <a data-parent="#r3Collapse"
+           data-toggle="collapse"
+           href="#collapse-placements"
+           aria-expanded="false" 
+           aria-controls="collapse-placements"
+           ng-click="setCurrentHeader(menuHeader.header)"
+           ui-sref="placements">
+          <p class="title"> 
+            Placements
+            <i class="fa fa-bar-chart"></i>
+          </p>
+          <div class="bottom-highlight"></div>
+        </a>
+      </div>
+      
+    <!-- Panel Body -->
+      <div id="collapse-placements" 
+           class="panel-collapse collapse" 
+           role="tabpanel" 
+           aria-labelledby="headingOne">
+        <div class="r3-panel-body">
+          <aside class="page-menu-content">
+            <p class="title" ng-repeat="menuFlight in menuFlights"> 
+              {{menuFlight.title}}
+            </p>
+          </aside>
+        </div>
+      </div>
+
+    </div>
   </aside>
-  <aside class="page-menu-content">
-   <p class="title"> 
-     $5,022.43
-   </p>
+
+  <aside class="r3-panel-group" id="r3Collapse" role="tablist" 
+         aria-multiselectable="true" >
+    <div class="r3-panel">
+
+    <!-- Panel Header -->
+      <div class="r3-panel-heading page-menu-header" role="tab" 
+           id="headingOne">
+        <a data-parent="#r3Collapse"
+           data-toggle="collapse"
+           href="#collapse-analytics"
+           aria-expanded="false" 
+           aria-controls="collapse-analytics"
+           ng-click="setCurrentHeader(menuHeader.header)">
+          <p class="title"> 
+            Analytics
+            <i class="fa fa-bar-chart"></i>
+          </p>
+          <div class="bottom-highlight"></div>
+        </a>
+      </div>
+      
+    <!-- Panel Body -->
+      <div id="collapse-analytics" 
+           class="panel-collapse collapse" 
+           role="tabpanel" 
+           aria-labelledby="headingOne">
+        <div class="r3-panel-body">
+          <aside class="page-menu-content">
+            <p class="title" ui-sref="audience" 
+               ng-repeat="menuFlight in menuFlights"> 
+              {{menuFlight.title}}
+            </p>
+          </aside>
+        </div>
+      </div>
+
+    </div>
   </aside>
   
 </section>
+
+

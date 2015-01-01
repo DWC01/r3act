@@ -1,3 +1,38 @@
-<div ng-controller="CampaignController">
-  <%= render 'campaigns/page_menu' %>
-</div>
+<% content_for :title do %> Campaign List <% end %>
+
+  <div>
+    <%= render 'campaigns/page_menu' %>
+  </div>
+
+  <h3 class="center"> 
+    My Campaigns 
+  </h3>
+
+  <form class="center" id="campaign-form" ng-submit="save(atts)">  
+    <input 
+    id="new-campaign" 
+    placeholder="name" 
+    ng-model="campaign.name" 
+    autofocus>
+    <button type="submit">
+      Submit
+    </button>
+  </form>
+
+<div class="page-content" >
+
+  <ul class="list-unstyled list-item-fancy-box-wrap">
+    <a href="" ng-repeat="campaign in campaignAll.campaigns"
+       ng-click="deleteCampaign($index)">
+      <li class="list-item-fancy-box">
+        <div class="list-item-content">
+        <span class="item-count-circle">
+          {{$index+1}}
+        </span>
+          {{campaign.name}} | {{campaign.created_at}}
+        </div>
+      </li>
+    </a>
+  </ul>
+
+<div>

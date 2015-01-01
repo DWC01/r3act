@@ -12,7 +12,7 @@ class CampaignsController < ApplicationController
   def create
     @campaign = Campaign.new(campaign_params)
     if @campaign.save
-      save_file_as_ad_tags(ad_tags_file_path) 
+      save_file_as_ad_tags(@campaign, ad_tags_file_path) 
       redirect_to @campaign
     else
       redirect_to :new 

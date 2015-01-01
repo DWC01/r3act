@@ -1,62 +1,29 @@
-<div class="center">
-  <h1>
-    Campaign Show Page
-  </h1>
-  <h3>
-    <%= link_to "Ad Ags File", @campaign.ad_tags_file_url.to_s %>
-  </h3>
+<% content_for :title do %> Campaign Show <% end %>
+
+<div>
+  <%= render 'campaigns/page_menu' %>
 </div>
-<br>
-<br>
-<div class="center">
-  Header Index:
-  <br>
-  <%= @csv.header_index.inspect %>
-  <br>
-  <br>
-  Header Vals: 
-  <br>
-  <%= @csv.header.inspect %>
-  <br>
-  <br>
-  Header Length: 
-  <br>
-  <%= @csv.header.length - 1 %>
-  <br>
-  <br>
-  First Flight Index:
-  <br>
-  <%= @csv.flight_index %>
-  <br>
-  <br>
-  Flight Index => Vals: 
-  <br>
 
-  <% @csv.flights.each do |flight| %>
-    <div style="text-align:left;">
-      <%= flight %>
-    </div>
-    <br>
-  <% end %>
+<div class="page-content">
+  
+  <header ui-view>
+     <h3>
+       <a ui-sref="campaignHeader">
+        Campaigns
+       </a>
+    </h3>
+  </header>  
 
-  <br>
-  <br>
-  Target Index => Vals: 
-  <br>
-  <% @csv.targets.each do |target| %>
-    <div style="text-align:left;">
-      <%= target %>
-    </div>
-    <br>
-  <% end %>
-  <br>
-  <br>
-  Placement Index => Vals: 
-  <br>
-  <% @csv.placements.each do |target| %>
-      <div style="text-align:left;">
-        <%= target %>
-      </div>
-      <br>
-  <% end %>
- </div>
+  <ul class="list-unstyled list-item-fancy-box-wrap"
+      ng-repeat="ad_tag in ad_tags" >
+    <a href="">
+      <li class="list-item-fancy-box">
+        <div class="list-item-content">
+        <span class="item-count-circle">{{$index + 1 }}</span>
+          {{ad_tag}}
+        </div>
+      </li>
+    </a>
+  </ul>
+
+</div>

@@ -20,6 +20,11 @@ class CreateAdTags < ActiveRecord::Migration
       t.string    :flight
       t.string    :flight_dates
       t.string    :total_digital_cost
+      t.string    :advertiser
+      t.string    :period
+      t.string    :primary_target_audience
+      t.string    :date
+      t.string    :version
       t.integer   :campaign_id
 
       t.timestamps

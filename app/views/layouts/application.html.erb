@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="r3act" >
 <head>
   <title>ReactiveDashboard</title>
   <%= stylesheet_link_tag    'application' %>
@@ -7,7 +7,8 @@
   <%= javascript_include_tag 'http://d3js.org/d3.v3.min.js' %>
   <%= csrf_meta_tags %>
 </head>
-  <body ng-app="r3act" >
+  <body ng-controller="CampaignsController">
+  <base href="/">
     <%= render 'layouts/navbar' %>
     <%= yield %>
   </body>

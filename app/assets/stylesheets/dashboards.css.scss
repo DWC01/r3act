@@ -1,15 +1,28 @@
-.page-menu{
-  width: 17%;
+.page-menu {
+  top: 50px;
+  width: 210px;
   height: 100%;
-  padding-top: 100px;
   background-color: #29292e;
+}
+
+.page-menu-btn-wrap {
+  position: relative;
+  height: 39px;
+  border-bottom: 1px solid #34343a;
+  margin: 0 0 10px 0;
+& .page-menu-btn {
+    position: relative;
+    font-size: 22px;
+    left: 86%;
+    top: 9px;
+  }
 }
 
 .page-menu-header{
   margin: 0 0 3% 0;
   background-color: #34343a;
   & p {
-    font-size: 20px;
+    font-size: 18px;
   }
   & .title {
     color: #848b8d;
@@ -36,7 +49,6 @@
   }
   & .title {
     color: #efefef;
-    margin: 0 0 0 20%;
   }
 }
 

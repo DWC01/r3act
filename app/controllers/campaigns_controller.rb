@@ -21,7 +21,6 @@ class CampaignsController < ApplicationController
 
   def show
     @campaign = Campaign.find(params[:id])
-    @csv      = CaratSchedule.new(ad_tags_file_path)
   end
 
   def edit

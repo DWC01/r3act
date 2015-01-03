@@ -4,7 +4,9 @@ class CaratSchedule
               :placements, :flight_index, :basics
 
   def initialize(schedule_file_path)
-   @csv = Roo::Spreadsheet.open(schedule_file_path)
+    if schedule_file_path
+      @csv = Roo::Spreadsheet.open(schedule_file_path)
+    end
    
    @all_rows        = set_all_rows(csv)
 

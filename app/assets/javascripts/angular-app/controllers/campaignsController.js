@@ -1,7 +1,9 @@
 angular
   .module('r3act')
 
-  .controller('CampaignsController', function($scope, Restangular) {
+  .controller('CampaignsController', 
+    function($rootScope, $scope, $route, $routeParams, Restangular) {
+    
     // Set Base (Route Object)
     var baseCampaigns = Restangular.all('campaigns');
 
@@ -10,7 +12,16 @@ angular
       $scope.campaigns = campaigns;
     });
 
-    $scope.campaign = Restangular.one('campaigns',  59).get().$object;
+    //If you want to use URL attributes before the website is loaded
+    $rootScope.$on('$routeChangeSuccess', function () {
+      $scope.campaign = Restangular.one('campaigns', $routeParams.id).get().$object;
+      console.log($routeParams.id);
+
+      $scope.adtags = Restangular.one('campaigns', $routeParams.id).getList('ad_tags').$object;
+
+      console.log($scope.adtags);
+    });
+
       
        
     // *** WORKS *** // 

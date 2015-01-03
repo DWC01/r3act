@@ -1,6 +1,15 @@
 module Api
   class AdTagsController < Api::BaseController
 
+    def index
+      if params[:campaign_id]
+        campaign = Campaign.find(params[:campaign_id])
+        respond_with r3act: campaign.ad_tags
+      else
+        respond_with r3act: AdTag.all
+      end        
+    end
+
     private
 
       def ad_tag_params

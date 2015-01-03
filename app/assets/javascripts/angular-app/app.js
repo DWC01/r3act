@@ -1,24 +1,27 @@
 angular
   .module('r3act', [
     'templates',
-    'restangular'
+    'restangular',
+    'ui.router',
+    'ngRoute',
+    'ngResource'
   ])
 
   .config(function(RestangularProvider) {
-
+    // Set base url
     RestangularProvider.setBaseUrl('/api/');
-
-    // add a response intereceptor
+    // Set data response object 
     RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-      var extractedData;
-      // .. to look for getList operations
-      if (operation === "getList") {
-        // .. and handle the data and meta data
-        extractedData = data.campaigns;
-      } else {
-        extractedData = data;
-      }
+      var extractedData = data.r3act;
       return extractedData;
     });
 
-  });
+  })
+
+  .config(function ($routeProvider, $locationProvider) {
+    // configure the routing rules here
+    $routeProvider.when('/campaigns/:id', {
+        controller: 'CampaignsController'
+    });
+    $locationProvider.html5Mode(true);
+  })

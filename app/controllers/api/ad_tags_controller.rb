@@ -18,7 +18,7 @@ module Api
         :ad_type_details, :product, :size, :width,
         :height, :device, :unit_cost, :impressions,
         :total_cost, :start_date, :end_date,
-        :flight_dates)
+        :flight_dates, :campaign_id)
       end
 
       def query_params

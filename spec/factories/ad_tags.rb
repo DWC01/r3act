@@ -17,6 +17,6 @@ FactoryGirl.define do
   total_cost        "3810.88"
   start_date        "01/12/2014"    
   end_date          "31/12/2014"  
-  flight_dates      "112-3112"    
+  flight_dates      "112-3112"
   end
 end

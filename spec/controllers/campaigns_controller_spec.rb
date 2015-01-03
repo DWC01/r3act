@@ -1,4 +1,6 @@
 # require "spec_helper"
+
+###  Need To Test CarrierWave ###
  
 # describe CampaignsController do
 #   context "GET #index" do

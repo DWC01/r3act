@@ -1,2 +1,2 @@
 angular
-  .module('r3act');
+  .module('r3act')

@@ -8,9 +8,8 @@
     My Campaigns 
   </h3>
 
-  <form class="center" id="campaign-form" ng-submit="save(atts)">  
+  <form class="center" >  
     <input 
-    id="new-campaign" 
     placeholder="name" 
     ng-model="campaign.name" 
     autofocus>
@@ -22,7 +21,7 @@
 <div class="page-content" >
 
   <ul class="list-unstyled list-item-fancy-box-wrap">
-    <a href="" ng-repeat="campaign in campaignAll.campaigns"
+    <a href="" ng-repeat="campaign in campaigns"
        ng-click="deleteCampaign(campaign)">
       <li class="list-item-fancy-box">
         <div class="list-item-content">

@@ -1,10 +1,5 @@
 module Api
   class CampaignsController < Api::BaseController
-
-    def ad_tags
-      campaign = Campaign.find(params[:id])
-      render json: campaign.ad_tags
-    end
     
     private
       def campaign_params

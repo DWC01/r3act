@@ -15,7 +15,7 @@ angular
   })
 
   .factory('CampaignAdTag', function($resource) {
-    var CampaignAdTag = $resource('http://localhost:3000/api/campaigns/43/ad_tags',
+    var CampaignAdTag = $resource('http://localhost:3000/api/campaigns/57/ad_tags',
     { id:'@id' }, {
       'query': {
         method: 'GET'

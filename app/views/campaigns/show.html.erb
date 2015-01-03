@@ -6,21 +6,30 @@
 
 <div class="page-content">
   
-  <header ui-view>
-     <h3>
-       <a ui-sref="campaignHeader">
-        Campaigns
-       </a>
+  <header class="center">
+    <h3>
+      Campaign Basics
     </h3>
-  </header>  
+  </header> 
 
-  <ul class="list-unstyled list-item-fancy-box-wrap"
-      ng-repeat="ad_tag in ad_tags" >
-    <a href="">
+  <ul class="list-unstyled list-item-fancy-box-wrap">
+    <div>
+      {{campaign}}
+    </div>
+  </ul>
+
+  <h3>
+    Placements
+  </h3> 
+
+  <ul class="list-unstyled list-item-fancy-box-wrap">
+    <a href="" ng-repeat="adTags in campaignAdTagAll.campaigns">
       <li class="list-item-fancy-box">
         <div class="list-item-content">
-        <span class="item-count-circle">{{$index + 1 }}</span>
-          {{ad_tag}}
+        <span class="item-count-circle">
+          {{$index+1}}
+        </span>
+          {{adTags.media_partner}}_{{adTags.device}}_{{adTags.placement_name}}_{{adTags.period}}
         </div>
       </li>
     </a>

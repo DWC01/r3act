@@ -19,13 +19,15 @@ angular
       $scope.campaign = new Campaign();
     };
 
+    $scope.deleteCampaign = function(campaign) {
+      Campaign.delete(campaign);
+      _.remove($scope.campaignAll.campaigns, campaign)
+    }
+
     $scope.edit = function(campaign) {
       $scope.campaign = campaign;
     };
 
-    $scope.deleteCampaign = function(index){      
-      $scope.campaignAll.campaigns.splice(index, 1);
-    }
 
 
     $scope.remove = function(campaign) {

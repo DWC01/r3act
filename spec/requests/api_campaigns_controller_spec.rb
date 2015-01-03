@@ -16,7 +16,7 @@ describe Api::CampaignsController do
 
     it 'retreives all campaigns' do
       json = JSON.parse(response.body)
-      campaigns = json["campaigns"].map {|m| m['id']}
+      campaigns = json["r3act"].map {|m| m['id']}
       expect(campaigns.length).to eq(10)     
     end
   end
@@ -27,9 +27,9 @@ describe Api::CampaignsController do
       post "/api/campaigns/", format: :json, :campaign => { name: "Christmas Campaign" }
     end
 
-    it 'responds successfully with an HTTP 201 status code' do
+    it 'responds successfully with an HTTP 200 status code' do
       expect(response).to be_success
-      expect(response.code).to eq('201')
+      expect(response.code).to eq('200')
     end
 
     it 'retreives newly created campaign' do
@@ -52,7 +52,7 @@ describe Api::CampaignsController do
 
     it 'retreives a specific campaign' do
       json = JSON.parse(response.body)
-      expect(json['name']).to eq('Christmas Campaign')
+      expect(json['r3act']['name']).to eq('Christmas Campaign')
     end
   end
 
@@ -72,7 +72,7 @@ describe Api::CampaignsController do
 
     it 'retreives a specific campaign' do
       json = JSON.parse(response.body)
-      expect(json['name']).to eq('Christmas C')
+      expect(json['r3act']['name']).to eq('Christmas C')
     end
   end
 

@@ -4,9 +4,9 @@ module Api
     def index
       if params[:campaign_id]
         campaign = Campaign.find(params[:campaign_id])
-        respond_with r3act: campaign.ad_tags
+        render json: {r3act: campaign.ad_tags}
       else
-        respond_with r3act: AdTag.all
+        render json: {r3act: AdTag.all}
       end        
     end
 

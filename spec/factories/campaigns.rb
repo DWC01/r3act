@@ -10,7 +10,7 @@ FactoryGirl.define do
   ad_tag_provider   "Carat"
   ad_tag_sender     "Carat"
   ad_tag_receivers  "[Amnet, TradeDesk, Media Math]"
-  advertiser_name   "Coca Cola"
+  advertiser        "Coca Cola"
   media_plan_name   "Christmas Schedule"
   end
 end

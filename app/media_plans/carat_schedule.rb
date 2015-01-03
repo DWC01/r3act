@@ -4,26 +4,23 @@ class CaratSchedule
               :placements, :flight_index, :basics
 
   def initialize(schedule_file_path)
-    if schedule_file_path
-      @csv = Roo::Spreadsheet.open(schedule_file_path)
-    end
-   
-   @all_rows        = set_all_rows(csv)
+    @csv = Roo::Spreadsheet.open(schedule_file_path)
+    
+    @all_rows        = set_all_rows(csv)
 
-   @header_index    = set_header_row_index(all_rows)
-   @basics          = set_campaign_basics(all_rows)
-   @header          = set_header(all_rows)
+    @header_index    = set_header_row_index(all_rows)
+    @basics          = set_campaign_basics(all_rows)
+    @header          = set_header(all_rows)
 
-   @all_rows_hashes = set_all_rows_as_hashes
+    @all_rows_hashes = set_all_rows_as_hashes
 
-   @flights         = set_flights(all_rows_hashes)
-   @flight_index    = set_flight_index
+    @flights         = set_flights(all_rows_hashes)
+    @flight_index    = set_flight_index
 
-   @targets         = set_targets(all_rows_hashes)
+    @targets         = set_targets(all_rows_hashes)
 
-   @placements      = set_placements(all_rows_hashes)
+    @placements      = set_placements(all_rows_hashes)
   end
-
 
   #-------------------#
   #   All Data Hash   #

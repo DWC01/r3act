@@ -70,6 +70,21 @@ margin-bottom: 20px;
   border-bottom: 1px solid transparent;
 }
 
+.r3-panel-heading-link {
+  
+  &:hover, &:hover p {
+    color: #fff;
+    text-decoration: none;
+    outline: none;
+    border: none;
+  }
+  &:focus, &:focus p {
+    text-decoration: none;
+    outline: none;
+    border: none;
+  }
+}
+
 .r3-panel {
   margin-bottom: 20px;
   border: 1px solid transparent;

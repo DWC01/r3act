@@ -49,9 +49,9 @@ describe Api::AdTagsController do
   context 'GET api/campaigns/:campaign_id/ad_tags/:id#show' do
     
     before do
-      @camp_id = FactoryGirl.create(:campaign).id
-      @tag_id = FactoryGirl.create(:ad_tag, placement_name: 'Christmas Ad Tag').id
-      get "/api/campaigns/#{@camp_id}/ad_tags/#{@tag_id}"
+      camp_id = FactoryGirl.create(:campaign).id
+      tag_id = FactoryGirl.create(:ad_tag, placement_name: 'Christmas Ad Tag').id
+      get "/api/campaigns/#{camp_id}/ad_tags/#{tag_id}"
     end
 
     it 'responds successfully with an HTTP 200 status code' do
@@ -68,9 +68,10 @@ describe Api::AdTagsController do
   context 'PATCH api/campaigns/:campaign_id/ad_tags/:id#update' do
     
     before do
+      campaign = FactoryGirl.create(:campaign)
       ad_tag = FactoryGirl.create :ad_tag, placement_name: 'Christmas Ad Tag'
       ad_tag.update(placement_name: 'Christmas C')
-      get "/api/ad_tags/#{ad_tag.id}"
+      get "/api/campaigns/#{campaign.id}/ad_tags/#{ad_tag.id}"
     end
 
     it 'responds successfully with an HTTP 200 status code' do
@@ -81,19 +82,6 @@ describe Api::AdTagsController do
     it 'retreives a specific ad_tag' do
       json = JSON.parse(response.body)
       expect(json['r3act']['placement_name']).to eq('Christmas C')
-    end
-  end
-
-  context 'DELETE #destroy' do
-
-    before do
-      ad_tag = FactoryGirl.create :ad_tag
-      @id = ad_tag.id
-      ad_tag.delete
-    end
-
-    it "should destroy the ad_tag" do
-      expect { AdTag.find(@id) }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 

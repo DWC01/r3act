@@ -1,10 +1,8 @@
 angular
   .module('r3act', [
-    'templates',
-    'restangular',
-    'ui.router',
-    'ngRoute',
-    'ngResource'
+    'templates', 'restangular',
+    'ui.router', 'ngRoute',
+    'ngResource', 'xeditable'
   ])
 
   .config(function(RestangularProvider) {
@@ -25,3 +23,7 @@ angular
     });
     $locationProvider.html5Mode(true);
   })
+
+  .run(function(editableOptions) {
+    editableOptions.theme = 'bs3';
+  });

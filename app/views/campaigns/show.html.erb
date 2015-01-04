@@ -13,6 +13,34 @@
   </header> 
 
   <ul class="list-unstyled list-item-fancy-box-wrap">
+
+  <h1> Sample Form </h1> 
+   <form editable-form name="editableForm" onaftersave="saveCampaign($data)">
+    
+    <div>
+      <!-- editable campaign name (text with validation) -->
+      <span class="title">Campaign Name: </span>
+      <span editable-text="campaign.name" e-name="name" onbeforesave="checkName($data)" e-required>{{ campaign.name || 'empty' }}</span>
+    </div> 
+
+    <div>
+      <!-- button to show form -->
+      <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+        Edit
+      </button>
+      <!-- buttons to submit / cancel form -->
+      <span ng-show="editableForm.$visible">
+        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+          Save
+        </button>
+        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+          Cancel
+        </button>
+      </span>
+    </div>
+  </form>  
+     
+    <h1> Real Data </h1> 
     <li>
       ID: {{campaign.id}}
     </li>

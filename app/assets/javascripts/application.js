@@ -21,6 +21,7 @@
 //= require angular-rails-templates
 //= require angular-ui-router
 //= require restangular
+//= require angular-xeditable
 //= require angular-app/app
 //= require_tree .
 //= require_tree ./templates

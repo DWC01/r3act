@@ -1,0 +1,153 @@
+  <a href="campaigns"> 
+    My Campaigns
+  </a>
+
+  <h1 class="center"> 
+    Campaign Basics
+  </h1> 
+
+  <form editable-form name="editableForm" onaftersave="saveCampaign($data)">
+    
+    <div>
+      <span class="title">
+        Name:
+      </span>
+      <span editable-text="campaign.name" e-name="name" 
+            onbeforesave="checkName($data)" e-required>
+        {{ campaign.name || 'empty' }}
+      </span>
+    </div> 
+
+    <div>
+      <span class="title">
+        Placements:
+      </span>
+      <span editable-text="campaign.ad_tags_count" e-name="name"
+            onbeforesave="checkName($data)" e-required>
+        {{ campaign.ad_tags_count || 'empty' }}
+      </span>
+    </div>
+
+    <div>
+      <span class="title">
+        Start Date:
+      </span>
+      <span editable-text="campaign.start_date" e-name="name"
+            onbeforesave="checkName($data)" e-required>
+        {{ campaign.start_date || 'empty' }}
+      </span>
+    </div>
+
+    <div>
+      <span class="title">
+        End Date:
+      </span>
+      <span editable-text="campaign.end_date" e-name="name"
+            onbeforesave="checkName($data)" e-required>
+        {{ campaign.end_date || 'empty' }}
+      </span>
+    </div>
+
+    <div>
+      <span class="title">
+        Placement Sizes:
+      </span>
+      <span editable-text="campaign.placement_sizes" e-name="name"
+            onbeforesave="checkName($data)" e-required>
+        {{ campaign.placement_sizes || 'empty' }}
+      </span>
+    </div>
+
+    <div>
+      <span class="title">
+        Display Types:
+      </span>
+      <span editable-text="campaign.display_types" e-name="name"
+            onbeforesave="checkName($data)" e-required>
+        {{ campaign.display_types || 'empty' }}
+      </span>
+    </div>
+
+    <div>
+      <span class="title">
+        Tag Providers:
+      </span>
+      <span editable-text="campaign.ad_tag_provider" e-name="name"
+            onbeforesave="checkName($data)" e-required>
+        {{ campaign.ad_tag_provider || 'empty' }}
+      </span>
+    </div>
+
+    <div>
+      <span class="title">
+        Tag Sender:
+      </span>
+      <span editable-text="campaign.ad_tag_sender" e-name="name"
+            onbeforesave="checkName($data)" e-required>
+        {{ campaign.ad_tag_sender || 'empty' }}
+      </span>
+    </div>
+
+    <div>
+      <span class="title">
+        Tag Receivers:
+      </span>
+      <span editable-text="campaign.ad_tag_receivers" e-name="name"
+            onbeforesave="checkName($data)" e-required>
+        {{ campaign.ad_tag_receivers || 'empty' }}
+      </span>
+    </div>
+
+    <div>
+      <span class="title">
+        Advertiser:
+      </span>
+      <span editable-text="campaign.advertiser" e-name="name"
+            onbeforesave="checkName($data)" e-required>
+        {{ campaign.advertiser || 'empty' }}
+      </span>
+    </div>
+
+    <div>
+      <span class="title">
+        Media Plan Name:
+      </span>
+      <span editable-text="campaign.media_plan_name" e-name="name"
+            onbeforesave="checkName($data)" e-required>
+        {{ campaign.media_plan_name || 'empty' }}
+      </span>
+    </div>
+
+    <div>
+      <!-- button to show form -->
+      <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+        Edit
+      </button>
+      <!-- buttons to submit / cancel form -->
+      <span ng-show="editableForm.$visible">
+        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+          Save
+        </button>
+        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+          Cancel
+        </button>
+      </span>
+    </div>
+  </form>  
+
+  <h3>
+    Placements
+  </h3> 
+
+  <ul class="list-unstyled list-item-fancy-box-wrap">
+    <a href="" ng-repeat="adtag in adtags">
+      <li class="list-item-fancy-box">
+        <div class="list-item-content">
+        <span class="item-count-circle">
+          {{$index+1}}
+        </span>
+          {{adtag.media_partner}}_{{adtag.device}}_{{adtag.placement_name}}_{{adtag.period}}
+        </div>
+      </li>
+    </a>
+  </ul>

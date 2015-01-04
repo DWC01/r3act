@@ -24,6 +24,36 @@ angular
     $locationProvider.html5Mode(true);
   })
 
+  .config(function($stateProvider, $urlRouterProvider) {
+  // For any unmatched url, redirect to /
+  $urlRouterProvider.otherwise("/");
+  
+  // Now set up the states
+  $stateProvider
+    .state('campaigns', {
+      url: "/campaigns",
+      templateUrl: 'campaigns/campaigns.html'
+    })
+    .state('campaign', {
+      url: "/campaigns/:id",
+      templateUrl: "campaigns/campaign.html",
+    })
+  //   .state('state2', {
+  //     url: "/state2",
+  //     templateUrl: "partials/state2.html"
+  //   })
+  //   .state('state2.list', {
+  //     url: "/list",
+  //     templateUrl: "partials/state2.list.html",
+  //     controller: function($scope) {
+  //       $scope.things = ["A", "Set", "Of", "Things"];
+  //     }
+  //   });
+  })
+
   .run(function(editableOptions) {
     editableOptions.theme = 'bs3';
   });
+
+
+

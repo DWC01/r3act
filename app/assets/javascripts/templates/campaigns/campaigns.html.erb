@@ -1,0 +1,15 @@
+<h2> My Campaigns </h2>
+
+<ul class="list-unstyled list-item-fancy-box-wrap">
+  <a href="campaigns/{{ campaign.id}}" ng-repeat="campaign in campaigns"
+     ng-click="deleteCampaign(campaign)">
+    <li class="list-item-fancy-box">
+      <div class="list-item-content">
+      <span class="item-count-circle">
+        {{$index+1}}
+      </span>
+        {{campaign.name}} | {{campaign.created_at}}
+      </div>
+    </li>
+  </a>
+</ul>

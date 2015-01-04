@@ -1,37 +1,11 @@
 <% content_for :title do %> Campaign List <% end %>
 
-  <div>
-    <%= render 'campaigns/page_menu' %>
-  </div>
-
-  <h3 class="center"> 
-    My Campaigns 
-  </h3>
-
-  <form class="center" >  
-    <input 
-    placeholder="name" 
-    ng-model="campaign.name" 
-    autofocus>
-    <button type="submit">
-      Submit
-    </button>
-  </form>
+<div>
+  <%= render 'shared/page_menu' %>
+</div>
 
 <div class="page-content" >
 
-  <ul class="list-unstyled list-item-fancy-box-wrap">
-    <a href="" ng-repeat="campaign in campaigns"
-       ng-click="deleteCampaign(campaign)">
-      <li class="list-item-fancy-box">
-        <div class="list-item-content">
-        <span class="item-count-circle">
-          {{$index+1}}
-        </span>
-          {{campaign.name}} | {{campaign.created_at}}
-        </div>
-      </li>
-    </a>
-  </ul>
+  <div ui-view></div>
 
 <div>

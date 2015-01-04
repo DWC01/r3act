@@ -7,9 +7,23 @@
   <%= javascript_include_tag 'http://d3js.org/d3.v3.min.js' %>
   <%= csrf_meta_tags %>
 </head>
-  <body ng-controller="CampaignsController">
+  <body ng-controller="MainController">
   <base href="/">
     <%= render 'layouts/navbar' %>
     <%= yield %>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="page-content">   
+      <pre>$location.path() = {{$location.path()}}</pre>
+      <pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
+      <pre>$route.current.params = {{$route.current.params}}</pre>
+      <pre>$route.current.scope.name = {{$route.current.scope.name}}</pre>
+      <pre>$routeParams = {{$routeParams}}</pre>
+    </div>
   </body>
 </html>

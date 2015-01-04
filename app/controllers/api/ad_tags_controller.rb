@@ -18,7 +18,9 @@ module Api
         :ad_type_details, :product, :size, :width,
         :height, :device, :unit_cost, :impressions,
         :total_cost, :start_date, :end_date,
-        :flight_dates, :campaign_id)
+        :flight_dates, :advertiser, :audience, :flight,
+        :total_digital_cost, :period, :primary_target_audience,
+        :date, :version, :campaign_id)
       end
 
       def query_params

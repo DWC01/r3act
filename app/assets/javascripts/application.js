@@ -16,6 +16,7 @@
 //= require bootstrap-sprockets
 //= require lodash
 //= require angular
+//= require angular-bootstrap
 //= require angular-route
 //= require angular-resource
 //= require angular-rails-templates

@@ -2,9 +2,12 @@ angular
   .module('r3act', [
     'templates', 'restangular',
     'ui.router', 'ngRoute',
-    'ngResource', 'xeditable'
-  ])
-
+    'ngResource', 'xeditable',
+    'ui.bootstrap'])
+  
+  // Params to pass state to router
+  // $scope to pass attributes to directives
+  
   .config(function(RestangularProvider) {
     // Set base url
     RestangularProvider.setBaseUrl('/api/');
@@ -17,40 +20,46 @@ angular
   })
 
   .config(function ($routeProvider, $locationProvider) {
-    // configure the routing rules here
+    
     $routeProvider.when('/campaigns/:id', {
-        controller: 'CampaignsController'
+      controller: 'CampaignsController'
     });
+
+    $routeProvider.when('/ad_tags/:id', {
+      controller: 'AdTagsController'
+    });
+
     $locationProvider.html5Mode(true);
   })
 
   .config(function($stateProvider, $urlRouterProvider) {
   // For any unmatched url, redirect to /
   $urlRouterProvider.otherwise("/");
-  
   // Now set up the states
   $stateProvider
     .state('campaigns', {
       url: "/campaigns",
-      templateUrl: 'campaigns/campaigns.html'
+      templateUrl: 'campaigns/campaigns.html',
+      controller: 'CampaignsController'
+    })
+    .state('campaigns/', {
+      url: "/campaigns/",
+      templateUrl: 'campaigns/campaigns.html',
+      controller: 'CampaignsController'
     })
     .state('campaign', {
       url: "/campaigns/:id",
       templateUrl: "campaigns/campaign.html",
+      controller: 'CampaignsController'
     })
-  //   .state('state2', {
-  //     url: "/state2",
-  //     templateUrl: "partials/state2.html"
-  //   })
-  //   .state('state2.list', {
-  //     url: "/list",
-  //     templateUrl: "partials/state2.list.html",
-  //     controller: function($scope) {
-  //       $scope.things = ["A", "Set", "Of", "Things"];
-  //     }
-  //   });
+    .state('adTag', {
+      url: "/ad_tags/:id",
+      templateUrl: "ad_tags/ad_tag.html",
+      controller: 'AdTagsController'
+    })
   })
 
+  // configs xeditable
   .run(function(editableOptions) {
     editableOptions.theme = 'bs3';
   });

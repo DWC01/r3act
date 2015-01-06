@@ -6,8 +6,8 @@ class CreateCampaigns < ActiveRecord::Migration
       t.string    :ad_tags_count
       t.string    :start_date
       t.string    :end_date
-      t.string    :placement_sizes
-      t.string    :display_types
+      t.string    :ad_sizes, array: true, default: []
+      t.string    :ad_types, array: true, default: []
       t.string    :ad_tag_provider
       t.string    :ad_tag_sender
       t.string    :ad_tag_receivers, array: true, default: []

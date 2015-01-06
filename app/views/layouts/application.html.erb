@@ -4,7 +4,6 @@
   <title>ReactiveDashboard</title>
   <%= stylesheet_link_tag    'application' %>
   <%= javascript_include_tag 'application' %>
-  <%= javascript_include_tag 'http://d3js.org/d3.v3.min.js' %>
   <%= csrf_meta_tags %>
 </head>
   <body ng-controller="MainController">
@@ -22,7 +21,7 @@
       <pre>$location.path() = {{$location.path()}}</pre>
       <pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
       <pre>$route.current.params = {{$route.current.params}}</pre>
-      <pre>$route.current.scope.name = {{$route.current.scope.name}}</pre>
+      <pre>$route.current.scope.name = {{$route.current.scope}}</pre>
       <pre>$routeParams = {{$routeParams}}</pre>
     </div>
   </body>

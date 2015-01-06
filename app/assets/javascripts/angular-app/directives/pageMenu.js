@@ -13,15 +13,20 @@ angular
     function PageMenu($scope) {
       var pageMenu = this;
       
-      pageMenu.flights = [
-        {name: "iNC"},
-        {name: "Yahoo!7"},
-        {name: "Google"}
+      pageMenu.plans = [
+        {name: "Media Partners"},
+        {name: "Placements"},
+        {name: "Budgets / Pacing"}
       ];
 
-      pageMenu.datas = [
+      pageMenu.traffics = [
+        {name: "Traffic Tags"}
+      ];
+
+      pageMenu.analytics = [
         {name: "Pacing"},
-        {name: "Discrepancies"}
+        {name: "Discrepancies"},
+        {name: "Reports"}
       ];
 
   });

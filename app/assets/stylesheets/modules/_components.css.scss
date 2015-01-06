@@ -19,7 +19,7 @@ $item-count-border-hover: $neon-green-dark;
   color: #a1a1a1;
   background-color: #eee;
   float: left;
-  margin: 0px 10px;
+  margin: -2px 10px 0px 10px;
   transition: all .1s linear;
   &:hover {
     border: 1px solid $item-count-border-hover;

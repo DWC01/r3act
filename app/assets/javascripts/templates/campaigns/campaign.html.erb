@@ -49,7 +49,7 @@
         Placement Sizes:
       </span>
       <span editable-text="campaign.placement_sizes" e-name="name">
-        {{ campaign.placement_sizes }}
+        {{ campaign.ad_sizes }}
       </span>
     </div>
 
@@ -58,7 +58,7 @@
         Display Types:
       </span>
       <span editable-text="campaign.display_types" e-name="name">
-        {{ campaign.display_types }}
+        {{ campaign.ad_types }}
       </span>
     </div>
 
@@ -131,7 +131,7 @@
         <span class="item-count-circle">
           {{$index+1}}
         </span>
-          {{adTag.media_partner}}_{{adTag.device}}_{{adTag.placement_name}}_{{adTag.period}}
+          {{adTag.media_partner}}_{{adTag.device}}_{{adTag.placement_name}}_{{adTag.period}}_{{adTag.ad_type}}
         </div>
       </li>
     </a>

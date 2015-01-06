@@ -1,5 +1,4 @@
 class CampaignsController < ApplicationController
-  include CampaignMethods
   
   def index
     @campaigns = Campaign.all
@@ -44,6 +43,12 @@ class CampaignsController < ApplicationController
 
   private
 
+    def save_file_as_ad_tags(campaign, file_path)
+      csv = CaratSchedule.new(file_path)
+      ad_tags = AdTag.save_tags(campaign, csv.placements)
+      Campaign.save_mp_data(campaign, ad_tags)
+    end
+
     def ad_tags_file_path
       @campaign.ad_tags_file_url.to_s
     end
@@ -51,7 +56,7 @@ class CampaignsController < ApplicationController
     def campaign_params
       params.require(:campaign).permit(:name, 
       :ad_tags_file, :ad_tags_count, :start_date,
-      :end_date, :placement_sizes, :display_types, 
+      :end_date, :ad_sizes, :ad_types, 
       :ad_tag_provider, :ad_tag_sender, :ad_tag_receivers,
       :advertiser_name, :media_plan_name)
     end

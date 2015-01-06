@@ -37,6 +37,11 @@ angular
   $urlRouterProvider.otherwise("/");
   // Now set up the states
   $stateProvider
+    .state('/', {
+      url: "/",
+      templateUrl: 'campaigns/campaigns.html',
+      controller: 'CampaignsController'
+    })
     .state('campaigns', {
       url: "/campaigns",
       templateUrl: 'campaigns/campaigns.html',

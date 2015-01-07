@@ -1,5 +1,5 @@
 class CaratSchedule
-  attr_reader :csv, :all_rows, :header_index, :header, 
+  attr_reader :csv, :all_rows, :header_row_index, :header, 
               :all_rows_hashes, :flights, :targets,
               :placements, :flight_index, :basics
 
@@ -8,7 +8,7 @@ class CaratSchedule
     
     @all_rows        = set_all_rows(csv)
 
-    @header_index    = set_header_row_index(all_rows)
+    @header_row_index    = set_header_row_index(all_rows)
     @basics          = set_campaign_basics(all_rows)
     @header          = set_header(all_rows)
 
@@ -33,27 +33,24 @@ class CaratSchedule
     rows
   end
 
+  #-------------------#
+  #      Basics       #
+  #-------------------#
+
   # Return the basic campaign info
   def set_campaign_basics(all_rows)
-    basics={}
+    @basics={}
     all_rows.each_with_index do |row, index|
-      
-      @rindex = return_rindex(row, "BRAND:")
-
-      if @rindex != nil
-        key = row[@rindex].downcase
-        key = basics_filter(key)
-        value = row[(@rindex+1)]
-      else
-        key = "advertiser"
-        value = nil
-      end
-
-      basics[key] = value
-
-      return basics if index >= (header_index-1)
+      set_basics_key_value(row)
+      return @basics if index >= last_basics_row?
     end
-    basics
+  end
+
+  def set_basics_key_value(row)
+    rindex = return_rindex(row, "BRAND:")
+    key    = basics_key(row, rindex)
+    value  = basics_value(row, rindex)
+    @basics[key] = value
   end
 
   def return_rindex(array, value)
@@ -63,57 +60,93 @@ class CaratSchedule
     @rindex
   end
 
-  # Returns only rows with data - as an array of hashes
-  def set_all_rows_as_hashes
-    rows = [];
-    (csv.first_row..csv.last_row).each do |i|
-      rows.push Hash[header.zip(csv.row(i)[0..last_index])]
+  def basics_key(row, rindex)
+    if rindex != nil
+      key = row[rindex].downcase
+      AttrFilter.campaign_basics(key)
+    else 
+      "advertiser"
     end
-    rows
+  end
+
+  def basics_value(row, rindex)
+    row[(rindex+1)].to_s if rindex != nil
+  end
+
+  def last_basics_row?
+    (header_row_index-1)
   end
 
   #-------------------#
-  #      Header       #
+  #   Header - Index  #
   #-------------------#
 
   def set_header_row_index(all_rows)
     all_rows.each_with_index do |row, index|
-      if !row.first.blank? && contains_header_values(row)
+      if !row.first.blank? && contains_header_values?(row)
         return index
       end
     end
   end
 
+  def contains_header_values?(row)
+    possible_header_values.each do |val| 
+      return true if row.include?(val)
+    end
+    false    
+  end
+
+  def possible_header_values
+    ["TOTAL COST", "Total Cost"]
+  end
+
+  #-------------------#
+  #       Header      #
+  #-------------------#
+
   def set_header(all_rows)
     header = return_header_values(all_rows)
-    return header if header.last == "total_cost"
-      
-    # Todo - Raise some type of Error / Alert
-    puts "Could Not Find A Header Value.."
+
+    if valid_header_array?(header)
+      return header 
+    else
+      # return error message
+    end
   end
 
   def return_header_values(all_rows)
-    headers_vals=[]
-    all_rows[header_index].each do |value|
-      unless value.blank? 
-        value = value.downcase
-        value = filter_header(value)
-      end
-      headers_vals.push value.strip
-      break if value == "total_cost"
+    header_vals=[]
+    headers = header_array(all_rows)
+
+    headers.each do |value|
+      value = filter_header_value(value)
+      header_vals << value
+      break if last_header_value?(value)
     end
-    headers_vals.compact
+
+    header_vals.compact
+  end
+
+  def valid_header_array?(array) 
+    array.last == "total_cost"
+  end
+
+  def header_array(all_rows)
+    all_rows[header_row_index]
+  end
+
+  def filter_header_value(value)
+    unless value.blank? 
+      value = AttrFilter.header(value.downcase)
+    end
+  end
+  
+  def last_header_value?(value)
+    value == "total_cost"
   end
 
   def last_index
-    header.length-1
-  end
-
-  # EXTRACT
-  # Takes array as argument
-  # Returns true if finds values typically found in media plan header
-  def contains_header_values(row)
-    (row.include?("TOTAL COST") || row.include?("Total Cost") || row.include?("SCHEDULE DETAILS") || row.include?("SCHEDULE")|| row.include?("Placement") )
+    @header.length-1
   end
 
 
@@ -254,7 +287,7 @@ class CaratSchedule
   #-------------#
 
   def header_row?(index)
-    header_index == index
+    header_row_index == index
   end
 
   def first_value_exist?(row)
@@ -339,64 +372,23 @@ class CaratSchedule
     index <= flight_index
   end
 
-  def filter_header(header)
-    case header
-    when "schedule details"
-      header.gsub("schedule details","media_partner")
-    when "scheduling"
-      header.gsub("scheduling","media_partner")
-    when "placement"
-      header.gsub("placement", "placement_name")
-    when "product / detail"
-      header.gsub("product / detail", "placement_name")
-    when "detail"
-      header.gsub("detail", "placement_name")
-    when "duration"
-      header.gsub("duration", "ad_type")
-    when "length"
-      header.gsub("length", "ad_type")
-    when "unit cost"
-      header.gsub("unit cost", "unit_cost")
-    when "no."
-      header.gsub("no.", "impressions")
-    when "number"
-      header.gsub("number", "impressions")
-    when "gross digital cost"
-      header.gsub("gross digital cost", "total_digital_cost")
-    when "cost"
-      header.gsub("cost", "unit_cost")
-    when "total cost"
-      header.gsub("total cost", "total_cost")  
-    else
-      header
-    end
-  end
-
-  def basics_filter(basics)
-    case basics
-    when "brand:"
-      basics.gsub("brand:","advertiser")
-    when "product:"
-      basics.gsub("product:","product")
-    when "period:"
-      basics.gsub("period:","period")
-    when "pta:"
-      basics.gsub("pta:","primary_target_audience")
-    when "date:"
-      basics.gsub("date:","date")
-    when "version:"
-      basics.gsub("version:","version")
-    else
-     basics
-    end
-  end
-
   def merge_basics_and_(placements)
     atts = []
     placements.each do |placement|
      atts << basics.merge(placement)
     end
     atts
+  end
+
+  private
+
+  # Returns only rows with data - as an array of hashes
+  def set_all_rows_as_hashes
+    rows = [];
+    (csv.first_row..csv.last_row).each do |i|
+      rows.push Hash[header.zip(csv.row(i)[0..last_index])]
+    end
+    rows
   end
 
 end

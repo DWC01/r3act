@@ -61,11 +61,17 @@
 
 .page-menu-content{
   & p {
+    margin: 0 0 20px 0;
+  }  
+  & .title a {
     font-size: 15px;
-    padding: 15px 0;
-  }
-  & .title {
+    font-size: 15px;
     color: #fff;
+  }
+  & .title a:hover, .title a:active, .title a:focus {
+    text-decoration: none;
+    border: none;
+    outline:none;
   }
 }
 

@@ -34,8 +34,10 @@
            aria-labelledby="headingOne">
         <div class="r3-panel-body">
           <aside class="page-menu-content">
-            <p class="title" ng-repeat="plan in pageMenu.plans"> 
-              {{plan.name}}
+            <p class="title" ng-repeat="plan in plans">
+              <a href="#" ui-sref="dashboard-reports"> 
+                {{plan.name}}
+              </a>
             </p>
           </aside>
         </div>
@@ -69,8 +71,10 @@
            aria-labelledby="headingOne">
         <div class="r3-panel-body">
           <aside class="page-menu-content">
-            <p class="title" ng-repeat="traffic in pageMenu.traffics"> 
-              {{traffic.name}}
+            <p class="title" ng-repeat="traffic in traffics">
+              <a href="#" ui-sref="dashboard-reports">
+                {{traffic.name}}
+              </a>
             </p>
           </aside>
         </div>
@@ -104,8 +108,10 @@
            aria-labelledby="headingOne">
         <div class="r3-panel-body">
           <aside class="page-menu-content">
-            <p class="title" ng-repeat="analytic in pageMenu.analytics"> 
-              {{analytic.name}}
+            <p class="title" ng-repeat="dashboard in dashboards">
+              <a href="/campaigns/{{$routeParams.id}}/{{dashboard.name}}">
+                {{dashboard.name}}
+              </a>
             </p>
           </aside>
         </div>
@@ -113,8 +119,5 @@
     </div><!-- End Panel -->
 
   </aside>
-  
+
 </section>
-
-
-

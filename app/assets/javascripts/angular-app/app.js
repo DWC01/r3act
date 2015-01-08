@@ -37,37 +37,101 @@ angular
   $urlRouterProvider.otherwise("/");
   // Now set up the states
   $stateProvider
-    .state('/', {
+    .state('app', {
       url: "/",
-      templateUrl: 'campaigns/campaigns.html',
-      controller: 'CampaignsController'
+      views: {
+        'sidebar': {
+          templateUrl: 'sidebars/campaigns-menu.html',
+          controller: 'PageMenuController'
+        },
+        'content-top': {
+          templateUrl: 'campaigns/index.html',
+          controller: 'CampaignsController'
+        }
+      }
     })
     .state('campaigns', {
       url: "/campaigns",
-      templateUrl: 'campaigns/campaigns.html',
-      controller: 'CampaignsController'
+      views: {
+        'sidebar': {
+          templateUrl: 'sidebars/campaigns-menu.html',
+          controller: 'PageMenuController'
+        },
+        'content-top': {
+          templateUrl: 'campaigns/index.html',
+          controller: 'CampaignsController'
+        }
+      }
     })
     .state('campaigns/', {
       url: "/campaigns/",
-      templateUrl: 'campaigns/campaigns.html',
-      controller: 'CampaignsController'
+      views: {
+        'sidebar': {
+          templateUrl: 'sidebars/campaigns-menu.html',
+          controller: 'PageMenuController'
+        },
+        'content-top': {
+          templateUrl: 'campaigns/index.html',
+          controller: 'CampaignsController'
+        }
+      }
     })
     .state('campaign', {
       url: "/campaigns/:id",
-      templateUrl: "campaigns/campaign.html",
-      controller: 'CampaignsController'
+      views: {
+        'sidebar': {
+          templateUrl: 'sidebars/campaign-menu.html',
+          controller: 'PageMenuController'
+        },
+        'content-top': {
+          templateUrl: 'campaigns/show.html',
+          controller: 'CampaignsController'
+        }
+      }
     })
-    .state('adTag', {
+    .state('campaign.discrepancies', {
+      url: "/Discrepancies",
+      views: {
+        'content-top@': {
+          templateUrl: 'dashboards/discrepancies.html',
+          controller: 'DashboardsController'
+        }
+      }
+    })
+    .state('campaign.pacing', {
+      url: "/Pacing",
+      views: {
+        'content-top@': {
+          templateUrl: 'dashboards/pacing.html',
+          controller: 'DashboardsController'
+        }
+      }
+    })
+    .state('campaign.performance', {
+      url: "/Performance",
+      views: {
+        'content-top@': {
+          templateUrl: 'dashboards/performance.html',
+          controller: 'DashboardsController'
+        }
+      }
+    })
+    .state('adtag', {
       url: "/ad_tags/:id",
-      templateUrl: "ad_tags/ad_tag.html",
-      controller: 'AdTagsController'
+      views: {
+        'sidebar': {
+          templateUrl: 'sidebars/campaign-menu.html',
+          controller: 'PageMenuController'
+        },
+        'content-top': {
+          templateUrl: "ad_tags/show.html",
+          controller: 'AdTagsController'
+        }
+      }
     })
-  })
+  })// <!-- end states
 
   // configs xeditable
   .run(function(editableOptions) {
     editableOptions.theme = 'bs3';
   });
-
-
-

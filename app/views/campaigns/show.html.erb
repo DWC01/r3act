@@ -1,9 +1,13 @@
 <% content_for :title do %> Campaign Show <% end %>
 
-<div page-menu></div page-menu>
+<div ui-view="sidebar"></div>
 
 <div class="page-content-wrap page-menu-content-push">
   <div class="page-content" >
-    <div ui-view></div>
+    <div ui-view="header"></div>
+    <div ui-view="content-top"></div>
+    <div ui-view="content-middle"></div>
+    <div ui-view="content-bottom"></div>
+    <div ui-view="footer"></div>
   <div>
 </div>

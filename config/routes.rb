@@ -7,4 +7,8 @@ Rails.application.routes.draw do
       end
     end
   resources :campaigns, :ad_tags
+
+  get '/campaigns/:id/Performance',    to: 'dashboards#performance', as: 'perfomance'
+  get '/campaigns/:id/Pacing',         to: 'dashboards#pacing', as: 'pacing'
+  get '/campaigns/:id/Discrepancies',  to: 'dashboards#discrepancies', as: 'discrepancies'
 end

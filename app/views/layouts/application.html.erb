@@ -4,6 +4,10 @@
   <title>ReactiveDashboard</title>
   <%= stylesheet_link_tag    'application' %>
   <%= javascript_include_tag 'application' %>
+  
+  <!-- Load c3.css -->
+  <link href="/path/to/c3.css" rel="stylesheet" type="text/css">
+
   <%= csrf_meta_tags %>
 </head>
   <body ng-controller="MainController">
@@ -17,12 +21,25 @@
     <br>
     <br>
     <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <div class="page-content">   
       <pre>$location.path() = {{$location.path()}}</pre>
-      <pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
-      <pre>$route.current.params = {{$route.current.params}}</pre>
-      <pre>$route.current.scope.name = {{$route.current.scope}}</pre>
       <pre>$routeParams = {{$routeParams}}</pre>
     </div>
+    <!-- Load d3.js and c3.js -->
+    <script src="/path/to/c3.min.js"></script>
   </body>
 </html>

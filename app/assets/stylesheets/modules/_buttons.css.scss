@@ -17,3 +17,15 @@ $primary-btn-background: $neon-blue;
     color: $primary-btn-background;
   }
 }
+
+.r3-btn-hallow-blue {
+  color: #0277BD;
+  border: 1px solid #0277BD !important;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #fff;
+  &:hover, &:active, &:focus {
+    color: #01579B !important;
+    border: 1px solid #01579B !important;
+  }
+}

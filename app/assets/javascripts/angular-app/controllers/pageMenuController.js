@@ -4,20 +4,16 @@ angular
   .controller('PageMenuController', 
     function($rootScope, $scope, $route, $routeParams, Restangular) {
 
-      $scope.plans = [
-        {name: "Media Partners"},
-        {name: "Placements"},
-        {name: "Budgets / Pacing"}
+      $scope.navs = [
+        {name: "Media Plan",  url: "media_plan" },
+        {name: "Analytics",   url: " " },
+        {name: "Trafficking", url: "trafficking" },
+        {name: "Wrap Up",     url: "wrap_up" }
       ];
 
-      $scope.traffics = [
-        {name: "Traffic Tags"}
-      ];
-
-      $scope.dashboards = [
-        {name: "Performance"},
-        {name: "Pacing"},
-        {name: "Discrepancies"}
+      $scope.settings = [
+        {name: "Profile"},
+        {name: "Company"}
       ];
 
   });

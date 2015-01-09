@@ -8,7 +8,8 @@ Rails.application.routes.draw do
     end
   resources :campaigns, :ad_tags
 
-  get '/campaigns/:id/Performance',    to: 'dashboards#performance', as: 'perfomance'
-  get '/campaigns/:id/Pacing',         to: 'dashboards#pacing', as: 'pacing'
-  get '/campaigns/:id/Discrepancies',  to: 'dashboards#discrepancies', as: 'discrepancies'
+  get '/campaigns/:id/media_plan',    to: 'campaigns#media_plan',  as: 'media_plan'
+  get '/campaigns/:id/analytics',     to: 'campaigns#show'
+  get '/campaigns/:id/trafficking',   to: 'campaigns#trafficking', as: 'trafficking'
+  get '/campaigns/:id/wrap_up',       to: 'campaigns#wrap_up',     as: 'wrap_up'
 end

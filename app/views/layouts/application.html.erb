@@ -4,42 +4,16 @@
   <title>ReactiveDashboard</title>
   <%= stylesheet_link_tag    'application' %>
   <%= javascript_include_tag 'application' %>
-  
-  <!-- Load c3.css -->
-  <link href="/path/to/c3.css" rel="stylesheet" type="text/css">
-
   <%= csrf_meta_tags %>
 </head>
   <body ng-controller="MainController">
   <base href="/">
+  <section class="sticky-left page-menu">
+    <div ui-view="sidebar"></div>
+  </section>
     <%= render 'layouts/navbar' %>
-    <%= yield %>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="page-content">   
-      <pre>$location.path() = {{$location.path()}}</pre>
-      <pre>$routeParams = {{$routeParams}}</pre>
+    <div class="page-content-wrap">
+      <%= yield %>
     </div>
-    <!-- Load d3.js and c3.js -->
-    <script src="/path/to/c3.min.js"></script>
   </body>
 </html>

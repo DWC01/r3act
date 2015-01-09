@@ -1,5 +1,9 @@
 @import 'base';
 
+body {
+  padding-top: 55px;
+}
+
 body,
 html {
   width: 100%;
@@ -7,11 +11,11 @@ html {
 }
 
 body,h1,h2,h3,h4,h5,h6 {
-  font-family: $font-stack;
-  color: $primary-text;
-  padding-top: 55px;
+  font-family: $font-stack !important;
+  color: $primary-text !important;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
-
 
 /*----------------------*/
 /*   Custom-BootStrap   */
@@ -24,6 +28,10 @@ body,h1,h2,h3,h4,h5,h6 {
 
 .navbar-brand {
   font-size: 20px !important;
+  color: #5e5e5e !important;
+  &:hover {
+    color: #5e5e5e;
+  }
   & span {
   color: #67e875;
   }

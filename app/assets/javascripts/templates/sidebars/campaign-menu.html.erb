@@ -1,123 +1,158 @@
-<section class="sticky-left page-menu show-page-menu">
-  <div class="page-menu-btn-wrap">
-    <a class="page-menu-toggle" href="">
-    <i class="fa fa-bars fa-2x neon-green page-menu-btn"></i>
-    </a>
-  </div>
-  <aside class="r3-panel-group" id="r3Collapse" role="tablist" 
-         aria-multiselectable="true" >
-
-    <div class="r3-panel">
-    <!-- Panel Header -->
-      <div class="r3-panel-heading page-menu-header" role="tab" 
-           id="headingOne">
-        <a data-parent="#r3Collapse"
-           data-toggle="collapse"
-           href="#collapse-placements"
-           aria-expanded="false" 
-           aria-controls="collapse-placements"
-           ng-click="setCurrentHeader(menuHeader.header)"
-           ui-sref="placements"
-           class="r3-panel-heading-link">
-          <p class="title"> 
-            Media Plan
-            <i class="fa fa-file-o media-plan 
-               page-menu-i show-page-menu-i"></i>
+<div class="page-menu-btn-wrap">
+  <a href="/campaigns">
+    All Campaigns
+  </a>
+</div>
+<aside class="r3-panel-group" id="r3Collapse" role="tablist" 
+       aria-multiselectable="true" >
+  <div class="r3-panel">
+  <!-- Panel Header -->
+    <div class="r3-panel-heading page-menu-header" role="tab" 
+         id="headingOne">
+      <a data-parent="#r3Collapse"
+         data-toggle="collapse"
+         href="#collapse-placements"
+         aria-expanded="true" 
+         aria-controls="collapse-placements"
+         ng-click="setCurrentHeader(menuHeader.header)"
+         ui-sref="placements"
+         class="r3-panel-heading-link">
+        <p class="title"> 
+          Navigation
+          <i class="fa fa-pied-piper-alt media-plan 
+             page-menu-i"></i>
+        </p>
+        <div class="bottom-highlight"></div>
+      </a>
+    </div>
+  <!-- Panel Body -->
+    <div id="collapse-placements" 
+         class="panel-collapse collapse in" 
+         role="tabpanel" 
+         aria-labelledby="headingOne">
+      <div class="r3-panel-body">
+        <aside class="page-menu-content">
+          <p class="title" ng-repeat="nav in navs">
+            <a href="/campaigns/{{$routeParams.id}}/{{nav.url}}"> 
+              {{nav.name}}
+            </a>
           </p>
-          <div class="bottom-highlight"></div>
-        </a>
+        </aside>
       </div>
-    <!-- Panel Body -->
-      <div id="collapse-placements" 
-           class="panel-collapse collapse" 
-           role="tabpanel" 
-           aria-labelledby="headingOne">
-        <div class="r3-panel-body">
-          <aside class="page-menu-content">
-            <p class="title" ng-repeat="plan in plans">
-              <a href="#" ui-sref="dashboard-reports"> 
-                {{plan.name}}
-              </a>
-            </p>
-          </aside>
-        </div>
-      </div>
-    </div><!-- End Panel -->
+    </div>
+  </div><!-- End Panel -->
 
-    <div class="r3-panel">
-    <!-- Panel Header -->
-      <div class="r3-panel-heading page-menu-header" role="tab" 
-           id="headingOne">
-        <a data-parent="#r3Collapse"
-           data-toggle="collapse"
-           href="#collapse-trafficking"
-           aria-expanded="false" 
-           aria-controls="collapse-trafficking"
-           ng-click="setCurrentHeader(menuHeader.header)"
-           ui-sref="analytics"
-           class="r3-panel-heading-link">
-          <p class="title"> 
-            Trafficking
-            <i class="fa fa-bookmark-o trafficking 
-               page-menu-i show-page-menu-i"></i>
+  <div class="r3-panel">
+  <!-- Panel Header -->
+    <div class="r3-panel-heading page-menu-header" role="tab" 
+         id="headingOne">
+      <a data-parent="#r3Collapse"
+         data-toggle="collapse"
+         href="#collapse-settings"
+         aria-expanded="false" 
+         aria-controls="collapse-settings"
+         ng-click="setCurrentHeader(menuHeader.header)"
+         ui-sref="placements"
+         class="r3-panel-heading-link">
+        <p class="title"> 
+          Settings
+          <i class="fa fa-cogs media-plan 
+             page-menu-i"></i>
+        </p>
+        <div class="bottom-highlight"></div>
+      </a>
+    </div>
+  <!-- Panel Body -->
+    <div id="collapse-settings" 
+         class="panel-collapse collapse" 
+         role="tabpanel" 
+         aria-labelledby="headingOne">
+      <div class="r3-panel-body">
+        <aside class="page-menu-content">
+          <p class="title" ng-repeat="setting in settings">
+            <a href="#"> 
+              {{setting.name}}
+            </a>
           </p>
-          <div class="bottom-highlight"></div>
-        </a>
+        </aside>
       </div>
-    <!-- Panel Body -->
-      <div id="collapse-trafficking" 
-           class="panel-collapse collapse" 
-           role="tabpanel" 
-           aria-labelledby="headingOne">
-        <div class="r3-panel-body">
-          <aside class="page-menu-content">
-            <p class="title" ng-repeat="traffic in traffics">
-              <a href="#" ui-sref="dashboard-reports">
-                {{traffic.name}}
-              </a>
-            </p>
-          </aside>
-        </div>
-      </div>
-    </div><!-- End Panel -->
+    </div>
+  </div><!-- End Panel -->
 
-    <div class="r3-panel">
-    <!-- Panel Header -->
-      <div class="r3-panel-heading page-menu-header" role="tab" 
-           id="headingOne">
-        <a data-parent="#r3Collapse"
-           data-toggle="collapse"
-           href="#collapse-analytics"
-           aria-expanded="false" 
-           aria-controls="collapse-analytics"
-           ng-click="setCurrentHeader(menuHeader.header)"
-           ui-sref="analytics"
-           class="r3-panel-heading-link">
-          <p class="title"> 
-            Analytics
-            <i class="fa fa-bar-chart 
-               page-menu-i show-page-menu-i"></i>
+</aside>
+  
+  <!-- Scraps
+
+  <div class="r3-panel">
+  <!-- Panel Header
+    <div class="r3-panel-heading page-menu-header" role="tab" 
+         id="headingOne">
+      <a data-parent="#r3Collapse"
+         data-toggle="collapse"
+         href="#collapse-trafficking"
+         aria-expanded="false" 
+         aria-controls="collapse-trafficking"
+         ng-click="setCurrentHeader(menuHeader.header)"
+         ui-sref="analytics"
+         class="r3-panel-heading-link">
+        <p class="title"> 
+          Trafficking
+          <i class="fa fa-bookmark-o trafficking 
+             page-menu-i"></i>
+        </p>
+        <div class="bottom-highlight"></div>
+      </a>
+    </div>
+  <!-- Panel Body
+    <div id="collapse-trafficking" 
+         class="panel-collapse collapse" 
+         role="tabpanel" 
+         aria-labelledby="headingOne">
+      <div class="r3-panel-body">
+        <aside class="page-menu-content">
+          <p class="title" ng-repeat="traffic in traffics">
+            <a href="#" ui-sref="dashboard-reports">
+              {{traffic.name}}
+            </a>
           </p>
-          <div class="bottom-highlight"></div>
-        </a>
+        </aside>
       </div>
-    <!-- Panel Body -->
-      <div id="collapse-analytics" 
-           class="panel-collapse collapse" 
-           role="tabpanel" 
-           aria-labelledby="headingOne">
-        <div class="r3-panel-body">
-          <aside class="page-menu-content">
-            <p class="title" ng-repeat="dashboard in dashboards">
-              <a href="/campaigns/{{$routeParams.id}}/{{dashboard.name}}">
-                {{dashboard.name}}
-              </a>
-            </p>
-          </aside>
-        </div>
+    </div>
+  </div><!-- End Panel
+
+  <div class="r3-panel">
+  <!-- Panel Header
+    <div class="r3-panel-heading page-menu-header" role="tab" 
+         id="headingOne">
+      <a data-parent="#r3Collapse"
+         data-toggle="collapse"
+         href="#collapse-analytics"
+         aria-expanded="false" 
+         aria-controls="collapse-analytics"
+         ng-click="setCurrentHeader(menuHeader.header)"
+         ui-sref="analytics"
+         class="r3-panel-heading-link">
+        <p class="title"> 
+          Analytics
+          <i class="fa fa-bar-chart 
+             page-menu-i"></i>
+        </p>
+        <div class="bottom-highlight"></div>
+      </a>
+    </div>
+  <!-- Panel Body
+    <div id="collapse-analytics" 
+         class="panel-collapse collapse" 
+         role="tabpanel" 
+         aria-labelledby="headingOne">
+      <div class="r3-panel-body">
+        <aside class="page-menu-content">
+          <p class="title" ng-repeat="dashboard in dashboards">
+            <a href="/campaigns/{{$routeParams.id}}/{{dashboard.name}}">
+              {{dashboard.name}}
+            </a>
+          </p>
+        </aside>
       </div>
-    </div><!-- End Panel -->
-
-  </aside>
-
-</section>
+    </div>
+  </div><!-- End Panel -->

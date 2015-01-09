@@ -41,6 +41,15 @@ class CampaignsController < ApplicationController
     redirect_to campaigns_path
   end
 
+  def media_plan
+  end
+
+  def trafficking
+  end
+
+  def wrap_up
+  end
+
   private
 
     def save_file_as_ad_tags(campaign, file_path)

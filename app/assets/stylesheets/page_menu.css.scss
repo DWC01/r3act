@@ -6,7 +6,7 @@
 }
 
 .page-menu {
-  left: -163px !important;
+  left: -211px !important;
   top: 50px;
   width: 210px;
   height: 100%;
@@ -19,11 +19,18 @@
   height: 39px;
   border-bottom: 1px solid #34343a;
   margin: 0 0 10px 0;
-& .page-menu-btn {
-    position: relative;
-    font-size: 22px;
-    left: 84%;
-    top: 9px;
+}
+
+.page-menu-toggle {
+  position: relative;
+  left: -110px;
+  top: 9px;
+  color: #5e5e5e;
+  font-size: 21px;
+  &:hover, &:active, &:focus {
+    color: #5e5e5e;
+    border: 0px solid transparent;
+    outline: none;
   }
 }
 
@@ -76,7 +83,7 @@
 }
 
 .show-page-menu {
-  margin-left: 163px !important;
+  margin-left: 211px !important;
 }
 
 .page-menu-content-push {

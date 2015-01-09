@@ -8,7 +8,7 @@ angular
       $scope.chart = c3.generate({
         bindto: '#chart',
           data: {
-            columns: [
+              columns: [
               ['Google',   30, 200, 100, 400, 150, 250],
               ['Yahoo!7', 130, 300, 200, 500, 250, 350],
               ['iNC',     230, 400, 300, 600, 350, 450],
@@ -32,8 +32,7 @@ angular
                 values: ['1/1/2015', '1/30/2015']
               },
               label: {
-                 text: 'Date'
-                 // position: 'outer-right',
+                text: 'Date'
               }
             },
             y: {
@@ -41,10 +40,9 @@ angular
               values: [100, 300, 500, 700]
               },
               label: {
-                 text: 'Discrepancy %'
-                 // position: 'outer-top',
+                text: 'Discrepancy %'
               }
-            }
+            },
           },
           tooltip: {
             format: {

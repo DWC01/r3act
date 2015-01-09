@@ -1,12 +1,45 @@
-  <a href="campaigns"> 
-    My Campaigns
+  <div class="r3-page-header">
+    <h2 class="center"> 
+      {{ campaign.name }}
+    </h2>
+  </div>
+
+  <ul class="list-unstyled campaign-graph-btn-menu">
+    
+    <md-switch ng-model="dash.view" ng-true-value="'Pacing'" 
+    ng-false-value="'Performance'" aria-label="dash">
+      Dash View: {{ dash.view }}
+    </md-switch>
+
+    <!-- <li class="pull-left">
+      <a href='#' class="btn r3-btn-hallow-blue">
+        Pacing
+      </a>
+    </li>
+    <li class="pull-left">
+      <a href='#' class="btn r3-btn-hallow-blue">
+        Performance
+      </a>
+    </li> -->
+  </ul>
+
+  <div ng-controller="LineGraphsController">
+    <div line-graph id="chart" ng-init="showGraph()"></div>
+  </div>
+
+  <ul class="list-unstyled">
+  <a class="stripe-box-list-link" href="campaigns/{{ campaign.id}}" 
+     ng-repeat="adTag in adTags">
+    <li class="stripe-box-list-item md-whiteframe-z1">
+      <div class="stripe-box-left-stripe"></div>
+      <div class="stripe-box-content">
+        {{adTag.media_partner}}_{{adTag.device}}_{{adTag.placement_name}}_{{adTag.period}}_{{adTag.ad_type}}
+      </div>
+    </li>
   </a>
+</ul>
 
-  <h1 class="center"> 
-    Campaign Basics
-  </h1> 
-
-  <form editable-form name="editableForm" onaftersave="saveCampaign($data)">
+  <!-- <form editable-form name="editableForm" onaftersave="saveCampaign($data)">
     
     <div>
       <span class="title">
@@ -15,8 +48,7 @@
       <span editable-text="campaign.name" e-name="name" >
         {{ campaign.name }}
       </span>
-    </div> 
-
+    </div>
     <div>
       <span class="title">
         Placements:
@@ -108,11 +140,11 @@
     </div>
 
     <div>
-      <!-- button to show form -->
+      <!-- button to show form
       <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
         Edit
       </button>
-      <!-- buttons to submit / cancel form -->
+      <!-- buttons to submit / cancel form 
       <span ng-show="editableForm.$visible">
         <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
           Save
@@ -122,7 +154,7 @@
         </button>
       </span>
     </div>
-  </form>  
+  </form>
 
   <ul class="list-unstyled list-item-fancy-box-wrap">
     <a href="/ad_tags/{{adTag.id}}" ng-repeat="adTag in adTags">
@@ -135,4 +167,4 @@
         </div>
       </li>
     </a>
-  </ul>
+  </ul> -->

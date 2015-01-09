@@ -3,7 +3,8 @@ angular
     'templates', 'restangular',
     'ui.router', 'ngRoute',
     'ngResource', 'xeditable',
-    'ui.bootstrap'])
+    'ngMaterial', 'ngAnimate',
+    'ngAria'])
   
   // Params to pass state to router
   // $scope to pass attributes to directives
@@ -85,34 +86,34 @@ angular
         },
         'content-top': {
           templateUrl: 'campaigns/show.html',
-          controller: 'CampaignsController'
+          controller: 'CampaignController'
         }
       }
     })
-    .state('campaign.discrepancies', {
-      url: "/Discrepancies",
+    .state('campaign.media_plan', {
+      url: "/media_plan",
       views: {
         'content-top@': {
-          templateUrl: 'dashboards/discrepancies.html',
-          controller: 'DashboardsController'
+          templateUrl: 'campaigns/media_plan.html',
+          controller: 'CampaignController'
         }
       }
     })
-    .state('campaign.pacing', {
-      url: "/Pacing",
+    .state('campaign.trafficking', {
+      url: "/trafficking",
       views: {
         'content-top@': {
-          templateUrl: 'dashboards/pacing.html',
-          controller: 'DashboardsController'
+          templateUrl: 'campaigns/trafficking.html',
+          controller: 'CampaignController'
         }
       }
     })
-    .state('campaign.performance', {
-      url: "/Performance",
+    .state('campaign.wrap_up', {
+      url: "/wrap_up",
       views: {
         'content-top@': {
-          templateUrl: 'dashboards/performance.html',
-          controller: 'DashboardsController'
+          templateUrl: 'campaigns/wrap_up.html',
+          controller: 'CampaignController'
         }
       }
     })

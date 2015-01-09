@@ -15,10 +15,12 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require lodash
+//= require hammerjs
 //= require angular
-//= require angular-bootstrap
 //= require angular-route
 //= require angular-resource
+//= require angular-animate
+//= require angular-aria
 //= require angular-rails-templates
 //= require angular-ui-router
 //= require restangular
@@ -26,5 +28,6 @@
 //= require angular-app/app
 //= require d3
 //= require c3
+//= require angular-material
 //= require_tree .
 //= require_tree ./templates

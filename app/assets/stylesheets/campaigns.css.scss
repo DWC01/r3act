@@ -5,10 +5,6 @@
  margin: 0px auto;
 }
 
-.transaction-header {
-  margin-top: 50px !important;
-}
-
 .upload-ad-tags-header {
   width: 500px;
   font-weight: 200;
@@ -31,4 +27,57 @@
   -webkit-box-shadow: #f0f0f0 0 0 0 3px inset,#edddf5 2px 3px 0;
   -moz-box-shadow: #f0f0f0 0 0 0 3px inset,#edddf5 2px 3px 0;
   box-shadow: #f0f0f0 0 0 0 3px inset,#edddf5 2px 3px 0;
+}
+
+/*-----------------*/
+/*  Campaign List  */
+/*-----------------*/
+
+.r3-page-header {
+  padding-bottom: 25px;
+  margin: 25px 0 40px 0;
+  border-bottom: 1px solid #eeeeee;
+  text-align: center;
+  & h2 {
+    font-size: 25px;
+  }
+}
+
+.stripe-box-list-link {
+  &:hover, &:active, &:focus {
+    text-decoration: none;
+    outline: none;
+    border: 0px solid transparent;
+  }
+}
+
+.stripe-box-list-item {
+  margin: 10px 0;
+  height: 70px;
+}
+
+.stripe-box-left-stripe {
+  height: 100%;
+  width: 7px;
+  float: left;
+  background-color: $neon-green;
+}
+
+.stripe-box-content {
+  color: $primary-text;
+  padding: 24px 0 0 20px;
+  font-size: 14px;
+}
+
+/*-----------------*/
+/*  Campaign Show  */
+/*-----------------*/
+
+
+.campaign-graph-btn-menu {
+  position: relative;
+  top: -29px;
+  & li {
+    margin-right: 10px;
+  }
 }

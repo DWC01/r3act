@@ -16,14 +16,5 @@ angular
     Restangular.one('campaigns', $routeParams.id).get().then(function(campaign){
       $scope.campaign = campaign;
     });
-    
-    // Get All Ad Tags For Current Campaign
-    $scope.adTags = Restangular.one('campaigns', $routeParams.id).getList('ad_tags').$object;
-    
-    // Save/Update Campaign Attributes
-    var saveCampaign = function(data) {
-      $scope.campaign.save();
-    }
-    $scope.saveCampaign = saveCampaign;
-
-  });
+  
+});

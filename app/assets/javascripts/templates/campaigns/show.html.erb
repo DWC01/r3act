@@ -5,31 +5,101 @@
   </div>
 
   <ul class="list-unstyled campaign-graph-btn-menu">
-    
     <md-switch ng-model="dash.view" ng-true-value="'Pacing'" 
     ng-false-value="'Performance'" aria-label="dash">
       Dash View: {{ dash.view }}
     </md-switch>
-
-    <!-- <li class="pull-left">
-      <a href='#' class="btn r3-btn-hallow-blue">
-        Pacing
-      </a>
-    </li>
-    <li class="pull-left">
-      <a href='#' class="btn r3-btn-hallow-blue">
-        Performance
-      </a>
-    </li> -->
   </ul>
 
   <div ng-controller="LineGraphsController">
     <div line-graph id="chart" ng-init="showGraph()"></div>
   </div>
 
-  <ul class="list-unstyled">
+<div class="r3-page-header">
+  <h2 class="text-left"> 
+    Google
+  </h2>
+</div>
+<ul class="list-unstyled">
   <a class="stripe-box-list-link" href="campaigns/{{ campaign.id}}" 
-     ng-repeat="adTag in adTags">
+     ng-repeat="adTag in adTags | filter:'Google'">
+    <li class="stripe-box-list-item md-whiteframe-z1">
+      <div class="stripe-box-left-stripe"></div>
+      <div class="stripe-box-content">
+        {{adTag.media_partner}}_{{adTag.device}}_{{adTag.placement_name}}_{{adTag.period}}_{{adTag.ad_type}}
+      </div>
+    </li>
+  </a>
+</ul>
+
+<div class="r3-page-header">
+  <h2 class="text-left"> 
+    iNC
+  </h2>
+</div>
+<ul class="list-unstyled">
+  <a class="stripe-box-list-link" href="campaigns/{{ campaign.id}}" 
+     ng-repeat="adTag in adTags | filter:'iNC'">
+    <li class="stripe-box-list-item md-whiteframe-z1">
+      <div class="stripe-box-left-stripe"></div>
+      <div class="stripe-box-content">
+        {{adTag.media_partner}}_{{adTag.device}}_{{adTag.placement_name}}_{{adTag.period}}_{{adTag.ad_type}}
+      </div>
+    </li>
+  </a>
+</ul>
+<div class="r3-page-header" style="text-left">
+  <h2 class="text-left"> 
+    Exponential
+  </h2>
+</div>
+<ul class="list-unstyled">
+  <a class="stripe-box-list-link" href="campaigns/{{ campaign.id}}" 
+     ng-repeat="adTag in adTags | filter:'Exponential'">
+    <li class="stripe-box-list-item md-whiteframe-z1">
+      <div class="stripe-box-left-stripe"></div>
+      <div class="stripe-box-content">
+        {{adTag.media_partner}}_{{adTag.device}}_{{adTag.placement_name}}_{{adTag.period}}_{{adTag.ad_type}}
+      </div>
+    </li>
+  </a>
+</ul>
+<div class="r3-page-header" style="text-left">
+  <h2 class="text-left"> 
+    Voban
+  </h2>
+</div>
+<ul class="list-unstyled">
+  <a class="stripe-box-list-link" href="campaigns/{{ campaign.id}}" 
+     ng-repeat="adTag in adTags | filter:'Voban'">
+    <li class="stripe-box-list-item md-whiteframe-z1">
+      <div class="stripe-box-left-stripe"></div>
+      <div class="stripe-box-content">
+        {{adTag.media_partner}}_{{adTag.device}}_{{adTag.placement_name}}_{{adTag.period}}_{{adTag.ad_type}}
+      </div>
+    </li>
+  </a>
+</ul>
+<div class="r3-page-header">
+  <h2 class="text-left"> 
+    AdRoll
+  </h2>
+</div>
+<ul class="list-unstyled">
+  <a class="stripe-box-list-link" href="campaigns/{{ campaign.id}}" 
+     ng-repeat="adTag in adTags | filter:'Yahoo7'">
+    <li class="stripe-box-list-item md-whiteframe-z1">
+      <div class="stripe-box-left-stripe"></div>
+      <div class="stripe-box-content">
+        {{adTag.media_partner}}_{{adTag.device}}_{{adTag.placement_name}}_{{adTag.period}}_{{adTag.ad_type}}
+      </div>
+    </li>
+  </a>
+</ul>
+
+<ul class="list-unstyled">
+  <a class="stripe-box-list-link" href="campaigns/{{ campaign.id}}" 
+     ng-repeat="adTag in adTags | filter:'AdRoll'">
     <li class="stripe-box-list-item md-whiteframe-z1">
       <div class="stripe-box-left-stripe"></div>
       <div class="stripe-box-content">

@@ -8,7 +8,11 @@ angular
   
   // Params to pass state to router
   // $scope to pass attributes to directives
-  
+  .service("SmithService", function() {
+    this.getName = function (name) {
+      return name +  " Smith";
+    }
+  })
   .config(function(RestangularProvider) {
     // Set base url
     RestangularProvider.setBaseUrl('/api/');

@@ -67,6 +67,6 @@ class CampaignsController < ApplicationController
       :ad_tags_file, :ad_tags_count, :start_date,
       :end_date, :ad_sizes, :ad_types, 
       :ad_tag_provider, :ad_tag_sender, :ad_tag_receivers,
-      :advertiser_name, :media_plan_name)
+      :advertiser, :media_plan_name)
     end
 end

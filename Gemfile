@@ -22,6 +22,7 @@ gem 'bower-rails'
 gem 'unicorn'
 gem 'roo'
 gem 'spreadsheet'
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development do
   gem 'spring'

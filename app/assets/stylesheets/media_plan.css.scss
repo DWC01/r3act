@@ -1,0 +1,60 @@
+.table-ad-tags {
+  white-space: nowrap;
+  text-align:center;
+  
+  & tr:hover .row-cells, & tr:hover .header-cells {
+    background-color: whitesmoke;
+  }
+  & .header-cells {
+    font-weight: bold;
+    border: 1px solid #ddd;
+  }
+  & .row-cells {
+    border: 1px solid #ddd;
+    padding: 0 !important;
+  & .non-editable-wrap {
+      display: block;
+      height: 34px;
+      padding: 6px 12px;
+    }
+  }
+  & .edit-row-cell {
+    border-top: 0;
+    position: absolute;
+    width: 0px;
+    padding: 0;
+    margin: 5px 0 0 15px;
+  }
+}
+
+/* --------------- */
+/*  Custom Edits   */
+/* --------------- */
+
+.editable-wrap .form-group {
+  margin: 0 !important;
+}
+
+.editable-wrap .form-control {
+  text-align: center !important;
+  border: 0px solid #cccccc;
+  border-radius: 0px;
+  height: 35px;
+  padding: 0 !important;
+}
+
+.editable-wrap .form-control:focus {
+  border: 0;
+  border-color: transparent;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0;
+}
+
+.btn-save-ad-tag, .btn-cancel-ad-tag {
+  width: 30px !important;
+  height: 30px !important;
+  top: -4px;
+}
+
+.btn-save-ad-tag {
+  margin: 0 10px 0 0;
+}

@@ -7,7 +7,7 @@ module Api
         :ad_tags_file, :ad_tags_count, :start_date,
         :end_date, :placement_sizes, :display_types, 
         :ad_tag_provider, :ad_tag_sender, :ad_tag_receivers,
-        :advertiser_name, :audience, :media_plan_name)
+        :advertiser, :audience, :media_plan_name)
       end
 
       def query_params

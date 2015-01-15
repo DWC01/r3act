@@ -2,7 +2,8 @@ angular
   .module('r3act')
 
   .controller('AdTagsController', 
-    function($rootScope, $scope, $route, $routeParams, Restangular) {
+    function($rootScope, $scope, $route, $routeParams, 
+             $stateParams, Restangular, $http) {
 
     // Set Base (Route Object)
     var baseAdTags = Restangular.all('ad_tags');
@@ -19,7 +20,7 @@ angular
 
     // Save/Update ad tags attributes
     var saveAdTag = function(data) {
-      console.log($scope.adTags);
+      console.log(data);
       $scope.adTag.save();
     }
     $scope.saveAdTag = saveAdTag;

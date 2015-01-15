@@ -1,4 +1,4 @@
-class AttrFilter
+  class AttrFilter
   
   def self.campaign_basics(value)
     case value

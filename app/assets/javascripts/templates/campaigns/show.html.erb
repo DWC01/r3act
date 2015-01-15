@@ -15,22 +15,33 @@
     <div line-graph id="chart" ng-init="showGraph()"></div>
   </div>
 
-<div class="r3-page-header">
-  <h2 class="text-left"> 
-    Google
-  </h2>
-</div>
-<ul class="list-unstyled">
-  <a class="stripe-box-list-link" href="campaigns/{{ campaign.id}}" 
-     ng-repeat="adTag in adTags | filter:'Google'">
-    <li class="stripe-box-list-item md-whiteframe-z1">
-      <div class="stripe-box-left-stripe"></div>
-      <div class="stripe-box-content">
-        {{adTag.media_partner}}_{{adTag.device}}_{{adTag.placement_name}}_{{adTag.period}}_{{adTag.ad_type}}
-      </div>
-    </li>
-  </a>
-</ul>
+  <div ng-repeat="partner in mediaPartners">
+
+    <div class="r3-page-header" style="position:relative;">
+      <h2 class="text-left"> 
+         {{partner}}
+      </h2>
+    </div>
+
+    <ul class="list-unstyled">
+      <a class="stripe-box-list-link" href="campaigns/{{ campaign.id}}"
+        data-partner="{{partner}}" 
+         ng-repeat="adTag in adTags | filter:partner">
+        <li class="stripe-box-list-item md-whiteframe-z1">
+          <div class="stripe-box-left-stripe"></div>
+            <div class="stripe-box-content">
+             {{adTag.media_partner}}_{{adTag.device}}_{{adTag.placement_name}}_{{adTag.period}}_{{adTag.ad_type}}
+            </div>
+          </div>
+        </li>
+      </a>
+    </ul>
+
+  </div> <!-- end repeat mediaPartners -->
+
+<!-- 
+# Image of Company logo - 50% opacity
+<%= image_tag "adroll-logo.png", style: 'position: absolute; width: 100px; top:0px; opacity: .5;' %>
 
 <div class="r3-page-header">
   <h2 class="text-left"> 
@@ -107,7 +118,7 @@
       </div>
     </li>
   </a>
-</ul>
+</ul> -->
 
   <!-- <form editable-form name="editableForm" onaftersave="saveCampaign($data)">
     

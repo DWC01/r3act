@@ -34,13 +34,14 @@ angular
     };
 
     // // Simple GET request example :
-    // $http.get('http://www.displayadtech.com/api/companies?name=Spongecell').
-    //   success(function(data, status, headers, config) {
-    //     console.log(data);
-    //   }).
-    //   error(function(data, status, headers, config) {
-    //     // called asynchronously if an error occurs
-    //     // or server returns response with an error status.
-    //   });
+    $http.get('http://www.displayadtech.com/api/companies?name=DoubleClick for Publishers').
+      success(function(data, status, headers, config) {
+        $scope.company = data[0];
+        $scope.company.listLogoUrl = data[0].logo.company_list_logo.url
+      }).
+      error(function(data, status, headers, config) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+      });
 
   });

@@ -49,17 +49,12 @@
   }
   & i {
     position: relative;
+    top: 5px;
     color: #67e875;
     float: right;
     margin: 0 6% 0 0;
     font-size: 23px;
     transition: margin .5s;
-  }
-  & i.trafficking {
-    left: -5px;
-  }
-  & i.media-plan {
-    left: -3px;
   }
   & .bottom-highlight{
     height: 2px;

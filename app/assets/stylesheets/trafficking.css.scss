@@ -1,0 +1,87 @@
+@import 'partials/global';
+
+/*--------------------*/
+/*  Traffic Path Menu */
+/*--------------------*/
+
+.menu-path-wrapper {
+  position: relative;
+
+  & .menu-path-line {
+  position: fixed;
+  left: 85px;
+  top: 339px;
+  width: 320px;
+  border-bottom: 2px solid $neon-green;
+  transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  }
+  & .menu-path-button {
+    width: 35px;
+    height: 35px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 2px solid $neon-green;
+  }
+  & .partner {
+    position: fixed;
+    top: 210px;
+    left: 227px;
+  }
+  & .flight {
+    position: fixed;
+    top: 320px;
+    left: 227px;
+  }
+  & .details {
+    position: fixed;
+    top: 430px;
+    left: 227px;
+  }
+  & p {
+    color: #67e875;
+    margin: -3px 0 0 10px;
+    font-size: 20px;
+  }
+}
+
+
+
+/*----------------*/
+/*   Traffic      */
+/*----------------*/
+
+.traffic-pick-partner {
+  margin: 70px 0 50px 0;
+  & h2 {
+  font-weight: 300;
+  }
+}
+
+.traffic-to-media-partner-wrap {
+  position: relative;
+  width: 250px;
+  height: 210px;
+  margin: 0px auto;
+  padding-top: 1px;
+  & .title {
+    margin: 0 20px;
+    border-bottom: 1px solid #eee;
+    & p {
+    line-height: 1.4;
+    text-align: center;
+    color: #181818;
+    font-size: 19px;
+    margin: 13px 0 15px 0;
+    text-decoration: none;
+    }
+  }
+  & .logo-wrap {
+    position: relative;
+    top: 10%;
+    height: 90px;
+    width: 190px;
+    margin: 0 auto;
+  }
+}

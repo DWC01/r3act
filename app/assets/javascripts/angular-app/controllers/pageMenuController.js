@@ -5,9 +5,9 @@ angular
     function($rootScope, $scope, $route, $routeParams, Restangular) {
 
       $scope.navs = [
-        {name: "Media Plan",  url: "media_plan" },
-        {name: "Analytics",   url: " " },
+        {name: "Media Plan",  url: "" },
         {name: "Trafficking", url: "trafficking" },
+        {name: "Analytics",   url: "analytics" },
         {name: "Wrap Up",     url: "wrap_up" }
       ];
 

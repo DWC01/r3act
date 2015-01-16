@@ -89,16 +89,16 @@ angular
           controller: 'PageMenuController'
         },
         'content-top': {
-          templateUrl: 'campaigns/show.html',
+          templateUrl: 'campaigns/media_plan.html',
           controller: 'CampaignController'
         }
       }
     })
-    .state('campaign.media_plan', {
-      url: "/media_plan",
+    .state('campaign.analytics', {
+      url: "/analytics",
       views: {
         'content-top@': {
-          templateUrl: 'campaigns/media_plan.html',
+          templateUrl: 'campaigns/analytics.html',
           controller: 'CampaignController'
         }
       }

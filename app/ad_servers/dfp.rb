@@ -3,16 +3,20 @@ require 'base64'
 
 class Dfp
   attr_reader :api_version, :dfp, :campaign_id,
-              :advertiser_id, :network_id, :ad_tags
+              :advertiser_id, :network_id, :ad_tags,
+              :creative_service, :creatives
 
   def initialize( campaign_id, network_id, advertiser_id )
     @api_version    = :v201408
-    @campaign_id    = campaign_id
-    @advertiser_id  = advertiser_id 
-    @network_id     = network_id
 
-    @ad_tags        = set_ad_tags
-    @dfp            = set_dfp
+    @campaign_id    = campaign_id.to_i
+    @advertiser_id  = advertiser_id.to_i
+    @network_id     = network_id.to_i
+
+    @dfp              = set_dfp
+    @ad_tags          = set_ad_tags
+    @creative_service = set_creative_service
+    @creatives        = set_creatives
   end
 
   def set_dfp
@@ -38,32 +42,34 @@ class Dfp
     AdTag.where(campaign_id: campaign_id)
   end
 
-  def authorize_dfp
-    @dfp.authorize({:oauth2_keyfile => ENV['OAUTH2_KEYFILE']})
-  end
+  # def authorize_dfp
+  #   @dfp.authorize({:oauth2_keyfile => ENV['OAUTH2_KEYFILE']})
+  # end
  
   def set_creative_service
     @dfp.service(:CreativeService, api_version)
+    # authorize_dfp
   end
 
-  def traffic_ad_tags
-    authorize_dfp
-    creative_service = set_creative_service
-
-    # Create an array to store local creative objects.
-    creatives = @ad_tags.map do |ad_tag|
+  def set_creatives
+    ad_tags.map do |ad_tag|
       {
         :xsi_type => 'ThirdPartyCreative',
         :name => ad_tag.placement_name % [ad_tag, (Time.new.to_f * 1000).to_i],
-        :advertiser_id => advertiser_id.to_i,
+        :advertiser_id => advertiser_id,
         :snippet => "ad_tag.javascript_tag",
         :size => {:width => 300, :height => 250}
       }
     end
+  end
 
-    # Create the creatives on the server.
-    return_creatives = creative_service.create_creatives(creatives)
+  def traffic_ad_tags
+    saved_creatives = creative_service.create_creatives(creatives)
+    display_errors
+    saved_creatives
+  end
 
+  def display_errors
     # HTTP errors.
     rescue AdsCommon::Errors::HttpError => e
       puts "HTTP Error: %s" % e

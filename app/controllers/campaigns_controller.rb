@@ -51,7 +51,7 @@ class CampaignsController < ApplicationController
   end
 
   def traffic_ad_tags
-    network_id    = params[:network_id]
+    network_id    = 33988861
     advertiser_id = params[:advertiser_id]
     campaign_id   = params[:campaign_id]
 

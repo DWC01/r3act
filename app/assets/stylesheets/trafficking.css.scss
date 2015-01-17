@@ -85,3 +85,11 @@
     margin: 0 auto;
   }
 }
+
+.traffic-form-wrapper {
+  width: 300px;
+  margin: 0 auto;
+  & .traffic-input {
+    margin: 20px 0;
+  }
+}

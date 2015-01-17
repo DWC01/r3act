@@ -50,6 +50,17 @@ class CampaignsController < ApplicationController
   def wrap_up
   end
 
+  def traffic_ad_tags
+    network_id    = params[:network_id]
+    advertiser_id = params[:advertiser_id]
+    campaign_id   = params[:campaign_id]
+
+    dfp = Dfp.new( campaign_id, network_id, advertiser_id )
+    saved_creatives = dfp.traffic_ad_tags
+
+    render :json => saved_creatives.to_json
+  end
+
   private
 
     def save_file_as_ad_tags(campaign, file_path)

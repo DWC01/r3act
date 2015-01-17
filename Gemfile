@@ -22,7 +22,8 @@ gem 'bower-rails'
 gem 'unicorn'
 gem 'roo'
 gem 'spreadsheet'
-gem 'rack-cors', :require => 'rack/cors'
+gem 'angular_rails_csrf'
+gem 'google-dfp-api'
 
 group :development do
   gem 'spring'

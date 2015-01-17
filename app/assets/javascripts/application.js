@@ -25,9 +25,9 @@
 //= require angular-ui-router
 //= require restangular
 //= require angular-xeditable
-//= require angular-app/app
 //= require d3
 //= require c3
 //= require angular-material
+//= require angular-app/app
 //= require_tree .
 //= require_tree ./templates

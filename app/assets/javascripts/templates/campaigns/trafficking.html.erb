@@ -38,3 +38,17 @@
     </div>
   </div>
 
+  <div class="traffic-form-wrapper">
+    <form accept-charset="UTF-8" method="post" action="/traffic_ad_tags">
+      <!-- 54339035 -->
+      <input type="text" name="network_id"
+          placeholder="network id" class="form-control traffic-input"/>
+      <input type="text" name="advertiser_id" 
+          placeholder="advertiser id" class="form-control traffic-input"/>
+      <input type="hidden" name="campaign_id" value="{{campaign.id}}"/>
+
+      <button type="submit" class="r3-btn-primary">
+        Traffic Ad Tags
+      </button>
+    </form>
+  </div>

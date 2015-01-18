@@ -69,12 +69,12 @@
       </h2>
     </div>
 
-    <table class="table table-ad-tags">
+    <table st-table="mediaPlan" class="table table-ad-tags">
       <tr>
-       <!--  <td class="table-header-ad-tags">
+        <!-- <td class="header-cells">
           Start Date
         </td>
-        <td class="table-header-ad-tags">
+        <td class="header-cells">
           End Date
         </td> -->
         <td class="header-cells">
@@ -102,16 +102,16 @@
 
         <tr ng-repeat="adTag in adTags | filter:partner" 
             ng-click="rowformAdTags.$show()">
-          <!-- <td>
+          <!-- <td class="row-cells">
             <span editable-date="adTag.start_date" 
                   e-name="start_date" e-form="rowformAdTags" >
-              {{ adTag.start_date || '-' }}
+              {{ adTag.date || '-' | date }}
             </span>
           </td>
-          <td>
+          <td class="row-cells">
             <span editable-date="adTag.end_date"
                   e-name="end_date" e-form="rowformAdTags" >
-              {{ adTag.end_date || '-' }}
+              {{ adTag.end_date || '-' | date }}
             </span>
           </td> -->
           <td class="row-cells">
@@ -151,7 +151,7 @@
                   editable-text="adTag.unit_cost"
                   ng-show="!rowformAdTags.$visible"
                   e-name="unit_cost" e-form="rowformAdTags"  >
-              {{ adTag.unit_cost || '-' }}
+              {{ adTag.unit_cost || '-'  | currency }}
             </span>
           </td>
           <td class="row-cells">
@@ -167,7 +167,7 @@
                   editable-text="adTag.total_cost" 
                   ng-show="!rowformAdTags.$visible"
                   e-name="total_cost" e-form="rowformAdTags"  >
-              {{ adTag.total_cost || '-' }}
+              {{ adTag.total_cost || '-'  | currency }}
             </span>
           </td>
 

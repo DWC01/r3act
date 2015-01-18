@@ -41,22 +41,14 @@ class CampaignsController < ApplicationController
     redirect_to campaigns_path
   end
 
-  def media_plan
-  end
-
-  def trafficking
-  end
-
-  def wrap_up
-  end
-
   def traffic_ad_tags
-    network_id    = 33988861
-    advertiser_id = params[:advertiser_id]
-    campaign_id   = params[:campaign_id]
+    ad_tags = AdTag.where(campaign_id: params[:campaign_id]) 
+    dfp = Dfp.new( params[:campaign_id], 33988861, params[:advertiser_id], ad_tags )
+    
+    saved_creatives = dfp.mock_saved_creatives
+    sleep 3
 
-    dfp = Dfp.new( campaign_id, network_id, advertiser_id )
-    saved_creatives = dfp.traffic_ad_tags
+    # saved_creatives = dfp.traffic_ad_tags
 
     render :json => saved_creatives.to_json
   end

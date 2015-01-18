@@ -25,9 +25,11 @@
 //= require angular-ui-router
 //= require restangular
 //= require angular-xeditable
+//= require numeral
 //= require d3
 //= require c3
 //= require angular-material
 //= require angular-app/app
+//= require angular-smart-table
 //= require_tree .
 //= require_tree ./templates

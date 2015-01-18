@@ -4,7 +4,7 @@ angular
     'ui.router', 'ngRoute',
     'ngResource', 'xeditable',
     'ngMaterial', 'ngAnimate',
-    'ngAria'])
+    'ngAria', 'smart-table'])
   
   // Params to pass state to router
   // $scope to pass attributes to directives

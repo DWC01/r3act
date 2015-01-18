@@ -1,55 +1,7 @@
 @import 'partials/global';
 
-/*--------------------*/
-/*  Traffic Path Menu */
-/*--------------------*/
-
-.menu-path-wrapper {
-  position: relative;
-
-  & .menu-path-line {
-  position: fixed;
-  left: 85px;
-  top: 339px;
-  width: 320px;
-  border-bottom: 2px solid $neon-green;
-  transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
-  }
-  & .menu-path-button {
-    width: 35px;
-    height: 35px;
-    background-color: #fff;
-    border-radius: 50%;
-    border: 2px solid $neon-green;
-  }
-  & .partner {
-    position: fixed;
-    top: 210px;
-    left: 227px;
-  }
-  & .flight {
-    position: fixed;
-    top: 320px;
-    left: 227px;
-  }
-  & .details {
-    position: fixed;
-    top: 430px;
-    left: 227px;
-  }
-  & p {
-    color: #67e875;
-    margin: -3px 0 0 10px;
-    font-size: 20px;
-  }
-}
-
-
-
 /*----------------*/
-/*   Traffic      */
+/*  untrafficked  */
 /*----------------*/
 
 .traffic-pick-partner {
@@ -91,5 +43,49 @@
   margin: 0 auto;
   & .traffic-input {
     margin: 20px 0;
+  }
+}
+
+/*--------------*/
+/* trafficking  */
+/*--------------*/
+
+.trafficking-header {
+  color: $neon-green !important;
+  margin: 80px auto 50px auto !important;
+}
+
+.md-r3-theme {
+  color: #67e875;
+  & .md-gap {
+    border-top-color: $neon-green !important;
+    border-bottom-color: $neon-green !important;
+  }
+  & .md-left .md-half-circle {
+    border-top-color: $neon-green !important;
+    border-left-color: $neon-green !important;
+  }
+  & .md-right .md-half-circle {
+    border-top-color: $neon-green !important;
+    border-right-color: $neon-green !important;
+  }
+}
+
+/*--------------*/
+/*  trafficked  */
+/*--------------*/
+
+.trafficked-wrapper {
+  width: 90%;
+  margin: 0 auto;
+  whitespace: nowrap;
+  & h2 {
+    color: $neon-green !important;
+    margin: -15px auto 40px auto;
+    text-align: center;
+  }
+  & span.id{
+    color: #ccc;
+    margin: 0 20px 0 15px;
   }
 }

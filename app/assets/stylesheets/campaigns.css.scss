@@ -65,8 +65,10 @@
 
 .stripe-box-content {
   color: $primary-text;
-  padding: 24px 0 0 20px;
+  padding: 25px 0 0 20px;
   font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 /*-----------------*/

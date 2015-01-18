@@ -37,6 +37,7 @@ class Dfp
   
   def set_creative_service
     @dfp.service(:CreativeService, api_version)
+    @dfp.authorize({:oauth2_keyfile => ENV['OAUTH2_KEYFILE']})
   end
 
   def placement_name(ad_tag)

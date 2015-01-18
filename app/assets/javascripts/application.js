@@ -25,7 +25,6 @@
 //= require angular-ui-router
 //= require restangular
 //= require angular-xeditable
-//= require numeral
 //= require d3
 //= require c3
 //= require angular-material

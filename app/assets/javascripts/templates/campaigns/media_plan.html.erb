@@ -159,7 +159,7 @@
                   editable-text="adTag.impressions"
                   ng-show="!rowformAdTags.$visible"
                   e-name="impressions" e-form="rowformAdTags"  >
-              {{ adTag.impressions || '-' }}
+              {{ adTag.impressions || '-' | number : fractionSize }}
             </span>
           </td>
           <td class="row-cells">

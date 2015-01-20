@@ -25,6 +25,7 @@ class CreateAdTags < ActiveRecord::Migration
       t.string    :primary_target_audience
       t.string    :date
       t.string    :version
+      t.text      :javascript_tag
       t.integer   :campaign_id
 
       t.timestamps

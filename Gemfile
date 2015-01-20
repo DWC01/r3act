@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 ruby '2.1.2'
 gem 'rails', '4.1.0'
 gem 'pg'
@@ -16,6 +17,7 @@ gem 'd3-rails'
 gem 'c3-rails'
 gem 'autoprefixer-rails'
 gem 'compass-rails'
+gem "rails-assets-angular"
 gem 'angular-rails-templates'
 gem 'active_model_serializers'
 gem 'bower-rails'
@@ -43,6 +45,7 @@ group :development, :test do
   gem 'faker'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'rails-assets-angular-mocks'
 end
 
 group :production do

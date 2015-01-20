@@ -45,10 +45,10 @@ class CampaignsController < ApplicationController
     ad_tags = AdTag.where(campaign_id: params[:campaign_id]) 
     dfp = Dfp.new( params[:campaign_id], 33988861, params[:advertiser_id], ad_tags )
     
-    saved_creatives = dfp.mock_saved_creatives
-    sleep 3
+    # saved_creatives = dfp.mock_saved_creatives
+    # sleep 3
 
-    # saved_creatives = dfp.traffic_ad_tags
+    saved_creatives = dfp.traffic_ad_tags
 
     render :json => saved_creatives.to_json
   end

@@ -32,6 +32,6 @@ class AdTagsController < ApplicationController
       :ad_type_details, :product, :size, :width,
       :height, :device, :unit_cost, :impressions,
       :total_cost, :start_date, :end_date,
-      :flight_dates, :campaign_id)
+      :flight_dates, :campaign_id, :javascript_ad_tag)
     end
 end

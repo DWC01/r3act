@@ -9,6 +9,7 @@ angular
 
     $scope.trafficking  = 'untrafficked';
 
+    $scope.nums = [1,2,3];
     
     // Set Base (Route Object)
     var baseCampaigns = Restangular.all('campaigns');

@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: './',
 
 
     // frameworks to use
@@ -15,10 +15,20 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      ''
-      'tests/hello.js',
+      'lib/assets/bower_components/angular/angular.js',
+      'lib/assets/bower_components/angular-animate/angular-animate.js',
+      'lib/assets/bower_components/angular-aria/angular-aria.js',
+      'lib/assets/bower_components/angular-material/angular-material.js',
+      'lib/assets/bower_components/angular-resource/angular-resource.js',
+      'lib/assets/bower_components/angular-route/angular-route.js',
+      'lib/assets/bower_components/restangular/dist/restangular.js',
+      'app/assets/javascripts/application.js',
+      'app/assets/javascripts/angular-app/*.js',
+      'app/assets/javascripts/angular-app/**/*.js',
+      'spec/javascripts/**/*_spec.js'
     ],
 
+      
 
     // list of files to exclude
     exclude: [
@@ -38,7 +48,7 @@ module.exports = function(config) {
 
 
     // web server port
-    port: 9876,
+    port: 8080,
 
 
     // enable / disable colors in the output (reporters and logs)

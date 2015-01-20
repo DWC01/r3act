@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20141224211257) do
     t.string   "primary_target_audience"
     t.string   "date"
     t.string   "version"
+    t.text     "javascript_tag"
     t.integer  "campaign_id"
     t.datetime "created_at"
     t.datetime "updated_at"

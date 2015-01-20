@@ -20,7 +20,7 @@ module Api
         :total_cost, :start_date, :end_date,
         :flight_dates, :advertiser, :audience, :flight,
         :total_digital_cost, :period, :primary_target_audience,
-        :date, :version, :campaign_id)
+        :date, :version, :campaign_id, :javascript_ad_tag)
       end
 
       def query_params

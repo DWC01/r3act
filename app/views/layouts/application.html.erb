@@ -8,9 +8,7 @@
 </head>
   <body ng-controller="MainController">
   <base href="/">
-  <section class="sticky-left page-menu">
-    <div ui-view="sidebar"></div>
-  </section>
+  <sidebar></sidebar>
     <%= render 'layouts/navbar' %>
     <div class="page-content-wrap">
       <%= yield %>

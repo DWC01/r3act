@@ -101,7 +101,7 @@
       </tr>
 
         <tr ng-repeat="adTag in adTags | filter:partner" 
-            ng-click="rowformAdTags.$show()">
+            ng-click="rowformAdTags.$show()" >
           <!-- <td class="row-cells">
             <span editable-date="adTag.start_date" 
                   e-name="start_date" e-form="rowformAdTags" >
@@ -186,7 +186,8 @@
 
               <md-button class="md-fab btn-cancel-ad-tag" 
                          ng-disabled="rowformAdTags.$waiting"
-                         ng-click="rowformAdTags.$cancel()">
+                         ng-click="rowformAdTags.$cancel()"
+                         aria-label="Cancel Editing Placements">
                 <i class="fa fa-times"></i>
               </md-button>
 

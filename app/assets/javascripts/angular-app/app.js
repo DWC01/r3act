@@ -21,7 +21,6 @@ angular
       var extractedData = data.r3act;
       return extractedData;
     });
-
   })
 
   .config(function ($routeProvider, $locationProvider) {
@@ -47,7 +46,7 @@ angular
       views: {
         'sidebar': {
           templateUrl: 'sidebars/campaigns-menu.html',
-          controller: 'PageMenuController'
+          controller: 'SidebarController'
         },
         'content-top': {
           templateUrl: 'campaigns/index.html',
@@ -60,7 +59,7 @@ angular
       views: {
         'sidebar': {
           templateUrl: 'sidebars/campaigns-menu.html',
-          controller: 'PageMenuController'
+          controller: 'SidebarController'
         },
         'content-top': {
           templateUrl: 'campaigns/index.html',
@@ -73,7 +72,7 @@ angular
       views: {
         'sidebar': {
           templateUrl: 'sidebars/campaigns-menu.html',
-          controller: 'PageMenuController'
+          controller: 'SidebarController'
         },
         'content-top': {
           templateUrl: 'campaigns/index.html',
@@ -86,7 +85,7 @@ angular
       views: {
         'sidebar': {
           templateUrl: 'sidebars/campaign-menu.html',
-          controller: 'PageMenuController'
+          controller: 'SidebarController'
         },
         'content-top': {
           templateUrl: 'campaigns/media_plan.html',
@@ -126,7 +125,7 @@ angular
       views: {
         'sidebar': {
           templateUrl: 'sidebars/campaign-menu.html',
-          controller: 'PageMenuController'
+          controller: 'SidebarController'
         },
         'content-top': {
           templateUrl: "ad_tags/show.html",

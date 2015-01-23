@@ -7,9 +7,11 @@ angular
 
     $routeParams.id = $stateParams.id;
 
-    $scope.trafficking  = 'untrafficked';
+    $scope.isActive = function(route) {
+        return route === $location.path();
+    };
 
-    $scope.nums = [1,2,3];
+    $scope.trafficking  = 'untrafficked';
     
     // Set Base (Route Object)
     var baseCampaigns = Restangular.all('campaigns');

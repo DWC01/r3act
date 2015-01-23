@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
 ruby '2.1.2'
 gem 'rails', '4.1.0'
 gem 'pg'
@@ -10,14 +9,14 @@ gem 'jquery-rails'
 gem 'responders'
 gem 'font-awesome-rails'
 gem 'carrierwave'
-gem 'fog'
+gem 'fog', '~> 1.27.0'
 gem 'rmagick', :require => 'RMagick'
 gem 'bootstrap-sass'
 gem 'd3-rails'
 gem 'c3-rails'
 gem 'autoprefixer-rails'
 gem 'compass-rails'
-gem "rails-assets-angular"
+gem 'angularjs-rails'
 gem 'angular-rails-templates'
 gem 'active_model_serializers'
 gem 'bower-rails'
@@ -36,16 +35,18 @@ group :development do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'spring-commands-rspec'
-  gem 'guard-rspec'
   gem 'faker'
   gem 'capybara'
   gem 'database_cleaner'
-  gem 'rails-assets-angular-mocks'
+  
+  gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'guard-jasmine'
+  gem 'jasmine-rails'
 end
 
 group :production do

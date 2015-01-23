@@ -17,6 +17,7 @@
 //= require lodash
 //= require hammerjs
 //= require angular
+//= require angular-mocks
 //= require angular-route
 //= require angular-resource
 //= require angular-animate
@@ -32,3 +33,5 @@
 //= require angular-smart-table
 //= require_tree .
 //= require_tree ./templates
+
+

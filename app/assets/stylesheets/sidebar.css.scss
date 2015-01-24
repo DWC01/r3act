@@ -1,22 +1,5 @@
 @import 'partials/global';
 
-.sidebar {
-  left: -211px !important;
-  top: 50px;
-  width: 210px;
-  height: 100%;
-  background-color: #29292e;
-  transition: margin .5s;
-}
-
-.show-sidebar {
-  margin-left: 211px !important;
-}
-
-.sidebar-push-content {
-  margin-left: 211px !important;
-  width: 85%;
-}
 
 /*-------------------*/
 /*  Sidebar Content  */
@@ -96,4 +79,26 @@
 
 .toggle-page-menu-i {
   margin: 0 15% 0 0 !important;
+}
+
+/*-----------*/
+/*  Sidebar  */
+/*-----------*/
+
+.sidebar {
+  left: -211px !important;
+  top: 50px;
+  width: 210px;
+  height: 100%;
+  background-color: #29292e;
+  transition: margin .5s;
+}
+
+.show-sidebar {
+  margin-left: 211px !important;
+}
+
+.sidebar-push-content {
+  margin-left: 211px !important;
+  width: 85%;
 }

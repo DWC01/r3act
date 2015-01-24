@@ -29,7 +29,8 @@
 //= require d3
 //= require c3
 //= require angular-material
-//= require angular-app/app
+//= require angular-app/app.module
+//= require angular-app/app.routes
 //= require angular-smart-table
 //= require_tree .
 //= require_tree ./templates

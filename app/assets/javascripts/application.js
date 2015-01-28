@@ -16,6 +16,8 @@
 //= require bootstrap-sprockets
 //= require lodash
 //= require hammerjs
+//= require sinon
+
 //= require angular
 //= require angular-mocks
 //= require angular-route
@@ -30,7 +32,7 @@
 //= require c3
 //= require angular-material
 //= require angular-app/app.module
-//= require angular-app/app.routes
+//= require angular-app/app.router
 //= require angular-smart-table
 //= require_tree .
 //= require_tree ./templates

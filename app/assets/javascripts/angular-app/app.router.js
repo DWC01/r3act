@@ -23,7 +23,7 @@ angular
       url: "/",
       views: {
         'sidebar': {
-          templateUrl: 'sidebars/campaigns-menu.html',
+          templateUrl: 'sidebars/campaigns_menu.html',
           controller: 'SidebarController'
         },
         'content-top': {
@@ -36,7 +36,7 @@ angular
       url: "/campaigns",
       views: {
         'sidebar': {
-          templateUrl: 'sidebars/campaigns-menu.html',
+          templateUrl: 'sidebars/campaigns_menu.html',
           controller: 'SidebarController'
         },
         'content-top': {
@@ -49,7 +49,7 @@ angular
       url: "/campaigns/",
       views: {
         'sidebar': {
-          templateUrl: 'sidebars/campaigns-menu.html',
+          templateUrl: 'sidebars/campaigns_menu.html',
           controller: 'SidebarController'
         },
         'content-top': {
@@ -62,7 +62,7 @@ angular
       url: "/campaigns/:id",
       views: {
         'sidebar': {
-          templateUrl: 'sidebars/campaign-menu.html',
+          templateUrl: 'sidebars/campaign_menu.html',
           controller: 'SidebarController'
         },
         'content-top': {
@@ -102,7 +102,7 @@ angular
       url: "/ad_tags/:id",
       views: {
         'sidebar': {
-          templateUrl: 'sidebars/campaign-menu.html',
+          templateUrl: 'sidebars/campaign_menu.html',
           controller: 'SidebarController'
         },
         'content-top': {

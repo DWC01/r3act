@@ -3,6 +3,6 @@ angular
   .directive('sidebar', function(){
     return {
       retrict: 'E',
-      templateUrl: 'sidebars/sidebar-directive.html'
+      templateUrl: 'sidebars/sidebar_directive.html'
     }
   });

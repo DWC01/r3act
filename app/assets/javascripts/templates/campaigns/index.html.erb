@@ -5,7 +5,7 @@
 </div>
 
 <ul class="list-unstyled">
-  <a class="stripe-box-list-link" href="campaigns/{{ campaign.id}}" ng-repeat="campaign in campaigns">
+  <a class="stripe-box-list-link" href="campaigns/{{campaign.id}}" ng-repeat="campaign in campaigns">
     <li class="stripe-box-list-item md-whiteframe-z1">
       <div class="stripe-box-left-stripe"></div>
       <div class="stripe-box-content">
@@ -14,17 +14,3 @@
     </li>
   </a>
 </ul>
-
-<!-- <ul class="list-unstyled list-item-fancy-box-wrap">
-  <a href="campaigns/{{ campaign.id}}" ng-repeat="campaign in campaigns"
-     ng-click="deleteCampaign(campaign)">
-    <li class="list-item-fancy-box">
-      <div class="list-item-content">
-      <span class="item-count-circle">
-        {{$index+1}}
-      </span>
-        {{campaign.name}} | {{campaign.created_at}}
-      </div>
-    </li>
-  </a>
-</ul> -->

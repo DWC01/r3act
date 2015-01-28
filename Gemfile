@@ -45,8 +45,10 @@ group :development, :test do
   
   gem 'rspec-rails'
   gem 'guard-rspec'
-  gem 'guard-jasmine'
-  gem 'jasmine-rails'
+  gem 'konacha'
+  gem 'sinon-rails'
+  gem 'protractor-rails'
+  gem "browserify-rails"
 end
 
 group :production do

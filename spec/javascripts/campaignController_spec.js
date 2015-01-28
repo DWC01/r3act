@@ -11,21 +11,24 @@ describe('Controller: CampaignController', function () {
     $controller('CampaignController', {$scope: scope});
   }));
   
-  it('isActive() shows correct path aactive', function() {
+  it('isActive() shows correct path active', function() {
 
     $location.path('/campaigns/1/analytics');
-    expect($location.path()).toBe('/campaigns/1/analytics');
-    expect(scope.isActive('/campaigns/1/analytics')).toBe(true);
-    expect(scope.isActive('/campaigns/1/trafficking')).toBe(false);
+    expect($location.path()).to.equal('/campaigns/1/analytics');
+    expect(scope.isActive('/campaigns/1/analytics')).to.equal(true);
+    expect(scope.isActive('/campaigns/1/trafficking')).to.equal(false);
   });
 
   it('is set as "untrafficked" ', function () {
-    expect(scope.trafficking).toBe('untrafficked');
+    expect(scope.trafficking).to.equal('untrafficked');
   });
 
-  it('$rootscpe.id has corect value', function(){
-    $location.path('/campaigns/1/analytics');
-    expect(scope.id).toBe(1);
+  it('is set as "untrafficked" ', function () {
+    expect(scope.trafficking).to.equal('untrafficked');
   });
+
+  
+
+
 
 });

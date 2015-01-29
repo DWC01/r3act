@@ -48,8 +48,6 @@ group :development, :test do
   gem 'konacha'
   gem 'sinon-rails'
   gem "browserify-rails"
-  # gem 'cucumber-rails', :require => false
-  # gem 'poltergei'
   gem 'protractor-rails', '~> 0.0.13'
 end
 

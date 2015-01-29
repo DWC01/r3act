@@ -1,4 +1,4 @@
-// Run with 'rake protractor:spec_and_cleanup'
+// Run with 'rake protractor:spec_and_cleanup nolog=y # all quiet'
 
 // An example configuration file.
   exports.config = {
@@ -11,7 +11,7 @@
     },
 
     // Spec patterns are relative to the current working directly when protractor is called
-    specs: ['example_spec.js','protractor_specs/**/*.js '],
+    specs: ['protractor_specs/**/*.js '],
 
     // // Option to replace specs with Suites..
     // suites: {

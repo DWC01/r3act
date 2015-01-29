@@ -1,25 +1,23 @@
-//= require spec_helper
-  var NewCampaignPage, path;
-  
-  path = require('path');
-  NewCampaignPage = require('./pages/new-campaign-page');
+var NewCampaignPage = require('./pages/new-campaign-page');
+var MediaPlanPage = require('./pages/media-plan-page');
+var path = require('path');
 
   describe('creating new-campaign', function() {
+    
     beforeEach(function() {
-      this.page = new CampaignsPage();
-      this.page.get();
+      NewCampaignPage.get();
     });
 
-    it('should upload file', function() {
-      var fileToUpload = './files/',
-      var absolutePath = path.resolve(__dirname, fileToUpload);
-      $('input[type="file"]').sendKeys(absolutePath);
+    it('should create a new campaign, then  the media plan', function() {
+      var fileToUpload, absolutePath, mediaPlanPage;
 
-      $('#uploadButton').click();
-    });
+      fileToUpload = './files/schedule_1.xls';
+      absolutePath = path.resolve(__dirname, fileToUpload);
+      
+      NewCampaignPage.uploadMediaPlan(absolutePath);
+      NewCampaignPage.clickSubmit();
 
-    it('should show new campaign', function() {
-      expect(this.page.firstCampaign).to.be.defined;
+      expect(MediaPlanPage.header.getText()).toEqual('Coca Cola - People 25 - 54 years');
     });
 
   });

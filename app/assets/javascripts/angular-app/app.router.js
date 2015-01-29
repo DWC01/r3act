@@ -19,7 +19,7 @@ angular
   $urlRouterProvider.otherwise("/");
   // Now set up the states
   $stateProvider
-    .state('app', {
+    .state('root', {
       url: "/",
       views: {
         'sidebar': {
@@ -71,20 +71,20 @@ angular
         }
       }
     })
-    .state('campaign.analytics', {
-      url: "/analytics",
-      views: {
-        'content-top@': {
-          templateUrl: 'campaigns/analytics.html',
-          controller: 'CampaignController'
-        }
-      }
-    })
     .state('campaign.trafficking', {
       url: "/trafficking",
       views: {
         'content-top@': {
           templateUrl: 'campaigns/trafficking.html',
+          controller: 'CampaignController'
+        }
+      }
+    })
+    .state('campaign.analytics', {
+      url: "/analytics",
+      views: {
+        'content-top@': {
+          templateUrl: 'campaigns/analytics.html',
           controller: 'CampaignController'
         }
       }
@@ -98,7 +98,7 @@ angular
         }
       }
     })
-    .state('adtag', {
+    .state('adTag', {
       url: "/ad_tags/:id",
       views: {
         'sidebar': {

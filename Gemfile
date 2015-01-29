@@ -47,8 +47,10 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'konacha'
   gem 'sinon-rails'
-  gem 'protractor-rails'
   gem "browserify-rails"
+  # gem 'cucumber-rails', :require => false
+  # gem 'poltergei'
+  gem 'protractor-rails', '~> 0.0.13'
 end
 
 group :production do

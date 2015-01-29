@@ -418,7 +418,7 @@ DEPENDENCIES
   konacha
   meta_request
   pg
-  protractor-rails
+  protractor-rails (~> 0.0.13)
   quiet_assets
   rails (= 4.1.0)
   rails_12factor

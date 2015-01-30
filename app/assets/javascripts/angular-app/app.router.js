@@ -12,10 +12,8 @@ angular
   })
 
   .config(function($stateProvider, $urlRouterProvider) {
-  
   // For any unmatched url, redirect to /
   $urlRouterProvider.otherwise("/");
-  
   // Set states
   $stateProvider
     .state('root', {

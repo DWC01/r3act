@@ -2,22 +2,21 @@ angular
   .module('r3act')
 
   .config(function ($routeProvider, $locationProvider) {
-    
     $routeProvider.when('/campaigns/:id', {
-      controller: 'CampaignsController'
+      controller: 'CampaignController'
     });
-
     $routeProvider.when('/ad_tags/:id', {
       controller: 'AdTagsController'
     });
-
     $locationProvider.html5Mode(true);
   })
 
   .config(function($stateProvider, $urlRouterProvider) {
+  
   // For any unmatched url, redirect to /
   $urlRouterProvider.otherwise("/");
-  // Now set up the states
+  
+  // Set states
   $stateProvider
     .state('root', {
       url: "/",
@@ -28,7 +27,7 @@ angular
         },
         'content-top': {
           templateUrl: 'campaigns/index.html',
-          controller: 'CampaignsController'
+          controller: 'CampaignController'
         }
       }
     })
@@ -41,7 +40,7 @@ angular
         },
         'content-top': {
           templateUrl: 'campaigns/index.html',
-          controller: 'CampaignsController'
+          controller: 'CampaignController'
         }
       }
     })
@@ -54,7 +53,7 @@ angular
         },
         'content-top': {
           templateUrl: 'campaigns/index.html',
-          controller: 'CampaignsController'
+          controller: 'CampaignController'
         }
       }
     })
@@ -66,7 +65,7 @@ angular
           controller: 'SidebarController'
         },
         'content-top': {
-          templateUrl: 'campaigns/media_plan.html',
+          templateUrl: 'campaigns/components/media_plan.html',
           controller: 'CampaignController'
         }
       }
@@ -75,7 +74,7 @@ angular
       url: "/trafficking",
       views: {
         'content-top@': {
-          templateUrl: 'campaigns/trafficking.html',
+          templateUrl: 'campaigns/components/trafficking.html',
           controller: 'CampaignController'
         }
       }
@@ -84,7 +83,7 @@ angular
       url: "/analytics",
       views: {
         'content-top@': {
-          templateUrl: 'campaigns/analytics.html',
+          templateUrl: 'campaigns/components/analytics.html',
           controller: 'CampaignController'
         }
       }
@@ -93,7 +92,7 @@ angular
       url: "/wrap_up",
       views: {
         'content-top@': {
-          templateUrl: 'campaigns/wrap_up.html',
+          templateUrl: 'campaigns/components/wrap_up.html',
           controller: 'CampaignController'
         }
       }

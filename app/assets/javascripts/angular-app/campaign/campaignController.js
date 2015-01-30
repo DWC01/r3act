@@ -2,35 +2,26 @@ angular
   .module('r3act')
 
   .controller('CampaignController', 
-    function($rootScope, $scope, $route, $routeParams, 
-             $stateParams, Restangular, $http) {
+    function($scope, $routeParams, $stateParams,
+             Restangular, Campaign ) {
+    
+    var id = $stateParams.id;
 
-    $routeParams.id = $stateParams.id;
-
-    $scope.isActive = function(route) {
-        return route === $location.path();
-    };
-
+    $scope.currentId = id;
     $scope.trafficking  = 'untrafficked';
-    
-    // Set Base (Route Object)
-    var baseCampaigns = Restangular.all('campaigns');
-    
-    // Get All Campaigns
-    baseCampaigns.getList().then(function(campaigns) {
+
+    Campaign.all.then(function(campaigns) {
       $scope.campaigns = campaigns;
     });
 
-    // Get One Campaign
-    Restangular.one('campaigns', $routeParams.id).get().then(function(campaign){
-
+    Campaign.find(id).then(function(campaign){
       $scope.campaign = campaign;
-
-      // Get Media Partners Array
-      $scope.mediaPartners = $scope.campaign.ad_tag_receivers;
-
+      $scope.mediaPartners = campaign.ad_tag_receivers;
     });
-    
-    // Get All Ad Tags For Current Campaign
-    $scope.adTags = Restangular.one('campaigns', $routeParams.id).getList('ad_tags').$object;
+    $scope.adTags = Campaign.ad_tags(id);
+
+    $scope.isActive = function(route) {
+      return route === $location.path();
+    }
+
   });

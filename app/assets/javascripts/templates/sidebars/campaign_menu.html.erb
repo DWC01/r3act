@@ -1,5 +1,4 @@
 <div class="page-menu-btn-wrap"></div>
-
 <aside class="r3-panel-group" id="r3Collapse" role="tablist" 
        aria-multiselectable="true" >
   <div class="r3-panel">
@@ -29,7 +28,7 @@
       <div class="r3-panel-body">
         <aside class="page-menu-content">
           <p class="title" ng-repeat="nav in navs">
-            <a href="/campaigns/{{$routeParams.id}}/{{nav.url}}"> 
+            <a href="/campaigns/{{currentId}}/{{nav.url}}"> 
               {{nav.name}}
             </a>
           </p>

@@ -27,8 +27,5 @@ describe('Controller: CampaignController', function () {
     expect(scope.trafficking).to.equal('untrafficked');
   });
 
-  
-
-
 
 });

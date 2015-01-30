@@ -15,7 +15,6 @@ angular
       return extractedData;
     });
   })
-
   // configs xeditable
   .run(function(editableOptions) {
     editableOptions.theme = 'bs3';

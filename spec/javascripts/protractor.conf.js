@@ -11,7 +11,7 @@
     },
 
     // Spec patterns are relative to the current working directly when protractor is called
-    specs: ['e2e/**/*.js '],
+    specs: ['e2e/**/*Spec.js '],
 
     // // Option to replace specs with Suites..
     // suites: {

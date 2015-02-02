@@ -5,11 +5,14 @@ describe('Controller: CampaignController', function () {
   var CamapignController, scope, stateParams, listingID;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($rootScope, $controller, 
-                              _$location_) {
-    $location = _$location_;
-    scope = $rootScope.$new();
-    $controller('CampaignController', {$scope: scope});
+  beforeEach(inject(function ($rootScope, $controller, _$location_, 
+                              _$stateParams_) {
+    
+    scope        = $rootScope.$new();
+    stateParams  = _$stateParams_;
+    $location    = _$location_;
+    $controller('CampaignController', {$scope: scope, $stateParams:stateParams});
+
   }));
   
   it('isActive() shows correct path active', function() {
@@ -23,6 +26,5 @@ describe('Controller: CampaignController', function () {
   it('is set as "untrafficked" ', function () {
     expect(scope.trafficking).to.equal('untrafficked');
   });
-
 
 });

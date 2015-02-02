@@ -10,15 +10,18 @@ angular
     $scope.currentId = id;
     $scope.trafficking  = 'untrafficked';
 
-    Campaign.all.then(function(campaigns) {
+    Campaign.all().then(function(campaigns) {
       $scope.campaigns = campaigns;
     });
 
-    Campaign.find(id).then(function(campaign){
+    Campaign.find(id).then(function(campaign) {
       $scope.campaign = campaign;
       $scope.mediaPartners = campaign.ad_tag_receivers;
     });
-    $scope.adTags = Campaign.ad_tags(id);
+     
+    Campaign.ad_tags(id).then(function(ad_tags) {
+      $scope.adTags = ad_tags;
+    });
 
     $scope.isActive = function(route) {
       return route === $location.path();

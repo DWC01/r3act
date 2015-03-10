@@ -50,7 +50,7 @@
     top: 5px;
     color: #67e875;
     float: right;
-    margin: 0 6% 0 0;
+    margin: 0 15% 0 0;
     font-size: 23px;
     transition: margin .5s;
   }
@@ -77,10 +77,6 @@
   }
 }
 
-.toggle-page-menu-i {
-  margin: 0 15% 0 0 !important;
-}
-
 /*-----------*/
 /*  Sidebar  */
 /*-----------*/
@@ -96,9 +92,4 @@
 
 .show-sidebar {
   margin-left: 211px !important;
-}
-
-.sidebar-push-content {
-  margin-left: 211px !important;
-  width: 85%;
 }

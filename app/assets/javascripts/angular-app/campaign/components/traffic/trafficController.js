@@ -29,7 +29,7 @@ angular
         $scope.trafficking  = 'trafficked';
 
         $scope.creatives = serverData;
-       });
+    });
       
       responsePromise.error(function(serverData, status, headers, config) {
         $scope.trafficking  = 'trafficked';

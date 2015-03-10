@@ -77,6 +77,27 @@
   }
 }
 
+/*-- Campaign New Sidebar --*/
+
+.download-media-plan {
+  &:hover, &:focus {
+    text-decoration: none;
+    border: none;
+  }
+  &:hover i, &:hover p {
+    
+  }
+  & i {
+    color: $neon-green;
+    margin-top: 30px;
+  }
+  & p {
+    color: $neon-green;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+ }
+
 /*-----------*/
 /*  Sidebar  */
 /*-----------*/
@@ -92,4 +113,9 @@
 
 .show-sidebar {
   margin-left: 211px !important;
+}
+
+.sidebar-push-content {
+  margin-left: 211px !important;
+  width: 85%;
 }

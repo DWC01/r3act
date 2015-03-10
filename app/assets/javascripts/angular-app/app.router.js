@@ -55,6 +55,15 @@ angular
         }
       }
     })
+    .state('campaigns/new', {
+      url: "/campaigns/new",
+      views: {
+        'sidebar': {
+          templateUrl: 'sidebars/campaigns_new_menu.html',
+          controller: 'SidebarController'
+        }
+      }
+    })
     .state('campaign', {
       url: "/campaigns/:id",
       views: {

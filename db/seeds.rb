@@ -31,7 +31,7 @@ Campaign.delete_all
     start_date:                    "1/1/2015",
     unit_cost:                     "1.50",
     width:                         "300",
-    campaign_id:                   1
+    campaign_id:                   id
     )
   end
 end 

@@ -66,10 +66,12 @@ class CampaignsController < ApplicationController
     end
 
     def campaign_params
-      params.require(:campaign).permit(:name, 
-      :ad_tags_file, :ad_tags_count, :start_date,
-      :end_date, :ad_sizes, :ad_types, 
-      :ad_tag_provider, :ad_tag_sender, :ad_tag_receivers,
-      :advertiser, :media_plan_name)
+      params.require(:campaign).permit(
+        :ad_sizes, :ad_tag_provider, :ad_tag_receivers,
+        :ad_tag_sender, :ad_tags_count, :ad_tags_file,
+        :ad_devices, :ad_formats, :advertiser, :end_date,
+        :media_plan_name, :name, :primary_target_audience,
+        :start_date
+      )
     end
 end

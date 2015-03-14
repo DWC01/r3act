@@ -25,7 +25,7 @@ describe Api::AdTagsController do
     
     before do
       @id = FactoryGirl.create(:campaign).id
-      post "/api/ad_tags/", format: :json, :ad_tag => { campaign_id: @id, placement_name: "Christmas Ad Tag" }
+      post "/api/ad_tags/", format: :json, :ad_tag => { campaign_id: @id, placement: "Christmas Ad Tag" }
     end
 
     it 'responds successfully with an HTTP 200 status code' do
@@ -35,7 +35,7 @@ describe Api::AdTagsController do
 
     it 'retreives newly created Ad Tag' do
       tag = AdTag.all
-      expect(tag.last.placement_name).to eq('Christmas Ad Tag')
+      expect(tag.last.placement).to eq('Christmas Ad Tag')
       expect(tag.last.campaign_id).to eq(@id)
     end
   end
@@ -43,7 +43,7 @@ describe Api::AdTagsController do
   context 'GET #show' do
     
     before do
-      ad_tag = FactoryGirl.create :ad_tag, placement_name: 'Christmas Ad Tag'
+      ad_tag = FactoryGirl.create :ad_tag, placement: 'Christmas Ad Tag'
       get "/api/ad_tags/#{ad_tag.id}"
     end
 
@@ -54,15 +54,15 @@ describe Api::AdTagsController do
 
     it 'retreives a specific ad_tag' do
       json = JSON.parse(response.body)
-      expect(json['r3act']['placement_name']).to eq('Christmas Ad Tag')
+      expect(json['r3act']['placement']).to eq('Christmas Ad Tag')
     end
   end
 
   context 'PATCH #update' do
     
     before do
-      ad_tag = FactoryGirl.create :ad_tag, placement_name: 'Christmas Ad Tag'
-      ad_tag.update(placement_name: 'Christmas C')
+      ad_tag = FactoryGirl.create :ad_tag, placement: 'Christmas Ad Tag'
+      ad_tag.update(placement: 'Christmas C')
       get "/api/ad_tags/#{ad_tag.id}"
     end
 
@@ -74,7 +74,7 @@ describe Api::AdTagsController do
 
     it 'retreives a specific ad_tag' do
       json = JSON.parse(response.body)
-      expect(json['r3act']['placement_name']).to eq('Christmas C')
+      expect(json['r3act']['placement']).to eq('Christmas C')
     end
   end
 

@@ -31,7 +31,8 @@ describe Api::AdTagsController do
     
     before do
       @id = FactoryGirl.create(:campaign).id
-      post "/api/campaigns/#{@id}/ad_tags/", format: :json, :ad_tag => { campaign_id: @id, placement_name: "Christmas Ad Tagsss" }
+      puts "Campaign ID #{@id}"
+      post "/api/campaigns/#{@id}/ad_tags/", format: :json, :ad_tag => { campaign_id: @id, cost_method: "Heeeeeeeeeey", placement: "Christmas Ad Tagsss" }
     end
 
     it 'responds successfully with an HTTP 200 status code' do
@@ -41,7 +42,8 @@ describe Api::AdTagsController do
 
     it 'retreives newly created Ad Tag' do
       tag = AdTag.all
-      expect(tag.last.placement_name).to eq('Christmas Ad Tagsss')
+      puts tag.inspect
+      expect(tag.last.placement).to eq('Christmas Ad Tagsss')
       expect(tag.last.campaign_id).to eq(@id)
     end
   end
@@ -50,7 +52,7 @@ describe Api::AdTagsController do
     
     before do
       camp_id = FactoryGirl.create(:campaign).id
-      tag_id = FactoryGirl.create(:ad_tag, placement_name: 'Christmas Ad Tag').id
+      tag_id = FactoryGirl.create(:ad_tag, placement: 'Christmas Ad Tag').id
       get "/api/campaigns/#{camp_id}/ad_tags/#{tag_id}"
     end
 
@@ -61,7 +63,7 @@ describe Api::AdTagsController do
 
     it 'retreives a specific ad_tag' do
       json = JSON.parse(response.body)
-      expect(json['r3act']['placement_name']).to eq('Christmas Ad Tag')
+      expect(json['r3act']['placement']).to eq('Christmas Ad Tag')
     end
   end
 
@@ -69,8 +71,8 @@ describe Api::AdTagsController do
     
     before do
       campaign = FactoryGirl.create(:campaign)
-      ad_tag = FactoryGirl.create :ad_tag, placement_name: 'Christmas Ad Tag'
-      ad_tag.update(placement_name: 'Christmas C')
+      ad_tag = FactoryGirl.create :ad_tag, placement: 'Christmas Ad Tag'
+      ad_tag.update(placement: 'Christmas C')
       get "/api/campaigns/#{campaign.id}/ad_tags/#{ad_tag.id}"
     end
 
@@ -81,7 +83,7 @@ describe Api::AdTagsController do
 
     it 'retreives a specific ad_tag' do
       json = JSON.parse(response.body)
-      expect(json['r3act']['placement_name']).to eq('Christmas C')
+      expect(json['r3act']['placement']).to eq('Christmas C')
     end
   end
 

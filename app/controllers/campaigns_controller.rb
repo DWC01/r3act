@@ -56,9 +56,9 @@ class CampaignsController < ApplicationController
   private
 
     def save_file_as_ad_tags(campaign, file_path)
-      csv = CaratSchedule.new(file_path)
-      ad_tags = AdTag.save_tags(campaign, csv.placements)
-      Campaign.save_mp_data(campaign, ad_tags)
+      csv = MediaPlan.new(file_path)
+      # ad_tags = AdTag.save_tags(campaign, csv.placements)
+      # Campaign.save_mp_data(campaign, ad_tags)
     end
 
     def ad_tags_file_path

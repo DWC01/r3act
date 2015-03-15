@@ -1,3 +1,4 @@
+Flight.delete_all
 AdTag.delete_all
 Campaign.delete_all
 
@@ -5,7 +6,6 @@ Campaign.delete_all
   20.times do 
     AdTag.create(
     ad_type:                       "Large Skyscraper",
-    adserver_cost:                 "3000",
     advertiser:                    "Widget",
     audience:                      "Males who read My Magazine",
     cost_basis:                    "3000",
@@ -14,7 +14,6 @@ Campaign.delete_all
     details:                       "Alway above fold",
     device:                        "Desktop",
     end_date:                      "1/1/2016",
-    flight:                        "Retargeting",
     format:                        "HTML5",
     height:                        "600",
     impressions:                   "1000000000",
@@ -31,10 +30,21 @@ Campaign.delete_all
     start_date:                    "1/1/2015",
     unit_cost:                     "1.50",
     width:                         "300",
-    campaign_id:                   id
+    flight_id:                     id
     )
   end
 end 
+
+(1..3).each do |id|
+  Flight.create(
+    name:                          "Retargeting",
+    start_date:                    "1/1/2015",
+    end_date:                      "1/1/2016",
+    adserver_cost:                 "3000",
+    ad_tag_count:                  "20",
+    campaign_id:                   id
+  )
+end
 
 3.times do
   Campaign.create(  

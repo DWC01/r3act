@@ -11,14 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141224211257) do
+ActiveRecord::Schema.define(version: 20150315024812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "ad_tags", force: true do |t|
     t.string   "ad_type"
-    t.string   "adserver_cost"
     t.string   "advertiser"
     t.string   "audience"
     t.string   "cost_basis"
@@ -27,7 +26,6 @@ ActiveRecord::Schema.define(version: 20141224211257) do
     t.string   "details"
     t.string   "device"
     t.string   "end_date"
-    t.string   "flight"
     t.string   "format"
     t.string   "height"
     t.string   "impressions"
@@ -44,7 +42,7 @@ ActiveRecord::Schema.define(version: 20141224211257) do
     t.string   "start_date"
     t.string   "unit_cost"
     t.string   "width"
-    t.integer  "campaign_id"
+    t.integer  "flight_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -64,6 +62,17 @@ ActiveRecord::Schema.define(version: 20141224211257) do
     t.string   "name"
     t.string   "primary_target_audience"
     t.string   "start_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "flights", force: true do |t|
+    t.string   "name"
+    t.string   "adserver_cost"
+    t.string   "start_date"
+    t.string   "end_date"
+    t.string   "ad_tag_count"
+    t.integer  "campaign_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

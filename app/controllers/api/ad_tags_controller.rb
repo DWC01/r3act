@@ -2,9 +2,9 @@ module Api
   class AdTagsController < Api::BaseController
 
     def index
-      if params[:campaign_id]
-        campaign = Campaign.find(params[:campaign_id])
-        render json: {r3act: campaign.ad_tags}
+      if params[:flight_id]
+        flight = Flight.find(params[:flight_id])
+        render json: {r3act: flight.ad_tags}
       else
         render json: {r3act: AdTag.all}
       end        
@@ -20,7 +20,7 @@ module Api
         :javascript_tag, :publisher, :media_plan_name, :placement,
         :primary_target_audience, :product, :properties, :size,
         :site, :start_action, :start_date, :unit_cost, :width,
-        :campaign_id
+        :flight_id
         )
       end
 

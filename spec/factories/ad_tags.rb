@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :ad_tag do
     ad_type                       "Large Skyscraper"
-    adserver_cost                 "3000"
     advertiser                    "Widget"
     audience                      "Males who read My Magazine"
     cost_basis                    "3000"
@@ -10,7 +9,6 @@ FactoryGirl.define do
     details                       "Alway above fold"
     device                        "Desktop"
     end_date                      "1/1/2016"
-    flight                        "Retargeting"
     format                        "HTML5"
     height                        "600"
     impressions                   "1000000000"
@@ -27,6 +25,5 @@ FactoryGirl.define do
     start_date                    "1/1/2015"
     unit_cost                     "1.50"
     width                         "300"
-    campaign_id                   1
   end
 end

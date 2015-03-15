@@ -1,105 +1,117 @@
 class MediaPlan
-  attr_reader :csv, :basics, :flight_rows
+  attr_reader :csv, :all_rows, :basics, :set_flights, :ad_tag_atts
 
   def initialize(schedule_file_path)
     @csv = Roo::Spreadsheet.open(schedule_file_path)
     
     @all_rows            = set_all_rows(csv)
-    @basics              = set_campaign_basics(@all_rows)
-    @flights             = set_flights(@all_rows)
-    puts @flights
-  
+    @basics              = campaign_basics
+    flights              = set_flights
+    @ad_tag_atts         = set_ad_tag_atts(flights.clone)
   end
 
-  # Returns only rows with data - as an array of arrays
+  # Returns two dimensional array, only rows with data
   def set_all_rows(csv)
     rows=[]
-    (csv.first_row..csv.last_row).map {|r| rows << csv.row(r)}
+    (csv.first_row..csv.last_row).map {|r| rows.push csv.row(r)}
     rows
   end
 
-  #-------------------#
-  #      Basics       #
-  #-------------------#
-
-  def set_campaign_basics(all_rows)
+  # Returns hash, campaign attribute => value
+  def campaign_basics
     campaign_basics={}
     all_rows.each_with_index do |row, index|
       if index < 6
-         campaign_basics[to_snake_case(row.first)] = row.second
+        campaign_basics[to_snake_case(row.first)] = row.second
       end
     end
     campaign_basics
   end
 
-  def set_flights(all_rows)
+  # Returns hash, flight name => [array of rows in flight, including header]
+  def set_flights
     flights={}
+
     all_rows.each_with_index do |row, index|
-      if row.first && row.first.strip == 'Flight Name:'
-        flight=[]
-        header = index+3
-        row_count = row_count(all_rows[header])
+      next unless first_flight_row(row)
+      
+      header_index = index+3
+      flight_header = all_rows[header_index]
+      row_length = row_length(flight_header)
 
-         until all_rows[header][0] == nil
-            clean_row(all_rows[header], row_count).inspect
-            flight.push clean_row(all_rows[header], row_count)
-
-            if header >= all_rows.length - 1
-              break
-            else 
-              header += 1
-            end
-         end
-         flights[row.second+"#{index}"] = flight
-      end
+      flights[name(row,index)] = get_flight(header_index, row_length)
     end
+
     flights
   end
 
-  def row_count(row)
-    row.each_with_index do |value,index|
-      return (index-1) if value.strip == '-- Select Attribute  --'
-    end
-  end
+  def set_ad_tag_atts(flights)
+    atts = []
 
-  def clean_row(row,row_count)
-    row[0..row_count]
+
+
+    flights.values.each do |flight|
+      flight_atts=[]
+      header = arr_to_snake_case(flight.shift)
+
+      flight.each do |row|
+        flight_atts.push Hash[header.zip(row)]
+      end
+
+      atts.push flight_atts
+    end
+
+    atts.inspect
   end
  
   private
 
-  # Returns only rows with data - as an array of hashes
-  def set_all_rows_as_hashes
-    rows = [];
-    (csv.first_row..csv.last_row).each do |i|
-      rows.push Hash[header.zip(csv.row(i)[0..last_index])]
+  # Returns array, only rows for this flight, including header
+  def get_flight(index, row_length)
+    flight=[]
+    until all_rows[index].first == nil
+      flight.push clean_row(all_rows[index], row_length)
+      break if index >= all_rows.length-1
+      index += 1
     end
-    rows
+    flight
+  end
+
+  # Returns integer, finds length of row with selected header
+  def row_length(row)
+    row.each_with_index do |value,index|
+      return (index-1) if value.strip == '-- Select Attribute  --'
+    end
+  end
+  
+  # Returns array, only portion with selected header
+  def clean_row(row,row_length)
+    row = clean_row_length(row,row_length)
+    clean_row_vals(row)
+  end
+
+  def first_flight_row(row)
+    row.first != nil && row.first.strip == 'Flight Name:'
+  end
+
+  def clean_row_vals(row)
+    row.map! {|val| val.to_s.strip unless val.blank?}
+  end
+
+  def clean_row_length(row,row_length)
+    row[0..row_length]
+  end
+  
+  def name(row,index)
+    row.second+"__#{index}"
+  end
+
+  def arr_to_snake_case(string)
+    string.map! {|val| to_snake_case(val)}
   end
 
   def to_snake_case(string)
     string.gsub(":","").strip.downcase.gsub(" ","_")
   end
-
-
-  def flight_ad_tag_atts(flight_start_row)
-    row_headers = (flight_start_row + 3)
-    
-    # flight={}
-    #     flight['flight'] = all_rows[index].second
-    #     flight['adserver_cost'] = all_rows[index+1].second
-
-    #     header = index+3
-        
-    #     #  until all_rows[header].nil?
-    #     #     flights.push all_rows[header]
-    #     #     header += 1
-    #     #  end
-    #     flights.push flight
-
-    @all_rows[row_headers].each_with_index do |headers|
-    end
-  end
-
 
 end

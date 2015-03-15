@@ -2,7 +2,6 @@ class CreateAdTags < ActiveRecord::Migration
   def change
     create_table :ad_tags do |t|
       t.string    :ad_type
-      t.string    :adserver_cost
       t.string    :advertiser   #Brand (typically main client of agency)
       t.string    :audience     #Speciefied audience for campaign
       t.string    :cost_basis   #Advertiser cost method
@@ -11,7 +10,6 @@ class CreateAdTags < ActiveRecord::Migration
       t.string    :details      #Any additional details
       t.string    :device       #Device type the media is to be run on
       t.string    :end_date     #End date of campaign
-      t.string    :flight       #Subset category within campaign
       t.string    :format       #Format of displaying media
       t.string    :height       #Ad height
       t.string    :impressions      #Projected impression count
@@ -28,7 +26,7 @@ class CreateAdTags < ActiveRecord::Migration
       t.string    :start_date
       t.string    :unit_cost
       t.string    :width
-      t.integer   :campaign_id
+      t.integer   :flight_id
 
       t.timestamps
     end

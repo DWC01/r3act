@@ -24,8 +24,8 @@ describe Api::AdTagsController do
   context 'POST #create' do
     
     before do
-      @id = FactoryGirl.create(:campaign).id
-      post "/api/ad_tags/", format: :json, :ad_tag => { campaign_id: @id, placement: "Christmas Ad Tag" }
+      @id = FactoryGirl.create(:flight).id
+      post "/api/ad_tags/", format: :json, :ad_tag => { flight_id: @id, placement: "Christmas Ad Tag" }
     end
 
     it 'responds successfully with an HTTP 200 status code' do
@@ -36,7 +36,7 @@ describe Api::AdTagsController do
     it 'retreives newly created Ad Tag' do
       tag = AdTag.all
       expect(tag.last.placement).to eq('Christmas Ad Tag')
-      expect(tag.last.campaign_id).to eq(@id)
+      expect(tag.last.flight_id).to eq(@id)
     end
   end
 

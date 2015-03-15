@@ -34,7 +34,7 @@ class AdTagsController < ApplicationController
         :javascript_tag, :publisher, :media_plan_name, :placement,
         :primary_target_audience, :product, :properties, :size,
         :site, :start_action, :start_date, :unit_cost, :width,
-        :campaign_id
+        :flight_id
       )
     end
 end

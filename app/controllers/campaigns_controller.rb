@@ -56,7 +56,10 @@ class CampaignsController < ApplicationController
   private
 
     def save_file_as_ad_tags(campaign, file_path)
-      csv = MediaPlan.new(file_path)
+      mp        = MediaPlanParser.new(file_path)
+      campaign  = CampaignComposer.new(mp.all_rows)
+      flight    = FlightComposer.new(mp.all_rows)
+      
       # ad_tags = AdTag.save_tags(campaign, csv.placements)
       # Campaign.save_mp_data(campaign, ad_tags)
     end

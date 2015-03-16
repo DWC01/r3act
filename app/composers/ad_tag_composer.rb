@@ -1,12 +1,11 @@
-class FlightComposer
-  attr_reader :all_rows, :ad_tag_attributes, :flight_basics, :group_placements
+class AdTagComposer
+  attr_reader :attributes, :group_placements
 
   def initialize(all_rows)
     @all_rows = all_rows
     set_flight_start_indexes
-    set_flight_basics
     group_placements
-    set_ad_tag_attributes(@placements.clone)
+    set_attributes(@placements.clone)
   end
 
   def set_flight_start_indexes
@@ -15,19 +14,6 @@ class FlightComposer
       next unless first_flight_row(row)
       @flight_start_indexes << index
     end
-  end
-
-  def set_flight_basics 
-    @flight_basics=[]
-    @flight_start_indexes.each do |index|
-      @flight_basics << flight_basics_attrs(index)
-    end
-  end
-
-  def flight_basics_attrs(index)
-    name = @all_rows[index].second
-    adserving_cost = @all_rows[index+1].second
-    {'name' => name, 'adserver_cost' => adserving_cost.to_s}
   end
 
   # Returns hash, flight name => [array of rows in flight, including header]
@@ -48,8 +34,8 @@ class FlightComposer
   end
 
 
-  def set_ad_tag_attributes(placements)
-    @ad_tag_attributes = []
+  def set_attributes(placements)
+    @attributes = []
 
     placements.values.each do |placement|
       placement_atts=[]
@@ -59,7 +45,7 @@ class FlightComposer
         placement_atts.push Hash[header.zip(values)]
       end
 
-      @ad_tag_attributes.push placement_atts
+      @attributes.push placement_atts
     end
   end
  
@@ -68,9 +54,9 @@ class FlightComposer
   # Returns array, only placements for this flight, including header
   def get_placement(index, row_length)
     placement=[]
-    until all_rows[index].first == nil
-      placement.push clean_row(all_rows[index], row_length)
-      break if index >= all_rows.length-1
+    until @all_rows[index].first == nil
+      placement.push clean_row(@all_rows[index], row_length)
+      break if index >= @all_rows.length-1
       index += 1
     end
     placement
@@ -103,10 +89,6 @@ class FlightComposer
   
   def flight_name(index)
     @all_rows[index].second+"__#{index}"
-  end
-
-  def adserving_cost(index)
-    all_rows[index+1].second
   end
 
   def arr_to_snake_case(string)

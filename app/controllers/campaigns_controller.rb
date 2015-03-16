@@ -11,7 +11,7 @@ class CampaignsController < ApplicationController
   def create
     @campaign = Campaign.new(campaign_params)
     if @campaign.save
-      save_file_as_ad_tags(@campaign, ad_tags_file_path) 
+       save_data_from_media_plan(media_plan_file_path)
       redirect_to @campaign
     else
       redirect_to :new 
@@ -41,30 +41,32 @@ class CampaignsController < ApplicationController
     redirect_to campaigns_path
   end
 
-  def traffic_ad_tags
-    ad_tags = AdTag.where(campaign_id: params[:campaign_id]) 
-    dfp = Dfp.new( params[:campaign_id], 33988861, params[:advertiser_id], ad_tags )
-    
-    # saved_creatives = dfp.mock_saved_creatives
-    # sleep 3
-
-    saved_creatives = dfp.traffic_ad_tags
-
-    render :json => saved_creatives.to_json
-  end
-
   private
 
-    def save_file_as_ad_tags(campaign, file_path)
-      mp        = MediaPlanParser.new(file_path)
-      campaign  = CampaignComposer.new(mp.all_rows)
-      flight    = FlightComposer.new(mp.all_rows)
-      
-      # ad_tags = AdTag.save_tags(campaign, csv.placements)
-      # Campaign.save_mp_data(campaign, ad_tags)
+    def save_data_from_media_plan(file_path)
+      mp = MediaPlanParser.new(file_path)
+      save_media_plan_data(mp.campaign_atts, mp.flight_ad_tags_atts)
     end
 
-    def ad_tags_file_path
+    def save_media_plan_data(campaign_atts, flight_ad_tags_atts)
+      @campaign.update_attributes(campaign_atts)
+
+      Flight.save_media_plan_data(@campaign, flight_ad_tags_atts)
+    end
+
+    def traffic_ad_tags
+      ad_tags = AdTag.where(campaign_id: params[:campaign_id]) 
+      dfp = Dfp.new( params[:campaign_id], 33988861, params[:advertiser_id], ad_tags )
+      
+      # saved_creatives = dfp.mock_saved_creatives
+      # sleep 3
+
+      saved_creatives = dfp.traffic_ad_tags
+
+      render :json => saved_creatives.to_json
+    end
+
+    def media_plan_file_path
       @campaign.ad_tags_file_url.to_s
     end
 

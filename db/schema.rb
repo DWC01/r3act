@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150315024812) do
     t.string   "site"
     t.string   "start_action"
     t.string   "start_date"
+    t.string   "total_cost"
     t.string   "unit_cost"
     t.string   "width"
     t.integer  "flight_id"

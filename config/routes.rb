@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
+
   root 'campaigns#index'
 
   namespace :api do    
@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :campaigns, :flights, :ad_tags
+  resources :campaigns, :flights, :ad_tags, :users, :companies
+
+  get  '/login',                       to:'sessions#new',              as: 'login'
+  get  '/logout',                      to:'sessions#destroy',          as: 'logout'         
+  post '/login',                       to:'sessions#create'            
   
   get  '/campaigns/:id/media_plan',    to: 'campaigns#media_plan',      as: 'media_plan'
   get  '/campaigns/:id/analytics',     to: 'campaigns#show'

@@ -15,6 +15,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.string    :name
       t.string    :primary_target_audience
       t.string    :start_date
+      t.integer   :company_id
       
       t.timestamps
     end

@@ -1,6 +1,7 @@
 class FlightsController < ApplicationController
 
   def index
+    @flights = Flight.all
   end
 
   def new
@@ -22,7 +23,6 @@ class FlightsController < ApplicationController
 
   def destroy
     Flight.find(params[:id]).destroy
-    flash[:success] = "Flight Successfully Deleted!"
     redirect_to flights_path
   end
 

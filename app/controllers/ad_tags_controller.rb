@@ -1,5 +1,7 @@
 class AdTagsController < ApplicationController
+  
   def index
+    @ad_tags = AdTag.all
   end
 
   def new
@@ -21,7 +23,6 @@ class AdTagsController < ApplicationController
 
   def destroy
     AdTag.find(params[:id]).destroy
-    flash[:success] = "Ad Tag Successfully Deleted!"
     redirect_to ad_tags_path
   end
 

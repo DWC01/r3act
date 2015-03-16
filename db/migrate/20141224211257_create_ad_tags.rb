@@ -4,7 +4,8 @@ class CreateAdTags < ActiveRecord::Migration
       t.string    :ad_type
       t.string    :advertiser   #Brand (typically main client of agency)
       t.string    :audience     #Speciefied audience for campaign
-      t.string    :cost_basis   #Advertiser cost method
+      t.string    :cost_basis   #Advertiser/Client cost method
+      t.string    :client_cost  #Cost to Client
       t.string    :cost_method  #Publisher cost method
       t.string    :days         #Days of week ad is allowed to run
       t.string    :details      #Any additional details

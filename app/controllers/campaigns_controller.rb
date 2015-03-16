@@ -37,7 +37,6 @@ class CampaignsController < ApplicationController
 
   def destroy
     Campaign.find(params[:id]).destroy
-    flash[:success] = "Campaign Successfully Deleted!"
     redirect_to campaigns_path
   end
 
@@ -55,13 +54,13 @@ class CampaignsController < ApplicationController
     end
 
     def traffic_ad_tags
-      ad_tags = AdTag.where(campaign_id: params[:campaign_id]) 
-      dfp = Dfp.new( params[:campaign_id], 33988861, params[:advertiser_id], ad_tags )
+      #ad_tags = AdTag.where(campaign_id: params[:campaign_id]) 
+      # dfp = Dfp.new( params[:campaign_id], 33988861, params[:advertiser_id], ad_tags )
+      # saved_creatives = dfp.traffic_ad_tags
       
-      # saved_creatives = dfp.mock_saved_creatives
-      # sleep 3
+      saved_creatives = dfp.mock_saved_creatives
+      sleep 3
 
-      saved_creatives = dfp.traffic_ad_tags
 
       render :json => saved_creatives.to_json
     end

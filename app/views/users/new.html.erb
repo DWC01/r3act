@@ -1,13 +1,12 @@
-<h1>
-  Signup!
-</h1>
+<div class="single-componet-wrap">
+  <div class="component-header">
+      Create your account
+  </div>
+  <div class="form-error-wrap">
+    <%= render 'users/errors' %>
+  </div>
+  <div class="form-wrap r3-primary-border">
+    <%= render 'users/form' %>
+  </div>
 
-<%= form_for :user, url: '/users' do |f| %>
 
-  Name: <%= f.text_field :first_name %>
-  Email: <%= f.text_field :email %>
-  Password: <%= f.password_field :password %>
-  Password Confirmation: <%= f.password_field :password_confirmation %>
-  <%= f.submit "Submit" %>
-
-<% end %>

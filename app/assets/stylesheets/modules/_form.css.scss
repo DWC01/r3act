@@ -1,0 +1,26 @@
+.form-wrap {
+  width: 350px;
+  padding: 23px 25px;
+  margin: 0px auto;
+  & .two-field-wrap {
+    display: flex;
+  }
+  & .form-input {
+    margin: 0 0 15px 0;
+  }
+  & .first-name, & .last-name {
+    float: left;
+    width: 49%;
+  }
+  & .first-name {
+    margin-right: 5px;
+  }
+}
+
+.form-error-wrap {
+  & .errors {
+  width: 200px;
+  text-align: left;
+  margin: -30px auto 0px auto;
+  }
+}

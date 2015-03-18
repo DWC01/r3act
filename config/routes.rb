@@ -15,9 +15,10 @@ Rails.application.routes.draw do
   
   resources :campaigns, :flights, :ad_tags, :users, :companies
 
-  get  '/login',                       to:'sessions#new',              as: 'login'
-  get  '/logout',                      to:'sessions#destroy',          as: 'logout'         
-  post '/login',                       to:'sessions#create'            
+  get  '/sign_in',                     to:'sessions#new',              as: 'sign_in'
+  get  '/sign_up',                     to:'users#new',                 as: 'sign_up'
+  get  '/sign_out',                    to:'sessions#destroy',          as: 'sign_out'         
+  post '/sign_in',                     to:'sessions#create'            
   
   get  '/campaigns/:id/media_plan',    to: 'campaigns#media_plan',      as: 'media_plan'
   get  '/campaigns/:id/analytics',     to: 'campaigns#show'

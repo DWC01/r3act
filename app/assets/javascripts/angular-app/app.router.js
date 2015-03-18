@@ -13,7 +13,7 @@ angular
 
   .config(function($stateProvider, $urlRouterProvider) {
   // For any unmatched url, redirect to /
-  $urlRouterProvider.otherwise("/");
+  // $urlRouterProvider.otherwise("/login");
   // Set states
   $stateProvider
     .state('root', {

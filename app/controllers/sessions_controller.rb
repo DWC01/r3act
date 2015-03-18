@@ -11,16 +11,18 @@ class SessionsController < ApplicationController
       else
         cookies[:auth_token] = user.auth_token
       end
-      redirect_to user, :notice => "Logged in!"
+      flash[:success] = "What up #{user.first_name}!"
+      redirect_to user
     else
-      flash.now.alert = "Invalid email or password"
+      flash[:error] = "Invalid email or password"
       render "new"
     end
   end
 
   def destroy
     cookies.delete(:auth_token)
-    redirect_to root_url, :notice => "Logged out!"
+    flash[:success] = "Logged Out!"
+    redirect_to root_url
   end
 
 end

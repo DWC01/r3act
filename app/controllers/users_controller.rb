@@ -13,7 +13,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       cookies[:auth_token] = @user.auth_token
-      redirect_to @user, notice: "Thank you for signing up!"
+      flash[:success] = "Welcome #{@user.first_name}!"
+      redirect_to @user
     else
       render :new
     end
@@ -28,7 +29,7 @@ class UsersController < ApplicationController
     auth_token = current_user.auth_token
     @user = User.find_by_auth_token(auth_token)
     if @user.update_attributes(user_params)
-      flash[:notice] = 'Profile Updated!'
+      flash[:success] = 'Profile Updated!'
       redirect_to settings_path
     else
       render :edit
@@ -39,7 +40,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.delete
     cookies.delete(:auth_token)
-    redirect_to root_url, :notice => "Profile Deleted!"
+    flash[:success] = 'Profile Deleted!'
+    redirect_to root_url
   end
 
   private

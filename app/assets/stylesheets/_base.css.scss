@@ -1,2 +1,11 @@
-@import 'partials/base';
+@import 'modules/colors';
+@import 'modules/buttons';
+@import 'modules/components';
+@import 'modules/fonts';
+@import 'modules/form';
+
+@import 'partials/campaigns';
 @import 'partials/global';
+@import 'partials/media_plan';
+@import 'partials/sidebar';
+@import 'partials/trafficking';

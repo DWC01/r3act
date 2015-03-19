@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :campaigns, :flights, :ad_tags, :users, :companies
+  resources :campaigns, :flights, :ad_tags, :users, :companies, :password_resets
 
   get  '/sign_in',                     to:'sessions#new',              as: 'sign_in'
   get  '/sign_up',                     to:'users#new',                 as: 'sign_up'

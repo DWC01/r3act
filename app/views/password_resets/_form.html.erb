@@ -1,0 +1,10 @@
+<%= form_tag '/password_resets' do %>
+  <div class="form-input">
+    <%= text_field_tag :email, nil, 
+      :placeholder => 'email address', 
+      :class => "form-control" %>
+  </div>
+  <div class="center">
+    <%= submit_tag "Submit", :class => "r3-btn-primary"  %>
+  </div>
+<% end %>

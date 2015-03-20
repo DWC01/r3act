@@ -72,6 +72,10 @@ body,h1,h2,h3,h4,h5,h6 {
   box-shadow: #f0f0f0 0 0 0 3px inset,#edddf5 2px 3px 0;
 }
 
+.shadow-border {
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.45);
+}
+
 .single-componet-wrap {
   margin: 50px auto 0px auto;
   width: 500px;

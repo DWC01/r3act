@@ -8,12 +8,24 @@ angular
     $routeProvider.when('/ad_tags/:id', {
       controller: 'AdTagsController'
     });
+
     $locationProvider.html5Mode(true);
   })
 
   .config(function($stateProvider, $urlRouterProvider) {
   // For any unmatched url, redirect to /
-  // $urlRouterProvider.otherwise("/login");
+  $urlRouterProvider.otherwise("/");
+
+  // Remove trailing slashes  
+  $urlRouterProvider.rule(function($injector, $location) {
+    var path = $location.path();
+    var hasTrailingSlash = path[path.length-1] === '/';
+    if(hasTrailingSlash) {      
+      var newPath = path.substr(0, path.length - 1); 
+      return newPath; 
+    } 
+  });
+
   // Set states
   $stateProvider
     .state('root', {
@@ -29,21 +41,47 @@ angular
         }
       }
     })
-    .state('campaigns', {
-      url: "/campaigns",
+    .state('users', {
+      url: "/users",
       views: {
         'sidebar': {
           templateUrl: 'sidebars/campaigns_menu.html',
           controller: 'SidebarController'
         },
         'content-top': {
-          templateUrl: 'campaigns/index.html',
-          controller: 'CampaignController'
+          templateUrl: 'users/index.html',
+          controller: 'UsersController'
         }
       }
     })
-    .state('campaigns/', {
-      url: "/campaigns/",
+    .state('user', {
+      url: "/users/:id",
+      views: {
+        'sidebar': {
+          templateUrl: 'sidebars/campaigns_menu.html',
+          controller: 'SidebarController'
+        },
+        'content-top': {
+          templateUrl: 'users/show.html',
+          controller: 'UsersController'
+        }
+      }
+    })
+    .state('users/new', {
+      url: "/sign_up",
+      views: {
+        'sidebar': {
+          templateUrl: 'sidebars/campaigns_menu.html',
+          controller: 'SidebarController'
+        },
+        'content-top': {
+          templateUrl: 'users/new.html',
+          controller: 'UsersController'
+        }
+      }
+    })
+    .state('campaigns', {
+      url: "/campaigns",
       views: {
         'sidebar': {
           templateUrl: 'sidebars/campaigns_menu.html',

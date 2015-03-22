@@ -1,6 +1,6 @@
 require "spec_helper"
  
-describe Flight do
+describe Flight, :type => :model do
   it "should have a factory" do
     expect(build(:flight)).to be_valid
   end

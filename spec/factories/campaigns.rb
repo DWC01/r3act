@@ -14,5 +14,6 @@ FactoryGirl.define do
     name                        "Best Campaign Ever (CTR through the roof)"
     primary_target_audience     "Males 20-30"
     start_date                  "1/1/2015"
+    company_id                  1
   end
 end

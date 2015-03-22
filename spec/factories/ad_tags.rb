@@ -4,6 +4,7 @@ FactoryGirl.define do
     advertiser                    "Widget"
     audience                      "Males who read My Magazine"
     cost_basis                    "3000"
+    client_cost                   "3500"
     cost_method                   "CPM"
     days                          "Mon-Fri"
     details                       "Alway above fold"
@@ -23,7 +24,9 @@ FactoryGirl.define do
     site                          "mymagazine.com"
     start_action                  "auto"
     start_date                    "1/1/2015"
+    total_cost                    "5,000"
     unit_cost                     "1.50"
     width                         "300"
+    flight_id                     1
   end
 end

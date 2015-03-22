@@ -6,7 +6,6 @@ class CreateCompanies < ActiveRecord::Migration
       t.string   :placements_trafficked
       t.string   :placement_rate
             
-
       t.timestamps
     end
   end

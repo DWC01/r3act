@@ -10,8 +10,8 @@ angular
       find: function(id){
         return Restangular.one('campaigns',id).get();
       },
-      ad_tags: function(id){
-        return Restangular.one('campaigns',id).getList('ad_tags');
+      flights: function(id){
+        return Restangular.one('campaigns',id).getList('flights');
       } 
     }
 

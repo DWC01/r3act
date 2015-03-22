@@ -1,6 +1,6 @@
 require "spec_helper"
  
-describe AdTag do
+describe AdTag, :type => :model do
   it "should have a factory" do
     expect(build(:ad_tag)).to be_valid
   end

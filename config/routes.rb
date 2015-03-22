@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'campaigns#index'
 
   namespace :api do    
-    resources :campaigns, :flights, :ad_tags
+    resources :campaigns, :flights, :ad_tags, :users, :companies
     
     resources :campaigns do
       resources :flights, defaults: { format: :json }

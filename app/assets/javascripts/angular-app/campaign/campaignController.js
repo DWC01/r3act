@@ -16,11 +16,10 @@ angular
 
     Campaign.find(id).then(function(campaign) {
       $scope.campaign = campaign;
-      $scope.mediaPartners = campaign.ad_tag_receivers;
     });
      
-    Campaign.ad_tags(id).then(function(ad_tags) {
-      $scope.adTags = ad_tags;
+    Campaign.flights(id).then(function(flights) {
+      $scope.flights = flights;
     });
 
     $scope.isActive = function(route) {

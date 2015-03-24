@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html ng-app="r3act" >
+<html>
 <head>
   <title>ReactiveDashboard</title>
   <%= stylesheet_link_tag    'application' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-  <body ng-controller="MainController">
-  <base href="/">
-  <sidebar></sidebar>
+  <body>
+    <%= render 'layouts/sidebar' %>
     <%= render 'layouts/navbar' %>
     <%= render 'layouts/flash_notice' %>
     <div class="page-content-wrap sidebar-push-content">
-      <%= yield %>
+     <div class="page-content">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

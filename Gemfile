@@ -16,14 +16,10 @@ gem 'bootstrap-sass'
 gem 'd3-rails'
 gem 'c3-rails'
 gem 'autoprefixer-rails'
-gem 'angularjs-rails'
-gem 'angular-rails-templates'
-gem 'active_model_serializers'
 gem 'bower-rails'
 gem 'unicorn'
 gem 'roo'
 gem 'spreadsheet'
-gem 'angular_rails_csrf'
 gem 'google-dfp-api'
 
 group :development do
@@ -48,7 +44,6 @@ group :development, :test do
   gem 'konacha'
   gem 'sinon-rails'
   gem "browserify-rails"
-  gem 'protractor-rails', '~> 0.0.13'
 end
 
 group :production do

@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 ruby '2.1.2'
-gem 'rails', '4.1.0'
+gem 'rails', '4.2.0'
 gem 'pg'
 gem 'bcrypt'
-gem 'sass-rails', '4.0.2'
+gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails'
 gem 'jquery-rails'
@@ -21,6 +21,7 @@ gem 'unicorn'
 gem 'roo'
 gem 'spreadsheet'
 gem 'google-dfp-api'
+gem 'ember-cli-rails'
 
 group :development do
   gem 'spring'
@@ -43,7 +44,6 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'konacha'
   gem 'sinon-rails'
-  gem "browserify-rails"
 end
 
 group :production do

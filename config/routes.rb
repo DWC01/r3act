@@ -3,18 +3,17 @@ Rails.application.routes.draw do
   root 'ember#bootstrap'
   get '/*path' => 'ember#bootstrap'
   
-  # root 'campaigns#index'
 
-  # namespace :api do    
-  #   resources :campaigns, :flights, :ad_tags, :users, :companies
+  namespace :api do    
+    resources :campaigns, :flights, :ad_tags, :users, :companies
     
-  #   resources :campaigns do
-  #     resources :flights, defaults: { format: :json }
-  #   end
-  #   resources :flights do
-  #     resources :ad_tags, defaults: { format: :json }
-  #   end
-  # end
+    resources :campaigns do
+      resources :flights, defaults: { format: :json }
+    end
+    resources :flights do
+      resources :ad_tags, defaults: { format: :json }
+    end
+  end
   
   # resources :campaigns, :flights, :ad_tags, :users, :companies, :password_resets
 

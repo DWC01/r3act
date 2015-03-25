@@ -420,7 +420,7 @@ DEPENDENCIES
   ember-cli-rails
   factory_girl_rails
   faker
-  fog (~> 1.27.0)
+  fog
   font-awesome-rails
   google-dfp-api
   guard-rspec

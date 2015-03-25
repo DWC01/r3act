@@ -1,19 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>ReactiveDashboard</title>
-  <%= stylesheet_link_tag    'application' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-</head>
+<!doctype html>
+<html dir="ltr" lang="<%= I18n.locale %>">
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      Display {AdTech}
+    </title>
+      <%= stylesheet_link_tag 'application' %>
+      <%= stylesheet_link_tag 'frontend' %>
+      
+      <%= javascript_include_tag 'application' %>
+      <%= include_ember_script_tags :frontend %>
+      <%= csrf_meta_tags %>
+  </head>
   <body>
-    <%= render 'layouts/sidebar' %>
-    <%= render 'layouts/navbar' %>
-    <%= render 'layouts/flash_notice' %>
-    <div class="page-content-wrap sidebar-push-content">
-     <div class="page-content">
-        <%= yield %>
-      </div>
-    </div>
+    <%= yield %>
   </body>
 </html>

@@ -1,0 +1,33 @@
+<form action="/users" method="post">  
+  <div class="two-field-wrap">
+    <div class="form-input input-1-2">
+      <input type="text" name="firstName" placeholder="first name" 
+        class="form-control"/>
+    </div>
+    <div class="form-input input-2-2">
+      <input type="text" name="lastName" placeholder="last name" 
+        class="form-control"/>
+    </div>
+  </div>
+  <div class="form-input">
+    <input type="email" name="email" placeholder="email" 
+      class="form-control"/>
+  </div>
+  <div class="form-input">
+    <input type="password" name="password" placeholder="password"
+      class="form-control"/>
+  </div>
+  <div class="form-input">
+    <input type="password" name="passwordConfirmation"
+      placeholder="password confirmation" class="form-control"/>
+  </div>
+  <div class="form-input input-1-2"></div> 
+  <div class="form-input input-2-2">
+    {{#link-to 'users.new'}}
+      Forget your password?
+    {{/link-to}}
+  </div>
+  <button type="submit" name="Submit" class="r3-btn-primary">
+    Submit
+  </button>
+</form>

@@ -1,5 +1,5 @@
 var FlashNoticeView = Ember.View.extend({
-  templateName: 'flashNotice'
+  templateName: 'flash_notice'
 });
  
 export default FlashNoticeView;

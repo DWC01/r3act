@@ -1,6 +1,11 @@
 {{render 'sidebar'}}
 {{render 'navigation'}}
+{{render 'flashNotice'}}
 
-<h2 id="title">Welcome to Ember.js</h2>
+<div class="page-content-wrap sidebar-push-content">
+  <div class="page-content">
+    {{outlet}}
+  </div>
+</div>
 
-{{outlet}}
+

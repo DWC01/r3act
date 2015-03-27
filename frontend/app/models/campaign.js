@@ -17,7 +17,7 @@ export default DS.Model.extend({
   name:                     DS.attr('string'),
   primary_target_audience:  DS.attr('string'),
   start_date:               DS.attr('string'),
-  company_id:               DS.attr('integer'),
+  company_id:               DS.attr('number'),
   createdAt:                DS.attr('date'),
   updatedAt:                DS.attr('date')  
 });

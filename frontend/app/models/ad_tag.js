@@ -29,7 +29,7 @@ export default DS.Model.extend({
   total_cost:               DS.attr('string'),
   unit_cost:                DS.attr('string'),
   width:                    DS.attr('string'),
-  flight_id:                DS.attr('integer'),
+  flight_id:                DS.attr('number'),
   created_at:               DS.attr('date'),
   updated_at:               DS.attr('date')
 });

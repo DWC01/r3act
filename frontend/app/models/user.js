@@ -13,7 +13,7 @@ export default DS.Model.extend({
   password_reset_token:   DS.attr('string'),
   password_reset_sent_at: DS.attr('date'),
   admin:                  DS.attr('boolean'),
-  company_id:             DS.attr('integer'), 
+  company_id:             DS.attr('number'), 
   createdAt:              DS.attr('date'),
   updatedAt:              DS.attr('date')
 });

@@ -1,6 +1,4 @@
-<%= form_for @campaign, 
-    url:{:controller=>'campaigns', :action=>'create'} do |f| %>
-
+<%= form_for @campaign do |f| %>
   <div class="upload-ad-tags r3-primary-border">
     <div>
        <%= f.file_field :ad_tags_file, id: "new_transaction" %>
@@ -9,6 +7,5 @@
   <div class="center">
     <%= f.button "Traffic Tags!", id: "btn-upload-meida-plan", :class => "r3-btn-primary" %>
   </div>
-
 <% end %>
 

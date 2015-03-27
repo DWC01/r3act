@@ -12,9 +12,9 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.new(campaign_params)
     if @campaign.save
        save_data_from_media_plan(media_plan_file_path)
-      redirect_to @campaign
+      redirect_to "/campaigns/#{@campaign.id}"
     else
-      redirect_to :new 
+      redirect_to "/campaigns/new"
     end
   end
 

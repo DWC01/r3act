@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :campaigns, :only => [:new, :create]
+
   namespace :api do    
     resources :campaigns, :flights, :ad_tags, :users, :companies
     
@@ -11,6 +13,6 @@ Rails.application.routes.draw do
     end
   end
   
-  root 'ember#bootstrap'
-  get "/*path" => "ember#bootstrap"
+  root "ember#bootstrap"
+  get "/*path", to: "ember#bootstrap"
 end

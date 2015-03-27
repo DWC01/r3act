@@ -1,0 +1,18 @@
+<!doctype html>
+<html dir="ltr" lang="<%= I18n.locale %>">
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      Display {AdTech}
+    </title>
+      <%= stylesheet_link_tag 'application' %>
+      <%= stylesheet_link_tag 'frontend' %>
+      
+      <%= javascript_include_tag 'application' %>
+      <%= include_ember_script_tags :frontend %>
+      <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= yield %>
+  </body>
+</html>

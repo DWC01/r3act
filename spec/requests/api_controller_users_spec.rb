@@ -8,8 +8,7 @@ describe Api::UsersController do
       10.times do |i|
         create(:user, email: "david_#{i}@gmail.com")
       end
-
-      get 'api/users'
+      get '/api/users'
     end
 
     it 'responds successfully with an HTTP 200 status code' do

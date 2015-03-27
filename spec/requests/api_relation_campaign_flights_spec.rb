@@ -12,7 +12,7 @@ describe Api::FlightsController do
         FactoryGirl.create :flight, campaign_id: (@id+1)
       end
 
-      get "api/campaigns/#{@id}/flights"
+      get "/api/campaigns/#{@id}/flights"
     end
 
     it 'responds successfully with an HTTP 200 status code' do

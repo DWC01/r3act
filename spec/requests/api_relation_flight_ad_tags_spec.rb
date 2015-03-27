@@ -12,7 +12,7 @@ describe Api::AdTagsController do
         FactoryGirl.create :ad_tag, flight_id: (@id+1)
       end
 
-      get "api/flights/#{@id}/ad_tags"
+      get "/api/flights/#{@id}/ad_tags"
     end
 
     it 'responds successfully with an HTTP 200 status code' do

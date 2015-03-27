@@ -9,9 +9,9 @@ module Api
       set_resource(resource_class.new(resource_params))
 
       if get_resource.save
-        render json: {r3act: get_resource}
+        render json: {resource_name => get_resource}
       else
-        render json: {r3act: get_resource.errors, status: :unprocessable_entity}
+        render json: {resource_name => get_resource.errors, status: :unprocessable_entity}
       end
     end
 
@@ -27,20 +27,20 @@ module Api
       resources = resource_class.where(query_params)
 
       instance_variable_set(plural_resource_name, resources)
-      render json: {r3act: instance_variable_get(plural_resource_name)}
+      render json: {resource_name => instance_variable_get(plural_resource_name)}
     end
 
     # GET /api/{plural_resource_name}/1
     def show
-      render json: {r3act: get_resource}
+      render json: {resource_name => get_resource}
     end
 
     # PATCH/PUT /api/{plural_resource_name}/1
     def update
       if get_resource.update(resource_params)
-        render json: {r3act: get_resource}
+        render json: {resource_name => get_resource}
       else
-        render json: {r3act: get_resource.errors, status: :unprocessable_entity}
+        render json: {resource_name => get_resource.errors, status: :unprocessable_entity}
       end
     end
 

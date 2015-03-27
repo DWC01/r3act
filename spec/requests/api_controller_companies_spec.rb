@@ -6,7 +6,7 @@ describe Api::CompaniesController do
     
     before do
       FactoryGirl.create_list(:company, 10)
-      get 'api/companies'
+      get '/api/companies'
     end
 
     it 'responds successfully with an HTTP 200 status code' do

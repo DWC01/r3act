@@ -30,5 +30,8 @@ module ReactiveDashboard
     # Load bower assets
     config.assets.paths << Rails.root.join("lib","assets","bower_components","bootstrap-sass-official", "assets", "stylesheets")
     config.assets.paths << Rails.root.join("lib","assets","bower_components","bootstrap-sass-official", "assets","fonts")
+
+    #Remove Active Record Warning
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end

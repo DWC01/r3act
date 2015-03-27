@@ -6,7 +6,7 @@ describe Api::CampaignsController do
     
     before do
       FactoryGirl.create_list(:campaign, 10)
-      get 'api/campaigns'
+      get '/api/campaigns'
     end
 
     it 'responds successfully with an HTTP 200 status code' do

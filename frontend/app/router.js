@@ -16,6 +16,18 @@ Router.map(function() {
   this.resource('sessions', function() {
     this.route('new');
   });
+  // Password Resets
+  this.resource('password_resets', function() {
+    this.route('new');
+    this.route('edit');
+  });
+  // Campaigns
+  this.resource('campaigns', function() {
+    this.resource('campaign', { path: '/:campaign_id' });
+  });
+
+
+
 
 });
 

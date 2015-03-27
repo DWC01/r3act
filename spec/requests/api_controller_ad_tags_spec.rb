@@ -6,7 +6,7 @@ describe Api::AdTagsController do
     
     before do
       FactoryGirl.create_list(:ad_tag, 10)
-      get 'api/ad_tags'
+      get '/api/ad_tags'
     end
 
     it 'responds successfully with an HTTP 200 status code' do

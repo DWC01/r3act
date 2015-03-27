@@ -6,7 +6,7 @@ describe Api::FlightsController do
     
     before do
       FactoryGirl.create_list(:flight, 10)
-      get 'api/flights'
+      get '/api/flights'
     end
 
     it 'responds successfully with an HTTP 200 status code' do

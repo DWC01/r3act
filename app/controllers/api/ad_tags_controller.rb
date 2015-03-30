@@ -4,9 +4,9 @@ module Api
     def index
       if params[:flight_id]
         flight = Flight.find(params[:flight_id])
-        render json: {r3act: flight.ad_tags}
+        render json: flight.ad_tags
       else
-        render json: {r3act: AdTag.all}
+        render json: AdTag.all
       end        
     end
 
@@ -14,7 +14,7 @@ module Api
 
       def ad_tag_params
         params.require(:ad_tag).permit(
-        :ad_type, :adserver_cost, :advertiser, :audience,
+        :ad_type, :advertiser, :audience,
         :cost_basis, :cost_method, :days, :details, :device,
         :end_date, :flight, :format, :height, :impressions,
         :javascript_tag, :publisher, :media_plan_name, :placement,

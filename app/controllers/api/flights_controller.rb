@@ -4,9 +4,9 @@ module Api
     def index
       if params[:campaign_id]
         campaign = Campaign.find(params[:campaign_id])
-        render json: {r3act: campaign.flights}
+        render json: campaign.flights
       else
-        render json: {r3act: Flight.all}
+        render json: Flight.all
       end        
     end
 

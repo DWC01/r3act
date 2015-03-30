@@ -1,6 +1,10 @@
 module Api
   class CampaignsController < Api::BaseController
-    
+  
+    def show
+      render json: Campaign.find(params[:id])
+    end
+  
     private
       def campaign_params
         params.require(:campaign).permit(

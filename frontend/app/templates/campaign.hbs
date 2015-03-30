@@ -1,0 +1,16 @@
+<div class="r3-page-header">
+  <h2 class="neon-green">
+    Show: {{name}}
+  </h2>
+</div>
+
+{{#each flight in flights}}
+ <div class="r3-page-header">
+  <h2 class="neon-green" style="text-align:left;">
+    {{flight.name}}
+    {{#each ad_tag in flight.ad_tags}}
+      {{impressions}}
+    {{/each}}
+  </h2>
+</div>
+{{/each}}

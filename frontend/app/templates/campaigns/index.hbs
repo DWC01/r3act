@@ -4,16 +4,16 @@
   </h2>
 </div>
 
-
 <ul class="list-unstyled">
-  {{#each c in model}}
-    <a class="stripe-box-list-link" href="">
+  {{#each campaign in model}}
+    {{#link-to 'campaign' campaign.id class="stripe-box-list-link"}}
+
       <li class="stripe-box-list-item md-whiteframe-z1">
         <div class="stripe-box-left-stripe"></div>
         <div class="stripe-box-content">
-          {{c.name}} | {{c.created_at}}
+          {{campaign.name}} | {{campaign.created_at}}
         </div>
       </li>
-    </a>
+    {{/link-to}}
   {{/each}}
 </ul>

@@ -1,20 +1,19 @@
 <div class="r3-page-header">
   <h2 class="neon-green">
-    Active Campaigns
+    Active Ad Tags
   </h2>
 </div>
 
 <ul class="list-unstyled">
-  {{#each campaign in model}}
-    {{#link-to 'campaigns.campaign.flights' campaign class="stripe-box-list-link"}}
+  {{#each ad_tag in model}}
+    {{#link-to 'ad_tag' ad_tag class="stripe-box-list-link"}}
+
       <li class="stripe-box-list-item md-whiteframe-z1">
         <div class="stripe-box-left-stripe"></div>
         <div class="stripe-box-content">
-          {{campaign.name}} | {{campaign.created_at}}
+          {{ad_tag.placement}} | {{ad_tag.created_at}}
         </div>
       </li>
     {{/link-to}}
   {{/each}}
 </ul>
-
-{{outlet}}

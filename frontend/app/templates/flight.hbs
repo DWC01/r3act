@@ -1,16 +1,15 @@
 <div class="r3-page-header">
   <h2 class="neon-green">
-    Show: {{name}}
+    {{name}}
   </h2>
 </div>
 
-{{#each flight in flights}}
+{{#each ad_tag in ad_tags}}
  <div class="r3-page-header">
   <h2 class="neon-green" style="text-align:left;">
-    {{flight.name}}
-    {{#each ad_tag in flight.ad_tags}}
-      {{impressions}}
-    {{/each}}
+    {{ad_tag.placement}}
   </h2>
 </div>
 {{/each}}
+
+{{outlet}}

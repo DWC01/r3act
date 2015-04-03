@@ -1,0 +1,11 @@
+<ul class="list-unstyled">
+  {{#each ad_tag in model}}
+  <div class="r3-page-header">
+    <h4 class="neon-green" style="text-align:left;">
+      {{ad_tag.placement}}
+    </h4>
+  </div>
+  {{/each}}
+</ul>
+
+{{outlet}}

@@ -5,9 +5,13 @@ module Api
       if params[:campaign_id]
         campaign = Campaign.find(params[:campaign_id])
         render json: campaign.flights
-      else
+      else  
         render json: Flight.all
-      end        
+      end
+    end
+  
+    def show
+      render json: Flight.find(params[:id])
     end
 
     private

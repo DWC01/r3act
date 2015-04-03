@@ -1,5 +1,4 @@
 class AdTagSerializer < ActiveModel::Serializer
-
   attributes :id, :ad_type, :advertiser, :audience,
         :cost_basis, :cost_method, :days, :details, :device,
         :end_date, :flight, :format, :height, :impressions,

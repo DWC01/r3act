@@ -5,9 +5,13 @@ module Api
       if params[:flight_id]
         flight = Flight.find(params[:flight_id])
         render json: flight.ad_tags
-      else
+      else  
         render json: AdTag.all
-      end        
+      end
+    end
+  
+    def show
+      render json: AdTag.find(params[:ad_tag_id])
     end
 
     private

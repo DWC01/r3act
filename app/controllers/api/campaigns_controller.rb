@@ -1,5 +1,9 @@
 module Api
   class CampaignsController < Api::BaseController
+    
+    def index
+      render json: Campaign.all
+    end
   
     def show
       render json: Campaign.find(params[:id])

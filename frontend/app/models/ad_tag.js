@@ -1,7 +1,6 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  flight:                   DS.belongsTo('flight'),
   ad_type:                  DS.attr('string'),
   advertiser:               DS.attr('string'),
   audience:                 DS.attr('string'),
@@ -31,5 +30,7 @@ export default DS.Model.extend({
   width:                    DS.attr('string'),
   flight_id:                DS.attr('number'),
   created_at:               DS.attr('date'),
-  updated_at:               DS.attr('date')
+  updated_at:               DS.attr('date'),
+  
+  flight:                   DS.belongsTo('flight', {async: true})
 });

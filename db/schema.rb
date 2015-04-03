@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150316040000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "ad_tags", force: true do |t|
+  create_table "ad_tags", force: :cascade do |t|
     t.string   "ad_type"
     t.string   "advertiser"
     t.string   "audience"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20150316040000) do
     t.datetime "updated_at"
   end
 
-  create_table "campaigns", force: true do |t|
+  create_table "campaigns", force: :cascade do |t|
     t.string   "ad_sizes",                default: [], array: true
     t.string   "ad_tag_provider"
     t.string   "ad_tag_receivers",        default: [], array: true
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20150316040000) do
     t.datetime "updated_at"
   end
 
-  create_table "companies", force: true do |t|
+  create_table "companies", force: :cascade do |t|
     t.string   "name"
     t.string   "logo"
     t.string   "placements_trafficked"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20150316040000) do
     t.datetime "updated_at"
   end
 
-  create_table "flights", force: true do |t|
+  create_table "flights", force: :cascade do |t|
     t.string   "name"
     t.string   "adserver_cost"
     t.string   "start_date"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20150316040000) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"

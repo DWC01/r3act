@@ -10,18 +10,19 @@
     <h2 class="neon-green" style="text-align:left;">
       {{flight.name}}
     </h2>
+    <ul class="list-unstyled">
+      {{#each ad_tag in flight.tags}}
+        <div class="r3-page-header">
+          <h2 class="neon-green" style="text-align:left;">
+            {{ad_tag.placement}}
+          </h2>
+        </div>
+      {{/each}}
+    </ul>
   </div>
   {{/each}}
 </ul>
 
-{{!-- <ul class="list-unstyled">
-  {{#each ad_tag in ad_tags}}
-  <div class="r3-page-header">
-    <h2 class="neon-green" style="text-align:left;">
-      {{ad_tag.placement}}
-    </h2>
-  </div>
-  {{/each}}
-</ul> --}}
+
 
 {{outlet}}

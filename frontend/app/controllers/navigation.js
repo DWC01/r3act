@@ -1,4 +1,4 @@
-var NavigationController = Ember.ArrayController.extend({
+export default Ember.ArrayController.extend({
   actions: {
     toggleSidebar: function() {
       $('.sidebar').toggleClass('show-sidebar');
@@ -6,5 +6,3 @@ var NavigationController = Ember.ArrayController.extend({
     }
   }
 });
- 
-export default NavigationController;

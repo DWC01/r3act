@@ -5,5 +5,5 @@ class AdTagSerializer < ActiveModel::Serializer
         :javascript_tag, :publisher, :media_plan_name, :placement,
         :primary_target_audience, :product, :properties, :size,
         :site, :start_action, :start_date, :unit_cost, :width,
-        :flight_id
+        :created_at, :updated_at, :total_cost, :client_cost, :flight_id
 end

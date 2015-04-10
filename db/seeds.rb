@@ -1,3 +1,4 @@
+User.delete_all
 Flight.delete_all
 AdTag.delete_all
 Campaign.delete_all
@@ -28,6 +29,7 @@ Campaign.delete_all
     site:                          "mymagazine.com",
     start_action:                  "auto",
     start_date:                    "1/1/2015",
+    total_cost:                    "1500000", 
     unit_cost:                     "1.50",
     width:                         "300",
     flight_id:                     id
@@ -61,6 +63,21 @@ end
     media_plan_name:             "Best Campaign Ever (CTR through the roof)",
     name:                        "Best Campaign Ever (CTR through the roof)",
     primary_target_audience:     "Males 20-30",
-    start_date:                  "1/1/2015"
+    start_date:                  "1/1/2015",
+    company_id:                  1
+  )
+end
+
+(1..5).each do |id|
+  User.create(
+    first_name:                 "David",
+    last_name:                  "Christian",
+    email:                      "DWC0#{id}@gmail.com",
+    avatar:                     "",
+    position:                   "Ad Operations",
+    title:                      "Ad Operations Analyst",
+    password:                   "password123",
+    admin:                      true,
+    company_id:                 1
   )
 end

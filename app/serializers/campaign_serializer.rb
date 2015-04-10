@@ -5,7 +5,7 @@ class CampaignSerializer < ActiveModel::Serializer
             :ad_tag_sender, :ad_tags_count, :ad_tags_file,
             :ad_devices, :ad_formats, :advertiser, :end_date,
             :media_plan_name, :name, :primary_target_audience,
-            :start_date
+            :start_date, :created_at, :updated_at, :company_id
   
   has_many :flights
 end

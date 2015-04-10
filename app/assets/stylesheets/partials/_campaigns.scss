@@ -1,4 +1,4 @@
-.page-content{
+.page-content {
  width: 950px;
  margin: 0px auto;
 }
@@ -27,16 +27,6 @@
 /*-----------------*/
 /*  Campaign List  */
 /*-----------------*/
-
-.r3-page-header {
-  padding-bottom: 25px;
-  margin: 25px 0 40px 0;
-  border-bottom: 1px solid #eeeeee;
-  text-align: center;
-  & h2 {
-    font-size: 25px;
-  }
-}
 
 .stripe-box-list-link {
   &:hover, &:active, &:focus {
@@ -69,7 +59,6 @@
 /*-----------------*/
 /*  Campaign Show  */
 /*-----------------*/
-
 
 .campaign-graph-btn-menu {
   position: relative;

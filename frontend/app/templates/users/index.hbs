@@ -1,5 +1,20 @@
 <div class="r3-page-header">
   <h2 class="center"> 
-    User List Here!
+    Active Users
   </h2>
 </div>
+
+<ul class="list-unstyled">
+  {{#each user in users}}
+    {{#link-to 'users.show' user class="stripe-box-list-link"}}
+      <li class="stripe-box-list-item md-whiteframe-z1">
+        <div class="stripe-box-left-stripe"></div>
+        <div class="stripe-box-content">
+          {{user.first_name}} | {{user.last_name}} | {{user.position}} | 
+        </div>
+      </li>
+    {{/link-to}}
+  {{/each}}
+</ul>
+
+{{outlet}}

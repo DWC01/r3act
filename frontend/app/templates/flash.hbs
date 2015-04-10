@@ -1,0 +1,26 @@
+{{#if flashMessage.isNotice}}
+  <div {{action "click" flashMessage target=view}} class="r3-flashs r3-flash-success center">
+    <div class="page-content-wrap sidebar-push-content">
+      {{flashMessage.message}}
+    </div>
+  </div>
+{{/if}}
+
+{{#if flashMessage.isSuccess}}
+  <div {{action "click" flashMessage target=view}} class="r3-flashs r3-flash-success center">
+    <div class="page-content-wrap sidebar-push-content">
+      {{flashMessage.message}}
+    </div>
+  </div>
+{{/if}}
+
+{{#if flashMessage.isError}}
+  <div {{action "click" flashMessage target=view}} class="r3-flashs r3-flash-error center">
+    <div class="page-content-wrap sidebar-push-content">
+      {{flashMessage.message}}
+    </div>
+  </div>
+{{/if}}
+
+
+

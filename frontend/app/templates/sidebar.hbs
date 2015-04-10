@@ -9,7 +9,7 @@
         <a data-parent="#r3Collapse"
            data-toggle="collapse"
            href="#collapse-placements"
-           aria-expanded="false" 
+           aria-expanded="true" 
            aria-controls="collapse-placements"
            ng-click="setCurrentHeader(menuHeader.header)"
            ui-sref="menu"
@@ -23,7 +23,7 @@
       </div>
     <!-- Panel Body -->
       <div id="collapse-placements" 
-           class="panel-collapse collapse" 
+           class="panel-collapse collapse in" 
            role="tabpanel" 
            aria-labelledby="headingOne">
         <div class="r3-panel-body">
@@ -31,6 +31,11 @@
             <p class="title">
               {{#link-to 'campaigns.index'}}
                 Campaigns
+              {{/link-to}}
+            </p>
+            <p class="title">
+              {{#link-to 'users.index'}}
+                Users
               {{/link-to}}
             </p>
           </aside>
@@ -45,7 +50,7 @@
         <a data-parent="#r3Collapse"
            data-toggle="collapse"
            href="#collapse-trafficking"
-           aria-expanded="false" 
+           aria-expanded="true" 
            aria-controls="collapse-trafficking"
            ng-click="setCurrentHeader(menuHeader.header)"
            ui-sref="analytics"
@@ -59,15 +64,15 @@
       </div>
     <!-- Panel Body -->
       <div id="collapse-trafficking" 
-           class="panel-collapse collapse" 
+           class="panel-collapse collapse in" 
            role="tabpanel" 
            aria-labelledby="headingOne">
         <div class="r3-panel-body">
           <aside class="page-menu-content">
             <p class="title" >
-              <a href="/users/10">
+              {{#link-to 'users'}}
                 My Profile
-              </a>
+              {{/link-to}}
             </p>
           </aside>
         </div>

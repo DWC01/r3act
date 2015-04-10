@@ -11,7 +11,7 @@ module Api
     end
   
     def show
-      render json: AdTag.find(params[:ad_tag_id])
+      render json: AdTag.find(params[:id])
     end
 
     private

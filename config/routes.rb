@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       resources :ad_tags, defaults: { format: :json }
     end
   end
+
   
   root "ember#bootstrap"
   get "/*path", to: "ember#bootstrap"

@@ -10,7 +10,7 @@ module Api
       if user.update_attributes(sanitized_user_params)
         render json: user
       else
-        render json: {errors: get_resource.errors.to_h}
+        render json: {errors: get_resource.errors.to_h}, status: 422
       end
     end
 

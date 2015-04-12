@@ -5,15 +5,12 @@ export default Ember.Route.extend({
     return this.store.find('campaign', params.campaign_id);
   },
   setupController: function (controller, model) {
-    var flights;
-    controller.set('campaign', model);
-
-    flights = this.buildFlights(controller, model);    
+    var flights = this.buildFlights(controller, model);    
     controller.set('flights', flights);
   },
   flights: function(model) {
     return this.store.all('flight').filter(function(flight) {
-      return (String(flight.get('campaign_id'))) === model.id
+      return (String(flight.get('campaign_id'))) === model.id;
     });
   },
   buildFlights: function(controller, model) {
@@ -28,7 +25,7 @@ export default Ember.Route.extend({
   },
   ad_tags: function(flight) {
     return this.store.all('ad_tag').filter(function(ad_tag) {
-      return (String(ad_tag.get('flight_id'))) === flight.get('id')
+      return (String(ad_tag.get('flight_id'))) === flight.get('id');
     });
   }
 });

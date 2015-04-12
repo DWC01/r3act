@@ -1,5 +1,5 @@
-var NavigationView = Ember.View.extend({
+import Ember from 'ember';
+
+export default Ember.View.extend({
   templateName: 'navigation'
 });
- 
-export default NavigationView;

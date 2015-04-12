@@ -1,13 +1,23 @@
-<form action="/sign_in" method="post">
+<form {{action signIn on="submit"}}>  
   <div class="form-input">
-    <input type="email" name="email" placeholder="email" class="form-control"/>
+    {{input type="email" value=email name="email" placeholder="email" class="form-control"}}
+    <div class="form-field-error">
+      {{user_errors.email}}
+    </div> 
   </div>
   <div class="form-input">
-    <input type="password" name="password" placeholder="password" class="form-control"/>
+     {{input type="password" value=password name="password" placeholder="password" class="form-control"}}
+    <div class="form-field-error">
+      {{user_errors.password}}
+    </div>
   </div>
-  <div class="center">
-    <button type="submit" name="Submit" class="r3-btn-primary">
-      Submit
-    </button>
+  <div class="form-input input-1-2"></div> 
+  <div class="form-input input-2-2">
+    {{#link-to 'users.new'}}
+      Forget your password?
+    {{/link-to}}
   </div>
+  <button type="submit" name="submit" class="r3-btn-primary">
+    Submit
+  </button>
 </form>

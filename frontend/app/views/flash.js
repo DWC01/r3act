@@ -9,7 +9,7 @@ export default Ember.View.extend({
     }, 4000);
   },
   actions: {
-    click: function(alert) {
+    click: function() {
       this.get('controller').get(
         'controllers.flash').removeObject(
         this.get('content'));

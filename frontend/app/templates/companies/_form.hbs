@@ -1,0 +1,12 @@
+<form {{action "createCompany" on="submit"}}>  
+    
+  <div class="form-input">
+    {{input type="text" value=name name="name" placeholder="name" class="form-control"}}
+    <div class="form-field-error">
+      {{company_errors.name}}
+    </div>
+  </div>
+  <button type="submit" name="submit" class="r3-btn-primary">
+    Submit
+  </button>
+</form>

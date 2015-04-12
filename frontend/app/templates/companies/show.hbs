@@ -1,6 +1,6 @@
 <div class="r3-page-header">
   <h2 class="center"> 
-    Account Settings
+    Company Settings
   </h2>
 </div>
 
@@ -19,50 +19,40 @@
         Name:
       </div>
       <div class="account-settings-value">
-        <div class="account-settings-value-2">
-          {{input type="text" value=model.first_name name="first_name" placeholder="first name" class="form-control"}}
-        </div>
-        <div class="account-settings-value-2">
-         {{input type="text" value=model.last_name name="last_name" placeholder="last name" class="form-control"}}
-        </div>
+       {{input type="text" value=model.name name="name" placeholder="name" class="form-control"}}
       </div>
     </div>
     <div class="account-settings-row">
       <div class="account-settings-label">
-        Photo:
+        Description:
       </div>
       <div class="account-settings-value"></div>
     </div>
     <div class="account-settings-row">
       <div class="account-settings-label">
-        Email:
+        Placements Trafficked:
       </div>
       <div class="account-settings-value">
-       {{input type="text" value=model.email name="email" placeholder="email" class="form-control"}}
+        <div>
+          {{model.placements_trafficked}}
+        </div>
       </div>
     </div>
     <div class="account-settings-row">
       <div class="account-settings-label">
-        Position:
+        Placement Rate:
       </div>
       <div class="account-settings-value">
-        {{input type="text" value=model.position name="position" placeholder="position" class="form-control"}}
+        <div>
+          {{model.placement_rate}}
+        </div>
       </div>
     </div>
     <div class="account-settings-row">
       <div class="account-settings-label">
-        Title:
+        Total Cost:
       </div>
       <div class="account-settings-value">
-        {{input type="text" value=model.title name="title" placeholder="title" class="form-control"}}
-      </div>
-    </div>
-    <div class="account-settings-row">
-      <div class="account-settings-label">
-        Company:
-      </div>
-      <div class="account-settings-value">
-        {{input type="text" value=model.company name="company" placeholder="company" class="form-control"}}
       </div>
     </div>
   </div><!-- End of Account Settings Wrap -->

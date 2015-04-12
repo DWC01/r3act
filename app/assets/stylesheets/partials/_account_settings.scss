@@ -35,6 +35,9 @@
   & input {
     height: 37px;
   }
+  & div {
+    margin: 7px 0 0 0;
+  }
 }
 
 .account-settings-value-2 {
@@ -49,11 +52,11 @@
 
 .account-settings-submit-wrap {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin-top: 10px;
   padding: 15px 25px;
 }
 
-.account-settings-submit {
+.account-settings-submit, .account-settings-delete {
   width: 200px;
 }

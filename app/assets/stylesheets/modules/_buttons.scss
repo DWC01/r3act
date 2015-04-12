@@ -1,6 +1,10 @@
 $primary-btn-border: $neon-green;
 $primary-btn-background: $neon-green;
 
+$warn-btn-border: $warn;
+$warn-btn-background: $warn;
+
+
 .r3-btn-primary {
   color: #fff;
   font-weight: 200;
@@ -16,14 +20,32 @@ $primary-btn-background: $neon-green;
   }
 }
 
-.r3-btn-hallow-blue {
-  color: #0277BD;
-  border: 1px solid #0277BD !important;
-  font-size: 15px;
-  font-weight: bold;
+.r3-btn-warn {
+  color: #fff;
+  font-weight: 200;
+  font-size: 18px;
+  padding: 4px 30px;
+  border: 2px solid $warn-btn-border;
+  background-color: $warn-btn-background;
+  transition: all .2s;
+  width: 100%;
+  &:hover {
+    background-color: #fff;
+    color: $warn-btn-background;
+  }
+}
+
+.r3-btn-warn-hollow {
+  color: $warn-btn-border;
+  font-weight: 200;
+  font-size: 18px;
+  padding: 4px 30px;
+  border: 1px solid $warn-btn-border;
   background-color: #fff;
-  &:hover, &:active, &:focus {
-    color: #01579B !important;
-    border: 1px solid #01579B !important;
+  transition: all .2s;
+  width: 100%;
+  &:hover {
+    background-color: $warn-btn-border;
+    color: #fff;
   }
 }

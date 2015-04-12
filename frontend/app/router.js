@@ -12,12 +12,20 @@ Router.map(function() {
     this.route('show', {path: ':campaign_id'});
   });
 
-  this.resource('users', function(){
-    this.route('new');
-    this.route('show', {path: ':user_id'});
+  this.resource('companies', function() {
+    this.route('new',  {path: 'new'});
+    this.route('show', {path: ':company_id'});
   });
 
-  this.route('sessions.new', {path:'sign-in'});
+  this.resource('users', function(){
+    this.route('show', {path: ':user_id'});
+  });
+  this.route('users.new', {path: 'sign-up'});
+
+  this.resource('sessions', function() {
+    this.route('new');
+  });
+  this.route('sessions.destroy', {path: 'sign-out'});
 
 });
 

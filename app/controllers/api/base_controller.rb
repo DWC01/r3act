@@ -40,7 +40,7 @@ module Api
       if get_resource.update(resource_params)
         render json: {resource_name => get_resource}
       else
-        render json: {resource_name => get_resource.errors, status: :unprocessable_entity}
+        render json: {errors: get_resource.errors.to_h}, status: 422
       end
     end
 

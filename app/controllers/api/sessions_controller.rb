@@ -1,10 +1,21 @@
 module Api
   class SessionsController < Api::BaseController
+    attr_reader :password_err, :email_err
+
+    def initialize 
+      @password_err = "Invalid password"
+      @email_err    = "Email could not be found"
+    end
 
     def create
-      render json: session_params
-      # render json: {errors: get_resource.errors.to_h}, status: 422
-      
+      user = User.find_by_email(params[:email])
+      if user && user.authenticate(params[:password])
+        render json: {success: true, user: user, api_key: user.api_key}, status: 200
+      elsif user
+        render json: {errors: {password: password_err}}, status: 422
+      else
+        render json: {errors: {email: email_err}}, status: 422
+      end
     end
 
     private

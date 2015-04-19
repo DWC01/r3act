@@ -9,7 +9,7 @@ export default Ember.ArrayController.extend({
   },
 
   _clearCompanyProperties: function() {
-    this.setProperties({name: null});
+    this.setProperties({name: undefined});
   },
 
   _createCompanyModel: function() {

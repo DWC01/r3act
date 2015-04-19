@@ -2,15 +2,6 @@
 
 module.exports = function(environment) {
   var ENV = {
-    flashMessageDefaults: {
-      timeout            : 5000,
-      priority           : 200,
-      sticky             : true,
-      showProgress       : true,
-      type               : 'alpaca',
-      types              : [ 'alpaca', 'notice', 'foobar' ],
-      injectionFactories : [ 'route', 'controller', 'view', 'component' ]
-    },
     modulePrefix: 'frontend',
     environment: environment,
     baseURL: '/',
@@ -32,7 +23,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 

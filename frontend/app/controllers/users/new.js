@@ -13,8 +13,9 @@ export default Ember.ArrayController.extend({
 
   _clearUserProperties: function() {
     this.setProperties({
-      first_name: null, last_name: null, email: null,
-      password: null, password_confirmation: null
+      first_name: undefined, last_name: undefined, 
+      email: undefined, password: undefined, 
+      password_confirmation: undefined
     });
   },
 
@@ -53,6 +54,7 @@ export default Ember.ArrayController.extend({
         } 
       },
       function(reason) {
+        console.log(reason);
         _this.set('user_errors', reason.errors);
       }
     );

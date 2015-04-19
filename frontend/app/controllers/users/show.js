@@ -9,9 +9,9 @@ export default Ember.Controller.extend({
       }
     },
     delete: function() {
-      var self = this;
+      var _this = this;
       this.get('model').destroyRecord().then(function() {
-        self.transitionToRoute('users');
+        _this.transitionToRoute('users');
       });
     }
   }

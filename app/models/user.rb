@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base
-  before_create {generate_token(:auth_token)}
+  after_create :generate_api_key
+  
   has_secure_password
+  
+  has_one :api_key
   belongs_to :company
+  
   email_regex = /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}\Z/i
 
   validates_uniqueness_of   :email
@@ -9,6 +13,11 @@ class User < ActiveRecord::Base
   validates_presence_of     :first_name, :email, :password_confirmation
   validates :password,      presence: true, on: :create, length: { minimum: 6 }
 
+
+  def generate_api_key
+    ApiKey.create!(user_id: self.id)
+  end
+  
   def generate_token(column)
     begin
       self[column] = SecureRandom.urlsafe_base64

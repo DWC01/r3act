@@ -1,14 +1,14 @@
-<form {{action signIn on="submit"}}>  
+<form {{action 'signIn' on="submit"}}>
   <div class="form-input">
     {{input type="email" value=email name="email" placeholder="email" class="form-control"}}
     <div class="form-field-error">
-      {{user_errors.email}}
+      {{session_errors.email}}
     </div> 
   </div>
   <div class="form-input">
      {{input type="password" value=password name="password" placeholder="password" class="form-control"}}
     <div class="form-field-error">
-      {{user_errors.password}}
+      {{session_errors.password}}
     </div>
   </div>
   <div class="form-input input-1-2"></div> 

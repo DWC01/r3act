@@ -43,6 +43,23 @@ module Api
         render json: {errors: get_resource.errors.to_h}, status: 422
       end
     end
+    
+    protected
+      def authenticate
+        authenticate_token || render_unauthorized
+      end
+
+      def authenticate_token
+        authenticate_with_http_token do |access_token, options|
+          api_key = ApiKey.find_by(access_token: access_token);
+          User.find(api_key.user_id)
+        end
+      end
+
+      def render_unauthorized
+        self.headers['WWW-Authenticate'] = 'Token realm="Application"'
+        render json: {message: 'Bad credentials'}, status: 401
+      end
 
     private
 
@@ -92,5 +109,7 @@ module Api
         resource ||= resource_class.find(params[:id])
         instance_variable_set("@#{resource_name}", resource)
       end
+
+
   end
 end

@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   resources :campaigns, :only => [:new, :create]
 
   namespace :api do    
-    resources :campaigns, :flights, :ad_tags, :users, :companies
+    resources :campaigns, :flights, :ad_tags, :users, :companies, :api_keys
+    resources :sessions, :only => [:create, :show]
     
+
     resources :campaigns do
       resources :flights, defaults: { format: :json }
     end

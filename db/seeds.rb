@@ -77,6 +77,7 @@ end
     position:                   "Ad Operations",
     title:                      "Ad Operations Analyst",
     password:                   "password123",
+    password_confirmation:      "password123",
     admin:                      true,
     company_id:                 1
   )

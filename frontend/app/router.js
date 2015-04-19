@@ -6,6 +6,8 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+
+  this.route('home', {path: '/'});
   
   this.resource('campaigns', function() {
     this.route('new',  {path: 'new'});
@@ -17,14 +19,13 @@ Router.map(function() {
     this.route('show', {path: ':company_id'});
   });
 
-  this.resource('users', function(){
+  this.resource('users', function() {
     this.route('show', {path: ':user_id'});
   });
   this.route('users.new', {path: 'sign-up'});
 
-  this.resource('sessions', function() {
-    this.route('new');
-  });
+  this.resource('sessions');
+  this.route('sessions.new', {path: 'sign-in'});
   this.route('sessions.destroy', {path: 'sign-out'});
 
 });

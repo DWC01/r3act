@@ -9,7 +9,7 @@ export default Ember.ArrayController.extend({
   },
 
   _clearCampaignProperties: function() {
-    this.setProperties({name: null});
+    this.setProperties({name: undefined});
   },
 
   _createCampaignModel: function() {

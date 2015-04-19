@@ -6,8 +6,6 @@ import config from './config/environment';
 Ember.MODEL_FACTORY_INJECTIONS = true;
 
 var App = Ember.Application.extend({
-  LOG_TRANSITIONS:          true,
-  LOG_TRANSITIONS_INTERNAL: true,
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
   Resolver: Resolver

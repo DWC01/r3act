@@ -7,6 +7,7 @@ export default Ember.Route.extend({
   setupController: function (controller, model) {
     var flights = this.buildFlights(controller, model);    
     controller.set('flights', flights);
+    controller.set('campaign', model);
   },
   flights: function(model) {
     return this.store.all('flight').filter(function(flight) {

@@ -1,14 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-    needs: ['flash'],
-    flashMessages: Ember.computed.alias("controllers.flash.model"),
-    actions: {
-      createFlashMessage: function(type, message ) {
-        this.get('controllers.flash').createFlash({
-          type: type,
-          message: message
-        });
-      }
+    needs: ['sessions/new', 'flash'],
+
+    currentUser: (function() {
+      return this.get('controllers.sessions.currentUser');
+    }).property('controllers.sessions.currentUser'),
+
+    flash: function(type, message) {
+      this.get('controllers.flash').createFlash({
+        type: type, message: message
+      });
     }
 });

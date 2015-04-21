@@ -24,8 +24,7 @@ Router.map(function() {
   });
   this.route('users.new', {path: 'sign-up'});
 
-  this.resource('sessions');
-  this.route('sessions.new', {path: 'sign-in'});
+  this.route('sessions', {path: 'sign-in'});
   this.route('sessions.destroy', {path: 'sign-out'});
 
 });

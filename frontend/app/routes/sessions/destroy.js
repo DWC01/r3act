@@ -1,9 +1,12 @@
+/* global Cookies */
 import Ember from 'ember';
 
 export default Ember.Route.extend({
   beforeModel: function() {
+    this.controllerFor('sessions').clearAll();
     this._removeSessionCookie();
     this._clearAllModelStore();
+    
     this.transitionTo('home');
   },
   _removeSessionCookie: function() {

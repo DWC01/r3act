@@ -14,9 +14,16 @@
     </div>
     <ul class="nav pull-right">
     <li>
-      {{#link-to 'sessions.destroy'}}
-        Logout
-      {{/link-to}}
+      {{#if isLoggedIn}}
+        Hey {{currentUser.first_name}}!
+        {{#link-to 'sessions.destroy'}}
+          Logout
+        {{/link-to}}
+      {{else}}
+        {{#link-to 'sessions'}}
+          Sign In
+        {{/link-to}}
+      {{/if}}
     </li>
     </ul>
   </div>

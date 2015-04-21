@@ -1,8 +1,15 @@
 module Api
   class UsersController < Api::BaseController
-
-    def show
-      render json: User.find(params[:id])
+    
+    def current_user
+      access_token = params[:access_token]
+      api_key = ApiKey.find_by_access_token(access_token)
+      user = User.find(api_key.user_id)
+      render json: {id: user.id,
+                    first_name: user.first_name, 
+                    last_name: user.last_name,
+                    email: user.email,
+                    admin: user.admin}
     end
 
     def create

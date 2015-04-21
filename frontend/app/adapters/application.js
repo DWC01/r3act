@@ -6,9 +6,9 @@ export default DS.ActiveModelAdapter.extend({
   namespace: 'api',
   host: 'http://localhost:3000',
   headers: Ember.computed(function(){
-    var access_token = Cookies.get('user_session');
-    if (access_token) {
-      return {'Authorization': 'Token token=' + '"' + access_token + '"'};
+    var auth_token = Cookies.get('user_session');
+    if (auth_token) {
+      return {'Authorization': 'Token token=' + '"' + auth_token + '"'};
     } 
   }).property().volatile()
 });

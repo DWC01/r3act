@@ -20,7 +20,7 @@ export default Ember.ArrayController.extend({
   _clearSessionProperties: function() {
     this.setProperties({
       email: undefined, password: undefined,
-      access_token: undefined, currentUser: undefined,
+      auth_token: undefined, currentUser: undefined,
       isLoggedIn: undefined
     });
   },
@@ -35,13 +35,13 @@ export default Ember.ArrayController.extend({
   },
 
   _accessTokenChanged: function() {
-    var access_token = this.get('access_token');
-    if (access_token) {
-      Cookies.set('user_session',  this.get('access_token'), {path: '/' });
+    var auth_token = this.get('auth_token');
+    if (auth_token) {
+      Cookies.set('user_session',  this.get('auth_token'), {path: '/' });
     } else {
       Cookies.remove('user_session', { path: '/' });
     }
-  }.observes('access_token'),
+  }.observes('auth_token'),
 
   _flashMsg: function(name) {
     return 'Welcome back ' + name + '!';
@@ -57,13 +57,12 @@ export default Ember.ArrayController.extend({
       this.set('attemptedTransition', null);
     } else {
       this.transitionToRoute('users.show', user.id );
-      this._setFlashMessage(this.currentUser.first_name);
     }
   },
 
-  _setCurrentUserProperties: function(api_key, user) {
+  _setCurrentUserProperties: function(user) {
     this.setProperties({
-      access_token: api_key.get('access_token'),
+      auth_token: user.get('auth_token'),
       isLoggedIn: true,
       currentUser: user.getProperties(
         'id', 'first_name', 'last_name', 'email'
@@ -72,13 +71,10 @@ export default Ember.ArrayController.extend({
   },
 
   _signInSucess: function(response, attemptedTransition) {
-    var api_key, self = this;
-
-    if(response.success) {
-      api_key = self.store.createRecord('api_key', response.api_key);
-      
-      this.store.find('user', api_key.get('user_id')).then(function(user) {
-        self._setCurrentUserProperties(api_key, user);
+    var self = this;
+    if(response.success) {      
+      this.store.find('user', response.user.id).then(function(user) {
+        self._setCurrentUserProperties(user);
         self._clearFormProperties();
         self._redirectAfterLogin(attemptedTransition, user);
       });
@@ -94,7 +90,6 @@ export default Ember.ArrayController.extend({
 
   _createNewSession: function(data, attemptedTransition) {
     var self = this;
-    
     Ember.$.post('api/sessions', data).then(
       function(response){
         self._signInSucess(response, attemptedTransition);

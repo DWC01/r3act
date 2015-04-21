@@ -2,14 +2,18 @@ module Api
   class UsersController < Api::BaseController
     
     def current_user
-      access_token = params[:access_token]
-      api_key = ApiKey.find_by_access_token(access_token)
-      user = User.find(api_key.user_id)
-      render json: {id: user.id,
-                    first_name: user.first_name, 
-                    last_name: user.last_name,
-                    email: user.email,
-                    admin: user.admin}
+      auth_token = params[:auth_token]
+      user = User.find_by_auth_token(auth_token)
+      if user
+      render json: {
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
+        id: user.id,
+        auth_token: user.auth_token}, status: 200
+      else
+        render json: {message: 'Bad credentials'}, status: 401
+      end
     end
 
     def create

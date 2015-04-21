@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   namespace :api do    
 
-    resources :campaigns, :flights, :ad_tags, :users, :companies, :api_keys
+    resources :campaigns, :flights, :ad_tags, :users, :companies
     resources :sessions, :only => [:create, :show]
     
 

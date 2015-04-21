@@ -10,7 +10,7 @@ module Api
     def create
       user = User.find_by_email(params[:email])
       if user && user.authenticate(params[:password])
-        render json: {success: true, user: user, api_key: user.api_key}, status: 200
+        render json: {success: true, user: user}, status: 200
       elsif user
         render json: {errors: {password: password_err}}, status: 422
       else

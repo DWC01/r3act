@@ -14,7 +14,6 @@ export default Ember.Route.extend({
   },
   _clearAllModelStore: function() {
     this.store.unloadAll('user');
-    this.store.unloadAll('api_key');
     this.store.unloadAll('campaign');
     this.store.unloadAll('ad_tag');
     this.store.unloadAll('flight');

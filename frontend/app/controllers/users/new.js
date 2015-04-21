@@ -1,8 +1,9 @@
+/* global Cookies */
 import Ember from 'ember';
 
 export default Ember.ArrayController.extend({
   
-  needs: ['flash'],
+  needs: ['flash', 'sessions'],
       
   _setUserProperties: function() {
     return this.getProperties(
@@ -16,6 +17,30 @@ export default Ember.ArrayController.extend({
       first_name: undefined, last_name: undefined, 
       email: undefined, password: undefined, 
       password_confirmation: undefined
+    }); 
+  },
+
+  _setSessionProperties: function(user) {
+    this.get('controllers.sessions').setProperties({
+      currentUser: {
+        first_name: user.get('first_name'),
+        last_name: user.get('last_name'),
+        email: user.get('email'),
+        id: user.get('id')
+      },
+      isLoggedIn: true,
+      auth_token: user.get('auth_token')
+    });
+  },
+
+  _setSessionCookie: function(auth_token) {
+    Cookies.set('user_session', auth_token, {path: '/' });
+  },
+
+  _clearSessionProperties: function() {
+    this.get('controllers.sessions').setProperties({
+      currentUser: undefined,
+      isLoggedIn: undefined
     });
   },
 
@@ -44,18 +69,18 @@ export default Ember.ArrayController.extend({
   },
 
   _saveUserModel: function(user) {
-    var _this = this;
+    var self = this;
     user.save().then(
       function() {
         if (user.get('id')) {
-          _this._setFlashMessage(user.get('first_name'));
-          _this._destroyUserModel(user);
-          _this.transitionToRoute('users.show', user);
+          self._setSessionProperties(user);
+          self._setSessionCookie(user.get('auth_token'));
+          self._clearUserProperties();
+          self.transitionToRoute('users.show', user);
         } 
       },
       function(reason) {
-        console.log(reason);
-        _this.set('user_errors', reason.errors);
+        self.set('user_errors', reason.errors);
       }
     );
   },

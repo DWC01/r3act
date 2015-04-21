@@ -13,18 +13,27 @@
       </a>
     </div>
     <ul class="nav pull-right">
-    <li>
       {{#if isLoggedIn}}
-        Hey {{currentUser.first_name}}!
-        {{#link-to 'sessions.destroy'}}
-          Logout
-        {{/link-to}}
+        <li>
+          Hey {{currentUser.first_name}}!
+        </li>
+        <li>
+          {{#link-to 'sessions.destroy'}}
+            Logout
+          {{/link-to}}
+        </li>
       {{else}}
-        {{#link-to 'sessions'}}
-          Sign In
-        {{/link-to}}
+        <li>
+          {{#link-to 'sessions'}}
+            Sign In
+          {{/link-to}}
+        </li>
+        <li>
+          {{#link-to 'users.new'}}
+            Sign Up
+          {{/link-to}}
+        </li>
       {{/if}}
-    </li>
     </ul>
   </div>
 </nav>

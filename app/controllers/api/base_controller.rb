@@ -50,9 +50,8 @@ module Api
       end
 
       def authenticate_token
-        authenticate_with_http_token do |access_token, options|
-          api_key = ApiKey.find_by(access_token: access_token);
-          User.find(api_key.user_id)
+        authenticate_with_http_token do |auth_token, options|
+          User.find_by_auth_token(auth_token)
         end
       end
 

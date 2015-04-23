@@ -27,6 +27,10 @@ Router.map(function() {
   this.route('sessions', {path: 'sign-in'});
   this.route('sessions.destroy', {path: 'sign-out'});
 
+  this.route('passwords.new', {path: 'passwords/new'});
+  this.route('passwords.edit', {path: 'passwords/reset'});
+
+
 });
 
 export default Router;

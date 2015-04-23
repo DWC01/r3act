@@ -16,8 +16,11 @@ Rails.application.routes.draw do
       resources :ad_tags, defaults: { format: :json }
     end
   end
-  get "/api/current_user", to: 'api/users#current_user'
-  
+
+  get  "/api/current_user",              to: "api/users#current_user"
+  post "/api/password_resets",           to: "api/password_resets#create"
+  post "/api/password_resets/update",    to: "api/password_resets#update"
+
 
 
   root "ember#bootstrap"

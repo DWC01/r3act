@@ -1,17 +1,13 @@
 class PasswordResetsController < ApplicationController
-
-  def new
-  end
+  respond_to :json
 
   def create
     user = User.find_by_email(params[:email])
     if user 
       user.send_password_reset
-      flash[:success] = "Email sent with password reset instructions."
-      redirect_to root_url
+      render json: true
     else
-      flash[:error] = "Email address not found in database."
-      render :new
+
     end
   end
 

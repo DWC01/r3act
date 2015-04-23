@@ -31,10 +31,12 @@ en:
               blank: "First name is required"
             email:
               blank: "Email is required"
+              invalid: "Email is invalid"
             password:
               too_short:  "Minimum 6 characters"
             password_confirmation:
               blank: "Confirmation is required"
+              confirmation: "Passwords do not match"
         company:
           attributes:
             name:

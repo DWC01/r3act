@@ -3,11 +3,37 @@ import Ember from 'ember';
 export default Ember.View.extend({
   templateName: 'flash',
   didInsertElement: function() {
+    this._set_flash_fomat();
+    this._flash_intro();
+    this._flash_outro();
+  },
+
+  _flash_intro: function() {
     this.$().hide().fadeIn(300);
+  },
+
+  _flash_outro: function() {
     Ember.run.later(this, function() {
         this.$().fadeOut(300);      
     }, 4000);
   },
+
+  _set_flash_fomat: function() {
+    if (!this._isSidebarDisplaying()) {
+      this._remove_push_content_class();
+    }
+  },
+
+  _remove_push_content_class: function() {
+    return Ember.$('.page-content-wrap').removeClass('sidebar-push-content');
+  },
+
+  _isSidebarDisplaying: function() {
+    return this.get('controller')
+      .get('controllers.application')
+      .get('isSidebarDisplaying');
+  },
+
   actions: {
     click: function() {
       this.get('controller').get(

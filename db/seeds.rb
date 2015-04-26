@@ -55,7 +55,7 @@ end
     ad_tag_receivers:            "[Amnet, TradeDesk, Media Math]",
     ad_tag_sender:               "Carat",
     ad_tags_count:               "12",
-    ad_tags_file:                "",
+    media_plan_key:              "uploads/development/campaign/media_plans/35/tags.xls",
     ad_devices:                  "Desktop, Mobile",
     ad_formats:                  "HTML5",
     advertiser:                  "My Magazine",

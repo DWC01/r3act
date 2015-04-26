@@ -56,8 +56,17 @@ module Api
       end
 
       def render_unauthorized
-        self.headers['WWW-Authenticate'] = 'Token realm="Application"'
-        render json: {message: 'Bad credentials'}, status: 401
+        self.headers["WWW-Authenticate"] = 'Token realm="Application"'
+        render json: {message: "Bad credentials"}, status: 401
+      end
+
+      def parse_s3_key(key)
+        keys = key.split("/")
+        {file_name: keys.pop, bucket: "r3act/", key: keys.join("/"), uuid: keys.pop}
+      end
+
+      def aws_s3
+        @s3 = AWS::S3.new
       end
 
     private

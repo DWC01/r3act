@@ -65,23 +65,23 @@ export default Ember.ArrayController.extend({
   },
 
   _flashMsg: function(name) {
-    return 'What up ' + name + '!';
+    return 'Welcome ' + name + '!';
   },
 
   _saveUserModel: function(user) {
-    var self = this;
     user.save().then(
       function() {
         if (user.get('id')) {
-          self._setSessionProperties(user);
-          self._setSessionCookie(user.get('auth_token'));
-          self._clearUserProperties();
-          self.transitionToRoute('users.show', user);
+          this._setFlashMessage(user.get('first_name'));
+          this._setSessionProperties(user);
+          this._setSessionCookie(user.get('auth_token'));
+          this._clearUserProperties();
+          this.transitionToRoute('users.show', user);
         } 
-      },
+      }.bind(this),
       function(reason) {
-        self.set('user_errors', reason.errors);
-      }
+        this.set('user_errors', reason.errors);
+      }.bind(this)
     );
   },
 

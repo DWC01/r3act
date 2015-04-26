@@ -71,13 +71,13 @@ export default Ember.ArrayController.extend({
   },
 
   _signInSucess: function(response, attemptedTransition) {
-    var self = this;
     if(response.success) {      
       this.store.find('user', response.user.id).then(function(user) {
-        self._setCurrentUserProperties(user);
-        self._clearFormProperties();
-        self._redirectAfterLogin(attemptedTransition, user);
-      });
+        this._setFlashMessage(user.get('first_name'));
+        this._setCurrentUserProperties(user);
+        this._clearFormProperties();
+        this._redirectAfterLogin(attemptedTransition, user);
+      }.bind(this));
     }
   },
 
@@ -89,14 +89,13 @@ export default Ember.ArrayController.extend({
   },
 
   _createNewSession: function(data, attemptedTransition) {
-    var self = this;
     Ember.$.post('api/sessions', data).then(
       function(response){
-        self._signInSucess(response, attemptedTransition);
-      },
+        this._signInSucess(response, attemptedTransition);
+      }.bind(this),
       function(response) {
-        self._signInFailure(response);
-      }
+        this._signInFailure(response);
+      }.bind(this)
     ); 
   },
 

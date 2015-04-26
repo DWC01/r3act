@@ -15,7 +15,7 @@
 //= require bootstrap-sprockets
 //= require lodash
 //= require numeral
-//= require cookie
+//= require js-cookie
 //= require sinon
 //= require d3
 //= require c3

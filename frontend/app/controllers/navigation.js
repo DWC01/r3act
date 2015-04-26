@@ -13,8 +13,15 @@ export default Ember.ArrayController.extend({
 
   actions: {
     toggleSidebar: function() {
-      Ember.$('.sidebar').toggleClass('show-sidebar');
-      Ember.$('.page-content-wrap').toggleClass('sidebar-push-content');
+      if (this.get('controllers.application').get('isSidebarDisplaying')) {
+        Ember.$('.sidebar').removeClass('show-sidebar');
+        Ember.$('.page-content-wrap').removeClass('sidebar-push-content');
+        this.get('controllers.application').set('isSidebarDisplaying', false);
+      } else {
+        Ember.$('.sidebar').addClass('show-sidebar');
+        Ember.$('.page-content-wrap').addClass('sidebar-push-content');
+        this.get('controllers.application').set('isSidebarDisplaying', true);
+      }
     }
   }
 });

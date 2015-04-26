@@ -6,7 +6,7 @@ class CreateCampaigns < ActiveRecord::Migration
       t.string    :ad_tag_receivers, array: true, default: []
       t.string    :ad_tag_sender
       t.string    :ad_tags_count
-      t.string    :ad_tags_file
+      t.string    :media_plan_key
       t.string    :ad_devices, array: true, default: []
       t.string    :ad_formats, array: true, default: []
       t.string    :advertiser

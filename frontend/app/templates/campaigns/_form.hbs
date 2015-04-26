@@ -1,0 +1,13 @@
+<form {{action "createCampaign" on="submit"}} enctype="multipart/form-data">  
+  <div class="upload-ad-tags r3-primary-border">
+    <div>
+      {{file-upload url="/api/sign_campaign_media_plan" 
+          media_plan_key=controller.media_plan_key}}
+    </div>
+  </div>
+  <div class="center">
+    <button type="submit" name="submit" class="r3-btn-primary">
+      Submit
+    </button>  
+  </div>
+</form>

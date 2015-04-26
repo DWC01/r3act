@@ -28,7 +28,9 @@ export default Ember.ArrayController.extend({
 
   actions: {
     updatePassword: function() {
-      var self = this, data = this._getResetProperties();
+      var self = this, data = this._getResetProperties(),
+      custom_error, password_error, confirmation_error;
+
       Ember.$.post('/api/password_resets/update', {user: data}).then(
         function(response) {
           self._clearErrors();
@@ -39,12 +41,12 @@ export default Ember.ArrayController.extend({
         function(response) {
 
           if (response.responseJSON) {
-            var custom_error = response.responseJSON.error
-            var password_error = response.responseJSON.password_error
+            custom_error = response.responseJSON.error;
+            password_error = response.responseJSON.password_error;
           }
 
           if (response.responseJSON.errors) {
-            var confirmation_error = response.responseJSON.errors.password_confirmation;
+            confirmation_error = response.responseJSON.errors.password_confirmation;
           }
 
           self.set('password_error', password_error);

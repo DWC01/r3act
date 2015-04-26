@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20150316040000) do
     t.string   "ad_tag_receivers",        default: [], array: true
     t.string   "ad_tag_sender"
     t.string   "ad_tags_count"
-    t.string   "ad_tags_file"
+    t.string   "media_plan_key"
     t.string   "ad_devices",              default: [], array: true
     t.string   "ad_formats",              default: [], array: true
     t.string   "advertiser"

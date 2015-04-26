@@ -36,12 +36,14 @@ body,h1,h2,h3,h4,h5,h6 {
 }
 
 .r3-flashs {
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
   color: #fff;
   font-size: 24px;
   padding: 6px;
   border-radius: 0px;
   border: 0px solid transparent;
-  margin: -5px !important;
 }
 
 .r3-flash-success {

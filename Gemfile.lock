@@ -47,6 +47,15 @@ GEM
     autoprefixer-rails (5.1.7.1)
       execjs
       json
+    aws-sdk (1.64.0)
+      aws-sdk-v1 (= 1.64.0)
+    aws-sdk-core (2.0.40)
+      builder (~> 3.0)
+      jmespath (~> 1.0)
+      multi_json (~> 1.0)
+    aws-sdk-v1 (1.64.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bcrypt (3.1.10)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -223,6 +232,8 @@ GEM
     i18n (0.7.0)
     inflecto (0.0.2)
     ipaddress (0.8.0)
+    jmespath (1.0.2)
+      multi_json (~> 1.0)
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -414,6 +425,8 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   autoprefixer-rails
+  aws-sdk (< 2.0)
+  aws-sdk-core
   bcrypt
   better_errors
   binding_of_caller

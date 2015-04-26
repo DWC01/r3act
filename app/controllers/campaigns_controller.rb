@@ -9,6 +9,7 @@ class CampaignsController < ApplicationController
   end
 
   def create
+    puts campaign_params
     @campaign = Campaign.new(campaign_params)
     if @campaign.save
        save_data_from_media_plan(media_plan_file_path)

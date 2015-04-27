@@ -44,7 +44,7 @@ export default Ember.ArrayController.extend({
         if (campaign.get('id')) {
           this._setFlashMessage(campaign.get('name'));
           this._destroyCampaignModel(campaign);
-          this.transitionToRoute('campaigns.show', campaign);
+          this.transitionToRoute('campaigns.media_plan', campaign);
         } 
       }.bind(this),
       function(reason) {

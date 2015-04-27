@@ -11,7 +11,7 @@ Router.map(function() {
   
   this.resource('campaigns', function() {
     this.route('new',  {path: 'new'});
-    this.route('show', {path: ':campaign_id'});
+    this.route('media_plan',  {path: ':campaign_id/media_plan'});
   });
 
   this.resource('companies', function() {

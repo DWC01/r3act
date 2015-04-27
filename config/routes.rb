@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   namespace :api do    
     resources :campaigns, :flights, :ad_tags, :users, :companies
     resources :sessions, :only => [:create, :show]
+
+    resources :campaigns do
+      resources :flights
+    end
+    
   end
 
   get  "/api/sign_campaign_media_plan",  to: "api/sign#sign_campaign_media_plan"

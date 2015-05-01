@@ -3,20 +3,15 @@ module Api
     attr_reader :expires
 
     def initialize
-      @expires = 10.hours.from_now
+      @expires = 2.hours.from_now
       @uuid = SecureRandom.uuid
       @env = Rails.env
     end
 
-    def sign_campaign_media_plan
-      @model = "cmapaign"
-      @attribute = "media_plan"
-      sign
-    end
-
     def sign
+      set_params
       render json: {
-        acl: 'private',
+        acl: 'public-read',
         awsaccesskeyid: ENV['AWS_ACCESS_KEY_ID'],
         bucket: 'r3act',
         expires: expires,
@@ -45,7 +40,7 @@ module Api
           expiration: @expires,
           conditions: [
             { bucket: 'r3act' },
-            { acl: 'private' },
+            { acl: 'public-read' },
             { expires: @expires },
             { success_action_status: '201' },
             [ 'starts-with', '$key', '' ],
@@ -57,8 +52,14 @@ module Api
       )
     end
 
+    def set_params
+      @model = params[:model]
+      @name = params[:name]
+      @attribute = params[:attribute]
+    end
+
     def key
-      "uploads/#{@env}/#{@model}/#{@attribute}/#{@uuid}/#{params[:name]}"
+      "uploads/temp/#{@uuid}/#{@name}"
     end
 
   end

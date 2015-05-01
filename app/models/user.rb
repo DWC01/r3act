@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   before_create :generate_auth_token
+  after_create  :proccess_avatar_file
   
   has_secure_password
   belongs_to :company
@@ -8,8 +9,10 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of   :email
   validates_format_of       :email, with: email_regex
-  validates_presence_of     :first_name, :email, :password_confirmation
-  validates :password,      presence: true, on: :create, length: { minimum: 6 }
+  validates_presence_of     :first_name, :email
+
+  validates :password,              presence: true, on: :create, length: { minimum: 6 }
+  validates :password_confirmation, presence: true, on: :create
 
 
   def generate_auth_token
@@ -27,6 +30,23 @@ class User < ActiveRecord::Base
     self.password_reset_sent_at = Time.zone.now
     save(validate: false)
     UserMailer.password_reset(self).deliver
+  end
+
+  def proccess_avatar_file
+    avatar = Avatar.new(self.id, default_avatar_url)
+    avatar.proccess_img
+    save_additional_avatar_urls(avatar)
+  end
+
+  def save_additional_avatar_urls(avatar)
+    self.avatar_original = avatar.original_url
+    self.avatar_profile = avatar.profile_url
+    self.avatar_nav = avatar.nav_url
+    self.save!
+  end
+
+  def default_avatar_url
+    'https://s3-us-west-1.amazonaws.com/r3act/uploads/development/user/profile-photos/fallback/abe-lincoln.jpg'
   end
 
 end

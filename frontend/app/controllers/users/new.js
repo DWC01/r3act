@@ -16,8 +16,13 @@ export default Ember.ArrayController.extend({
     this.setProperties({
       first_name: undefined, last_name: undefined, 
       email: undefined, password: undefined, 
-      password_confirmation: undefined
+      password_confirmation: undefined, avatar: undefined,
+      posistion: undefined, title: undefined, company: undefined
     }); 
+  },
+
+  clearAll: function() {
+    this._clearUserProperties();
   },
 
   _setSessionProperties: function(user) {
@@ -26,6 +31,9 @@ export default Ember.ArrayController.extend({
         first_name: user.get('first_name'),
         last_name: user.get('last_name'),
         email: user.get('email'),
+        avatar_original: user.get('avatar_original'),
+        avatar_profile: user.get('avatar_profile'),
+        avatar_nav: user.get('avatar_nav'),
         id: user.get('id')
       },
       isLoggedIn: true,
@@ -47,11 +55,6 @@ export default Ember.ArrayController.extend({
   _createUserModel: function() {
     var properties = this._setUserProperties();
     return this.store.createRecord('user', properties);
-  },
-
-  _destroyUserModel: function(user) {
-    this._clearUserProperties();
-    user.deleteRecord();
   },
 
   _setFlashMessage: function(name) {

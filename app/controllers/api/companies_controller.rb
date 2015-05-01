@@ -4,7 +4,7 @@ module Api
     private
       def company_params
         params.require(:company).permit(
-          :name, :logo, :placements_trafficked,
+          :name, :logo_original, :placements_trafficked,
           :placement_rate
         )
       end

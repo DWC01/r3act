@@ -31,7 +31,16 @@
       <div class="account-settings-label">
         Photo:
       </div>
-      <div class="account-settings-value"></div>
+      <div class="account-settings-value">
+        <div class="account-settings-user-photo-wrap">
+          <img {{bind-attr src=model.avatar_profile}} >
+        </div>
+        {{file-upload url="/api/sign"
+          model="user"
+          attribute="avatar"
+          s3_key=controller.s3_key
+        }}
+      </div>
     </div>
     <div class="account-settings-row">
       <div class="account-settings-label">
@@ -69,7 +78,7 @@
 
   <div class="account-settings-wrap account-settings-submit-wrap shadow-border">
     <div class="account-settings-delete">
-      <button type="submit" {{action 'delete'}} name="submit" class="r3-btn-warn-hollow">
+      <button class="r3-btn-warn-hollow">
         Delete
       </button>
     </div>

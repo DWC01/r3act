@@ -5,6 +5,7 @@ export default Ember.Route.extend({
     return this.store.find('user', params.user_id);
   },
   setupController: function (controller, model) {
+    controller.clearAll();
     controller.set('model', model);
   }
 });

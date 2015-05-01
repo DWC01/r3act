@@ -4,14 +4,14 @@ export default Ember.ArrayController.extend({
   
   needs: ['flash'],
 
-  media_plan_key: undefined,
+  s3_key: undefined,
       
   _setCampaignProperties: function() {
-    return this.getProperties('media_plan_key');
+    return {media_plan: this.get('s3_key')};
   },
 
   _clearCampaignProperties: function() {
-    this.setProperties({media_plan_key: undefined});
+    this.setProperties({s3_key: undefined});
   },
 
   _createCampaignModel: function() {
@@ -24,18 +24,14 @@ export default Ember.ArrayController.extend({
     campaign.deleteRecord();
   },
 
-  _setFlashMessage: function(name) {
-    this._flash('success',this._flashMsg(name));
+  _setFlashMessage: function() {
+    this._flash('success', 'Campaign successfully created');
   },
 
   _flash: function(type, message) {
     this.get('controllers.flash').createFlash({
       type: type, message: message
     });
-  },
-
-  _flashMsg: function(name) {
-    return name + ' successfully created!';
   },
 
   _saveCampaignModel: function(campaign) {

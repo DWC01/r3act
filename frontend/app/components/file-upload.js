@@ -12,21 +12,26 @@ export default FileField.extend({
     uploader  = S3Uploader.create({url: uploadUrl});
 
     uploader.on('didUpload', function(response) {
-      this._set_media_plan_key(response);
+      this._set_s3_key(response);
     }.bind(this));
 
     this._upload_file_to_s3(uploader, files);
   }).observes('files'),
 
   _upload_file_to_s3: function(uploader,files) {
+    var data = {
+      model: this.get('model'),
+      attribute: this.get('attribute')
+    };
+
     if (!Ember.isEmpty(files)) {
-      uploader.upload(files[0]);
+      uploader.upload(files[0], data);
     }
   },
 
-  _set_media_plan_key: function(response) {
-    var media_plan_key = Ember.$(response).find('Key')[0].textContent;     
-    this.set('media_plan_key', media_plan_key);
+  _set_s3_key: function(response) {
+    var s3Key = Ember.$(response).find('Location')[0].textContent;     
+    this.set('s3_key', s3Key);
   }
 
 });

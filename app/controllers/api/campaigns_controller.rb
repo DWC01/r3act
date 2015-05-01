@@ -13,8 +13,13 @@ module Api
 
     def create
       @campaign = Campaign.new(campaign_params)
+      # Taking the media plan key returned from s3, and
+      # converting it into a signed file path, @aws_s3 is 
+      # an instance of the AWS::S3 SDK
+      @campaign.media_plan = @aws_s3.file_path(@campaign.media_plan)
+
       if @campaign.save
-        save_data_from_media_plan(@campaign)
+        save_data_from_media_plan(@campaign.media_plan)
         render json: {campaign: @campaign}, status:200
       else
         render json: {errors: @campaign.errors.to_h}, status:422
@@ -23,8 +28,7 @@ module Api
   
     private
 
-      def save_data_from_media_plan(campaign)
-        file_path = media_plan_file_path(campaign)
+      def save_data_from_media_plan(file_path)
         mp = MediaPlanParser.new(file_path)
         save_media_plan_data(mp.campaign_atts, mp.flight_ad_tags_atts)
       end
@@ -32,18 +36,7 @@ module Api
       def save_media_plan_data(campaign_atts, flight_ad_tags_atts)
         @campaign.update_attributes(campaign_atts)
         Flight.save_media_plan_data(@campaign, flight_ad_tags_atts)
-      end
-
-      def media_plan_file_path(campaign)
-        storage = parse_s3_key(campaign.media_plan_key)
-        s3_file_path(storage)
-      end
-
-      def s3_file_path(storage)
-        @s3.buckets[storage[:bucket]+storage[:key]]
-           .objects[storage[:file_name]]
-           .url_for(:read).to_s
-      end
+      end      
 
       def traffic_ad_tags
         #ad_tags = AdTag.where(campaign_id: params[:campaign_id]) 
@@ -59,7 +52,7 @@ module Api
       def campaign_params
         params.require(:campaign).permit(
           :ad_sizes, :ad_tag_provider, :ad_tag_receivers,
-          :ad_tag_sender, :ad_tags_count, :media_plan_key,
+          :ad_tag_sender, :ad_tags_count, :media_plan,
           :ad_devices, :ad_formats, :advertiser, :end_date,
           :media_plan_name, :name, :primary_target_audience,
           :start_date

@@ -62,11 +62,17 @@ export default Ember.ArrayController.extend({
 
   _setCurrentUserProperties: function(user) {
     this.setProperties({
-      auth_token: user.get('auth_token'),
+      currentUser: {
+        first_name: user.get('first_name'),
+        last_name: user.get('last_name'),
+        email: user.get('email'),
+        avatar_original: user.get('avatar_original'),
+        avatar_profile: user.get('avatar_profile'),
+        avatar_nav: user.get('avatar_nav'),
+        id: user.get('id')
+      },
       isLoggedIn: true,
-      currentUser: user.getProperties(
-        'id', 'first_name', 'last_name', 'email'
-      )
+      auth_token: user.get('auth_token')
     });
   },
 

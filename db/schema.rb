@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20150316040000) do
     t.string   "ad_tag_receivers",        default: [], array: true
     t.string   "ad_tag_sender"
     t.string   "ad_tags_count"
-    t.string   "media_plan_key"
+    t.string   "media_plan"
     t.string   "ad_devices",              default: [], array: true
     t.string   "ad_formats",              default: [], array: true
     t.string   "advertiser"
@@ -71,7 +71,9 @@ ActiveRecord::Schema.define(version: 20150316040000) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
-    t.string   "logo"
+    t.string   "logo_original"
+    t.string   "logo_profile"
+    t.string   "logo_list"
     t.string   "placements_trafficked"
     t.string   "placement_rate"
     t.datetime "created_at"
@@ -84,6 +86,10 @@ ActiveRecord::Schema.define(version: 20150316040000) do
     t.string   "start_date"
     t.string   "end_date"
     t.string   "ad_tag_count"
+    t.string   "creative_728_x_90"
+    t.string   "creative_160_x_600"
+    t.string   "creative_300_x_250"
+    t.string   "creative_300_x_600"
     t.integer  "campaign_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -93,7 +99,9 @@ ActiveRecord::Schema.define(version: 20150316040000) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.string   "avatar"
+    t.string   "avatar_original"
+    t.string   "avatar_profile"
+    t.string   "avatar_nav"
     t.string   "position"
     t.string   "title"
     t.string   "auth_token"

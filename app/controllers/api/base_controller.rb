@@ -34,15 +34,6 @@ module Api
     def show
       render json: {resource_name => get_resource}
     end
-
-    # PATCH/PUT /api/{plural_resource_name}/1
-    def update
-      if get_resource.update(resource_params)
-        render json: {resource_name => get_resource}
-      else
-        render json: {errors: get_resource.errors.to_h}, status: 422
-      end
-    end
     
     protected
       def authenticate
@@ -60,13 +51,8 @@ module Api
         render json: {message: "Bad credentials"}, status: 401
       end
 
-      def parse_s3_key(key)
-        keys = key.split("/")
-        {file_name: keys.pop, bucket: "r3act/", key: keys.join("/"), uuid: keys.pop}
-      end
-
       def aws_s3
-        @s3 = AWS::S3.new
+        @aws_s3 = AwsS3.new
       end
 
     private

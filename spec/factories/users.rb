@@ -4,7 +4,7 @@ FactoryGirl.define do
   first_name                  "David"
   last_name                   "Christian"
   email                       "david@displayadtech.com"
-  avatar                      ""
+  avatar_original             ""
   position                    "Founder"
   title                       "CEO"
   password                    "123P@ssw0rd!"

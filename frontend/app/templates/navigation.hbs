@@ -15,10 +15,11 @@
     <ul class="nav pull-right">
       {{#if isLoggedIn}}
         <li class='pull-right' >
-          {{#link-to 'home'}}
-             Hey {{currentUser.first_name}}!
+          {{#link-to 'users.show' currentUser.id}}
+             <img {{bind-attr src=currentUser.avatar_nav}} 
+              style="border-radius: 50%;">
+             {{currentUser.first_name}}
           {{/link-to}}
-         
         </li>
         <li class='pull-right'>
           {{#link-to 'sessions.destroy'}}

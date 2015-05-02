@@ -1,19 +1,18 @@
 class User < ActiveRecord::Base
   before_create :generate_auth_token
-  after_create  :proccess_avatar_file
+  after_create :create_avatar
+  belongs_to :company
+  has_one :avatar
   
   has_secure_password
-  belongs_to :company
-  
   email_regex = /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}\Z/i
 
   validates_uniqueness_of   :email
   validates_format_of       :email, with: email_regex
   validates_presence_of     :first_name, :email
 
-  validates :password,              presence: true, on: :create, length: { minimum: 6 }
   validates :password_confirmation, presence: true, on: :create
-
+  validates :password, presence: true, on: :create, length: {minimum:6}
 
   def generate_auth_token
     self.auth_token = SecureRandom.uuid.gsub(/\-/,'')
@@ -32,21 +31,40 @@ class User < ActiveRecord::Base
     UserMailer.password_reset(self).deliver
   end
 
-  def proccess_avatar_file
-    avatar = Avatar.new(self.id, default_avatar_url)
-    avatar.proccess_img
-    save_additional_avatar_urls(avatar)
+  def self.current_user(user)
+    {first_name: user.first_name,
+    last_name: user.last_name,
+    email: user.email,
+    id: user.id,
+    auth_token: user.auth_token}
   end
 
-  def save_additional_avatar_urls(avatar)
-    self.avatar_original = avatar.original_url
-    self.avatar_profile = avatar.profile_url
-    self.avatar_nav = avatar.nav_url
-    self.save!
+  # -- Serializer -----------------
+
+  def self.serialized(user)
+    {
+      user: {
+        id: user.id,
+        admin: user.admin,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
+        auth_token: user.auth_token,
+        title: user.title,
+        position: user.position,
+        company_id: user.company_id,
+        password_reset_sent_at: user.password_reset_sent_at,
+        created_at: user.created_at,
+        updated_at: user.updated_at
+      },
+      avatar: [user.avatar]
+    }
   end
 
-  def default_avatar_url
-    'https://s3-us-west-1.amazonaws.com/r3act/uploads/development/user/profile-photos/fallback/abe-lincoln.jpg'
+  # -- Create Avatar -----------------
+  
+  def create_avatar
+    Avatar.new({user_id: self.id}).save!
   end
 
 end

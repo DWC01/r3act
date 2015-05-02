@@ -2,6 +2,7 @@ User.delete_all
 Flight.delete_all
 AdTag.delete_all
 Campaign.delete_all
+Avatar.delete_all
 
 (1..3).each do |id|
   20.times do 
@@ -73,7 +74,6 @@ end
     first_name:                 "David",
     last_name:                  "Christian",
     email:                      "DWC0#{id}@gmail.com",
-    avatar_original:            "https://s3-us-west-1.amazonaws.com/r3act/uploads/development/user/6/avatar_original.jpg",
     position:                   "Ad Operations",
     title:                      "Ad Operations Analyst",
     password:                   "password123",

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316040000) do
+ActiveRecord::Schema.define(version: 20150502041442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,19 @@ ActiveRecord::Schema.define(version: 20150316040000) do
     t.datetime "updated_at"
   end
 
+  create_table "avatars", force: :cascade do |t|
+    t.string   "name"
+    t.string   "mime_type"
+    t.string   "s3_data"
+    t.string   "original_url"
+    t.string   "profile_url"
+    t.string   "nav_url"
+    t.string   "user_id"
+    t.string   "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "campaigns", force: :cascade do |t|
     t.string   "ad_sizes",                default: [], array: true
     t.string   "ad_tag_provider"
@@ -71,9 +84,6 @@ ActiveRecord::Schema.define(version: 20150316040000) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
-    t.string   "logo_original"
-    t.string   "logo_profile"
-    t.string   "logo_list"
     t.string   "placements_trafficked"
     t.string   "placement_rate"
     t.datetime "created_at"
@@ -86,10 +96,6 @@ ActiveRecord::Schema.define(version: 20150316040000) do
     t.string   "start_date"
     t.string   "end_date"
     t.string   "ad_tag_count"
-    t.string   "creative_728_x_90"
-    t.string   "creative_160_x_600"
-    t.string   "creative_300_x_250"
-    t.string   "creative_300_x_600"
     t.integer  "campaign_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -99,9 +105,6 @@ ActiveRecord::Schema.define(version: 20150316040000) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.string   "avatar_original"
-    t.string   "avatar_profile"
-    t.string   "avatar_nav"
     t.string   "position"
     t.string   "title"
     t.string   "auth_token"

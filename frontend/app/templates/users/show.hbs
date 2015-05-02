@@ -20,10 +20,10 @@
       </div>
       <div class="account-settings-value">
         <div class="account-settings-value-2">
-          {{input type="text" value=model.first_name name="first_name" placeholder="first name" class="form-control"}}
+          {{input type="text" value=user.first_name name="first_name" placeholder="first name" class="form-control"}}
         </div>
         <div class="account-settings-value-2">
-         {{input type="text" value=model.last_name name="last_name" placeholder="last name" class="form-control"}}
+         {{input type="text" value=user.last_name name="last_name" placeholder="last name" class="form-control"}}
         </div>
       </div>
     </div>
@@ -33,12 +33,11 @@
       </div>
       <div class="account-settings-value">
         <div class="account-settings-user-photo-wrap">
-          <img {{bind-attr src=model.avatar_profile}} >
+          <img {{bind-attr src=avatar.profile_url}} >
         </div>
-        {{file-upload url="/api/sign"
-          model="user"
-          attribute="avatar"
-          s3_key=controller.s3_key
+        {{file-upload 
+          url="/api/sign"
+          s3_data=controller.avatar.s3_data
         }}
       </div>
     </div>
@@ -47,7 +46,7 @@
         Email:
       </div>
       <div class="account-settings-value">
-       {{input type="text" value=model.email name="email" placeholder="email" class="form-control"}}
+       {{input type="text" value=user.email name="email" placeholder="email" class="form-control"}}
       </div>
     </div>
     <div class="account-settings-row">
@@ -55,7 +54,7 @@
         Position:
       </div>
       <div class="account-settings-value">
-        {{input type="text" value=model.position name="position" placeholder="position" class="form-control"}}
+        {{input type="text" value=user.position name="position" placeholder="position" class="form-control"}}
       </div>
     </div>
     <div class="account-settings-row">
@@ -63,7 +62,7 @@
         Title:
       </div>
       <div class="account-settings-value">
-        {{input type="text" value=model.title name="title" placeholder="title" class="form-control"}}
+        {{input type="text" value=user.title name="title" placeholder="title" class="form-control"}}
       </div>
     </div>
     <div class="account-settings-row">
@@ -71,17 +70,13 @@
         Company:
       </div>
       <div class="account-settings-value">
-        {{input type="text" value=model.company name="company" placeholder="company" class="form-control"}}
+        {{input type="text" value=user.company name="company" placeholder="company" class="form-control"}}
       </div>
     </div>
   </div><!-- End of Account Settings Wrap -->
 
   <div class="account-settings-wrap account-settings-submit-wrap shadow-border">
-    <div class="account-settings-delete">
-      <button class="r3-btn-warn-hollow">
-        Delete
-      </button>
-    </div>
+    <div class="account-settings-submit"></div>
     <div class="account-settings-submit">
       <button type="submit" name="submit" class="r3-btn-primary">
         Save

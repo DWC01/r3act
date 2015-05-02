@@ -55,7 +55,6 @@ module Api
     def set_params
       @model = params[:model]
       @name = params[:name]
-      @attribute = params[:attribute]
     end
 
     def key

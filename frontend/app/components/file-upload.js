@@ -4,34 +4,51 @@ import S3Uploader from 'ember-uploader/s3';
 
 export default FileField.extend({
 
-  filesDidChange: (function() {
-    var files, uploader, uploadUrl;
-    
-    files     = this.get('files');
-    uploadUrl = this.get('url');
-    uploader  = S3Uploader.create({url: uploadUrl});
+  filesDidChange: (function() {    
+    var file      = this.get('files')[0];
+    var uploadUrl = this.get('url');
+    var uploader  = S3Uploader.create({url: uploadUrl});
 
-    uploader.on('didUpload', function(response) {
-      this._set_s3_key(response);
-    }.bind(this));
+    this._bindUploader(uploader);
+    this._sign_and_upload_file_to_s3(uploader, file);
 
-    this._upload_file_to_s3(uploader, files);
   }).observes('files'),
 
-  _upload_file_to_s3: function(uploader,files) {
-    var data = {
-      model: this.get('model'),
-      attribute: this.get('attribute')
-    };
+  _bindUploader: function(uploader) {
+    uploader.on('didUpload', function(response) {
+      this._set_s3_data(response);
+    }.bind(this));
+  },
 
-    if (!Ember.isEmpty(files)) {
-      uploader.upload(files[0], data);
+  _sign_and_upload_file_to_s3: function(uploader,file) {
+    var data = {model: this.get('model')};
+
+    if (!Ember.isEmpty(file)) {
+      uploader.upload(file, data);
     }
   },
 
-  _set_s3_key: function(response) {
-    var s3Key = Ember.$(response).find('Location')[0].textContent;     
-    this.set('s3_key', s3Key);
+  _set_s3_data: function(response) {
+    var s3_data = this._construct_s3_data(response);
+    this.set('s3_data', s3_data);
+  },
+
+  _construct_s3_data: function(response) {
+    var data = {};
+    data.file = this.get('files')[0];
+    data.etag = Ember.$(response).find('ETag')[0].textContent;
+    data.tmp_img_path = Ember.$(response).find('Location')[0].textContent;    
+
+    return this._construct_s3_data_object(data);
+  },
+
+  _construct_s3_data_object: function(data) {
+    return JSON.stringify({
+      etag: data.etag, 
+      name: data.file.name,
+      mime_type: data.file.type,
+      tmp_img_path: data.tmp_img_path
+    });
   }
 
 });

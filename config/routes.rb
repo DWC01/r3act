@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   # resources :campaigns
 
   namespace :api do    
-    resources :campaigns, :flights, :ad_tags, :users, :companies
     resources :sessions, :only => [:create, :show]
+    resources :campaigns, :flights, :ad_tags, :users, 
+              :companies, :avatars
 
     resources :campaigns do
       resources :flights

@@ -4,9 +4,6 @@ class CreateUsers < ActiveRecord::Migration
       t.string   :first_name
       t.string   :last_name
       t.string   :email
-      t.string   :avatar_original
-      t.string   :avatar_profile
-      t.string   :avatar_nav
       t.string   :position
       t.string   :title
       t.string   :auth_token

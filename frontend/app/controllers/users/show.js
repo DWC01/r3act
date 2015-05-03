@@ -33,33 +33,32 @@ export default Ember.Controller.extend({
   // --- Set Clean Up Methods -----------------
 
   clearAll: function() {
-    this._clearUserProperties();
-  },
-
-  _clearUserProperties: function() {
     this.setProperties({
       first_name: undefined, last_name: undefined, 
       email: undefined, password: undefined, 
       password_confirmation: undefined,
       posistion: undefined, title: undefined,
       company: undefined
-    }); 
+    });
+  },
+
+  _setCurrentAvatarProperties: function(avatar) {
+    this.get('controllers.sessions').setProperties({
+      currentAvatar: avatar,
+    });
   },
 
   actions: {
     saveChanges: function() {
       // Update Image
-      if (this.get('avatar.isDirty')) {        
-        this.get('avatar').save().then(
+      if (this.get('avatar.isDirty')) {
+        this.get('avatar').get('content').save().then(
           function(avatar) {
-            console.log(avatar);
-            this._setFlashMessage('success', 
-              'Profile successfully updated');
+            this._setCurrentAvatarProperties(avatar);
+            this._setFlashMessage('success','Profile successfully updated');
           }.bind(this), 
           function(reason) {
-            console.log(reason);
-            this._setFlashMessage('error',
-              'There was an error updating your profile Image');
+            this._setFlashMessage('error','There was an error updating your profile Image');
           }.bind(this)
         );
       }
@@ -73,8 +72,7 @@ export default Ember.Controller.extend({
               'Profile successfully updated');
           }.bind(this), 
           function() {
-            this._setFlashMessage('error',
-              'There was an error updating your profile');
+            this._setFlashMessage('error','There was an error updating your profile');
           }.bind(this)
         );
       } 

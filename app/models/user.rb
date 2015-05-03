@@ -31,14 +31,6 @@ class User < ActiveRecord::Base
     UserMailer.password_reset(self).deliver
   end
 
-  def self.current_user(user)
-    {first_name: user.first_name,
-    last_name: user.last_name,
-    email: user.email,
-    id: user.id,
-    auth_token: user.auth_token}
-  end
-
   # -- Serializer -----------------
 
   def self.serialized(user)

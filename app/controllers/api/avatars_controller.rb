@@ -8,16 +8,16 @@ module Api
     def create
       avatar = Avatar.new(avatar_params)
       if avatar.save
-        render json: {avatar: avatar}
+        render json: {avatar: avatar}, status: 200
       else
         render json: {errors: avatar.errors.to_h}, status: 422
       end
     end
 
     def show
-      avatar = Avatar.find(params[:id])
+      avatar = Avatar.find_by_user_id(params[:id])
       if avatar
-        render json: avatar
+        render json: {avatar: avatar}, status: 200
       else
         render json: {message: 'avatar Not Found'}, status: 401
       end

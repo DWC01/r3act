@@ -11,6 +11,10 @@ export default Ember.ArrayController.extend({
     return this.get('controllers.sessions.currentUser');
   }.property('controllers.sessions.currentUser'),
 
+  currentAvatar: function() {
+    return this.get('controllers.sessions.currentAvatar');
+  }.property('controllers.sessions.currentAvatar'),
+
   actions: {
     toggleSidebar: function() {
       if (this.get('controllers.application').get('isSidebarDisplaying')) {

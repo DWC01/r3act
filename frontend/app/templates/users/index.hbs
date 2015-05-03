@@ -6,7 +6,7 @@
 
 <ul class="list-unstyled">
   {{#each user in users}}
-    {{#link-to 'users.show' user class="stripe-box-list-link"}}
+    {{#link-to 'users.show' user.id class="stripe-box-list-link"}}
       <li class="stripe-box-list-item md-whiteframe-z1">
         <div class="stripe-box-left-stripe"></div>
         <div class="stripe-box-content">

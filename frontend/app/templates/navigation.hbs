@@ -16,7 +16,7 @@
       {{#if isLoggedIn}}
         <li class='pull-right' >
           {{#link-to 'users.show' currentUser.id}}
-             <img {{bind-attr src=currentUser.avatar_nav}} 
+             <img {{bind-attr src=currentAvatar.nav_url}} 
               style="border-radius: 50%;">
              {{currentUser.first_name}}
           {{/link-to}}

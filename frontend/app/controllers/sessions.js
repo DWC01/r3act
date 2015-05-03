@@ -3,35 +3,19 @@ import Ember from 'ember';
 
 export default Ember.ArrayController.extend({
   
-  needs: ['application'],
+  needs: ['application', 'flash'],
 
   _getFormProperties: function() {
     return this.getProperties('email','password');
   },
 
-  _clearFormProperties: function() {
-    this.setProperties({
-      email: undefined,
-      password: undefined,
-      userErrors: undefined
-    });
-  },
-
-  _clearSessionProperties: function() {
-    this.setProperties({
-      email: undefined, password: undefined,
-      auth_token: undefined, currentUser: undefined,
-      isLoggedIn: undefined
-    });
-  },
-
-  _clearUserErrors: function() {
-    this.set('userErrors', undefined);
-  },
-
   clearAll: function() {
-    this._clearSessionProperties();
-    this._clearUserErrors();
+    this.setProperties({
+      email: undefined, userErrors: undefined, 
+      password: undefined, auth_token: undefined, 
+      currentUser: undefined, isLoggedIn: undefined, 
+      currentAvatar: undefined
+    });
   },
 
   _accessTokenChanged: function() {
@@ -43,21 +27,31 @@ export default Ember.ArrayController.extend({
     }
   }.observes('auth_token'),
 
-  _flashMsg: function(name) {
-    return 'Welcome back ' + name + '!';
+
+  _createNewSession: function(data, attemptedTransition) {
+    Ember.$.post('api/sessions', data).then(
+      function(response){
+        this._signInSucess(response, attemptedTransition);
+      }.bind(this),
+      function(response) {
+        this._signInFailure(response);
+      }.bind(this)
+    ); 
   },
 
-  _setFlashMessage: function(name) {
-    this.get('controllers.application').flash('success', this._flashMsg(name));
-  },
-
-  _redirectAfterLogin: function(attemptedTransition, user) {
-    if (attemptedTransition) {
-      attemptedTransition.retry();
-      this.set('attemptedTransition', null);
-    } else {
-      this.transitionToRoute('users.show', user.id );
+  _signInSucess: function(response, attemptedTransition) {
+    if(response.success) {   
+      this._setCurrentUser(response);
+      this._setCurrentAvatar(response);
+      this._redirectAfterLogin(attemptedTransition, response.user);
+      this._setFlashMessage(response.user.first_name);
     }
+  },
+
+  _setCurrentUser: function(response) {
+    this.store.find('user', response.user.id).then(function(user) {
+      this._setCurrentUserProperties(user);
+    }.bind(this));
   },
 
   _setCurrentUserProperties: function(user) {
@@ -76,15 +70,30 @@ export default Ember.ArrayController.extend({
     });
   },
 
-  _signInSucess: function(response, attemptedTransition) {
-    if(response.success) {      
-      this.store.find('user', response.user.id).then(function(user) {
-        this._setFlashMessage(user.get('first_name'));
-        this._setCurrentUserProperties(user);
-        this._clearFormProperties();
-        this._redirectAfterLogin(attemptedTransition, user);
-      }.bind(this));
+  _setCurrentAvatar: function(response) {
+    this.store.find('avatar', response.user.id).then(function(avatar) {
+      this._setCurrentAvatarProperties(avatar);
+    }.bind(this));
+  },
+
+  _setCurrentAvatarProperties: function(avatar) {
+    this.set('currentAvatar', avatar);
+  },
+
+  _redirectAfterLogin: function(attemptedTransition, user) {
+    if (attemptedTransition) {
+      attemptedTransition.retry();
+      this.set('attemptedTransition', null);
+    } else {
+      this.transitionToRoute('users.show', user.id );
     }
+  },
+
+  _setFlashMessage: function(name) {
+    this.get('controllers.flash').createFlash({
+      type: 'success', 
+      message: 'Welcome back ' + name + '!'
+    });
   },
 
   _signInFailure: function(response) {
@@ -92,17 +101,6 @@ export default Ember.ArrayController.extend({
       var errorObject = JSON.parse(response.responseText);
       this.set('userErrors', errorObject.errors);
     }
-  },
-
-  _createNewSession: function(data, attemptedTransition) {
-    Ember.$.post('api/sessions', data).then(
-      function(response){
-        this._signInSucess(response, attemptedTransition);
-      }.bind(this),
-      function(response) {
-        this._signInFailure(response);
-      }.bind(this)
-    ); 
   },
 
   actions: {

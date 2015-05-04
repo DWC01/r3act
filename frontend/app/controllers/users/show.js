@@ -32,7 +32,7 @@ export default Ember.Controller.extend({
           this._updateCurrentAvatar(avatar);
           this._setSuccessFlash();
         }.bind(this), 
-        function(reason) {
+        function() {
           this._setErrorFlash();
         }.bind(this)
       );
@@ -67,14 +67,14 @@ export default Ember.Controller.extend({
 
    // --- Set Flash -------------
 
-  _setSuccessFlash: function(type, message) {
+  _setSuccessFlash: function() {
     this.get('controllers.flash').createFlash({
       type: 'success', 
       message: 'Profile successfully updated'
     });
   },
 
-  _setErrorFlash: function(type, message) {
+  _setErrorFlash: function() {
     this.get('controllers.flash').createFlash({
       type: 'error', 
       message: 'There was an error updating your profile.'

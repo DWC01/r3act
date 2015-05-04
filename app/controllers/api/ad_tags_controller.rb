@@ -2,16 +2,45 @@ module Api
   class AdTagsController < Api::BaseController
 
     def index
-      if params[:flight_id]
-        flight = Flight.find(params[:flight_id])
-        render json: flight.ad_tags
-      else  
-        render json: AdTag.all
+      ad_tags = AdTag.where(query_params)
+      if ad_tags
+        render json: {ad_tag: ad_tags}, status: 200
+      else
+        render json: {message: 'No ad tags found'}, status: 422
+      end
+    end
+
+    def show
+      ad_tag = AdTag.find(params[:id])
+      if ad_tag
+        render json: {ad_tag: ad_tag}, status: 200
+      else
+        render json: {message: 'Ad tag not found'}, status: 422
+      end
+    end
+
+    def create
+      ad_tag = AdTag.new(ad_tag_params)
+      if ad_tag.save
+        render json: {ad_tag: ad_tag}, status: 201
+      else
+        render json: {errors: ad_tag.errors.to_h}, status: 422
       end
     end
   
-    def show
-      render json: AdTag.find(params[:id])
+    def update
+      ad_tag = AdTag.find(params[:id])
+      if ad_tag.update_attributes(ad_tag_params)
+        render json: {ad_tag: ad_tag}, status: 200
+      else
+        render json: {errors: ad_tag.errors.to_h}, status: 422
+      end
+    end
+
+    def destroy
+      ad_tags = AdTag.find(params[:id])
+      ad_tags.destroy
+      head :no_content
     end
 
     private
@@ -29,7 +58,7 @@ module Api
       end
 
       def query_params
-        params.permit()
+        params.permit(:flight_id)
       end
   end
 end

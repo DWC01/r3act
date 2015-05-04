@@ -4,11 +4,21 @@ module Api
     before_action :authenticate, only: [:show, :new, :index]
 
     def index
-      render json: Campaign.all
+      campaigns = Campaign.where(query_params)
+      if campaigns
+        render json: {campaign: campaigns}, status: 200
+      else
+        render json: {message: 'No campaigns found'}, status: 422
+      end
     end
-  
+
     def show
-      render json: Campaign.find(params[:id])
+      campaign = Campaign.find(params[:id])
+      if campaign
+        render json: {campaign: campaign}, status: 200
+      else
+        render json: {message: 'Campaign not found'}, status: 422
+      end
     end
 
     def create
@@ -23,6 +33,15 @@ module Api
         render json: {campaign: @campaign}, status:200
       else
         render json: {errors: @campaign.errors.to_h}, status:422
+      end
+    end
+
+    def update
+      campaign = Campaign.find(params[:id])
+      if campaign.update_attributes(campaign_params)
+        render json: {campaign: campaign}, status: 200
+      else
+        render json: {errors: campaign.errors.to_h}, status: 422
       end
     end
   
@@ -49,6 +68,12 @@ module Api
         render :json => saved_creatives.to_json
       end
 
+      def destroy
+        campaign = Campaign.find(params[:id])
+        campaign.destroy
+        head :no_content
+      end
+
       def campaign_params
         params.require(:campaign).permit(
           :ad_sizes, :ad_tag_provider, :ad_tag_receivers,
@@ -57,6 +82,10 @@ module Api
           :media_plan_name, :name, :primary_target_audience,
           :start_date
         )
+      end
+
+      def query_params
+        params.permit()
       end
   end
 end

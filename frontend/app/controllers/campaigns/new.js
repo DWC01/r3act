@@ -4,42 +4,27 @@ export default Ember.ArrayController.extend({
   
   needs: ['flash'],
 
-  s3_key: undefined,
-      
+  s3_data: undefined,
+
+  // --- Set Clear -------------
+
+  clearAll: function() {
+    this.set('s3_key', undefined); 
+  },
+    
+  // --- Bind Observers -------------
+
   _setCampaignProperties: function() {
-    return {media_plan: this.get('s3_key')};
-  },
+    this.get('campaign').set('media_plan', this.s3_data);
+  }.observes('s3_data'),
 
-  _clearCampaignProperties: function() {
-    this.setProperties({s3_key: undefined});
-  },
-
-  _createCampaignModel: function() {
-    var properties = this._setCampaignProperties();
-    return this.store.createRecord('campaign', properties);
-  },
-
-  _destroyCampaignModel: function(campaign) {
-    this._clearCampaignProperties();
-    campaign.deleteRecord();
-  },
-
-  _setFlashMessage: function() {
-    this._flash('success', 'Campaign successfully created');
-  },
-
-  _flash: function(type, message) {
-    this.get('controllers.flash').createFlash({
-      type: type, message: message
-    });
-  },
+  // --- Bind Observers -------------
 
   _saveCampaignModel: function(campaign) {
     campaign.save().then(
       function() {
         if (campaign.get('id')) {
-          this._setFlashMessage(campaign.get('name'));
-          this._destroyCampaignModel(campaign);
+          this._setSuccessFlash();
           this.transitionToRoute('campaigns.media_plan', campaign);
         } 
       }.bind(this),
@@ -49,9 +34,16 @@ export default Ember.ArrayController.extend({
     );
   },
 
+  _setSuccessFlash: function() {
+    this.get('controllers.flash').createFlash({
+      type: 'success', 
+      message: 'Campaign successfully created'
+    });
+  },
+
   actions: {
     createCampaign: function() {
-      var campaign = this._createCampaignModel();
+      var campaign = this.get('campaign');
       this._saveCampaignModel(campaign);
     }
   }

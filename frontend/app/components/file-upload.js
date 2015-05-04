@@ -37,7 +37,7 @@ export default FileField.extend({
     var data = {};
     data.file = this.get('files')[0];
     data.etag = Ember.$(response).find('ETag')[0].textContent;
-    data.tmp_img_path = Ember.$(response).find('Location')[0].textContent;    
+    data.tmp_file_path = Ember.$(response).find('Location')[0].textContent;    
 
     return this._construct_s3_data_object(data);
   },
@@ -47,7 +47,7 @@ export default FileField.extend({
       etag: data.etag, 
       name: data.file.name,
       mime_type: data.file.type,
-      tmp_img_path: data.tmp_img_path
+      tmp_file_path: data.tmp_file_path
     });
   }
 

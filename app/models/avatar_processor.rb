@@ -61,13 +61,13 @@ class AvatarProcessor
       @name = s3_data['name']
       @etag = s3_data['etag']
       @mime_type = s3_data['mime_type']
-      @img_url = s3_data['tmp_img_path']
+      @img_url = s3_data['tmp_file_path']
       @extension = set_extension(s3_data)
     end
   end
 
   def set_extension(s3_data)
-    s3_data['tmp_img_path'].split('.').pop
+    s3_data['tmp_file_path'].split('.').pop
   end
 
   def resize_to_fill(width, height)

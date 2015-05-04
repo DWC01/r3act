@@ -5,10 +5,8 @@ export default Ember.ArrayController.extend({
   
   needs: ['application', 'flash'],
 
-  _getFormProperties: function() {
-    return this.getProperties('email','password');
-  },
-
+  // --- Set Clear -------------
+  
   clearAll: function() {
     this.setProperties({
       email: undefined, userErrors: undefined, 
@@ -18,15 +16,72 @@ export default Ember.ArrayController.extend({
     });
   },
 
-  _accessTokenChanged: function() {
+  // --- Set Properties -------------
+
+  _getFormProperties: function() {
+    return this.getProperties('email','password');
+  },
+
+  // --- Bind Observers -------------
+
+  _authTokenChanged: function() {
     var auth_token = this.get('auth_token');
+
     if (auth_token) {
-      Cookies.set('user_session',  this.get('auth_token'), {path: '/' });
+      this.setCurrentSession(auth_token);
     } else {
-      Cookies.remove('user_session', { path: '/' });
+      this.clearCurrentSession();
     }
+
   }.observes('auth_token'),
 
+  // --- Set Session -------------
+
+  setCurrentSession: function(auth_token) {
+    this._setSessionCookie(auth_token);
+    this._setCurrentUser(auth_token);
+  },
+
+  _setSessionCookie: function(auth_token) {
+    Cookies.set('user_session', auth_token, {path: '/' });
+  },
+
+  _setCurrentUser: function(auth_token) {
+    this.store.find('user', {auth_token: auth_token}).then(function(user) {
+      this._setCurrentUserProperties(user.objectAt(0));
+      this._setCurrentAvatar(user.objectAt(0));
+    }.bind(this));
+  },
+
+  _setCurrentUserProperties: function(user) {
+    this.setProperties({
+      currentUser: user,
+      isLoggedIn: true
+    });
+  },
+
+  _setCurrentAvatar: function(user) {
+    this.store.find('avatar', {user_id: user.id}).then(function(avatar) {
+      this._setCurrentAvatarProperties(avatar.objectAt(0));
+    }.bind(this));
+  },
+
+  _setCurrentAvatarProperties: function(avatar) {
+    this.set('currentAvatar', avatar);
+  },
+
+  // --- Clear Session -------------
+  
+  clearCurrentSession: function() {
+    this.clearAll();
+    this._clearSessionCookie();
+  },
+
+  _clearSessionCookie: function() {
+    Cookies.remove('user_session', { path: '/' });
+  },
+
+  // --- Create New Session -------------
 
   _createNewSession: function(data, attemptedTransition) {
     Ember.$.post('api/sessions', data).then(
@@ -39,45 +94,25 @@ export default Ember.ArrayController.extend({
     ); 
   },
 
+  // --- Sign In Success -------------
+
   _signInSucess: function(response, attemptedTransition) {
-    if(response.success) {   
-      this._setCurrentUser(response);
-      this._setCurrentAvatar(response);
-      this._redirectAfterLogin(attemptedTransition, response.user);
+    if(response.success) {
+      this._setAuthToken(response);
       this._setFlashMessage(response.user.first_name);
+      this._redirectAfterLogin(attemptedTransition, response.user);
     }
   },
 
-  _setCurrentUser: function(response) {
-    this.store.find('user', response.user.id).then(function(user) {
-      this._setCurrentUserProperties(user);
-    }.bind(this));
+  _setAuthToken: function(response) {
+    this.set('auth_token', response.user.auth_token);
   },
 
-  _setCurrentUserProperties: function(user) {
-    this.setProperties({
-      currentUser: {
-        first_name: user.get('first_name'),
-        last_name: user.get('last_name'),
-        email: user.get('email'),
-        avatar_original: user.get('avatar_original'),
-        avatar_profile: user.get('avatar_profile'),
-        avatar_nav: user.get('avatar_nav'),
-        id: user.get('id')
-      },
-      isLoggedIn: true,
-      auth_token: user.get('auth_token')
+  _setFlashMessage: function(name) {
+    this.get('controllers.flash').createFlash({
+      type: 'success', 
+      message: 'Welcome back ' + name + '!'
     });
-  },
-
-  _setCurrentAvatar: function(response) {
-    this.store.find('avatar', response.user.id).then(function(avatar) {
-      this._setCurrentAvatarProperties(avatar);
-    }.bind(this));
-  },
-
-  _setCurrentAvatarProperties: function(avatar) {
-    this.set('currentAvatar', avatar);
   },
 
   _redirectAfterLogin: function(attemptedTransition, user) {
@@ -89,12 +124,7 @@ export default Ember.ArrayController.extend({
     }
   },
 
-  _setFlashMessage: function(name) {
-    this.get('controllers.flash').createFlash({
-      type: 'success', 
-      message: 'Welcome back ' + name + '!'
-    });
-  },
+  // --- Sign In Fail -------------
 
   _signInFailure: function(response) {
     if (response.status === 422) {
@@ -102,6 +132,8 @@ export default Ember.ArrayController.extend({
       this.set('userErrors', errorObject.errors);
     }
   },
+
+  // --- Set View Actions -------------
 
   actions: {
     signIn: function() {
@@ -111,6 +143,6 @@ export default Ember.ArrayController.extend({
       this._createNewSession(data, attemptedTransition);
     }
 
-  }// End Actions
+  }
 
 });

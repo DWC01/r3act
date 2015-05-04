@@ -5,32 +5,7 @@ export default Ember.Controller.extend({
 
   s3_data: undefined,
 
-  // --- Set Dependencies -----------------
-
-  _setAvatarProperties: function() {
-    this.get('avatar').set('s3_data', this.s3_data);
-  }.observes('s3_data'),
-
-   _setSessionProperties: function(user) {
-    this.get('controllers.sessions').setProperties({
-      currentUser: {
-        first_name: user.get('first_name'),
-        last_name: user.get('last_name'),
-        email: user.get('email'),
-        id: user.get('id')
-      },
-      isLoggedIn: true,
-      auth_token: user.get('auth_token')
-    });
-  },
-
-  _setFlashMessage: function(type, message) {
-    this.get('controllers.flash').createFlash({
-      type: type, message: message
-    });
-  },
-
-  // --- Set Clean Up Methods -----------------
+  // --- Set Clear -------------
 
   clearAll: function() {
     this.setProperties({
@@ -41,42 +16,77 @@ export default Ember.Controller.extend({
       company: undefined
     });
   },
+  
+  // --- Bind Observers -------------
 
-  _setCurrentAvatarProperties: function(avatar) {
+  _setAvatarProperties: function() {
+    this.get('avatar').set('s3_data', this.s3_data);
+  }.observes('s3_data'),
+
+  // --- Update Models -------------
+
+  _updateAvatar: function() {
+    if (this.get('avatar.isDirty')) {
+      this.get('avatar').save().then(
+        function(avatar) {
+          this._updateCurrentAvatar(avatar);
+          this._setSuccessFlash();
+        }.bind(this), 
+        function(reason) {
+          this._setErrorFlash();
+        }.bind(this)
+      );
+    }
+  },
+
+  _updateCurrentAvatar: function(avatar) {
     this.get('controllers.sessions').setProperties({
       currentAvatar: avatar,
     });
   },
 
+  _updateUser: function() {
+    if (this.get('user.isDirty')) {        
+      this.get('user').save().then(
+        function(user) {
+          this._updateCurrentUser(user);
+          this._setSuccessFlash();
+        }.bind(this), 
+        function() {
+          this._setErrorFlash();
+        }.bind(this)
+      );
+    }
+  },
+
+  _updateCurrentUser: function(user) {
+    this.get('controllers.sessions').setProperties({
+      currentUser: user,
+    });
+  },
+
+   // --- Set Flash -------------
+
+  _setSuccessFlash: function(type, message) {
+    this.get('controllers.flash').createFlash({
+      type: 'success', 
+      message: 'Profile successfully updated'
+    });
+  },
+
+  _setErrorFlash: function(type, message) {
+    this.get('controllers.flash').createFlash({
+      type: 'error', 
+      message: 'There was an error updating your profile.'
+    });
+  },
+
+  // --- Set View Actions -------------
+
   actions: {
     saveChanges: function() {
-      // Update Image
-      if (this.get('avatar.isDirty')) {
-        this.get('avatar').get('content').save().then(
-          function(avatar) {
-            this._setCurrentAvatarProperties(avatar);
-            this._setFlashMessage('success','Profile successfully updated');
-          }.bind(this), 
-          function(reason) {
-            this._setFlashMessage('error','There was an error updating your profile Image');
-          }.bind(this)
-        );
-      }
-
-      // Update User
-      if (this.get('user.isDirty')) {        
-        this.get('user').save().then(
-          function(user) {
-            this._setSessionProperties(user);
-            this._setFlashMessage('success', 
-              'Profile successfully updated');
-          }.bind(this), 
-          function() {
-            this._setFlashMessage('error','There was an error updating your profile');
-          }.bind(this)
-        );
-      } 
-      
+      this._updateAvatar();
+      this._updateUser();
     },
     delete: function() {
       this.get('user').destroyRecord().then(function() {

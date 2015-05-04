@@ -31,26 +31,33 @@ class User < ActiveRecord::Base
     UserMailer.password_reset(self).deliver
   end
 
-  # -- Serializer -----------------
+  # -- Serializers -----------------
 
   def self.serialized(user)
-    {
-      user: {
-        id: user.id,
-        admin: user.admin,
-        first_name: user.first_name,
-        last_name: user.last_name,
-        email: user.email,
-        auth_token: user.auth_token,
-        title: user.title,
-        position: user.position,
-        company_id: user.company_id,
-        password_reset_sent_at: user.password_reset_sent_at,
-        created_at: user.created_at,
-        updated_at: user.updated_at
-      },
-      avatar: [user.avatar]
-    }
+    {user: user_object(user)}
+  end
+
+  def self.serialized_array(users)
+    users_array = [];
+    users.each do |user|
+      users_array << user_object(user)
+    end
+    {user: users_array}
+  end
+
+  def self.user_object(user)
+    { id: user.id,
+      admin: user.admin,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      email: user.email,
+      auth_token: user.auth_token,
+      title: user.title,
+      position: user.position,
+      company_id: user.company_id,
+      password_reset_sent_at: user.password_reset_sent_at,
+      created_at: user.created_at,
+      updated_at: user.updated_at}
   end
 
   # -- Create Avatar -----------------

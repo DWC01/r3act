@@ -33,7 +33,7 @@
       </div>
       <div class="account-settings-value">
         <div class="account-settings-user-photo-wrap">
-          <img {{bind-attr src=avatar.profile_url}} >
+          <img {{bind-attr src=avatar.profile_url}} alt= " ">
         </div>
         {{file-upload 
           url="/api/sign"
@@ -68,6 +68,14 @@
     <div class="account-settings-row">
       <div class="account-settings-label">
         Company:
+      </div>
+      <div class="account-settings-value">
+        {{input type="text" value=user.company name="company" placeholder="company" class="form-control"}}
+      </div>
+    </div>
+    <div class="account-settings-row">
+      <div class="account-settings-label">
+        Another Field:
       </div>
       <div class="account-settings-value">
         {{input type="text" value=user.company name="company" placeholder="company" class="form-control"}}

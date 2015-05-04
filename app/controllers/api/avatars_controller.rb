@@ -2,7 +2,12 @@ module Api
   class AvatarsController < Api::BaseController
 
     def index
-      render json: Avatar.all
+      avatars = Avatar.where(query_params)
+      if avatars
+        render json: {avatar: avatars}, status: 200
+      else
+        render json: {message: 'No avatars found'}, status: 422
+      end
     end
 
     def create
@@ -15,7 +20,7 @@ module Api
     end
 
     def show
-      avatar = Avatar.find_by_user_id(params[:id])
+      avatar = Avatar.find(params[:id])
       if avatar
         render json: {avatar: avatar}, status: 200
       else
@@ -37,6 +42,10 @@ module Api
         params.require(:avatar).permit(
           :id, :s3_data
         )
+      end
+
+      def query_params
+        params.permit(:user_id)
       end
   end
 end

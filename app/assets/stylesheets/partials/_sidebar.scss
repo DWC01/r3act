@@ -5,7 +5,6 @@
 .page-content-wrap {
   width: 100%;
   height: 100%;
-  padding: 0 60px;
   transition: all .5s;
 }
 
@@ -24,6 +23,7 @@
   top: 9px;
   color: #5e5e5e;
   font-size: 21px;
+  cursor: pointer;
   &:hover, &:active, &:focus {
     color: #5e5e5e;
     border: 0px solid transparent;
@@ -116,5 +116,5 @@
 
 .sidebar-push-content {
   margin-left: 211px !important;
-  width: 85%;
+  width: 85.5%;
 }

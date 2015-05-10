@@ -29,9 +29,11 @@ export default Ember.View.extend({
   },
 
   _isSidebarDisplaying: function() {
-    return this.get('controller')
-      .get('controllers.application')
-      .get('isSidebarDisplaying');
+    if(Ember.$('.page-menu-toggle').first().attr('sidebar-visible') === "true"){
+      return true;
+    } else {
+      return false;
+    }
   },
 
   actions: {

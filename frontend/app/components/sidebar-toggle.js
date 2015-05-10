@@ -4,17 +4,27 @@ export default Ember.Component.extend({
 
   classNames: ['page-menu-toggle'],
 
-  isSidebarDisplaying: true,
+  attributeBindings: ['label:sidebar-visible'],
+
+  sidebarDisplaying: true,
+
+  label: function() {
+    if(this.sidebarDisplaying) {
+      return "true";
+    } else {
+      return "false";
+    }
+  }.property('sidebarDisplaying'),
 
   click: function() {
-    if (this.isSidebarDisplaying) {
+    if (this.get('sidebarDisplaying')) {
       Ember.$('.sidebar').removeClass('show-sidebar');
       Ember.$('.page-content-wrap').removeClass('sidebar-push-content');
-      this.isSidebarDisplaying = false;
+      this.set('sidebarDisplaying', false);
     } else {
       Ember.$('.sidebar').addClass('show-sidebar');
       Ember.$('.page-content-wrap').addClass('sidebar-push-content');
-      this.isSidebarDisplaying = true;
+      this.set('sidebarDisplaying', true);
     }
   }
 

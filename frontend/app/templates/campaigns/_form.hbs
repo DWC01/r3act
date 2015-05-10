@@ -1,10 +1,7 @@
 <form {{action "createCampaign" on="submit"}} enctype="multipart/form-data">  
   <div class="upload-ad-tags r3-primary-border">
     <div>
-      {{file-upload 
-          url="/api/sign"
-          s3_data=controller.s3_data
-      }}
+      {{file-upload url="/api/sign" s3_data=controller.s3_data}}
     </div>
   </div>
   <div class="center">

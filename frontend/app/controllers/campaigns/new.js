@@ -41,6 +41,8 @@ export default Ember.ArrayController.extend({
     });
   },
 
+  // --- Set View Actions -------------
+
   actions: {
     createCampaign: function() {
       var campaign = this.get('campaign');

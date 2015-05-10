@@ -1,84 +1,10 @@
-<div class="r3-page-header">
-  <h2>
-    {{campaign.name}}
-  </h2>
-</div>
+{{page-header value=campaign.name}}
 
 <ul class="list-unstyled">
   {{#each flight in flights}}
     <li>
-    <!-- Flight Header -->
-    <div class="flight-header">
-      <h2>
-      {{#link-to '' class="add-photo"}}
-        <i class="fa fa-picture-o neon-green"></i>
-      {{/link-to}}
-        {{flight.name}}
-      </h2>
-    </div>
-    <!-- Ad Tag Table -->
-    <ul class="list-unstyled">
-      <li class="placement-table-container">
-        <table class="table table-bordered">
-          <tr class="table-header">
-            <td>
-              Size
-            </td>
-            <td>
-              Placement Name
-            </td>
-            <td>
-              Site
-            </td>
-            <td>
-              Impressions
-            </td>
-            <td>
-              Unit Cost
-            </td>
-            <td>
-              Total Cost
-            </td>
-          </tr>
-          
-          {{#each ad_tag in flight.tags}}
-          <tr>
-            <td><!-- Placement - Editable Cell -->
-              <span>
-                {{ad_tag.size}}
-              </span>
-            </td>
-            <td><!-- Placement - Editable Cell -->
-              <span>
-                {{ad_tag.placement}}
-              </span>
-            </td>
-            <td><!-- Placement - Editable Cell -->
-              <span>
-                {{ad_tag.site}}
-              </span>
-            </td>
-            <td><!-- Placement - Editable Cell -->
-              <span>
-                {{-number ad_tag.impressions}}
-              </span>
-            </td>
-            <td><!-- Placement - Editable Cell -->
-              <span>
-                {{-currency ad_tag.unit_cost}}
-              </span>
-            </td>
-            <td><!-- Placement - Editable Cell -->
-              <span>
-                {{-currency ad_tag.total_cost}}
-              </span>
-            </td>
-          </tr>
-          {{/each}}
-
-        </table>
-      </li>
-    </ul>
+      {{flight-header flight=flight}}
+      {{placement-table ad_tags=flight.ad_tags}}
     </li>  
   {{/each}}
 </ul>

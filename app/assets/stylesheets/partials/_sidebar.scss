@@ -18,32 +18,18 @@
 }
 
 .page-menu-toggle {
-  position: fixed;
-  top: -14px;
-  left: 25px;
-  display: inline;
-  margin: 0 15px 0 0;
-  top: 5px;
-  color: #5e5e5e;
-  font-size: 28px;
-  border-right: 1px solid #5e5e5e;
-  padding-right: 25px;
-  /* old style
   position: relative;
   float: left;
   margin: 0 15px 0 0;
   top: 9px;
   color: #5e5e5e;
-  font-size: 21px; */
+  font-size: 21px;
   &:hover, &:active, &:focus {
     color: #5e5e5e;
     border: 0px solid transparent;
-    border-right: 1px solid #5e5e5e;
     outline: none;
   }
 }
-
-  
 
 .page-menu-header{
   margin: 0 0 3% 0;

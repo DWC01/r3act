@@ -1,5 +1,10 @@
-{{render 'sidebar'}}
-{{render 'navigation'}}
+{{-sidebar}}
+
+{{-navigation 
+  currentUser=currentUser
+  currentAvatar=currentAvatar
+  isLoggedIn=isLoggedIn}}
+
 {{render 'flashMessages'}}
 <div class="page-content-wrap sidebar-push-content">
   <div class="page-content">

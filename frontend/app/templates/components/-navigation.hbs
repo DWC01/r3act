@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="navbar-header">
+    {{sidebar-toggle data-url='#'}}
+    <a class="navbar-brand" href="#">
+      Display
+      <span>{</span>AdTech<span>}</span>
+    </a>
+  </div>
+  <ul class="nav pull-right">
+    {{#if isLoggedIn}}
+      <li class='pull-right' >
+        {{#link-to 'users.show' currentUser.id}}
+           <img {{bind-attr src=currentAvatar.nav_url}} 
+            style="border-radius: 50%;" alt= " ">
+           {{currentUser.first_name}}
+        {{/link-to}}
+      </li>
+      <li class='pull-right'>
+        {{#link-to 'sessions.destroy'}}
+          Logout
+        {{/link-to}}
+      </li>
+      <li  class='pull-right'>
+        {{#link-to 'campaigns.new'}}
+          + New Campaign
+        {{/link-to}}
+      </li>
+    {{else}}
+      <li class='pull-right' >
+        {{#link-to 'sessions'}}
+          Sign In
+        {{/link-to}}
+      </li>
+      <li class='pull-right' >
+        {{#link-to 'users.new'}}
+          Sign Up
+          {{currentUser.first_name}}
+        {{/link-to}}
+      </li>
+    {{/if}}
+  </ul>
+</div>

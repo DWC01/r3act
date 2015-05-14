@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import AuthenticatedRoute from  '../authenticated.js';
 
-export default Ember.Route.extend({
+export default AuthenticatedRoute.extend({
   model: function(params) {
+    // this.controllerFor('application')
+    //   .set('campaign_id', params.campaign_id); 
     return this.store.find('campaign', params.campaign_id);
   },
 

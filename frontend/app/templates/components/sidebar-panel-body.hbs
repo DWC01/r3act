@@ -1,10 +1,21 @@
 <div class="r3-panel-body">
   <aside class="page-menu-content">
-    {{#if isMenu}}
-      {{menu-links}}
-    {{/if}}
-    {{#if isSettings}}
-      {{settings-links currentUser=currentUser}}
-    {{/if}}
+    {{#each link in links}}
+      <p class="title">
+        {{#if link.id}}
+
+          {{#link-to link.path link.id}} 
+            {{link.title}}
+          {{/link-to}}
+
+        {{else}}
+
+          {{#link-to link.path}} 
+            {{link.title}}
+          {{/link-to}}
+
+        {{/if}}
+      </p>
+    {{/each}}
   </aside>
 </div>

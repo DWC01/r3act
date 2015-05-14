@@ -11,17 +11,4 @@ export default Ember.Component.extend({
     return this.get('panelFor');
   }.property('panelFor'),
 
-  isMenu: function() {
-    if( this.get('panelFor')==='menu' ) {
-      return true;
-    }
-  }.property('panelFor'),
-
-  isSettings: function() {
-    if( this.get('panelFor')==='settings' ) {
-      return true;
-    }
-  }.property('panelFor')
-
-
 });

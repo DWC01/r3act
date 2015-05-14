@@ -3,6 +3,9 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   beforeModel: function() {
+    this._setCurrentUser();
+  },
+  _setCurrentUser: function() {
     var auth_token = Cookies.get('user_session');
     
     if (auth_token) { 

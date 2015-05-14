@@ -3,7 +3,7 @@ import {
   test
 } from 'ember-qunit';
 
-moduleForComponent('sidebar-panel-body-link', {
+moduleForComponent('download-media-plan', {
   // Specify the other units that are required for this test
   // needs: ['component:foo', 'helper:bar']
 });

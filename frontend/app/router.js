@@ -11,7 +11,10 @@ Router.map(function() {
   
   this.resource('campaigns', function() {
     this.route('new',  {path: 'new'});
-    this.route('media_plan', {path: ':campaign_id/media_plan'});
+    this.route('media_plan',  {path: ':campaign_id/media_plan' });
+    this.route('analytics',   {path: ':campaign_id/analytics'  });
+    this.route('trafficking', {path: ':campaign_id/trafficking'});
+    this.route('wrap_up', {path: ':campaign_id/wrap_up'});
   });
 
   this.resource('companies', function() {

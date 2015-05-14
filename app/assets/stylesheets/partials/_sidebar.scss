@@ -77,6 +77,9 @@
 /*-- Campaign New Sidebar --*/
 
 .download-media-plan {
+  display: block;
+  margin: 20px auto 60px auto;
+
   &:hover, &:focus {
     text-decoration: none;
     border: none;

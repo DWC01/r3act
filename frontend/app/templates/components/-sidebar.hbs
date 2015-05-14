@@ -1,28 +1,35 @@
 <div class="page-menu-btn-wrap"></div>
 <aside class="r3-panel-group" id="r3Collapse" 
        role="tablist" aria-multiselectable="true">
-  
-  {{sidebar-panel
-    header-id='menu'
-    header-title='Menu'
-    header-href='#collapse-menu'
-    header-aria-controls='collapse-menu'
-    header-aria-expanded=true
-    header-iconClass='fa fa-file-o media-plan page-menu-i'
-    body-id='collapse-menu'
-    body-panelFor='menu'
-  }}
+      
+    {{#if newCampaign}}
+      {{download-media-plan}}
+    {{else}}
 
-  {{sidebar-panel
-    header-id='settings'
-    header-title='Settings'
-    header-href='#collapse-settings'
-    header-aria-controls='collapse-settings'
-    header-aria-expanded=true
-    header-iconClass='fa fa-cog trafficking page-menu-i'
-    body-id='collapse-settings'
-    body-panelFor='settings'
-    currentUser=currentUser
-  }}
+    {{sidebar-panel
+      header-id='panelOne'
+      header-title=panelOne.title
+      header-href='#collapse-panelOne'
+      header-aria-controls='collapse-panelOne'
+      header-aria-expanded='true'
+      header-iconClass=panelOne.icon
+      body-id='collapse-panelOne'
+      body-links=panelOne.links}}
+
+    {{/if}}
+    
+    {{#if panelTwo}}
+      {{sidebar-panel
+        header-id='panelTwo'
+        header-title=panelTwo.title
+        header-href='#collapse-panelTwo'
+        header-aria-controls='collapse-panelTwo'
+        header-aria-expanded='true'
+        header-iconClass=panelTwo.icon
+        body-id='collapse-panelTwo'
+        body-links=panelTwo.links}}
+    {{/if}}
 
 </aside>
+
+

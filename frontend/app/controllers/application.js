@@ -58,7 +58,7 @@ export default Ember.Controller.extend({
   },
 
   newCampaign: function() {
-    return this.get('currentResource') === 'newCampaign'
+    return this.get('currentResource') === 'newCampaign';
   }.property('currentResource'),
 
   panel: function() {
@@ -67,10 +67,10 @@ export default Ember.Controller.extend({
     } else if (this.get('currentResource') === 'campaign') {
       return {one: this._campaignPanel(), two: this._settingsPanel()};
     } else if (this.get('currentResource') === 'campaigns') {
-      return {one: this._campaignsPanel(), two: this._settingsPanel()};
+      return {one: this._menuPanel()};
     } else {
       return {one: this._menuPanel()};
-    }
+    } 
   }.property('currentResource'),
 
   _menuPanel: function() {
@@ -78,17 +78,15 @@ export default Ember.Controller.extend({
       title:'Menu',
       icon: 'fa fa-file-o media-plan page-menu-i',
       links: [{
+        title: 'Profile',
+        path: 'users.show',
+        id: this.get('currentUser')
+      },{
         title: 'Campaigns',
         path: 'campaigns.index'
       },{
-        title: 'Sign In',
-        path: 'sessions'
-      },{
-        title: 'Users',
-        path: 'users.index'
-      },{
-        title: 'Companies',
-        path: 'companies.index'
+        title: '+ New Campaign',
+        path: 'campaigns.new'
       }]
     };
   },
@@ -116,7 +114,7 @@ export default Ember.Controller.extend({
   _newCampaignPanel: function() {
     return {
       title: 'Media Plan',
-      icon: 'fa fa-bookmark-o page-menu-i'
+      icon: 'fa fa-file-excel-o media-plan page-menu-i'
     };
   },
 
@@ -131,6 +129,9 @@ export default Ember.Controller.extend({
       },{
         title: 'My Campaigns',
         path: 'campaigns.index'
+      },{
+        title: '+ New Campaign',
+        path: 'campaigns.new'
       }]
     };
   },

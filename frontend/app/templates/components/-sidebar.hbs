@@ -2,10 +2,6 @@
 <aside class="r3-panel-group" id="r3Collapse" 
        role="tablist" aria-multiselectable="true">
       
-    {{#if newCampaign}}
-      {{download-media-plan}}
-    {{else}}
-
     {{sidebar-panel
       header-id='panelOne'
       header-title=panelOne.title
@@ -16,6 +12,8 @@
       body-id='collapse-panelOne'
       body-links=panelOne.links}}
 
+    {{#if newCampaign}}
+      {{download-media-plan}}
     {{/if}}
     
     {{#if panelTwo}}

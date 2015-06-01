@@ -1,12 +1,15 @@
 .form-wrap {
-  width: 350px;
+  width: 360px;
   padding: 23px 25px;
   margin: 0px auto;
   & .two-field-wrap {
     display: flex;
   }
-  & .form-input {
+  & .input-field {
     margin: 0 0 15px 0;
+  }
+  & .submit-field {
+    margin: 40px 0 10px 0;
   }
   & .input-1-2, .input-2-2 {
     float: left;
@@ -24,4 +27,14 @@
 .form-field-error {
   color: #337ab7;
   margin: 6px 0 -6px 5px;
+}
+
+.forgot-password {
+  width: 360px;
+  margin: 30px auto;
+  text-align: center;
+  & a {
+    color: $secondary-color;
+    font-size: 1rem;
+  }
 }

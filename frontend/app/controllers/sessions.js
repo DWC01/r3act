@@ -99,6 +99,7 @@ export default Ember.ArrayController.extend({
   _signInSucess: function(response, attemptedTransition) {
     if(response.success) {
       this._setAuthToken(response);
+      this.set('currentUser', response.user);
       this._setFlashMessage(response.user.first_name);
       this._redirectAfterLogin(attemptedTransition, response.user);
     }

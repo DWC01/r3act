@@ -62,9 +62,6 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (3.3.4.1)
-      autoprefixer-rails (>= 5.0.0.1)
-      sass (>= 3.2.19)
     bower-rails (0.9.2)
     builder (3.2.2)
     c3-rails (0.4.8)
@@ -165,6 +162,8 @@ GEM
     lumberjack (1.0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    materialize-sass (0.96.2)
+      sass (~> 3.3)
     meta_request (0.3.4)
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (~> 1.1)
@@ -336,7 +335,6 @@ DEPENDENCIES
   bcrypt
   better_errors
   binding_of_caller
-  bootstrap-sass
   bower-rails
   c3-rails
   capybara
@@ -351,6 +349,7 @@ DEPENDENCIES
   guard-rspec
   jquery-rails
   konacha
+  materialize-sass
   meta_request
   pg
   quiet_assets

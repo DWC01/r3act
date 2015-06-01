@@ -1,5 +1,4 @@
 body {
-  padding-top: 55px !important;
   min-height: 1000px;
 }
 
@@ -9,16 +8,12 @@ html {
   height: 100%;
 }
 
-body,h1,h2,h3,h4,h5,h6 {
+html,body,h1,h2,h3,h4,h5,h6 {
   font-family: $font-stack;
   color: $primary-text;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
-
-/*----------------------*/
-/*   Custom-BootStrap   */
-/*----------------------*/
 
 .container{
   width:  1100px !important;
@@ -26,17 +21,20 @@ body,h1,h2,h3,h4,h5,h6 {
 }
 
 .navbar-brand {
-  font-size: 20px !important;
-  color: #5e5e5e !important;
+  position: relative;
+  top: 0px;
+  left: 30px;
+  font-size: 21px;
+  color: #5e5e5e;
   &:hover {
     color: #5e5e5e;
   }
   & span {
-  color: #67e875;
+    color: $secondary-color;
   }
 }
 
-.r3-flashs {
+.flash-messages {
   position: fixed;
   bottom: 0px;
   width: 100%;
@@ -47,21 +45,73 @@ body,h1,h2,h3,h4,h5,h6 {
   border: 0px solid transparent;
 }
 
-.r3-flash-success {
-  background-color: #67e875;
+.flash-success {
+  background-color: $secondary-color;
 }
 
-.r3-flash-error {
+.flash-error {
   background-color: red;
+}
+
+.page-content-wrap {
+  width: 100%;
+  height: 100%;
+  transition: all .5s;
+}
+
+.sidebar-toggle {
+  position: fixed;
+  top: 0px;
+  left: 165px;
+  color: #5e5e5e;
+  font-size: 33px;
+  cursor: pointer;
+  z-index: 120;
+  &:hover, &:active, &:focus {
+    color: #5e5e5e;
+    border: 0px solid transparent;
+    outline: none;
+  }
+} 
+
+/*----------------------*/
+/*   Custom-Material    */
+/*----------------------*/
+
+.btn {
+  width: 100%;
+}
+
+.input-field {
+  margin: 0 0 15px 0;
+  width: 100%;
+}
+
+.ember-application nav {
+  position: fixed;
+  top: 0px; 
+  -webkit-backface-visibility: hidden;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16), 
+  0 1px 7px 0 rgba(0, 0, 0, 0.12) !important;
+  z-index: 99;
+}
+
+.ember-application nav ul a {
+  font-size: 1.1rem;
+  color: $secondary-color;
+}
+
+.ember-application .nav > li > a {
+  padding: 0px 15px;
 }
 
 /*---------------------*/
 /*    Custom-Global    */
 /*---------------------*/
 
-.r3-page-header {
-  padding-bottom: 25px;
-  margin: 25px 0 40px 0;
+.page-header {
+  padding-bottom: 15px;
+  margin: 80px 0 40px 0;
   border-bottom: 1px solid #eeeeee;
   text-align: center;
   & h2 {
@@ -79,18 +129,20 @@ body,h1,h2,h3,h4,h5,h6 {
   left:0px;
 }
 
-.r3-primary-border {
-  -webkit-box-shadow: #f0f0f0 0 0 0 3px inset,#edddf5 2px 3px 0;
-  -moz-box-shadow: #f0f0f0 0 0 0 3px inset,#edddf5 2px 3px 0;
-  box-shadow: #f0f0f0 0 0 0 3px inset,#edddf5 2px 3px 0;
+.no-bottom-margin {
+  margin-bottom: 0px !important;
 }
 
-.shadow-border {
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.45);
+.pointer {
+  cursor: pointer;
+}
+
+.primary-border {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
 }
 
 .single-componet-wrap {
-  margin: 50px auto 0px auto;
+  margin: 83px auto 0px auto;
   width: 500px;
   & .component-header {
     padding-bottom: 10px;

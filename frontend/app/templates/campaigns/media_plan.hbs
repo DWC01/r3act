@@ -3,7 +3,7 @@
 <ul class="list-unstyled">
   {{#each flight in flights}}
     <li>
-      {{flight-header flight=flight}}
+      {{flight-header flight=flight parentController=this}}
       {{placement-table ad_tags=flight.ad_tags}}
     </li>  
   {{/each}}

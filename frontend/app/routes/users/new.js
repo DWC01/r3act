@@ -1,7 +1,7 @@
 /* global Cookies */
-import Ember from 'ember';
+import NonCampaignPageRoute from  '../non-campaign-page';
 
-export default Ember.Route.extend({
+export default NonCampaignPageRoute.extend({
   
   beforeModel: function() {
     var auth_token = Cookies.get('user_session');

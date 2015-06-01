@@ -1,33 +1,27 @@
-<div class="page-menu-btn-wrap"></div>
-<aside class="r3-panel-group" id="r3Collapse" 
-       role="tablist" aria-multiselectable="true">
-      
-    {{sidebar-panel
-      header-id='panelOne'
-      header-title=panelOne.title
-      header-href='#collapse-panelOne'
-      header-aria-controls='collapse-panelOne'
-      header-aria-expanded='true'
-      header-iconClass=panelOne.icon
-      body-id='collapse-panelOne'
-      body-links=panelOne.links}}
-
-    {{#if newCampaign}}
-      {{download-media-plan}}
+  <div class="sidebar-panel-header-wrap">
+  	{{#if currentUser}}
+  		{{#link-to 'users.show' currentUser.id}}
+        <div class="sidebar-user-avatar"> 
+          <img {{bind-attr src=currentAvatar.nav_url}} >
+        </div>
+        <div class="sidebar-user-name"> 
+          {{currentUser.first_name}}
+        </div>
+      {{/link-to}}
+  	{{/if}}
+  </div>      
+  
+  {{#if currentUser}}
+    {{#if currentCampaign}}
+    	{{sidebar-campaign-panel 
+    		header-title="Campaign"
+    		currentCampaign=currentCampaign}}
     {{/if}}
-    
-    {{#if panelTwo}}
-      {{sidebar-panel
-        header-id='panelTwo'
-        header-title=panelTwo.title
-        header-href='#collapse-panelTwo'
-        header-aria-controls='collapse-panelTwo'
-        header-aria-expanded='true'
-        header-iconClass=panelTwo.icon
-        body-id='collapse-panelTwo'
-        body-links=panelTwo.links}}
-    {{/if}}
+  {{/if}}
 
-</aside>
+  {{sidebar-menu-panel
+    header-title="Site"
+    currentUser=currentUser}}
+  
 
 

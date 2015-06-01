@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-  classNames: ['page-menu-toggle'],
+  classNames: ['sidebar-toggle'],
 
   attributeBindings: ['label:sidebar-visible'],
 

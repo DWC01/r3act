@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import NonCampaignPageRoute from  '../non-campaign-page';
 
-export default Ember.Route.extend({
+export default NonCampaignPageRoute.extend({
   model: function(params) {
     return this.store.find('user', params.user_id);
   },

@@ -1,4 +1,4 @@
-import AuthenticatedRoute from  '../authenticated.js';
+import AuthenticatedRoute from  '../authenticated';
 
 export default AuthenticatedRoute.extend({
   model: function(params) {
@@ -6,5 +6,6 @@ export default AuthenticatedRoute.extend({
   },
   setupController: function (controller, model) {
     controller.set('campaign', model);
+    this.controllerFor('campaigns').set('currentCampaign', model);
   }
 });

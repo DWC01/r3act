@@ -1,6 +1,6 @@
-import Ember from 'ember';
+import NonCampaignPageRoute from  '../non-campaign-page';
 
-export default Ember.Route.extend({
+export default NonCampaignPageRoute.extend({
   beforeModel: function() {
     this.controllerFor('sessions').clearCurrentSession();
     this._clearAllModelStore();

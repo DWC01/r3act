@@ -1,0 +1,17 @@
+<form {{action "createCreative" on="submit"}}>
+  <div class="form-input">
+    {{input type="text" value=creative.width name="width" placeholder="width" class="form-control"}}
+    <div class="form-field-error">
+      {{creative_errors.width}}
+    </div>
+  </div>
+  <div class="form-input">
+     {{input type="text" value=creative.height name="height" placeholder="height" class="form-control"}}
+    <div class="form-field-error">
+      {{creative_errors.height}}
+    </div>
+  </div>
+  <button type="submit" name="submit" class="waves-effect waves-light btn">
+    Save
+  </button>
+</form>

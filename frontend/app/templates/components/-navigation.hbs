@@ -1,18 +1,26 @@
 <div class="container">
-  <div class="navbar-header">
-    {{sidebar-toggle data-url='#'}}
-    <a class="navbar-brand" href="#">
-      Display
-      <span>{</span>AdTech<span>}</span>
-    </a>
-  </div>
-  <ul class="nav pull-right">
+  <a class="navbar-brand" href="#">
+    Display
+    <span>{</span>AdTech<span>}</span>
+  </a>
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="#!">one</a></li>
+  <li><a href="#!">two</a></li>
+  <li class="divider"></li>
+  <li><a href="#!">three</a></li>
+</ul>
+
+  <ul id="nav-mobile" class="right hide-on-med-and-down">
     {{#if isLoggedIn}}
-      <li class='pull-right' >
+      <li>
         {{#link-to 'users.show' currentUser.id}}
-           <img {{bind-attr src=currentAvatar.nav_url}} 
-            style="border-radius: 50%;" alt= " ">
-           {{currentUser.first_name}}
+          <div class="nav-user-avatar"> 
+            <img {{bind-attr src=currentAvatar.nav_url}} >
+          </div>
+          <div class="nav-user-name"> 
+            {{currentUser.first_name}}
+          </div>
         {{/link-to}}
       </li>
       <li class='pull-right'>
@@ -21,12 +29,12 @@
         {{/link-to}}
       </li>
     {{else}}
-      <li class='pull-right' >
+      <li>
         {{#link-to 'sessions'}}
           Sign In
         {{/link-to}}
       </li>
-      <li class='pull-right' >
+      <li>
         {{#link-to 'users.new'}}
           Sign Up
           {{currentUser.first_name}}

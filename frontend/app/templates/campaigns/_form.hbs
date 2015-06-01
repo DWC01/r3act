@@ -1,11 +1,11 @@
 <form {{action "createCampaign" on="submit"}} enctype="multipart/form-data">  
-  <div class="upload-ad-tags r3-primary-border">
+  <div class="upload-ad-tags primary-border">
     <div>
       {{file-upload url="/api/sign" s3_data=controller.s3_data}}
     </div>
   </div>
   <div class="center">
-    <button type="submit" name="submit" class="r3-btn-primary">
+    <button type="submit" name="submit" class="btn waves-effect waves-light">
       Submit
     </button>  
   </div>

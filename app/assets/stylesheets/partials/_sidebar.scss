@@ -1,114 +1,18 @@
-/*-------------------*/
-/*  Sidebar Content  */
-/*-------------------*/
-
-.page-content-wrap {
-  width: 100%;
-  height: 100%;
-  transition: all .5s;
-}
-
-.page-menu-btn-wrap {
-  position: relative;
-  height: 39px;
-  border-bottom: 1px solid #34343a;
-  margin: 0 0 10px 0;
-}
-
-.page-menu-toggle {
-  position: relative;
-  float: left;
-  margin: 0 15px 0 0;
-  top: 9px;
-  color: #5e5e5e;
-  font-size: 21px;
-  cursor: pointer;
-  &:hover, &:active, &:focus {
-    color: #5e5e5e;
-    border: 0px solid transparent;
-    outline: none;
-  }
-}
-
-.page-menu-header{
-  margin: 0 0 3% 0;
-  background-color: #34343a;
-  & p {
-    font-size: 18px;
-  }
-  & .title {
-    color: #848b8d;
-    margin: 0 0 0 20%;
-    padding: 15px 0;
-  }
-  & i {
-    position: relative;
-    top: 5px;
-    color: #67e875;
-    float: right;
-    margin: 0 15% 0 0;
-    font-size: 23px;
-    transition: margin .5s;
-  }
-  & .bottom-highlight{
-    height: 2px;
-    width: 40%;
-    background-color: #67e875;
-  }
-}
-
-.page-menu-content{
-  & p {
-    margin: 0 0 20px 0;
-  }  
-  & .title a {
-    font-size: 15px;
-    font-size: 15px;
-    color: #fff;
-  }
-  & .title a:hover, .title a:active, .title a:focus {
-    text-decoration: none;
-    border: none;
-    outline:none;
-  }
-}
-
-/*-- Campaign New Sidebar --*/
-
-.download-media-plan {
-  display: block;
-  margin: 20px auto 40px auto;
-
-  &:hover, &:focus {
-    text-decoration: none;
-    border: none;
-  }
-  &:hover i, &:hover p {
-    
-  }
-  & i {
-    color: $neon-green;
-  }
-  & p {
-    color: $neon-green;
-    font-size: 16px;
-    margin-top: 10px;
-  }
- }
-
 /*-----------*/
 /*  Sidebar  */
 /*-----------*/
 
 .sidebar {
+  position: fixed;
+  top:0px;
   left: -211px !important;
-  top: 50px;
   width: 210px;
   height: 100%;
   background-color: #29292e;
   transition: margin .5s;
-  /* allows flash message to display above or below seidebar */
-  // z-index:10;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+  -webkit-backface-visibility: hidden;
+  z-index:110;
 }
 
 .show-sidebar {
@@ -119,3 +23,85 @@
   margin-left: 211px !important;
   width: 85.5%;
 }
+
+/*-------------------*/
+/*  Sidebar Content  */
+/*-------------------*/
+
+.sidebar-panel-header-wrap {
+  position: relative;
+  height: 50px;
+  border-bottom: 1px solid #34343a;
+  margin: 0 0 10px 0;
+}
+
+.sidebar-panel-header{
+  margin: 0 0 3% 0;
+  background-color: #34343a;
+  & p {
+    font-size: 18px;
+  }
+  & .title {
+    color: #848b8d;
+    margin: 0 0 0 20%;
+    padding: 15px 0;
+  }
+  & .bottom-highlight{
+    height: 2px;
+    width: 40%;
+    background-color: $secondary-color;
+  }
+}
+
+.sidebar-panel-header-link {
+  &:hover, &:hover p {
+    color: #fff;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+  &:focus, &:focus p {
+    text-decoration: none;
+    outline: none;
+    border: none;
+  }
+}
+
+.sidebar-panel {
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+}
+
+.sidebar-panel-body{}
+
+.sidebar-panel-body{
+  & a {
+    display: block;
+    padding: 10px 0 10px 20px;
+    font-size: 15px;
+    color: #fff;
+  }
+  & a:hover, a:active, a:focus {
+    text-decoration: none;
+    border: none;
+    outline:none;
+  }
+}
+
+/*-- Campaign New Sidebar --*/
+
+.download-media-plan {
+  display: block;
+  margin: 90px auto 0 auto;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  & i {
+    color: $secondary-color;
+  }
+  & p {
+    color: $secondary-color;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+ }

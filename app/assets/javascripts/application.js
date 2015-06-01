@@ -12,7 +12,7 @@
 //
 
 //= require jquery
-//= require bootstrap-sprockets
+//= require materialize-sprockets
 //= require lodash
 //= require numeral
 //= require js-cookie

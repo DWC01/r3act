@@ -3,5 +3,5 @@ class FlightSerializer < ActiveModel::Serializer
              :end_date, :ad_tag_count, :campaign_id, 
              :created_at,:updated_at
 
-  has_many :ad_tags
+  has_many :ad_tags, :creatives
 end

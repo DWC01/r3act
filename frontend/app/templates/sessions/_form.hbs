@@ -1,23 +1,26 @@
 <form {{action 'signIn' on="submit"}}>
-  <div class="form-input">
-    {{input type="email" value=email name="email" placeholder="email" class="form-control"}}
+  <div class="input-field">
+    {{input type="email" id="sign-in-email" value=email name="sign-in-email" 
+    class="validate"}}
+    <label for="sign-in-email"> Email </label>
     <div class="form-field-error">
       {{userErrors.email}}
     </div> 
   </div>
-  <div class="form-input">
-     {{input type="password" value=password name="password" placeholder="password" class="form-control"}}
+  <div class="input-field">
+    <label for="sign-in-password"> Password </label>
+    {{input type="password" value=password id="sign-in-password" name="password" class="validate"}}
     <div class="form-field-error">
       {{userErrors.password}}
     </div>
   </div>
-  <div class="form-input input-1-2"></div> 
-  <div class="form-input input-2-2">
-    {{#link-to 'passwords.new'}}
-      Forget your password?
-    {{/link-to}}
+  <div class="input-field">
+    {{input type="checkbox" id="remember-me"}}
+    <label for="remember-me">Remember Me</label>
   </div>
-  <button type="submit" name="submit" class="r3-btn-primary">
-    Submit
-  </button>
+  <div class="submit-field">
+    <button type="submit" name="submit" class="waves-effect waves-light btn">
+      Submit
+    </button>
+  </div>
 </form>

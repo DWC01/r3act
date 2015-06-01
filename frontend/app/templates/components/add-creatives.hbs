@@ -1,0 +1,13 @@
+<div class="upload-creative">
+	<a {{action "toggleCreativeForm"}} class="btn-floating btn-medium waves-effect waves-light"> 
+		<i class="mdi-content-add"></i>
+	</a>
+	{{#if displayCreativeForm}}
+		{{upload-creative creative=creative}}
+	{{/if}}
+
+	{{#each creative in creatives}}
+		<br/> Creative Name: {{creative.name}}
+		<br/> Creative Width: {{creative.width}}
+	{{/each}}
+</div> 

@@ -6,9 +6,8 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-
   this.route('home', {path: '/'});
-  
+
   this.resource('campaigns', function() {
     this.route('new',  {path: 'new'});
     this.route('media_plan',  {path: ':campaign_id/media_plan' });
@@ -34,6 +33,8 @@ Router.map(function() {
   this.route('passwords.edit', {path: 'passwords/reset'});
 
 
+  this.route('non_campiagn_page');
+  this.route('nonCampaignPage');
 });
 
 export default Router;

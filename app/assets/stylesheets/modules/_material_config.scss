@@ -1,0 +1,16 @@
+/*** Colors ***/
+$primary-color: white !default;
+$primary-color-light: lighten($primary-color, 15%) !default;
+$primary-color-dark: darken($primary-color, 15%) !default;
+$secondary-color: $neon-green !default;
+
+$success-color: $secondary-color !default;
+$error-color: color("red", "base") !default;
+$link-color: $secondary-color !default;
+
+
+/*** Navbar ***/
+$navbar-height: 50px !default;
+$navbar-height-mobile: 50px !default;
+$navbar-font-color: $secondary-color !default;
+$navbar-brand-font-size: 2.1rem !default;

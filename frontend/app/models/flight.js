@@ -3,6 +3,7 @@ import DS from 'ember-data';
 export default DS.Model.extend({
   campaign:             DS.belongsTo('campaign'),
   ad_tags:              DS.hasMany('ad_tag'),
+  creatives:            DS.hasMany('creatives'),
   ad_tag_ids:           DS.attr(),
 
   tags:                 DS.attr(), 

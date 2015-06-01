@@ -1,6 +1,14 @@
-<h2>
-  {{#link-to '' class="add-photo"}}
-    <i class="fa fa-picture-o neon-green"></i>
-  {{/link-to}}
+<h2 class="no-bottom-margin">
+		<a class="btn-floating btn-medium waves-effect waves-light">
+			<i class="fa fa-picture-o pointer" 
+			{{action 'toggleDisplayAddCreatives'}}>
+			</i>
+		</a>
+
   {{flight.name}}
-</h2> 
+	{{#if displayAddCreatives}}
+		{{add-creatives 
+			creatives=flight.creatives
+			parentController=parentController}}
+	{{/if}}
+</h2>

@@ -10,7 +10,8 @@ export default Ember.ArrayController.extend({
     this.setProperties({
       first_name: undefined, last_name: undefined, 
       email: undefined, password: undefined, 
-      password_confirmation: undefined
+      password_confirmation: undefined, 
+      user_errors: undefined
     }); 
   },
 

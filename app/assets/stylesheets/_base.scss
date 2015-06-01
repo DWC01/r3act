@@ -1,6 +1,5 @@
 @import 'modules/colors';
-@import 'modules/buttons';
-@import 'modules/components';
+@import 'modules/material_config';
 @import 'modules/fonts';
 @import 'modules/form';
 
@@ -10,6 +9,6 @@
 @import 'partials/media_plan';
 @import 'partials/sidebar';
 @import 'partials/trafficking';
+@import 'partials/analytics';
 
 @import 'vendor/c3';
-@import 'vendor/material';

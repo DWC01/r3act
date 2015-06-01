@@ -4,7 +4,12 @@
       Sign into your account
     </p>
   </div>
-  <div class="form-wrap r3-primary-border">
+  <div class="form-wrap primary-border">
     {{partial "sessions/_form"}}
+  </div>
+  <div class="forgot-password">
+    {{#link-to 'passwords.new'}}
+      Forget your password?
+    {{/link-to}}
   </div>
 </div>

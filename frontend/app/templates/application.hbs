@@ -1,15 +1,15 @@
-{{-sidebar 
-  panelOne=panel.one
-  panelTwo=panel.two
-  newCampaign=newCampaign
-  currentUser=currentUser
-}}
+{{sidebar-toggle data-url='#'}}
 
 {{-navigation 
   currentUser=currentUser
   currentAvatar=currentAvatar
-  isLoggedIn=isLoggedIn
-}}
+  isLoggedIn=isLoggedIn}}
+
+{{-sidebar
+	currentCampaign=currentCampaign
+  currentUser=currentUser
+  currentAvatar=currentAvatar
+  currentResource=currentResource}}
 
 {{render 'flashMessages'}}
 
@@ -18,5 +18,3 @@
     {{outlet}}
   </div>
 </div>
-
-

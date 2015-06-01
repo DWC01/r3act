@@ -1,14 +1,6 @@
 @import 'base';
-
 /*
  *= require_self
 */
-
-$navbar-default-bg: #fff;
-$navbar-default-link-hover-color: #181818;
-$navbar-default-link-active-color: #181818;
-$navbar-default-link-active-bg: #fff;
-
-@import 'bootstrap-sprockets';
-@import 'bootstrap';
 @import 'font-awesome';
+@import 'materialize';

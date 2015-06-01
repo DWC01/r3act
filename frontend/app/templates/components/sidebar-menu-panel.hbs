@@ -1,0 +1,16 @@
+{{sidebar-panel-header title=header-title}}
+<div class="sidebar-panel-body">
+	{{#link-to 'home' class="waves-effect waves-light"}} 
+    Home
+	{{/link-to}}
+
+	{{#if currentUser}}
+		{{#link-to 'campaigns.index' class="waves-effect waves-light"}} 
+	    My Campaigns
+		{{/link-to}}
+		{{#link-to 'campaigns.new' class="waves-effect waves-light"}} 
+	    + New Campaign
+		{{/link-to}}
+	{{/if}}
+	
+</div>

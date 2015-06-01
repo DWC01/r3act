@@ -18,9 +18,7 @@ export default Ember.ArrayController.extend({
       self.set('password_status', 'Validating email');
 
       Ember.$.post('/api/password_resets', data).then(
-        function(response){
-          console.log('success');
-          console.log(response);
+        function(response) {
           self.set('password_status', response.status);
         },
         function(response) {

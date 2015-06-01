@@ -1,19 +1,24 @@
 <form {{action "updatePassword" on="submit"}}>
-  <div class="form-input">
-    {{input type="password" value=password name="password" placeholder="password" class="form-control"}}
+  <div class="input-field">
+    {{input type="password" value=password name="new-password" class="validate"
+      id="new-password"}}
+    <label for="new-password"> Password </label>
     <div class="form-field-error">
       {{password_error}}
     </div>
   </div>
-  <div class="form-input">
-    {{input type="password" value=password_confirmation name="password_confirmation" placeholder="password confirmation" class="form-control"}}
+  <div class="input-field">
+    {{input type="password" value=password_confirmation 
+    name="new-password-confirmation" class="validate" 
+    id="new-password-confirmation"}}
+    <label for="new-password-confirmation"> Password Confirmation </label>
     <div class="form-field-error">
       {{password_status}}
       {{confirmation_error}}
     </div>
   </div>
-  <div class="center">
-    <button type="submit" name="Submit" class="r3-btn-primary">
+  <div class="submit-field">
+    <button type="submit" name="Submit" class="waves-effect waves-light btn">
       Submit
     </button>
   </div>

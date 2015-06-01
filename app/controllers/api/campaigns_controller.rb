@@ -1,6 +1,11 @@
 module Api
   class CampaignsController < Api::BaseController
     before_action :authenticate, only: [:show, :new, :index]
+    
+    def new
+      campaign = Campaign.new
+      render json: {campaign: campaign}, status: 200
+    end
 
     def index
       campaigns = Campaign.where(query_params)

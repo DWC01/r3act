@@ -33,6 +33,20 @@
   height: 50px;
   border-bottom: 1px solid #34343a;
   margin: 0 0 10px 0;
+  & .sidebar-user-avatar {
+    position: absolute;
+    top: 9px;
+    left: 10px;
+  }
+  & .sidebar-user-avatar img {
+    border-radius: 50%;
+  }
+  & .sidebar-user-name {
+    position: absolute;
+    top: 15px;
+    left: 50px;
+    color: white;
+  }
 }
 
 .sidebar-panel-header{
@@ -73,8 +87,6 @@
   border: 1px solid transparent;
 }
 
-.sidebar-panel-body{}
-
 .sidebar-panel-body{
   & a {
     display: block;
@@ -82,7 +94,12 @@
     font-size: 15px;
     color: #fff;
   }
-  & a:hover, a:active, a:focus {
+  & a:hover {
+    text-decoration: none;
+    border: none;
+    outline:none;
+  }
+  & a:active, a:focus {
     text-decoration: none;
     border: none;
     outline:none;

@@ -1,0 +1,19 @@
+<div class="upload-creative-file-uploads-wrap">
+	<div class="upload-creative-file-upload-wrap">
+		<form {{action "createCreative" on="submit"}}>
+		  {{file-upload 
+		    url="/api/sign"
+		    setS3data="setS3data"
+		  }}
+		  {{!-- 
+		    <div class="form-field-error">
+		      {{creative_errors.width}}
+		    </div>
+		  --}}
+		  <button type="submit" name="submit" class="waves-effect waves-light btn">
+		    Save
+		  </button>
+		</form>
+	</div>
+</div>
+

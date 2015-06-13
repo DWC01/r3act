@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
       email: undefined, password: undefined, 
       password_confirmation: undefined,
       posistion: undefined, title: undefined,
-      company: undefined
+      company: undefined, s3_data: undefined
     });
   },
   

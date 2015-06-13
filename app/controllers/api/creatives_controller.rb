@@ -37,10 +37,16 @@ module Api
       end
     end
 
+    def destroy
+      creative = Creative.find(params[:id])
+      creative.destroy
+      head :no_content
+    end
+
     private
       def creative_params
         params.require(:creative).permit(
-          :id, :s3_data
+          :id, :meta_data
         )
       end
 

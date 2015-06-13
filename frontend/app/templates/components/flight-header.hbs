@@ -7,7 +7,8 @@
 
   {{flight.name}}
 	{{#if displayAddCreatives}}
-		{{add-creatives 
+		{{flight-creatives 
+			flight=flight
 			creatives=flight.creatives
 			parentController=parentController}}
 	{{/if}}

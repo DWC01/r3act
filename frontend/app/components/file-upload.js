@@ -31,6 +31,9 @@ export default FileField.extend({
   _set_s3_data: function(response) {
     var s3_data = this._construct_s3_data(response);
     this.set('s3_data', s3_data);
+    if (this.get('setS3data')) {
+      this.sendAction('setS3data', JSON.parse(s3_data));
+    }
   },
 
   _construct_s3_data: function(response) {

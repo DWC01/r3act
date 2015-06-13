@@ -7,8 +7,8 @@ class CreateAvatars < ActiveRecord::Migration
       t.string :original_url
       t.string :profile_url
       t.string :nav_url
-      t.string :user_id
-      t.string :company_id
+      t.integer :user_id
+      t.integer :company_id
   
       t.timestamps
     end

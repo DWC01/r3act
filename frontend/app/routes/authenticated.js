@@ -2,10 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
   beforeModel: function(transition) {
-    if (Ember.isEmpty(this.controllerFor('sessions').get('currentUser'))) {
-      this._setAttemptedTransition(transition);
-      this.transitionTo('sessions');
-    }
+    // if (Ember.isEmpty(this.controllerFor('sessions').get('currentUser'))) {
+    //   this._setAttemptedTransition(transition);
+    //   this.transitionTo('sessions');
+    // }
   },
   _setAttemptedTransition: function(transition) {
     var sessionsNew = this.controllerFor('sessions');

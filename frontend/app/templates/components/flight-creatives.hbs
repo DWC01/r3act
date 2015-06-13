@@ -1,0 +1,55 @@
+<div class="card flight-creatives">
+  
+  <div class="card-content">
+	  <div class="flight-creatives-header">
+			<p> 
+				Creatives
+			</p>
+			<a {{action 'createCreativeInstance'}}
+			class="activator btn-floating btn-medium waves-effect waves-light">
+				<i class="mdi-content-add"></i>
+			</a>
+		</div>
+		{{#if creatives}}
+			<ul class="collection">
+				{{#each creative in creatives}}
+			    <li class="collection-item avatar">
+			      <img {{bind-attr src=creative.url}} alt="" class="circle">
+			      <span class="title">
+			      	{{creative.name}}
+
+			      	<i {{action "deleteCreative" creative}} 
+			      	class="mdi-action-delete flight-creative-delete-icon"
+			      	onclick="Materialize.toast('<span>Creative Deleted</span><a class=&quot;btn-flat yellow-text&quot; href=&quot;#!&quot;>Undo<a>', 5000)">
+			      	</i>
+
+			      </span>
+			      <p>
+			      	{{creative.width}} x {{creative.height}}
+			      </p>
+			    </li>
+				{{/each}}
+		  </ul>
+		{{else}}
+			<ul class="collection">
+		    <li class="collection-item avatar">
+		    	<p class="flight-no-creatives">
+			    	No Creatives Assigned to this flight..
+			    </p>
+		    </li>
+			</ul>
+		{{/if}} 
+	</div>
+  
+  <div class="card-reveal">
+	  <span {{action 'removeCreativeInstance'}}
+	  	class="card-title grey-text text-darken-4">
+  		<i class="mdi-navigation-close right"></i>
+	  </span>
+		{{flight-add-creative
+			flight=flight
+			parentController=parentController
+		}}
+  </div>
+
+</div>

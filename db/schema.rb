@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 20150525170129) do
     t.string   "original_url"
     t.string   "profile_url"
     t.string   "nav_url"
-    t.string   "user_id"
-    t.string   "company_id"
+    t.integer  "user_id"
+    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -93,11 +93,13 @@ ActiveRecord::Schema.define(version: 20150525170129) do
   create_table "creatives", force: :cascade do |t|
     t.string   "name"
     t.string   "mime_type"
-    t.string   "s3_data"
+    t.string   "meta_data"
     t.string   "width"
     t.string   "height"
     t.string   "dimensions"
-    t.string   "flight_id"
+    t.string   "url"
+    t.string   "extension"
+    t.integer  "flight_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -6,12 +6,12 @@
 				Creatives
 			</p>
 			<a {{action 'createCreativeInstance'}}
-			class="activator btn-floating btn-medium waves-effect waves-light">
+				class="activator btn-floating btn-medium waves-effect waves-light">
 				<i class="mdi-content-add"></i>
 			</a>
 		</div>
 		{{#if creatives}}
-			<ul class="collection">
+			<ul class="collection staggered-creatives">
 				{{#each creative in creatives}}
 			    <li class="collection-item avatar">
 			      <img {{bind-attr src=creative.url}} alt="" class="circle">
@@ -20,7 +20,7 @@
 
 			      	<i {{action "deleteCreative" creative}} 
 			      	class="mdi-action-delete flight-creative-delete-icon"
-			      	onclick="Materialize.toast('<span>Creative Deleted</span><a class=&quot;btn-flat yellow-text&quot; href=&quot;#!&quot;>Undo<a>', 5000)">
+			      	onclick="Materialize.toast('<span>Creative Deleted</span><a class=&quot;btn-flat neon-text&quot; href=&quot;#!&quot;>Undo<a>', 5000)">
 			      	</i>
 
 			      </span>
@@ -34,7 +34,7 @@
 			<ul class="collection">
 		    <li class="collection-item avatar">
 		    	<p class="flight-no-creatives">
-			    	No Creatives Assigned to this flight..
+			    	No creatives assigned to this flight..
 			    </p>
 		    </li>
 			</ul>
@@ -43,13 +43,16 @@
   
   <div class="card-reveal">
 	  <span {{action 'removeCreativeInstance'}}
-	  	class="card-title grey-text text-darken-4">
+	  	id="card-reveal-close" class="card-title grey-text text-darken-4">
   		<i class="mdi-navigation-close right"></i>
 	  </span>
-		{{flight-add-creative
-			flight=flight
-			parentController=parentController
-		}}
+	  {{#if displayAddCreativeComponent}}
+			{{flight-add-creative
+				parentController=parentController
+				createCreative="createCreative"
+				setCreativeMetaData="setCreativeMetaData"
+			}}
+		{{/if}}
   </div>
 
 </div>

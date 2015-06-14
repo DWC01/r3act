@@ -46,7 +46,7 @@ module Api
     private
       def creative_params
         params.require(:creative).permit(
-          :id, :meta_data
+          :id, :meta_data, :flight_id
         )
       end
 

@@ -45,12 +45,12 @@ class CreativeProcessor
     @acl = set_acl
   end
 
-  def set_s3_data_variables(s3_data)
-    @name = s3_data['name']
-    @etag = s3_data['etag']
-    @mime_type = s3_data['mime_type']
-    @tmp_img_url = s3_data['tmp_file_path']
-    @extension = set_extension(s3_data)
+  def set_s3_data_variables(meta_data)
+    @name = meta_data['name']
+    @etag = meta_data['etag']
+    @mime_type = meta_data['mime_type']
+    @tmp_img_url = meta_data['tmp_file_path']
+    @extension = set_extension(meta_data)
   end
 
   def set_dimensions
@@ -59,8 +59,8 @@ class CreativeProcessor
     @dimensions = "#{@width}x#{@height}"
   end
 
-  def set_extension(s3_data)
-    s3_data['tmp_file_path'].split('.').pop
+  def set_extension(meta_data)
+    meta_data['tmp_file_path'].split('.').pop
   end
 
   def write_to_bucket(file_name, img, acl)

@@ -1,19 +1,32 @@
 <div class="upload-creative-file-uploads-wrap">
+	<div class="flight-add-creative-header">
+		<h2> 
+			Upload Creative Below
+		</h2>
+	</div> 
+	
+	{{toggle-switch 
+		labelOne='Flash/Gif'
+		labelTwo='Ad Tag'
+		toggleCreativeType="toggleCreativeType"}}
+
 	<div class="upload-creative-file-upload-wrap">
 		<form {{action "createCreative" on="submit"}}>
-		  {{file-upload 
-		    url="/api/sign"
-		    setS3data="setS3data" 
-		  }}
-		  {{!-- 
-		    <div class="form-field-error">
-		      {{creative_errors.width}}
-		    </div>
-		  --}}
-		  <button type="submit" name="submit" class="waves-effect waves-light btn">
-		    Save
-		  </button>
-		</form>
+		
+			{{#if isAdTag}}
+				{{fields-new-ad-tag
+					setS3data="setS3data"
+					creative=creative
+					creative_errors=creative_errors}}
+		  {{/if}}
+
+		  {{#if isCreative}}
+			  {{fields-new-creative
+			  	setS3data="setS3data"
+			  	creative_errors=creative_errors}}
+			{{/if}}
+ 
+		</form> 
 	</div>
 </div>
 

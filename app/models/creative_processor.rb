@@ -1,82 +1,50 @@
 class CreativeProcessor
-  attr_reader :url, :mime_type, :etag, :name, :values_hash
+  attr_reader :values_hash
 
-  def initialize(meta_data)
-    @flight_id = meta_data['flight_id']
-    set_s3_data_variables(meta_data)
-    set_aws_variables
-    generate_img(@tmp_img_url)
-    set_dimensions
+  def initialize(meta_data, model)
+    @model = model
+    @meta_data = meta_data
+    update_meta_data
+    proccess_backup_img
+    @s3_creative = AwsS3.new(writeable_file, meta_data, model, 'creatives')
   end
 
-  def proccess_imgs_save_to_s3
-    save_to_s3
-    set_public_urls
+  def update_meta_data
+    @meta_data['file_name'] = @meta_data['name'].split('.').shift
+    @meta_data['extension'] = @meta_data['name'].split('.').pop
+    @meta_data['etag'] = @meta_data['etag'].gsub("\"","")
   end
 
-  def generate_img(url)
-    @img = Magick::Image::read(url).first
+  def proccess_backup_img
+    if @model.creative_type == 'backup-creative'
+      @img = Magick::Image::read(@meta_data['tmp_file_path']).first
+      @width = @img.columns.to_i
+      @height = @img.rows.to_i
+      @dimensions = "#{@width}x#{@height}"
+      @creative = @img.to_blob
+    end
+  end
+
+  def save_to_s3
+    @s3_creative.save_to_s3
   end
   
-  def save_to_s3 
-    @img = write_to_bucket('creative', @img, @acl)
-  end
-
-  def set_public_urls
-    @url = @img.public_url.to_s
-  end
-
   def values_hash
-    {name: @name,
-     mime_type: @mime_type,
-     url: @url,
-     extension: @extension,
+    {name: @meta_data['name'],
+     etag: @meta_data['etag'],
+     mime_type: @meta_data['mime_type'],
+     flight_id: @meta_data['parent_model_id'].to_i,
+     extension: @meta_data['extension'],
+     url: @s3_creative.public_url,     
      width: @width,
      height: @height,
-     dimensions: @dimensions,
-     flight_id: @flight_id.to_i}
+     dimensions: @dimensions}
   end
 
   private
-
-  def set_aws_variables
-    @aws_s3 = AWS::S3.new
-    @bucket = set_bucket
-    @acl = set_acl
-  end
-
-  def set_s3_data_variables(meta_data)
-    @name = meta_data['name']
-    @etag = meta_data['etag']
-    @mime_type = meta_data['mime_type']
-    @tmp_img_url = meta_data['tmp_file_path']
-    @extension = set_extension(meta_data)
-  end
-
-  def set_dimensions
-    @width = @img.columns
-    @height = @img.rows
-    @dimensions = "#{@width}x#{@height}"
-  end
-
-  def set_extension(meta_data)
-    meta_data['tmp_file_path'].split('.').pop
-  end
-
-  def write_to_bucket(file_name, img, acl)
-    s3_buckets_objects(file_name).write(img.to_blob, acl)
-  end
-
-  def s3_buckets_objects(file_name)
-    @aws_s3.buckets[@bucket].objects["#{file_name}-#{@etag}.#{@extension}"]
-  end
-
-  def set_bucket
-   "r3act/uploads/#{Rails.env}/flight/#{@flight_id}/creatives/"
-  end
-
-  def set_acl
-    {:acl=>:public_read}
+  
+  def writeable_file
+    @creative || @meta_data['tmp_file_path']
   end
 
 end

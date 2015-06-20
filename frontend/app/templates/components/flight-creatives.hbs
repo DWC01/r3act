@@ -5,10 +5,10 @@
 			<p> 
 				Creatives
 			</p>
-			<a {{action 'createCreativeInstance'}}
+			<a {{action 'createCreativeInstance' 'main-creative'}}
 				class="activator btn-floating btn-medium waves-effect waves-light">
 				<i class="mdi-content-add"></i>
-			</a>
+			</a> 
 		</div>
 		{{#if creatives}}
 			<ul class="collection staggered-creatives">
@@ -18,10 +18,12 @@
 			      <span class="title">
 			      	{{creative.name}}
 
+			      	<i {{action 'createCreativeInstance' 'backup-creative'}} 
+			      	class="activator mdi-image-filter flight-creative-backup-icon"></i>
+
 			      	<i {{action "deleteCreative" creative}} 
 			      	class="mdi-action-delete flight-creative-delete-icon"
-			      	onclick="Materialize.toast('<span>Creative Deleted</span><a class=&quot;btn-flat neon-text&quot; href=&quot;#!&quot;>Undo<a>', 5000)">
-			      	</i>
+			      	onclick="Materialize.toast('<span>Creative Deleted</span><a class=&quot;btn-flat neon-text&quot; href=&quot;#!&quot;>Undo<a>', 5000)"></i>
 
 			      </span>
 			      <p>
@@ -48,9 +50,12 @@
 	  </span>
 	  {{#if displayAddCreativeComponent}}
 			{{flight-add-creative
-				parentController=parentController
+				creative=creative
 				createCreative="createCreative"
+				creative_errors=creative_errors
+				parentController=parentController
 				setCreativeMetaData="setCreativeMetaData"
+				clearCreativeErrors="clearCreativeErrors"
 			}}
 		{{/if}}
   </div>

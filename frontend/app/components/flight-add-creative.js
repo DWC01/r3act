@@ -4,27 +4,48 @@ export default Ember.Component.extend({
   
   // --- Initialize ------
   didInsertElement: function() {
-		this.clearAll();
+    this.clearAll();
   },
 
   // --- Destructor ------
   willDestroyElement: function() {
-
+    this.sendAction('clearCreativeErrors');
   }, 
 
-  // --- Set Clear -------------
+  // --- Clear ------
   clearAll: function() {
     this.setProperties({
       s3_data: undefined
     });
   },
 
+  isCreative: true,
+
+  isAdTag: false,
+
+  setIsCreative: function() {
+    return this.get('isCreative');
+  }.property('isCreative'),
+  
+  setIsAdTag: function() {
+    return this.get('isAdTag');
+  }.property('isAdTag'),
+
   _setCreativeMetaData: function() {
     this.sendAction('setCreativeMetaData', this.get('s3_data'));
   }.observes('s3_data'),
 
+  actions: {
+    toggleCreativeType: function() {
+      this.toggleProperty('isCreative');
+      this.toggleProperty('isAdTag');
 
-	actions: {
+      if (this.get('isCreative')) {
+        this.get('creative').set('creative_type','main-creative');
+      } else {
+        this.get('creative').set('creative_type','main-ad-tag');
+      }
+    },
     setS3data: function(s3_data) {
       this.set('s3_data', s3_data); 
     },

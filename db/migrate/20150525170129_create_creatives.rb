@@ -4,12 +4,16 @@ class CreateCreatives < ActiveRecord::Migration
     	t.string :name
     	t.string :mime_type
     	t.string :meta_data
-    	t.string :width
-    	t.string :height
-    	t.string :dimensions
+      t.string :ad_tag_code
+      t.string :dimensions
       t.string :url
+      t.string :etag
       t.string :extension
-    	t.integer :flight_id
+      t.string :creative_landing_page
+      t.string :creative_type
+    	t.integer :width
+    	t.integer :height
+      t.integer :flight_id
 
       t.timestamps null: false
     end

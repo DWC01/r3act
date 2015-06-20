@@ -1,15 +1,16 @@
 <h2 class="no-bottom-margin">
-		<a class="btn-floating btn-medium waves-effect waves-light">
-			<i class="fa fa-picture-o pointer" 
-			{{action 'toggleDisplayAddCreatives'}}>
-			</i>
-		</a>
+	<a class="btn-floating btn-medium waves-effect waves-light">
+		<i class="fa fa-picture-o pointer" 
+		{{action 'toggleDisplayAddCreatives'}}>
+		</i>
+	</a>
 
   {{flight.name}}
-	{{#if displayAddCreatives}}
-		{{flight-creatives 
-			flight=flight
-			creatives=flight.creatives
-			parentController=parentController}}
-	{{/if}}
 </h2>
+
+{{#if displayAddCreatives}}
+	{{flight-creatives 
+		flight=flight
+		creatives=flight.creatives
+		parentController=parentController}}
+{{/if}}

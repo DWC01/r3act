@@ -15,15 +15,21 @@
 .flight-creatives-wrap {
   position: absolute;
   margin-right: 5px;
+  width: 43%;
+}
+
+.btn-flight-creative-upload {
+  width: 155px;
+  & input {
+    color: #181818;
+    cursor: pointer;
+  }
 }
 
 .flight-creatives {
-  position: absolute;
-  min-height: 300px;
+  min-height: 530px;
+  min-height: 530px;
   border: 1px solid #eee;
-  width: 650px;
-  background-color: white;
-  box-shadow: 0px 8px 17px rgba(0, 0, 0, 0.2);
   z-index: 10;
 }
 
@@ -38,7 +44,7 @@
   }
   & a {
     position: relative;
-    top: 11px;
+    top: 0px;
     right: 20px;
     display: inline-block;
     float: right;
@@ -46,8 +52,16 @@
 }
 
 .upload-creative-file-upload-wrap {
-  margin: 20px;
+  top: 50px;
+  width: 450px;
+  margin: 0 auto;
   font-size: 14px;
+  position: relative;
+}
+
+.upload-ad-tag-error {
+  position: relative;
+  top: -35px;
 }
 
 /* --------- Table ---------*/
@@ -100,6 +114,23 @@
 
 /*** Custom Card CSS ***/
 
+/*--- add creative ----*/
+
+.file-field .btn, .file-field .btn-large {
+  height: 2rem;
+  line-height: 2rem;
+}
+
+.flight-add-creative-header {
+  margin: 0;
+  padding: 0 0 17px 0;
+  text-align: center;
+  border-bottom: 1px solid #eeeeee;
+  & h2 {
+    margin: 0;
+    line-height: 2rem;
+  }
+}
 
 .flight-creative-delete-icon {
   display: none !important;
@@ -113,16 +144,35 @@
   }
 }
 
+.flight-creative-backup-icon {
+  display: none !important;
+  position: absolute;
+  right: 65px;
+  font-size: 30px;
+  top: 25px;
+  color: #337ab7;
+  &:hover {
+    cursor:pointer;
+  }
+}
+
+.upload-button-wrap {
+  top: 30px;
+  width: 400px;
+  margin: 0 auto 50px auto;
+  position: relative;
+}
+
 .collection .collection-item {
   position: relative;
-  &:hover .flight-creative-delete-icon {
+  &:hover .flight-creative-delete-icon, &:hover .flight-creative-backup-icon {
     display: inline-block !important;
   }
 }
 
 .flight-creatives .card-title {
   position: relative;
-  top: 1px;
+  top: -2px;
   left: -25px;
 }
 
@@ -132,14 +182,63 @@
 }
 
 .flight-creatives .collection .collection-item.avatar .title {
-  margin-left: 10px;
+  display: inline-block;
+  width: 80%;
+  margin-left: 13px;
+  word-break: break-all;
 }
 
 .flight-creatives .collection .collection-item.avatar p {
-  margin-left: 10px;
+  margin-left: 13px;
 }
 
 .flight-creatives .collection .collection-item.avatar p.flight-no-creatives {
   text-align: center;
   margin: 30px 0 0 -72px;
+}
+
+/*----- Switch -----*/
+
+.media-plan-switch > .switch {
+  & label {
+    position: relative;
+    top: 15px;
+    left: 10px;
+    color: #181818;
+    & .lever {
+      height: 2px;
+      &:after {
+        top: -7px;
+        width: 16px;
+        height: 16px;
+        background-color: #fff;
+      }
+    }
+  }
+}
+
+.media-plan-switch .switch label input[type=checkbox]:checked + .lever {
+    background-color: #818181;
+  &:after {
+    background-color: #fff;
+  }
+}
+
+/*----  Add Creative ----*/
+
+.add-ad-tag-x {
+  top: 30px;
+  text-align: center;
+  font-size: 1.2rem;
+  position: relative;
+}
+
+.fields-new-creative {
+  position: relative;
+  top: 48px;
+}
+
+.fields-new-creative .file-field input.file-path {
+  margin-left: 165px;
+  width: calc(81% - 81px);
 }

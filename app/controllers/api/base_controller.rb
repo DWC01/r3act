@@ -18,10 +18,5 @@ module Api
         self.headers["WWW-Authenticate"] = 'Token realm="Application"'
         render json: {message: "Bad credentials"}, status: 401
       end
-
-      def aws_s3
-        @aws_s3 = AwsS3.new
-      end      
-
   end
 end

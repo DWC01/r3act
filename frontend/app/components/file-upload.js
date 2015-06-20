@@ -6,6 +6,8 @@ export default FileField.extend({
 
   filesDidChange: (function() {    
     var file      = this.get('files')[0];
+    this.sendAction('setFileName', file.name);
+
     var uploadUrl = this.get('url');
     var uploader  = S3Uploader.create({url: uploadUrl});
 

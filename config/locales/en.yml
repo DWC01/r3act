@@ -41,3 +41,14 @@ en:
           attributes:
             name:
               blank: "Name is required"
+        creative:
+          attributes:
+            ad_tag_code:
+              blank: "Ad Tag code can't be blank"
+            width:
+              blank: "Width can't be blank"
+            height:
+              blank: "Height can't be blank"
+            meta_data:
+              blank: "File upload can't be blank"
+

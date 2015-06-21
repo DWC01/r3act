@@ -1,15 +1,14 @@
 import Ember from 'ember';
-import FileField from 'ember-uploader/file-field';
-import S3Uploader from 'ember-uploader/s3';
+import EmberUploader from 'ember-uploader';
 
-export default FileField.extend({
+export default EmberUploader.FileField.extend({
 
   filesDidChange: (function() {    
     var file      = this.get('files')[0];
     this.sendAction('setFileName', file.name);
 
     var uploadUrl = this.get('url');
-    var uploader  = S3Uploader.create({url: uploadUrl});
+    var uploader  = EmberUploader.S3Uploader.create({url: uploadUrl});
 
     this._bindUploader(uploader);
     this._sign_and_upload_file_to_s3(uploader, file);

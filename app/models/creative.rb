@@ -1,21 +1,19 @@
 class Creative < ActiveRecord::Base
-  validate :presence
+  has_many :backup_creatives, class_name: "Creative", foreign_key: "main_creative_id"
+  belongs_to :main_creative, class_name: "Creative"
+
+  validate :creative_validation
   validate :extension_validation
   before_save :construct_creative
   belongs_to :flight
 
-  def presence
-    if self.creative_type == 'main-creative' || self.creative_type == 'backup-creative'
-      validates_presence_of :meta_data
-    end
-    if self.creative_type == 'main-ad-tag'
-      validates_presence_of :ad_tag_code, :width, :height
-      validates_numericality_of :width, :height
-    end
+  def creative_validation
+    validate_creative if is_creative
+    validate_ad_tag if is_ad_tag
   end
   
   def extension_validation
-    unless parsed_meta_data.blank?
+    if is_creative
       set_extension_values
       set_extension_validation
     end
@@ -39,7 +37,7 @@ class Creative < ActiveRecord::Base
   end
 
   def extension
-    unless parsed_meta_data.blank?
+    if is_creative
       parsed_meta_data['tmp_file_path'].split('.').pop
     end
   end
@@ -56,7 +54,7 @@ class Creative < ActiveRecord::Base
 	# --- Construct Creative ----------------
 
   def construct_creative
-    unless parsed_meta_data.blank?
+    if is_creative
       proccess_creative
       set_attributes
     end
@@ -75,9 +73,30 @@ class Creative < ActiveRecord::Base
     JSON.parse(self.meta_data) if self.meta_data
   end
 
-  def set_creative
-    self
-  end
+  private
 
+    def is_creative
+      self.creative_type == 'main-creative' || self.creative_type == 'backup-creative'
+    end
+
+    def is_ad_tag
+      self.creative_type == 'main-ad-tag'
+    end
+
+    def validate_ad_tag
+      validates_presence_of :ad_tag_code, :width, :height
+      
+      unless self.width.blank?
+        validates_numericality_of :width
+      end
+
+      unless self.height.blank?
+        validates_numericality_of :height
+      end
+    end
+
+    def validate_creative
+      validates_presence_of :meta_data
+    end
 
 end

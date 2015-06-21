@@ -47,8 +47,10 @@ en:
               blank: "Ad Tag code can't be blank"
             width:
               blank: "Width can't be blank"
+              not_a_number: "Width must be a number"
             height:
               blank: "Height can't be blank"
+              not_a_number: "Height must be a number"
             meta_data:
               blank: "File upload can't be blank"
 

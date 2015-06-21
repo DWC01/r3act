@@ -8,8 +8,8 @@ export default Ember.Component.extend({
     });
 	},
 
-	click: function() {		
-		this.sendAction('toggleCreativeType');
+	click: function() {
+		this.sendAction(this.get('clickSendAction'));
 	}
 	
-});
+}); 

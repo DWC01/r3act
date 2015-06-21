@@ -11,8 +11,9 @@ class CreateCreatives < ActiveRecord::Migration
       t.string :extension
       t.string :creative_landing_page
       t.string :creative_type
-    	t.integer :width
-    	t.integer :height
+    	t.string :width
+    	t.string :height
+      t.references :main_creative, index: true
       t.integer :flight_id
 
       t.timestamps null: false

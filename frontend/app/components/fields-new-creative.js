@@ -6,16 +6,14 @@ export default Ember.Component.extend({
 
 	// --- Inititialize ------
   didInsertElement: function() {
-  	this.clearAll();
-    this.$().hide().fadeIn(300);
+    this.$().hide().fadeIn(500);
   },
 
-  // --- Clear ------
-  clearAll: function() {
-    this.setProperties({
-      s3_data: undefined,
-      fileName: undefined
-    });
+  // --- Destroy ------
+  willDestroyElement: function() {
+    this.set('fileName', undefined);
+    this.sendAction('clearCreativeProperties');
+    this.sendAction('clearCreativeErrors');
   },
 
   actions: {

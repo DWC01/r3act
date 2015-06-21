@@ -4,7 +4,6 @@ export default DS.Model.extend({
   campaign:             DS.belongsTo('campaign'),
   ad_tags:              DS.hasMany('ad_tag'),
   creatives:            DS.hasMany('creative',{embedded: 'always'}),
-  ad_tag_ids:           DS.attr(),
 
   tags:                 DS.attr(), 
   name:                 DS.attr('string'),

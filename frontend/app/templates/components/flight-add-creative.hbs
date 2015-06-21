@@ -1,29 +1,36 @@
-<div class="upload-creative-file-uploads-wrap">
-	<div class="flight-add-creative-header">
+<div class='upload-creative-file-uploads-wrap'>
+	<div class='flight-add-creative-header'>
 		<h2> 
 			Upload Creative Below
 		</h2>
 	</div> 
 	
-	{{toggle-switch 
+	{{materialize-switch 
 		labelOne='Flash/Gif'
 		labelTwo='Ad Tag'
-		toggleCreativeType="toggleCreativeType"}}
+		clickSendAction='toggleCreativeType'
+		toggleCreativeType='toggleCreativeType'}}
 
-	<div class="upload-creative-file-upload-wrap">
-		<form {{action "createCreative" on="submit"}}>
+	<div class='upload-creative-file-upload-wrap'>
+		<form {{action 'createCreative' on='submit'}}>
 		
 			{{#if isAdTag}}
 				{{fields-new-ad-tag
-					setS3data="setS3data"
+					flight=flight
 					creative=creative
-					creative_errors=creative_errors}}
+					creative_errors=creative_errors
+					clearCreativeProperties='clearCreativeProperties'
+					clearCreativeErrors='clearCreativeErrors'}}
 		  {{/if}}
 
 		  {{#if isCreative}}
 			  {{fields-new-creative
-			  	setS3data="setS3data"
-			  	creative_errors=creative_errors}}
+			  	flight=flight
+			  	creative=creative
+			  	setS3data='setS3data'
+			  	creative_errors=creative_errors
+			  	clearCreativeProperties='clearCreativeProperties'
+			  	clearCreativeErrors='clearCreativeErrors'}}
 			{{/if}}
  
 		</form> 

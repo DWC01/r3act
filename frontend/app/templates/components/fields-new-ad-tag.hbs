@@ -1,8 +1,6 @@
 <div class="row">
-  <div class="input-field">
-    <textarea id="ad-tag-textarea" class="materialize-textarea"></textarea>
-    {{!-- {{textarea value=creative.ad_tag_code 
-	  	id="ad-tag-textarea" class="materialize-textarea"}} --}}
+	<div class="input-field">
+    {{textarea value=creative.ad_tag_code id="ad-tag-textarea" class="materialize-textarea"}}
     <div class="form-field-error">
     	{{creative_errors.ad_tag_code}}
     </div>

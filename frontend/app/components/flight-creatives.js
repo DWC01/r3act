@@ -67,13 +67,22 @@ export default Ember.Component.extend({
   	setCreativeMetaData: function(meta_data) {
       meta_data.parent_model = 'flight';
   		meta_data.creative_type = this.get('creative_type');
-      meta_data.parent_model_id = this.get('flight').get('id');
-
   	  this.get('creative').set('meta_data', JSON.stringify(meta_data));
       this.createCreative(); 
   	},
     clearCreativeErrors: function() {
       this.set('creative_errors', undefined);
+    },
+    clearCreativeProperties: function() {
+      if (this.get('creative') && this.get('creative').get('id') === null) {
+        this.get('creative').setProperties({
+          width: undefined,
+          height: undefined,
+          ad_tag_code: undefined,
+          meta_data: undefined,
+          name: undefined
+        });
+      }
     },
     deleteCreative: function(creative){
       creative.destroyRecord();

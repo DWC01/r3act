@@ -18,8 +18,8 @@ class CreativeProcessor
   def proccess_backup_img
     if @model.creative_type == 'backup-creative'
       @img = Magick::Image::read(@meta_data['tmp_file_path']).first
-      @width = @img.columns.to_i
-      @height = @img.rows.to_i
+      @width = @img.columns
+      @height = @img.rows
       @dimensions = "#{@width}x#{@height}"
       @creative = @img.to_blob
     end
@@ -33,7 +33,7 @@ class CreativeProcessor
     {name: @meta_data['name'],
      etag: @meta_data['etag'],
      mime_type: @meta_data['mime_type'],
-     flight_id: @meta_data['parent_model_id'].to_i,
+     flight_id: @model.flight_id.to_i,
      extension: @meta_data['extension'],
      url: @s3_creative.public_url,     
      width: @width,

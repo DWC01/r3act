@@ -50,13 +50,14 @@
 	  </span>
 	  {{#if displayAddCreativeComponent}}
 			{{flight-add-creative
+				flight=flight
 				creative=creative
 				createCreative="createCreative"
 				creative_errors=creative_errors
 				parentController=parentController
-				setCreativeMetaData="setCreativeMetaData"
 				clearCreativeErrors="clearCreativeErrors"
-			}}
+				clearCreativeProperties="clearCreativeProperties"
+				setCreativeMetaData="setCreativeMetaData"}}
 		{{/if}}
   </div>
 

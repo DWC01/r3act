@@ -4,19 +4,14 @@ export default Ember.Component.extend({
   
   // --- Initialize ------
   didInsertElement: function() {
-    this.clearAll();
+    this.sendAction('clearCreativeErrors');
+    this.get('creative').set('flight', this.get('flight'));
   },
 
   // --- Destructor ------
   willDestroyElement: function() {
+    this.sendAction('clearCreativeProperties');
     this.sendAction('clearCreativeErrors');
-  }, 
-
-  // --- Clear ------
-  clearAll: function() {
-    this.setProperties({
-      s3_data: undefined
-    });
   },
 
   isCreative: true,
@@ -25,7 +20,7 @@ export default Ember.Component.extend({
 
   setIsCreative: function() {
     return this.get('isCreative');
-  }.property('isCreative'),
+  }.property('isCreative'), 
   
   setIsAdTag: function() {
     return this.get('isAdTag');
@@ -51,6 +46,12 @@ export default Ember.Component.extend({
     },
 		createCreative: function() {
 			this.sendAction('createCreative');
-		}
+		},
+    clearCreativeProperties: function() {
+      this.sendAction('clearCreativeProperties');
+    },
+    clearCreativeErrors: function() {
+      this.sendAction('clearCreativeErrors');
+    }
 	}
 });

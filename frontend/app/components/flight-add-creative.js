@@ -5,7 +5,6 @@ export default Ember.Component.extend({
   // --- Initialize ------
   didInsertElement: function() {
     this.sendAction('clearCreativeErrors');
-    this.get('creative').set('flight', this.get('flight'));
   },
 
   // --- Destructor ------

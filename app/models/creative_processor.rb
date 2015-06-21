@@ -30,7 +30,7 @@ class CreativeProcessor
   end
   
   def values_hash
-    {name: @meta_data['name'],
+    {name: @model.name || @meta_data['name'],
      etag: @meta_data['etag'],
      mime_type: @meta_data['mime_type'],
      flight_id: @model.flight_id.to_i,

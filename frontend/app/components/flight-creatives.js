@@ -48,17 +48,23 @@ export default Ember.Component.extend({
       this.createCreative();
     },
     createCreativeInstance: function(creative_type) {
+      var creative_type = creative_type;
     	this.set('displayAddCreativeComponent', true);
-      this.set('creative', 
-        this.get('parentController').store.createRecord('creative'));
-      this.get('creative').set('creative_type', creative_type);
+
+      Ember.run.later(this, (function() {
+        this.set('creative', 
+          this.get('parentController').store.createRecord('creative'));
+        this.get('creative').set('creative_type', creative_type);
+        this.get('creative').set('flight', this.get('flight'));   
+      }), 1000);
+
     },
     removeCreativeInstance: function() {
       var creative = this.get('creative');
     	
-    	Ember.run.later((function() {
+    	Ember.run.later(this, (function() {
 	    	this.set('displayAddCreativeComponent', false);
-			}.bind(this)), 500);
+			}), 500);
 			
       if(creative.get('id') === null) {
 	      this.get('parentController').store.unloadRecord(creative);

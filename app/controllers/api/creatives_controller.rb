@@ -46,8 +46,10 @@ module Api
     private
       def creative_params
         params.require(:creative).permit(
-          :id, :meta_data, :ad_tag_code, :flight_id, :width,
-          :height, :mime_type, :creative_type
+          :name, :mime_type, :meta_data, 
+          :ad_tag_code, :dimensions, :url, :etag, 
+          :extension, :creative_landing_page, :creative_type, 
+          :width, :height, :main_creative_id, :flight_id
         )
       end
 
@@ -56,3 +58,5 @@ module Api
       end
   end
 end
+
+

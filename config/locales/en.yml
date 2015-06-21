@@ -43,8 +43,10 @@ en:
               blank: "Name is required"
         creative:
           attributes:
+            name:
+              blank: "Name can't be blank"
             ad_tag_code:
-              blank: "Ad Tag code can't be blank"
+              blank: "Ad Tag Code can't be blank"
             width:
               blank: "Width can't be blank"
               not_a_number: "Width must be a number"

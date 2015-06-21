@@ -37,9 +37,7 @@ class Creative < ActiveRecord::Base
   end
 
   def extension
-    if is_creative
-      parsed_meta_data['tmp_file_path'].split('.').pop
-    end
+    parsed_meta_data['tmp_file_path'].split('.').pop if is_creative
   end
 
   def creative_extension_white_list
@@ -84,7 +82,7 @@ class Creative < ActiveRecord::Base
     end
 
     def validate_ad_tag
-      validates_presence_of :ad_tag_code, :width, :height
+      validates_presence_of :ad_tag_code, :width, :height, :name
       
       unless self.width.blank?
         validates_numericality_of :width

@@ -1,17 +1,37 @@
 class Creative < ActiveRecord::Base
   has_many :backup_creatives, class_name: "Creative", foreign_key: "main_creative_id"
   belongs_to :main_creative, class_name: "Creative"
-
-  validate :creative_validation
+  validate :creative_validation 
   validate :extension_validation
   before_save :construct_creative
   belongs_to :flight
 
+  
+  # -- Validation ------
+
+  # -- Creative
   def creative_validation
     validate_creative if is_creative
     validate_ad_tag if is_ad_tag
   end
+
+  def validate_ad_tag
+    validates_presence_of :ad_tag_code, :width, :height, :name
+    
+    unless self.width.blank?
+      validates_numericality_of :width
+    end
+
+    unless self.height.blank?
+      validates_numericality_of :height
+    end
+  end
+
+  def validate_creative
+    validates_presence_of :meta_data
+  end
   
+  # -- Extension
   def extension_validation
     if is_creative
       set_extension_values
@@ -36,6 +56,24 @@ class Creative < ActiveRecord::Base
     end
   end
 
+	# --- Construct Creative ------
+
+  def construct_creative
+    proccess_creative
+    set_attributes
+  end
+
+  def proccess_creative
+    @processor = CreativeProcessor.new(parsed_meta_data, self, extension)
+    @processor.save_to_s3
+  end
+
+  def set_attributes
+    self.attributes=(@processor.values_hash)
+  end
+
+  # -- Helpers ------
+
   def extension
     parsed_meta_data['tmp_file_path'].split('.').pop if is_creative
   end
@@ -48,53 +86,16 @@ class Creative < ActiveRecord::Base
     ['jpg', 'jpeg', 'gif', 'png']
   end
 
-
-	# --- Construct Creative ----------------
-
-  def construct_creative
-    if is_creative
-      proccess_creative
-      set_attributes
-    end
-  end
-
-  def proccess_creative
-    @processor = CreativeProcessor.new(parsed_meta_data, self)
-    @processor.save_to_s3
-  end
-
-  def set_attributes
-    self.attributes=(@processor.values_hash)
-  end
-  
   def parsed_meta_data 
     JSON.parse(self.meta_data) if self.meta_data
   end
 
-  private
+  def is_creative
+    self.creative_type == 'main-creative' || self.creative_type == 'backup-creative'
+  end
 
-    def is_creative
-      self.creative_type == 'main-creative' || self.creative_type == 'backup-creative'
-    end
-
-    def is_ad_tag
-      self.creative_type == 'main-ad-tag'
-    end
-
-    def validate_ad_tag
-      validates_presence_of :ad_tag_code, :width, :height, :name
-      
-      unless self.width.blank?
-        validates_numericality_of :width
-      end
-
-      unless self.height.blank?
-        validates_numericality_of :height
-      end
-    end
-
-    def validate_creative
-      validates_presence_of :meta_data
-    end
+  def is_ad_tag
+    self.creative_type == 'main-ad-tag'
+  end
 
 end

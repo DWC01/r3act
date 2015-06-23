@@ -40,7 +40,9 @@ export default EmberUploader.FileField.extend({
   _construct_s3_data: function(response) {
     var data = {};
     data.file = this.get('files')[0];
+    data.key = Ember.$(response).find('Key')[0].textContent;
     data.etag = Ember.$(response).find('ETag')[0].textContent;
+    data.bucket = Ember.$(response).find('Bucket')[0].textContent;
     data.tmp_file_path = Ember.$(response).find('Location')[0].textContent;
 
     return this._construct_s3_data_object(data);
@@ -48,7 +50,9 @@ export default EmberUploader.FileField.extend({
 
   _construct_s3_data_object: function(data) {
     return JSON.stringify({
+      key: data.key,
       etag: data.etag, 
+      bucket: data.bucket,
       name: data.file.name,
       mime_type: data.file.type,
       tmp_file_path: data.tmp_file_path

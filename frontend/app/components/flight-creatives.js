@@ -43,12 +43,24 @@ export default Ember.Component.extend({
     );
   },
 
+  setCreativeMetaData: function (data) {
+    var meta_data = data || {};
+    meta_data.parent_model = 'flight';
+    meta_data.parent_model_id = this.get('flight').get('id');
+    meta_data.creative_type = this.get('creative_type');
+
+    this.get('creative').set('meta_data', JSON.stringify(meta_data));
+    this.createCreative();
+  },
+
   actions: {
     createCreative: function() {
+      if (this.get('creative').get('creative_type')) {
+        this.setCreativeMetaData();
+      }
       this.createCreative();
     },
     createCreativeInstance: function(creative_type) {
-      var creative_type = creative_type;
     	this.set('displayAddCreativeComponent', true);
 
       Ember.run.later(this, (function() {
@@ -71,10 +83,7 @@ export default Ember.Component.extend({
 	    }
     },
   	setCreativeMetaData: function(meta_data) {
-      meta_data.parent_model = 'flight';
-  		meta_data.creative_type = this.get('creative_type');
-  	  this.get('creative').set('meta_data', JSON.stringify(meta_data));
-      this.createCreative(); 
+      this.setCreativeMetaData(meta_data); 
   	},
     clearCreativeErrors: function() {
       this.set('creative_errors', undefined);

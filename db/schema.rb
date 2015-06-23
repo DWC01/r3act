@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150525170129) do
+ActiveRecord::Schema.define(version: 20150623073113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,24 +92,14 @@ ActiveRecord::Schema.define(version: 20150525170129) do
 
   create_table "creatives", force: :cascade do |t|
     t.string   "name"
-    t.string   "mime_type"
-    t.string   "meta_data"
-    t.string   "ad_tag_code"
-    t.string   "dimensions"
-    t.string   "url"
-    t.string   "etag"
-    t.string   "extension"
     t.string   "creative_landing_page"
-    t.string   "creative_type"
+    t.string   "dimensions"
     t.string   "width"
     t.string   "height"
-    t.integer  "main_creative_id"
     t.integer  "flight_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end
-
-  add_index "creatives", ["main_creative_id"], name: "index_creatives_on_main_creative_id", using: :btree
 
   create_table "flights", force: :cascade do |t|
     t.string   "name"
@@ -120,6 +110,33 @@ ActiveRecord::Schema.define(version: 20150525170129) do
     t.integer  "campaign_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "swf_creatives", force: :cascade do |t|
+    t.string   "name"
+    t.string   "creative_landing_page"
+    t.string   "meta_data"
+    t.string   "extension"
+    t.string   "width"
+    t.string   "height"
+    t.string   "size"
+    t.string   "mime_type"
+    t.string   "creative_type"
+    t.string   "compressed?"
+    t.string   "version"
+    t.string   "bit_count"
+    t.string   "swf_xmax"
+    t.string   "swf_ymax"
+    t.string   "url"
+    t.string   "frame_rate"
+    t.string   "frame_count"
+    t.string   "duration"
+    t.string   "avm_version"
+    t.string   "signature"
+    t.string   "etag"
+    t.integer  "creative_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "users", force: :cascade do |t|

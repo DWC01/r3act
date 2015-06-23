@@ -23,6 +23,7 @@ gem 'google-dfp-api'
 gem 'ember-cli-rails'
 gem 'aws-sdk-core'
 gem 'aws-sdk', '< 2.0'
+gem 'swf_file'
 
 group :development do
   gem 'spring'

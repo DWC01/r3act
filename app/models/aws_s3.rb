@@ -13,6 +13,7 @@ class AwsS3
 
   def save_to_s3
     @s3_file = write_to_bucket(@file, @acl)
+    add_etag_if_none_exits
   end
 
   def public_url
@@ -24,6 +25,15 @@ class AwsS3
   end
 
   private 
+
+  def add_etag_if_none_exits
+    unless @meta_data['etag'] 
+      @meta_data['etag'] = @s3_file.etag.gsub("\"","")
+      @s3_file.delete
+      @bucket = set_bucket
+      @s3_file = write_to_bucket(@file, @acl)
+    end
+  end
   
   def write_to_bucket(file, acl)
     s3_buckets_objects.write(file, acl)

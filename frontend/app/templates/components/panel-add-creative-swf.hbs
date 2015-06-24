@@ -1,0 +1,17 @@
+<div class='upload-creative-file-upload-wrap'>
+	<form {{action 'saveSwfCreative' on='submit'}}>
+		<div class="file-field input-field">	  	
+			{{input type="text" value=fileName class="file-path validate"}} 
+		  <div class="btn btn-add-creative-upload">
+		    <span>Choose File</span>
+			  {{file-upload 
+			    url="/api/sign"
+			    setS3data="setS3data"
+			    setFileName="setFileName"}}
+		  </div>
+		</div>
+		<div class="form-field-error">
+			{{creative_errors.base}}
+		</div>
+	</form>
+</div>

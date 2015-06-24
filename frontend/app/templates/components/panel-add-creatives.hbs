@@ -1,11 +1,11 @@
-<div class="card flight-creatives">
+<div class="card panel-add-creatives">
   
   <div class="card-content">
-	  <div class="flight-creatives-header">
+	  <div class="panel-add-creatives-header">
 			<p> 
 				Creatives
 			</p>
-			<a {{action 'createCreativeInstance' 'main-creative'}}
+			<a {{action 'displayAddCreativePanel'}}
 				class="activator btn-floating btn-medium waves-effect waves-light">
 				<i class="mdi-content-add"></i>
 			</a> 
@@ -18,7 +18,7 @@
 			      <span class="title">
 			      	{{creative.name}}
 
-			      	<i {{action 'createCreativeInstance' 'backup-creative'}} 
+			      	<i {{action 'displayAddCreativePanel'}} 
 			      	class="activator mdi-image-filter flight-creative-backup-icon"></i>
 
 			      	<i {{action "deleteCreative" creative}} 
@@ -41,23 +41,19 @@
 		    </li>
 			</ul>
 		{{/if}} 
-	</div>
+	</div> 
   
   <div class="card-reveal">
-	  <span {{action 'removeCreativeInstance'}}
+	  <span {{action 'closeAddCreativePanel'}}
 	  	id="card-reveal-close" class="card-title grey-text text-darken-4">
   		<i class="mdi-navigation-close right"></i>
 	  </span>
-	  {{#if displayAddCreativeComponent}}
-			{{flight-add-creative
+	  {{#if displayAddCreativePanel}}
+			{{panel-add-creative
 				flight=flight
-				creative=creative
-				createCreative="createCreative"
-				creative_errors=creative_errors
+				creative_type=creative_type
 				parentController=parentController
-				clearCreativeErrors="clearCreativeErrors"
-				clearCreativeProperties="clearCreativeProperties"
-				setCreativeMetaData="setCreativeMetaData"}}
+				rerenderPanelAddCreative='rerenderPanelAddCreative'}}
 		{{/if}}
   </div>
 

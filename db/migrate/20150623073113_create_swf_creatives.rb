@@ -10,7 +10,7 @@ class CreateSwfCreatives < ActiveRecord::Migration
     	t.string    :size 
       t.string    :mime_type
       t.string    :creative_type
-      t.string    :compressed?
+      t.string    :compressed
       t.string    :version
       t.string    :bit_count
       t.string    :swf_xmax

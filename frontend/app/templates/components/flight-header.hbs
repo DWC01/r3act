@@ -8,8 +8,8 @@
   {{flight.name}}
 </h2>
 
-{{#if displayAddCreatives}}
-	{{flight-creatives 
+{{#if displayAddCreativesPanel}}
+	{{panel-add-creatives 
 		flight=flight
 		creatives=flight.creatives
 		parentController=parentController}}

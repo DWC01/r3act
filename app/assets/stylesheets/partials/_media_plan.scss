@@ -12,13 +12,13 @@
   }
 }
 
-.flight-creatives-wrap {
+.panel-add-creatives-wrap {
   position: absolute;
   margin-right: 5px;
   width: 43%;
 }
 
-.btn-flight-creative-upload {
+.btn-add-creative-upload {
   width: 155px;
   & input {
     color: #181818;
@@ -26,14 +26,14 @@
   }
 }
 
-.flight-creatives {
+.panel-add-creatives {
   min-height: 530px;
   min-height: 530px;
   border: 1px solid #eee;
   z-index: 10;
 }
 
-.flight-creatives > .card-content > .flight-creatives-header {
+.panel-add-creatives > .card-content > .panel-add-creatives-header {
   margin: 0 0 10px 0;
   & p {
     display: inline-block;
@@ -170,29 +170,29 @@
   }
 }
 
-.flight-creatives .card-title {
+.panel-add-creatives .card-title {
   position: relative;
   top: -2px;
   left: -25px;
 }
 
-.flight-creatives .collection .collection-item.avatar .circle {
+.panel-add-creatives .collection .collection-item.avatar .circle {
   width: 50px;
   height: 50px;
 }
 
-.flight-creatives .collection .collection-item.avatar .title {
+.panel-add-creatives .collection .collection-item.avatar .title {
   display: inline-block;
   width: 80%;
   margin-left: 13px;
   word-break: break-all;
 }
 
-.flight-creatives .collection .collection-item.avatar p {
+.panel-add-creatives .collection .collection-item.avatar p {
   margin-left: 13px;
 }
 
-.flight-creatives .collection .collection-item.avatar p.flight-no-creatives {
+.panel-add-creatives .collection .collection-item.avatar p.flight-no-creatives {
   text-align: center;
   margin: 30px 0 0 -72px;
 }
@@ -233,12 +233,12 @@
   position: relative;
 }
 
-.fields-new-creative {
+.panel-add-creative-swf {
   position: relative;
   top: 48px;
 }
 
-.fields-new-creative .file-field input.file-path {
+.panel-add-creative-swf .file-field input.file-path {
   margin-left: 165px;
   width: calc(81% - 81px);
 }

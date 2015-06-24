@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623073113) do
+ActiveRecord::Schema.define(version: 20150624030622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ad_tag_creatives", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "ad_tags", force: :cascade do |t|
     t.string   "ad_type"
@@ -112,6 +117,11 @@ ActiveRecord::Schema.define(version: 20150623073113) do
     t.datetime "updated_at"
   end
 
+  create_table "img_creatives", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "swf_creatives", force: :cascade do |t|
     t.string   "name"
     t.string   "creative_landing_page"
@@ -122,7 +132,7 @@ ActiveRecord::Schema.define(version: 20150623073113) do
     t.string   "size"
     t.string   "mime_type"
     t.string   "creative_type"
-    t.string   "compressed?"
+    t.string   "compressed"
     t.string   "version"
     t.string   "bit_count"
     t.string   "swf_xmax"

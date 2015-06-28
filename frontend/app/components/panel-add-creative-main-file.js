@@ -3,28 +3,31 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-	classNames: ['panel-add-creative-swf'],
+	classNames: ['panel-add-creative-main-file'],
 
 	// --- Inititialize ------
   didInsertElement: function() {
     this.$().hide().fadeIn(500);
-    this.set('swfCreative', 
-      this.get('parentController').store.createRecord('swfCreative'));
+      this.set('creative',
+        this.get('parentController').store.createRecord('creative'));
+      this.get('creative').set('creative_type', this.get('creativeType'));
   },
 
   // --- Destroy ------
   willDestroyElement: function() {
-    var swfCreative = this.get('swfCreative');
+    var creative = this.get('creative');
 
-    if(swfCreative && swfCreative.get('id') === null) {
-      this.get('parentController').store.unloadRecord(swfCreative);
+    if(creative && creative.get('id') === null) {
+      this.get('parentController').store.unloadRecord(creative);
     }  
   },
 
-  saveSwfCreative: function() {
-    this.get('swfCreative').save().then(
-      function() {
-        Materialize.toast('Swf Creative Saved', 4000);
+  saveCreative: function() {
+    this.get('creative').save().then(
+      function(creative) {
+        Materialize.toast(
+          this._capitalizeFirstLetter(creative.get('extension')) + ' Creative Saved', 
+          4000);
         this.sendAction('rerenderPanelAddCreative'); 
       }.bind(this),
       function(reason) { 
@@ -38,6 +41,10 @@ export default Ember.Component.extend({
     meta_data.parent_model_id = this.get('flight').get('id');
     this.set('meta_data', JSON.stringify(meta_data));
   },
+  
+  _capitalizeFirstLetter: function(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  },
 
   actions: {
   	setFileName: function(fileName) {
@@ -45,7 +52,7 @@ export default Ember.Component.extend({
   	},
   	setS3data: function(s3data) {
       this.setMetaData(s3data);
-  	 	this.get('swfCreative').set('meta_data', this.get('meta_data'));
+  	 	this.get('creative').set('meta_data', this.get('meta_data'));
     }
   }
 

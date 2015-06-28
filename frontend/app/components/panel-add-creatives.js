@@ -4,6 +4,8 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   classNames: ['panel-add-creatives-wrap'],
 
+  displayAddCreativePanel: false,
+
   // --- Inititialize ------
   didInsertElement: function() {
     this.$().hide().fadeIn(400);
@@ -12,14 +14,29 @@ export default Ember.Component.extend({
 
   // --- Destructor ------
   willDestroyElement: function() {
+    var creative = this.get('creative');
+    if(creative && creative.get('id') === null) {
+      this.get('parentController').store.unloadRecord(creative);
+    }
+
     var clone = this.$().clone();
     this.$().parent().append(clone);
     clone.fadeOut(100);
   }, 
 
   actions: {
-    displayAddCreativePanel: function() {
+    displayAddCreativePanel: function(creativeType, creative) {
+      if (creative) {this.set('creative', creative);}
+      this.set('creativeType', creativeType);
     	this.set('displayAddCreativePanel', true);
+      
+      if (creativeType==='backup-creative') {
+        this.set('displayFileTypeSwitch', false);
+        this.set('panelHeadingCreativeType', 'Backup');
+      } else {
+        this.set('displayFileTypeSwitch', true);
+        this.set('panelHeadingCreativeType', '');
+      }
     },
     closeAddCreativePanel: function() { 
       Ember.run.later(this, (function() {
@@ -28,9 +45,9 @@ export default Ember.Component.extend({
     },
     rerenderPanelAddCreative: function() {
       this.rerender();
+    },
+    deleteCreative: function(creative){
+      creative.destroyRecord();
     }
-   //  deleteCreative: function(creative){
-   //    creative.destroyRecord();
-   //  }
   }
 }); 

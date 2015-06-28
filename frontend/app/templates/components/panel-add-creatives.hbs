@@ -5,7 +5,7 @@
 			<p> 
 				Creatives
 			</p>
-			<a {{action 'displayAddCreativePanel'}}
+			<a {{action 'displayAddCreativePanel' 'main-creative'}}
 				class="activator btn-floating btn-medium waves-effect waves-light">
 				<i class="mdi-content-add"></i>
 			</a> 
@@ -14,11 +14,11 @@
 			<ul class="collection staggered-creatives">
 				{{#each creative in creatives}}
 			    <li class="collection-item avatar">
-			      <img {{bind-attr src=creative.url}} alt="" class="circle">
+			      <img {{bind-attr src=creative.resource_url}} alt="" class="circle">
 			      <span class="title">
 			      	{{creative.name}}
 
-			      	<i {{action 'displayAddCreativePanel'}} 
+			      	<i {{action 'displayAddCreativePanel' 'backup-creative'}} 
 			      	class="activator mdi-image-filter flight-creative-backup-icon"></i>
 
 			      	<i {{action "deleteCreative" creative}} 
@@ -51,8 +51,12 @@
 	  {{#if displayAddCreativePanel}}
 			{{panel-add-creative
 				flight=flight
+				creative=creative
+				creativeType=creativeType
 				creative_type=creative_type
 				parentController=parentController
+				displayFileTypeSwitch=displayFileTypeSwitch
+				panelHeadingCreativeType=panelHeadingCreativeType
 				rerenderPanelAddCreative='rerenderPanelAddCreative'}}
 		{{/if}}
   </div>

@@ -1,31 +1,35 @@
 <div class='upload-creative-file-uploads-wrap'>
 	<div class='flight-add-creative-header'>
 		<h2> 
-			Upload Creative Below
+			Upload {{panelHeadingCreativeType}} Creative Below
 		</h2>
 	</div> 
 	
-	{{materialize-switch 
-		labelOne='Flash/Gif'
-		labelTwo='Ad Tag'
-		clickSendAction='toggleCreativeType'
-		toggleCreativeType='toggleCreativeType'}}
-		
-	{{#if isAdTagCreative}}
-		{{panel-add-creative-ad-tag
-			flight=flight
-			creative_type=creative_type
-			parentController=parentController
-			rerenderPanelAddCreative='rerenderPanelAddCreative'}}
-  {{/if}}
+	{{#if displayFileTypeSwitch}}
+		{{materialize-switch 
+			labelOne='Flash/Image'
+			labelTwo='Ad Tag'
+			clickSendAction='toggleCreativeType'
+			toggleCreativeType='toggleCreativeType'}}
+	{{/if}}
 
   {{#if isSwfCreative}}
-	  {{panel-add-creative-swf
+	  {{panel-add-creative-main-file
 	  	flight=flight
-	  	creative_type=creative_type
+	  	creative=creative
+	  	creativeType=creativeType
 			parentController=parentController
 			rerenderPanelAddCreative='rerenderPanelAddCreative'}}
 	{{/if}}
+
+	{{#if isAdTagCreative}}
+		{{panel-add-creative-main-ad-tag
+			flight=flight
+			creative=creative
+			creativeType=creativeType
+			parentController=parentController
+			rerenderPanelAddCreative='rerenderPanelAddCreative'}}
+  {{/if}}
 
 </div>
 

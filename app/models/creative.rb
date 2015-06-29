@@ -3,6 +3,7 @@ class Creative < ActiveRecord::Base
   validate :validate_creative, on: [:create, :update]
   before_save :process_creative
   belongs_to :flight
+  has_one :backup_creative
 
   # ---- Before Validate --------
   

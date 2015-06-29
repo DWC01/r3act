@@ -74,12 +74,11 @@ class BackupCreative < ActiveRecord::Base
 	    resource_url: @S3.public_url,
 	    extension: @meta_data['extension'],
 	    mime_type: @meta_data['mime_type'],
-	    flight_id: @meta_data['parent_model_id']
+	    flight_id: @meta_data['parent_model_id'],
 	    landing_page_url: @meta_data['landing_page_url'],
-	    dimensions: "#{creative.columns}x#{creative.rows}",
+	    dimensions: "#{creative.columns}x#{creative.rows}"
 	  })
 	end
-
 
 	private
 		def image_extensions

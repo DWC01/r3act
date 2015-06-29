@@ -14,7 +14,11 @@
 			<ul class="collection staggered-creatives">
 				{{#each creative in creatives}}
 			    <li class="collection-item avatar">
-			      <img {{bind-attr src=creative.resource_url}} alt="" class="circle">
+			    	{{#if creative.backup_creative}}
+			      	<img {{bind-attr src=creative.backup_creative.resource_url}} alt="" class="circle">
+			      {{else}}
+			      	<img {{bind-attr src=creative.resource_url}} alt="" class="circle">
+			      {{/if}}
 			      <span class="title">
 			      	{{creative.name}}
 

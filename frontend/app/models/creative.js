@@ -1,7 +1,6 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-	
 	etag: 									DS.attr('string'),
 	name: 									DS.attr('string'),
 	size: 									DS.attr('string'),
@@ -27,7 +26,8 @@ export default DS.Model.extend({
   
   created_at:             DS.attr('date'),
   updated_at:             DS.attr('date'),
-  
+   
   flight:                 DS.belongsTo('flight'),
-  campaign:               DS.belongsTo('campaign')
+  campaign:               DS.belongsTo('campaign'),
+  backup_creative:        DS.belongsTo('backup_creative')
 });

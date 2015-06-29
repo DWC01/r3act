@@ -20,5 +20,6 @@ created_at:     DS.attr('date'),
 updated_at:     DS.attr('date'),
   
 flight:         DS.belongsTo('flight'),
-campaign:       DS.belongsTo('campaign')
+campaign:       DS.belongsTo('campaign'),
+creative:       DS.belongsTo('creative')
 });

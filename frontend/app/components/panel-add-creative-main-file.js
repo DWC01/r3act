@@ -17,7 +17,8 @@ export default Ember.Component.extend({
       this.set('creative',
         this.get('parentController').store.createRecord('backup_creative'));
       this.get('creative').set('creative_type', this.get('creativeType'));
-    }
+      this.get('creative').set('creative', this.get('parentCreative'));
+    } 
   },
 
   // --- Destroy ------

@@ -10,7 +10,8 @@ class Creative < ActiveRecord::Base
     @meta_data = JSON.parse(self.meta_data)
     @meta_data['file_name'] = @meta_data['name'].split('.').shift if @meta_data['name']
     @meta_data['extension'] = @meta_data['name'].split('.').pop if @meta_data['name']
-    @meta_data['etag'] = @meta_data['etag'].gsub("\"","") if @meta_data['etag']  
+    @meta_data['etag'] = @meta_data['etag'].gsub("\"","") if @meta_data['etag']
+    @meta_data['creative_type'] = self.creative_type
   end
 
   # ---- Validate --------
@@ -138,6 +139,7 @@ class Creative < ActiveRecord::Base
 	    etag: @meta_data['etag'],
 	    width: creative.columns,
 	    height: creative.rows,
+	    size: creative.filesize,
 	    dimensions: "#{creative.columns}x#{creative.rows}",
 	    extension: @meta_data['extension'],
 	    meta_data: @meta_data,

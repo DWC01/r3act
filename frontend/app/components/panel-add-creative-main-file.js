@@ -34,8 +34,8 @@ export default Ember.Component.extend({
     this.get('creative').save().then(
       function(creative) {
         Materialize.toast(
-          this._capitalizeFirstLetter(creative.get('extension')) + ' Creative Saved', 
-          4000);
+          this._capitalizeFirstLetter(creative.get('extension')) + ' Creative Saved',
+           4000);
         this.sendAction('rerenderPanelAddCreative');
       }.bind(this),
       function(reason) { 

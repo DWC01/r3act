@@ -5,7 +5,7 @@ class CreateBackupCreatives < ActiveRecord::Migration
     	t.string :meta_data
     	t.string :extension
     	t.string :resource_url
-      t.string :landing_page
+      t.string :landing_page_url
       t.string :width
       t.string :height
       t.string :dimensions

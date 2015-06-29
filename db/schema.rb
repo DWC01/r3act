@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20150628212321) do
     t.string   "meta_data"
     t.string   "extension"
     t.string   "resource_url"
-    t.string   "landing_page"
+    t.string   "landing_page_url"
     t.string   "width"
     t.string   "height"
     t.string   "dimensions"
@@ -77,8 +77,8 @@ ActiveRecord::Schema.define(version: 20150628212321) do
     t.integer  "campaign_id"
     t.integer  "flight_id"
     t.integer  "creative_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "campaigns", force: :cascade do |t|

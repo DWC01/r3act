@@ -81,6 +81,7 @@ class Creative < ActiveRecord::Base
 	def process_and_save_tag_creative
 		file = @meta_data['ad_tag_code']
 		save_file_to_S3(file)
+		set_ad_tag_attributes(self)
 	end
 
 	# ---- Set File Types --
@@ -150,6 +151,16 @@ class Creative < ActiveRecord::Base
 	    landing_page_url: @meta_data['landing_page_url'],
 	    flight_id: @meta_data['parent_model_id']
 	  })
+	end
+
+	def set_ad_tag_attributes(creative)
+		self.attributes=({
+			dimensions: "#{creative.width}x#{creative.height}",
+			extension: @meta_data['extension'],
+			name: "#{creative.name}." + @meta_data['extension'],
+			etag: @S3.etag,
+			size: @S3.size
+		})
 	end
 
 	private

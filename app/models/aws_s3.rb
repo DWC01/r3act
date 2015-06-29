@@ -1,4 +1,5 @@
 class AwsS3
+  attr_reader :etag, :size
 
   def initialize(model, meta_data, file, bucket_name)
     @file = file
@@ -16,6 +17,7 @@ class AwsS3
   def save_to_s3
     @s3_file = write_to_bucket(@file, @acl)
     add_etag_if_none_exits
+    set_size
   end
 
   def public_url
@@ -29,12 +31,17 @@ class AwsS3
   private 
 
   def add_etag_if_none_exits
-    unless @meta_data['etag'] 
-      @meta_data['etag'] = @s3_file.etag.gsub("\"","")
+    unless @meta_data['etag']
+      @etag = @s3_file.etag.gsub("\"","")
+      @meta_data['etag'] = @etag
       @s3_file.delete
       @bucket = set_bucket
       @s3_file = write_to_bucket(@file, @acl)
     end
+  end
+
+  def set_size
+    @size = @s3_file.content_length
   end
   
   def write_to_bucket(file, acl)

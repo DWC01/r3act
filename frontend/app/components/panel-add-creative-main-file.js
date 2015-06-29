@@ -15,12 +15,12 @@ export default Ember.Component.extend({
       this.get('creative').set('creative_type', this.get('creativeType'));
     }
 
-    if(this.get('creativeType') === 'backup-creative') {
+    if (this.get('creativeType') === 'backup-creative') {
       this.set('creative',
         this.get('parentController').store.createRecord('backup_creative'));
       this.get('creative').set('creative_type', this.get('creativeType'));
       
-      if(this.get('parentCreative').get('backup_creative') === null) {
+      if (this.get('parentCreative').get('backup_creative') === null) {
         this.get('creative').set('creative', this.get('parentCreative'));
       }
     } 

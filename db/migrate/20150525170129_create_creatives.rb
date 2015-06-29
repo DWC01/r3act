@@ -5,8 +5,7 @@ class CreateCreatives < ActiveRecord::Migration
       t.string    :meta_data
       t.string    :extension
       t.string    :resource_url
-      t.string    :backup_img_url
-      t.string    :creative_landing_page
+      t.string    :landing_page_url
       t.string    :width
       t.string    :height
       t.string    :dimensions
@@ -25,6 +24,7 @@ class CreateCreatives < ActiveRecord::Migration
       t.string    :signature
       t.string    :etag
       t.integer   :flight_id
+      t.integer   :campaign_id
 
       t.timestamps null: false
     end

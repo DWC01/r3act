@@ -10,33 +10,44 @@ export default Ember.Component.extend({
   didInsertElement: function() {
     this.$().hide().fadeIn(400);
     Materialize.showStaggeredList('.staggered-creatives');
+    this._clearProperties();
   },
 
   // --- Destructor ------
   willDestroyElement: function() {
-    var creative = this.get('creative');
-    if(creative && creative.get('id') === null) {
-      this.get('parentController').store.unloadRecord(creative);
-    }
-
+    this._clearProperties();
     var clone = this.$().clone();
     this.$().parent().append(clone);
     clone.fadeOut(100);
   }, 
 
+  _clearProperties: function() {
+    this.set('creativeType', undefined);
+    this.set('parentCreative', undefined);
+    this.set('displayAddCreativePanel', undefined);
+  },
+
+  _toggleCreativeTypeSwitch: function() {
+    if (this.get('creativeType')==='backup-creative') {
+      this.set('displayFileTypeSwitch', false);
+      this.set('panelHeadingCreativeType', 'Backup');
+    } else { 
+      this.set('displayFileTypeSwitch', true);
+      this.set('panelHeadingCreativeType', '');
+    }
+  },
+
+  _displayAddCreativePanels: function() {
+    this.set('displayAddCreativePanel', true);
+      this.set('isSwfCreative', true);
+  },
+
   actions: {
     displayAddCreativePanel: function(creativeType, creative) {
-      if (creative) {this.set('creative', creative);}
       this.set('creativeType', creativeType);
-    	this.set('displayAddCreativePanel', true);
-      
-      if (creativeType==='backup-creative') {
-        this.set('displayFileTypeSwitch', false);
-        this.set('panelHeadingCreativeType', 'Backup');
-      } else {
-        this.set('displayFileTypeSwitch', true);
-        this.set('panelHeadingCreativeType', '');
-      }
+      if (creative) {this.set('parentCreative', creative);}
+      this._toggleCreativeTypeSwitch();
+      this._displayAddCreativePanels();
     },
     closeAddCreativePanel: function() { 
       Ember.run.later(this, (function() {

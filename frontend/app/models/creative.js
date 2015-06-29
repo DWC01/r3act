@@ -23,11 +23,11 @@ export default DS.Model.extend({
 	avm_version: 						DS.attr('string'),
 	resource_url: 					DS.attr('string'),
 	creative_type: 					DS.attr('string'),
-	backup_img_url: 				DS.attr('string'),
-	creative_landing_page: 	DS.attr('string'),
+	landing_page_url: 	    DS.attr('string'),
   
   created_at:             DS.attr('date'),
   updated_at:             DS.attr('date'),
   
-  flight:                 DS.belongsTo('flight')
+  flight:                 DS.belongsTo('flight'),
+  campaign:               DS.belongsTo('campaign')
 });

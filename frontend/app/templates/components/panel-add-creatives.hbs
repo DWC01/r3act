@@ -18,7 +18,7 @@
 			      <span class="title">
 			      	{{creative.name}}
 
-			      	<i {{action 'displayAddCreativePanel' 'backup-creative'}} 
+			      	<i {{action 'displayAddCreativePanel' 'backup-creative' creative}} 
 			      	class="activator mdi-image-filter flight-creative-backup-icon"></i>
 
 			      	<i {{action "deleteCreative" creative}} 
@@ -53,7 +53,8 @@
 				flight=flight
 				creative=creative
 				creativeType=creativeType
-				creative_type=creative_type
+				isSwfCreative=isSwfCreative
+				parentCreative=parentCreative
 				parentController=parentController
 				displayFileTypeSwitch=displayFileTypeSwitch
 				panelHeadingCreativeType=panelHeadingCreativeType

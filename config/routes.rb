@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :sessions, :only => [:create, :show]
     resources :campaigns, :flights, :ad_tags, :users, 
-              :companies, :avatars, :creatives, :swf_creatives
+              :companies, :avatars, :creatives, :backup_creatives
 
     resources :campaigns do
       resources :flights

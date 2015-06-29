@@ -8,9 +8,16 @@ export default Ember.Component.extend({
 	// --- Inititialize ------
   didInsertElement: function() {
     this.$().hide().fadeIn(500);
+    if(this.get('creativeType') === 'main-creative') {
       this.set('creative',
         this.get('parentController').store.createRecord('creative'));
       this.get('creative').set('creative_type', this.get('creativeType'));
+    }
+    if(this.get('creativeType') === 'backup-creative') {
+      this.set('creative',
+        this.get('parentController').store.createRecord('backup_creative'));
+      this.get('creative').set('creative_type', this.get('creativeType'));
+    }
   },
 
   // --- Destroy ------
@@ -28,7 +35,7 @@ export default Ember.Component.extend({
         Materialize.toast(
           this._capitalizeFirstLetter(creative.get('extension')) + ' Creative Saved', 
           4000);
-        this.sendAction('rerenderPanelAddCreative'); 
+        this.sendAction('rerenderPanelAddCreative');
       }.bind(this),
       function(reason) { 
         this.set('creative_errors', reason.errors);

@@ -18,7 +18,6 @@ class Creative < ActiveRecord::Base
   def validate_creative
   	validate_ad_tag if self.creative_type == 'main-ad-tag'
     validate_main_creative if self.creative_type == 'main-creative'
-    validate_backup_creative if self.creative_type == 'backup-creative'
   end
 
   def validate_ad_tag
@@ -39,13 +38,7 @@ class Creative < ActiveRecord::Base
 
 	def validate_main_creative
 	  unless creative_extensions.include? @meta_data['extension']
-	    errors.add(:base, 'File upload must be swf, gif, jpg, or png') 
-	  end
-	end
-
-	def validate_backup_creative
-	  unless image_extensions.include? @meta_data['extension']
-	    errors.add(:base, 'File upload must be gif, jpg, or png') 
+	    errors.add(:base, 'Creative must be swf, gif, jpg, or png') 
 	  end
 	end
 
@@ -58,7 +51,6 @@ class Creative < ActiveRecord::Base
 
 		if image_extensions.include? @meta_data['extension']
 			process_and_save_img_creative
-			
 		end
 
 		if self.creative_type == 'main-ad-tag'
@@ -135,7 +127,7 @@ class Creative < ActiveRecord::Base
 	    avm_version: creative.avm_version,
 	    resource_url: @S3.public_url,
 	    creative_type: @meta_data['creative_type'],
-	    creative_landing_page: @meta_data['creative_landing_page'],
+	    landing_page_url: @meta_data['landing_page_url'],
 	    flight_id: @meta_data['parent_model_id']
 	  })
 	end
@@ -152,7 +144,7 @@ class Creative < ActiveRecord::Base
 	    mime_type: @meta_data['mime_type'],
 	    resource_url: @S3.public_url,
 	    creative_type: @meta_data['creative_type'],
-	    creative_landing_page: @meta_data['creative_landing_page'],
+	    landing_page_url: @meta_data['landing_page_url'],
 	    flight_id: @meta_data['parent_model_id']
 	  })
 	end

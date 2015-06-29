@@ -46,11 +46,11 @@ module Api
     private
       def creative_params
         params.require(:creative).permit(
-          :name, :meta_data, :extension, :resource_url, :backup_img_url, 
-          :creative_landing_page, :width, :height, :dimensions, :size, 
+          :name, :meta_data, :extension, :resource_url, 
+          :landing_page_url, :width, :height, :dimensions, :size, 
           :mime_type, :creative_type, :compressed, :version, :bit_count, 
           :swf_xmax, :swf_ymax, :frame_rate, :frame_count, :duration, 
-          :avm_version, :signature, :etag, :flight_id
+          :avm_version, :signature, :etag, :flight_id, :campaign_id
         )
       end
 

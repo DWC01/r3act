@@ -1,9 +1,6 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  company:                  DS.belongsTo('company'),
-  flights:                  DS.hasMany('flight'),
-  
   ad_sizes:                 DS.attr(),
   ad_tag_receivers:         DS.attr(),
   ad_devices:               DS.attr(),
@@ -20,5 +17,9 @@ export default DS.Model.extend({
   start_date:               DS.attr('string'),
   company_id:               DS.attr('number'),
   created_at:               DS.attr('date'),
-  updated_at:               DS.attr('date')
+  updated_at:               DS.attr('date'),
+  
+  company:                  DS.belongsTo('company'),
+  flights:                  DS.hasMany('flight'),
+  creatives:                DS.hasMany('creative')
 });

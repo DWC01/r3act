@@ -24,6 +24,7 @@ gem 'ember-cli-rails'
 gem 'aws-sdk-core'
 gem 'aws-sdk', '< 2.0'
 gem 'swf_file'
+gem "secure_headers", :require => 'secure_headers'
 
 group :development do
   gem 'spring'

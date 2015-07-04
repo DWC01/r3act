@@ -1,0 +1,85 @@
+<div class="test-page-content-wrap">
+	
+	<div class="row">
+		<div class="col s12">
+			<div class="test-page-creative-wrap"> 
+				{{#if isSwf}}
+					{{embed-swf creative=creative}}
+				{{/if}}
+				{{#if isImage}}
+					<img src="{{creative.resource_url}}"/>
+				{{/if}}
+			</div>
+		</div>
+	</div>
+
+	<div class="row"> 
+		<div class="col s12">
+		<h5>
+			Creative Properties
+		</h5>
+		<div class="test-page-properties-header-border"></div>
+			<div class="test-page-properties-wrap">
+				<ul>
+				  {{#if creative.name}}
+						<li>
+							<p>
+								<b>Name:</b>
+								{{creative.name}}
+							</p>
+						</li>
+					{{/if}}
+					{{#if creative.width}}
+					<li>
+						<p>
+							<b>Width:</b>
+							{{creative.width}}px
+						</p>
+					</li>
+					{{/if}}
+					{{#if creative.height}}
+					<li>
+						<p>
+							<b>Height:</b>
+							{{creative.height}}px
+						</p>
+					</li>
+					{{/if}}
+					{{#if creative.extension}}
+					<li>
+						<p>
+							<b>Type:</b>
+							{{creative.extension}}
+						</p>
+					</li>
+					{{/if}}
+					{{#if creative.size}}
+					<li>
+						<p>
+							<b>Size:</b>
+							{{-bytes creative.size}}
+						</p>
+					</li>
+					{{/if}}
+					{{#if creative.frame_rate}}
+					<li>
+						<p>
+							<b>Frame Rate:</b>
+							{{creative.frame_rate}} fps
+						</p>
+					</li>
+					{{/if}}
+					{{#if duration}}
+					<li>
+						<p>
+							<b>Duration:</b>
+							{{duration}} secs
+						</p>
+					</li>
+					{{/if}}
+				</ul>
+			</div>
+		</div>
+	</div>
+
+</div>

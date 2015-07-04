@@ -24,5 +24,5 @@ export default Ember.Component.extend({
     // this._intro();
     this._keypressHandler();
     // this.$().focus();
-  }
+  } 
 });

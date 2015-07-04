@@ -32,9 +32,14 @@ Router.map(function() {
 	this.route('passwords.new', {path: 'passwords/new'});
 	this.route('passwords.edit', {path: 'passwords/reset'});
 
+	this.resource('creatives', function() {
+		this.route('show', {path: ':creative_id'});
+	});
 
 	this.route('non_campiagn_page');
 	this.route('nonCampaignPage');
+
+
 });
 
 export default Router;

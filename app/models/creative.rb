@@ -131,7 +131,7 @@ class Creative < ActiveRecord::Base
 	    resource_url: @S3.public_url,
 	    creative_type: @meta_data['creative_type'],
 	    landing_page_url: @meta_data['landing_page_url'],
-	    flight_id: @meta_data['parent_model_id']
+	    flight_id: @meta_data['parent_model_id'],
 	  })
 	end
 
@@ -159,7 +159,8 @@ class Creative < ActiveRecord::Base
 			extension: @meta_data['extension'],
 			name: "#{creative.name}." + @meta_data['extension'],
 			etag: @S3.etag,
-			size: @S3.size
+			size: @S3.size,
+			resource_url: @S3.public_url
 		})
 	end
 

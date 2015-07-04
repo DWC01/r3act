@@ -1,0 +1,20 @@
+.test-page-content-wrap {
+	margin: 100px 0 0 0;
+}
+
+.test-page-creative-wrap {
+	margin: 0 auto;
+}
+
+.test-page-properties-wrap {
+	padding: 10px;
+	width: 80%;
+	& p {
+		word-wrap: break-word;
+	}
+}
+
+.test-page-properties-header-border {
+	border-top: 1px solid #eee;
+	width: 55%;
+}

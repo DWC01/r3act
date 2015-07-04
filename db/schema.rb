@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(version: 20150628212321) do
     t.string   "meta_data"
     t.string   "extension"
     t.string   "resource_url"
+    t.string   "no_backup_img_url"
     t.string   "landing_page_url"
     t.string   "width"
     t.string   "height"
@@ -134,8 +135,8 @@ ActiveRecord::Schema.define(version: 20150628212321) do
     t.string   "etag"
     t.integer  "flight_id"
     t.integer  "campaign_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "flights", force: :cascade do |t|

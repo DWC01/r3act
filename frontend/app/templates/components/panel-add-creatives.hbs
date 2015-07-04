@@ -14,31 +14,41 @@
 			<ul class="collection staggered-creatives">
 				{{#each creative in creatives}}
 			    <li class="collection-item avatar">
-			    	{{#if creative.backup_creative}}
-			      	<img {{bind-attr src=creative.backup_creative.resource_url}} alt="" class="circle">
-			      {{else}}
-			      	<img {{bind-attr src=creative.resource_url}} alt="" class="circle">
-			      {{/if}}
-			      <span class="title">
-			      	{{creative.name}}
+			    	
+			    	{{#link-to 'creatives.show' creative target="_blank" class="test-page-link"}}
+				    	{{#if creative.backup_creative}}
+				      	<img {{bind-attr src=creative.backup_creative.resource_url}} alt="" class="circle"/>
+				      {{else}}
+				      	<img src='https://s3-us-west-1.amazonaws.com/r3act/uploads/defaults/no-backup-img.png' alt="" class="circle"/>
+				      {{/if}}
 
-			      	<i {{action 'displayAddCreativePanel' 'backup-creative' creative}} 
-			      	class="activator mdi-image-filter flight-creative-backup-icon"></i>
+				      <span class="title">
+				      	{{creative.name}}
+					      <p>
+					      	{{creative.width}} x {{creative.height}}
+					      </p>
+				      </span>
+				    {{/link-to}}
 
-			      	<i {{action "deleteCreative" creative}} 
-			      	class="mdi-action-delete flight-creative-delete-icon"
-			      	onclick="Materialize.toast('<span>Creative Deleted</span><a class=&quot;btn-flat neon-text&quot; href=&quot;#!&quot;>Undo<a>', 5000)"></i>
+			      	{{#unless creative.backup_creative.id }}
+				      	<a class="btn-floating waves-effect waves-light flight-creative-backup-icon">
+					      	<i {{action 'displayAddCreativePanel' 'backup-creative' creative}} 
+					      	class="activator mdi-image-filter"></i>
+					      </a>
+				      {{/unless}}
 
-			      </span>
-			      <p>
-			      	{{creative.width}} x {{creative.height}}
-			      </p>
+				      <a class="btn-floating waves-effect waves-light flight-creative-delete-icon">
+				      	<i {{action "deleteCreative" creative}} 
+				      	class="mdi-action-delete"
+				      	onclick="Materialize.toast('<span>Creative Deleted</span><a class=&quot;btn-flat neon-text&quot; href=&quot;#!&quot;>Undo<a>', 5000)"></i>
+			      	</a>
+
 			    </li>
 				{{/each}}
 		  </ul>
 		{{else}}
 			<ul class="collection">
-		    <li class="collection-item avatar">
+		    <li class="collection-item avatar no-bottom-border">
 		    	<p class="flight-no-creatives">
 			    	No creatives assigned to this flight..
 			    </p>

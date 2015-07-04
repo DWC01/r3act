@@ -1,7 +1,9 @@
+/* global transition */
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  beforeModel: function(transition) {
+  // TODO: Add transition to args
+  beforeModel: function() {
     // if (Ember.isEmpty(this.controllerFor('sessions').get('currentUser'))) {
     //   this._setAttemptedTransition(transition);
     //   this.transitionTo('sessions');

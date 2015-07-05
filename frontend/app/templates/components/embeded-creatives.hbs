@@ -1,0 +1,23 @@
+{{#if isSwf}}
+	<div class="test-page-creative-wrap"
+		style="width:{{creative.width}}px;"> 
+		{{embed-swf creative=creative}}
+	</div>
+{{/if}}
+{{#if isImage}}
+	<div class="test-page-creative-wrap"
+		style="width:{{creative.width}}px;"> 
+		<img src="{{creative.resource_url}}"/>
+	</div>
+{{/if}}
+{{#if isAdTag}}
+	<div class="test-page-creative-wrap"
+		style="width:{{creative.width}}px;"> 
+		<iframe src="{{tagDisplayUrl}}" 
+			width="{{creative.width}}" 
+			height="{{creative.height}}"
+			frameborder="0"
+			scrolling="no">
+		</iframe>
+	</div>
+{{/if}}

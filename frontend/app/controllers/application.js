@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({  
   
-  needs: ['flash', 'sessions', 'campaigns'],
+  needs: ['flash', 'sessions', 'campaigns', 'tags'],
 
   isLoggedIn: function(){
     return this.get('controllers.sessions.isLoggedIn');

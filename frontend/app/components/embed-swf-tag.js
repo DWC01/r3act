@@ -7,7 +7,6 @@ export default Ember.Component.extend({
 
 
 	didInsertElement: function() {
-  	$('.test-page-creative-wrap').width(this.get('creative').get('width'));
 		this.rerenderEmbededFlash();
 	},
 

@@ -1,3 +1,8 @@
+.test-page-properties-horizontal-wrap {
+	width: 1000px;
+	margin: 0 auto;
+}
+
 .test-page-content-wrap {
 	margin: 100px 0 0 0;
 }
@@ -6,7 +11,7 @@
 	margin: 0 auto;
 }
 
-.test-page-properties-wrap {
+.test-page-properties-content-wrap {
 	padding: 10px;
 	width: 80%;
 	& p {
@@ -17,4 +22,18 @@
 .test-page-properties-header-border {
 	border-top: 1px solid #eee;
 	width: 55%;
+}
+
+.test-page-creative-wrap-horizontal {
+	margin: 0 auto;
+	& h5 {
+		text-align: center;
+	}
+	& .test-page-properties-header-border {
+		margin: 0 auto;
+	}
+	& .test-page-properties-wrap {
+		width: 50%;
+	  margin: 0 auto;
+	}
 }

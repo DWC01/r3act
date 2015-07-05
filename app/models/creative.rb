@@ -79,7 +79,7 @@ class Creative < ActiveRecord::Base
 	end
 
 	def process_and_save_tag_creative
-		file = @meta_data['ad_tag_code']
+		file = {ad_tag_code: @meta_data['ad_tag_code']}.to_json
 		save_file_to_S3(file)
 		set_ad_tag_attributes(self)
 	end

@@ -15,16 +15,21 @@ export default Ember.ArrayController.extend({
   	return extension === 'jpg' || extension === 'png' || extension === 'gif';
   }.property(),
 
-  isAdTag: function() {
-  	return ( this.get('creative').get('extension') === 'txt');
+  isAdTag: function() {      
+  	return this.get('creative').get('extension') === 'txt';
   }.property(),
 
   showVerticalLayout: function() {
   	return (Number(this.get('creative').get('width')) < 400);
   }.property(),
   
-  duration: function() {
+  swfDuration: function() {
+    console.log(Number(this.get('creative').get('duration')));
   	return (Number(this.get('creative').get('duration')) / 1000);
+  }.property(),
+
+  tagDisplayUrl: function() {
+    return "/tags/" + this.get('creative').get('id');
   }.property()
   
 });

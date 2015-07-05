@@ -16,7 +16,6 @@
 //= require lodash
 //= require numeral
 //= require js-cookie
-//= require fuck-ad-block
 //= require sinon
 //= require d3
 //= require c3

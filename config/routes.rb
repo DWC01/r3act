@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get  "/tags/:id",                      to: "tags#show"
   get  "/api/sign",                      to: "api/sign#sign"
   post "/api/password_resets",           to: "api/password_resets#create"
   post "/api/password_resets/update",    to: "api/password_resets#update"

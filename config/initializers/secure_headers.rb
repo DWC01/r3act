@@ -1,12 +1,14 @@
 ::SecureHeaders::Configuration.configure do |config|
   config.csp = {
-  	default_src: 'https: inline eval self',
-	  img_src:     '*',
-	  frame_src:   '*',
-	  connect_src: '*',
-	  font_src:    '*',
-	  media_src:   '*',
-	  object_src:  '*',
-	  enforce:     true
+  	enforce:     true,
+  	default_src: '* inline eval',
+	  img_src:     '* inline eval',
+	  frame_src:   '* inline eval',
+	  connect_src: '* inline eval',
+	  font_src:    '* inline eval',
+	  media_src:   '* inline eval',
+	  object_src:  '* inline eval',
+	  style_src:   '* inline eval',
+	  script_src:  '* inline eval'
   }
 end

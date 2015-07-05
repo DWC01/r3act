@@ -36,6 +36,10 @@ Router.map(function() {
 		this.route('show', {path: ':creative_id'});
 	});
 
+	this.resource('tags', function() {
+		this.route('show', {path: ':creative_id'});
+	});
+	
 	this.route('non_campiagn_page');
 	this.route('nonCampaignPage');
 

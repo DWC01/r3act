@@ -1,0 +1,58 @@
+<ul>
+  {{#if creative.name}}
+		<li>
+			<p>
+				<b>Name:</b>
+				{{creative.name}}
+			</p>
+		</li>
+	{{/if}}
+	{{#if creative.width}}
+	<li>
+		<p>
+			<b>Width:</b>
+			{{creative.width}}px
+		</p>
+	</li>
+	{{/if}}
+	{{#if creative.height}}
+	<li>
+		<p>
+			<b>Height:</b>
+			{{creative.height}}px
+		</p>
+	</li>
+	{{/if}}
+	{{#if creative.extension}}
+	<li>
+		<p>
+			<b>Type:</b>
+			{{creative.extension}}
+		</p>
+	</li>
+	{{/if}}
+	{{#if creative.size}}
+	<li>
+		<p>
+			<b>Size:</b>
+			{{-bytes creative.size}}
+		</p>
+	</li>
+	{{/if}}
+	{{#if creative.frame_rate}}
+	<li>
+		<p>
+			<b>Frame Rate:</b>
+			{{creative.frame_rate}} fps
+		</p>
+	</li>
+	{{/if}}
+	{{#if swfDuration}}
+	<li>
+		<p>
+			<b>Duration:</b>
+			{{swfDuration}} secs
+		</p>
+	</li>
+	{{/if}}
+</ul>

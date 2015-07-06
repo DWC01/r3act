@@ -50,6 +50,13 @@ module Api
       head :no_content
     end
 
+    def traffic_campaign
+      campaign = Campaign.find(params[:campaign][:id])
+      # response = campaign.traffic_dfp_ad_tags(params)
+      response = campaign.mock_dfp_response; sleep 5;
+      render json: response
+    end
+
     private
 
       def campaign_params

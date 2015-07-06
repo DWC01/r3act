@@ -2,88 +2,45 @@
 /*  untrafficked  */
 /*----------------*/
 
-.traffic-pick-partner {
-  margin: 70px 0 50px 0;
-  & h2 {
-  font-weight: 300;
-  }
+.traffic-campaign-form-wrap {
+  margin: 30px 0 0 0;
+  width: 55%;
 }
 
-.traffic-to-media-partner-wrap {
-  position: relative;
-  width: 250px;
-  height: 210px;
-  margin: 0px auto;
-  padding-top: 1px;
-  & .title {
-    margin: 0 20px;
-    border-bottom: 1px solid #eee;
-    & p {
-    line-height: 1.4;
-    text-align: center;
-    color: #181818;
-    font-size: 19px;
-    margin: 13px 0 15px 0;
-    text-decoration: none;
-    }
-  }
-  & .logo-wrap {
-    position: relative;
-    top: 10%;
-    height: 90px;
-    width: 190px;
-    margin: 0 auto;
-  }
+.traffic-company-list-item-wrap {
+	position: relative;
+ 	top: 40px;
 }
 
-.traffic-form-wrapper {
-  width: 300px;
-  margin: 0 auto;
-  & .traffic-input {
-    margin: 20px 0;
-  }
+.traffic-progress-wrap {
+	width: 100%;
+	& p {
+		color: $neon-green;
+		font-size: 15px;
+	}
+	& .progress {
+		width: 300px;
+	  margin: 2rem auto 1rem auto;
+	}
 }
 
-/*--------------*/
-/* trafficking  */
-/*--------------*/
-
-.trafficking-header {
-  color: $neon-green !important;
-  margin: 80px auto 50px auto !important;
+.traffic-flight-list-header {
+	position: relative;
+	top: -10px;
+	width: 55%;
+	border-bottom: 1px solid #eee;
 }
 
-.md-r3-theme {
-  color: $secondary-color;
-  & .md-gap {
-    border-top-color: $neon-green !important;
-    border-bottom-color: $neon-green !important;
-  }
-  & .md-left .md-half-circle {
-    border-top-color: $neon-green !important;
-    border-left-color: $neon-green !important;
-  }
-  & .md-right .md-half-circle {
-    border-top-color: $neon-green !important;
-    border-right-color: $neon-green !important;
-  }
+.traffc-campaign-review-info {
+	font-size: 17px;
+	& span {
+		font-weight: bold;
+	}
 }
 
-/*--------------*/
-/*  trafficked  */
-/*--------------*/
-
-.trafficked-wrapper {
-  width: 90%;
-  margin: 0 auto;
-  whitespace: nowrap;
-  & h2 {
-    color: $neon-green !important;
-    margin: -15px auto 40px auto;
-    text-align: center;
-  }
-  & span.id{
-    color: #ccc;
-    margin: 0 20px 0 15px;
-  }
+.traffic-page-header {
+	& h2 {
+		text-align: left;
+	}
 }
+

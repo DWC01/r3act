@@ -24,7 +24,6 @@ export default Ember.ArrayController.extend({
   }.property(),
   
   swfDuration: function() {
-    console.log(Number(this.get('creative').get('duration')));
   	return (Number(this.get('creative').get('duration')) / 1000);
   }.property(),
 

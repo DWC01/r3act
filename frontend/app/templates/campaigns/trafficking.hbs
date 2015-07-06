@@ -1,1 +1,50 @@
-{{page-header value="Trafficking"}}
+<div class="traffic-page-header">
+	{{page-header value=traffickingHeader}}
+</div>
+
+	<div class="row">
+	  
+	  <div class="col s6">
+	  	<div class="traffic-flight-list-header">
+		  	<h5> 
+		  		Flight List
+		  	</h5>
+		  </div>
+	  	<div class="traffc-campaign-review-info">
+	  		<form {{action 'trafficCampaign' on="submit"}}>
+	  			{{#each flight in flights}}
+				    <p>
+				    	{{input type="checkbox" checked=true
+				    		id=flight.id class="traffic-flight-checkbox"}}
+				      <label for="{{flight.id}}">{{flight.name}}</label>
+				    </p>
+		  		{{/each}}
+				  <div class="traffic-campaign-form-wrap">   
+			  		<button type="submit" name="submit" class="btn waves-effect waves-light">
+				    	Traffic Flights   
+				    </button>
+				  </div>
+		  	</form>
+		  </div>
+	  </div>
+
+	  <div class="col s6">
+	  	<div class="traffic-company-list-item-wrap">
+				{{list-item-company dcm=dcm}}
+			  {{#if trafficInProgress}}
+				  <div class="traffic-progress-wrap">
+				  	<div class="progress">
+					    <div class="indeterminate"></div>
+					  </div>
+			  		<p class="center-align"> 
+			  			Trafficking Flights into {{dcm.name}}
+			  		</p>
+			  		<p class="center-align">
+			  			This may take a minute..
+			  		</p>
+					</div>
+			  {{/if}}
+		  </div>
+	  </div>
+
+	</div>

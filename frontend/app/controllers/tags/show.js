@@ -13,18 +13,6 @@ export default Ember.ArrayController.extend({
       this.setAdTag();
   	  return isAdTag;
     }
-  }.property(),
-
-  setAdTag: function() {
-    Ember.$.get(this.get('creative').get('resource_url')).then(
-      function(response){
-        Ember.$('.tag-display-wrap').append(
-          JSON.parse(response).ad_tag_code);
-      }.bind(this),
-      function(response) { 
-        console.log(response);
-      }.bind(this)
-    );
-  }
+  }.property()
   
 });

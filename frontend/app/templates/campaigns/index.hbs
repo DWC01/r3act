@@ -3,7 +3,7 @@
 <ul class="list-unstyled">
   {{#each campaign in campaigns}}
     {{#link-to 'campaigns.media_plan' campaign class="stripe-box-list-link"}}
-      <li class="stripe-box-list-item md-whiteframe-z1">
+      <li class="stripe-box-list-item z-depth-1">
         <div class="stripe-box-left-stripe"></div>
         <div class="stripe-box-content">
           {{campaign.name}} | {{campaign.created_at}}
